@@ -11,10 +11,10 @@
         <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        <i class="fa fa-dashboard"></i> Dashboard
+        <i class="fa fa-dashboard"></i> Быстрый доступ
     </h1>
     <ol class="breadcrumb">
-        <li class="active"><i class="fa fa-dashboard"></i> Dashboard</li>
+        <li class="active"><i class="fa fa-dashboard"></i> Быстрый доступ</li>
     </ol>
 </section>
 
@@ -25,7 +25,7 @@
             <!-- Default box -->
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Admin Dashboard</h3>
+                    <h3 class="box-title">Панель управления</h3>
                     <div class="box-tools pull-right">
                         <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
                             <i class="fa fa-minus"></i></button>
@@ -61,20 +61,7 @@
                                             class="fa fa-arrow-circle-right"></i></a>
                             </div>
                         </div><!-- ./col -->
-                        <div class="col-lg-3 col-xs-6">
-                            <!-- small box -->
-                            <div class="small-box bg-yellow">
-                                <div class="inner">
-                                    <h3>{{ $packages }}</h3>
-                                    <p>Packages</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-briefcase"></i>
-                                </div>
-                                <a href="{{ url('admin/packages') }}" class="small-box-footer">More info <i
-                                            class="fa fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div><!-- ./col -->
+
                         <div class="col-lg-3 col-xs-6">
                             <!-- small box -->
                             <div class="small-box bg-red">
@@ -94,7 +81,7 @@
                             <div class="small-box bg-gray">
                                 <div class="inner">
                                     <h3>{{ $pages }}</h3>
-                                    <p>Pages</p>
+                                    <p>Страницы</p>
                                 </div>
                                 <div class="icon">
                                     <i class="fa fa-files-o"></i>

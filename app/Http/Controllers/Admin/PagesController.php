@@ -46,7 +46,6 @@ class PagesController extends Controller
     public function store(PageRequest $request)
     {
         $page = new Page($request->except('_token', 'page_id','published'));
-		
 		$page->published = 0;
 		
 		if($request->input('published'))
@@ -92,9 +91,7 @@ class PagesController extends Controller
     public function update(PageRequest $request, Page $page)
     {
         $page->title = $request->input('title');
-
         $page->content = $request->input('content');
-
         $page->icon = $request->input('icon');
 
         if ($page->published == 0 && $request->input('published')) {
@@ -102,20 +99,14 @@ class PagesController extends Controller
         }
 
         $page->published = $request->input('published');
-
         $page->blog_post = $request->input('blog_post');
-
         $page->slug = $request->input('slug');
-
         $page->meta_keywords = $request->input('meta_keywords');
-
         $page->meta_desc = $request->input('meta_desc');
-
         $page->updated_at = \Carbon::now();
-
         $page->save();
 
-        return redirect('admin/pages')->with('success', $page->title . ' has been Updated Successfully');
+        return redirect('admin/pages')->with('success', $page->title . ' успешно обновлена');
     }//update
 
     /**

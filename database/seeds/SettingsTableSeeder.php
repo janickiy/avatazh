@@ -53,7 +53,7 @@ class SettingsTableSeeder extends Seeder
                     'key_cd' => 'FOOTER',
                     'type' => 'TEXT',
                     'display_value' => 'Footer',
-                    'value' => '<div class="pull-right hidden-xs"> <b>Laravel LarashipPro</b></div> 	<strong>Copyright © 2016</strong> All rights reserved.',
+                    'value' => '<div class="pull-right hidden-xs"> <b>Гамма Эксперт</b></div> 	<strong>Copyright © ' . date("Y") . '</strong> Все права защищены.',
                     'created_at' => '2016-03-31 07:04:15',
                     'updated_at' => '2016-03-31 12:09:55',
                 ),

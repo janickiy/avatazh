@@ -146,7 +146,7 @@ class SettingsController extends Controller {
 
         $setting->save();
 
-        return Redirect::route('admin.settings.index')->with('success', $setting->display_value . ' has been Updated Successfully');
+        return Redirect::route('admin.settings.index')->with('success', $setting->display_value . ' успешно обновлено');
     }
 
 //update

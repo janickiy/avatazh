@@ -11,12 +11,12 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        <i class="fa fa-gear"></i> {{ isset($setting) ? 'Edit' : 'Add' }} Setting
+        <i class="fa fa-gear"></i> {{ isset($setting) ? 'Редактировать' : 'Добавить' }} настройки
     </h1>
     <ol class="breadcrumb">
-        <li><a href="{{ url('admin/home') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li><a href="{{ url('admin/settings') }}"><i class="fa fa-gears"></i> Settings</a></li>
-        <li class="active"><i class="fa {{ isset($setting) ? 'fa-pencil' : 'fa-plus' }}"></i> {{ isset($setting) ? 'Edit' : 'Add' }} Setting</li>
+        <li><a href="{{ url('admin/home') }}"><i class="fa fa-dashboard"></i> Быстрый доступ</a></li>
+        <li><a href="{{ url('admin/settings') }}"><i class="fa fa-gears"></i> Настройки</a></li>
+        <li class="active"><i class="fa {{ isset($setting) ? 'fa-pencil' : 'fa-plus' }}"></i> {{ isset($setting) ? 'Редактировать' : 'Добавить' }} настройки</li>
     </ol>
 </section>
 
@@ -25,7 +25,7 @@
     <!-- Default box -->
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Setting Details Form</h3>
+            <h3 class="box-title">Настройка формы данных</h3>
             <div class="box-tools pull-right">
                 <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
             </div>
@@ -35,7 +35,7 @@
             {!! Form::hidden('setting_id', isset($setting) ? $setting->id: null) !!}
             <div class="col-md-12">
                 <div class="form-group">
-                    {!! Form::label('key_cd', 'Key *', ['class' => 'control-label col-md-2']) !!}
+                    {!! Form::label('key_cd', 'Ключ *', ['class' => 'control-label col-md-2']) !!}
                     <div class="col-md-8">
 						@if(isset($setting))
 							{!! Form::text('key_cd', old('key_cd', isset($setting) ? $setting->key_cd : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Key','readonly']) !!}
@@ -46,13 +46,13 @@
 				   </div>
                 </div>
                 <div class="form-group">
-                    {!! Form::label('type', 'Type *', ['class' => 'control-label col-md-2']) !!}
+                    {!! Form::label('type', 'Тип *', ['class' => 'control-label col-md-2']) !!}
                     <div class="col-md-8">
                         {!! Form::text('type', old('type', isset($setting) ? $setting->type : $type), ['class' => 'form-control validate[required]', 'placeholder'=>'Type', 'readonly']) !!}
                     </div>
                 </div>
                 <div class="form-group">
-                    {!! Form::label('display_value', 'Display Value *', ['class' => 'control-label col-md-2']) !!}
+                    {!! Form::label('display_value', 'Свойство *', ['class' => 'control-label col-md-2']) !!}
                     <div class="col-md-8">
                         {!! Form::text('display_value', old('display_value', isset($setting) ? $setting->display_value : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Display Value']) !!}
                     </div>
@@ -68,7 +68,7 @@
                 </div>
                 @elseif(isset($setting) && $setting->type == 'FILE' || $type == 'FILE' )
                 <div class="form-group" id="type_text">
-                    {!! Form::label('value', 'Value *', ['class' => 'control-label col-md-2']) !!}
+                    {!! Form::label('value', 'Значение *', ['class' => 'control-label col-md-2']) !!}
                     <div class="col-md-4">
 						<span class="btn  btn-file  btn-primary">Upload File 
                         {!! Form::file('value') !!}
@@ -82,7 +82,7 @@
                 </div>
                 @else
                 <div class="form-group" id="type_text">
-                    {!! Form::label('value', 'Value *', ['class' => 'control-label col-md-2']) !!}
+                    {!! Form::label('value', 'Значение *', ['class' => 'control-label col-md-2']) !!}
                     <div class="col-md-8">
                         {!! Form::textarea('value', old('value', isset($setting) ? $setting->value : null), ['class' => 'form-control']) !!}
                     </div>
@@ -90,7 +90,7 @@
                 @endif
                 <div class="form-group">
                     <div class="col-md-8 col-md-offset-2">
-                        {!! Form::submit( (isset($setting) ? 'Update': 'Add') . ' Setting', ['class'=>'btn btn-primary']) !!}
+                        {!! Form::submit( (isset($setting) ? 'Обновить': 'Добавить'), ['class'=>'btn btn-primary']) !!}
                     </div>
                 </div>
             </div><!-- .col-md-12 -->
