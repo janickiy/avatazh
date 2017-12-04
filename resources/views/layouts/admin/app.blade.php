@@ -54,15 +54,15 @@
             <div class="message-box animated fadeIn" id="mb-signout">
                 <div class="mb-container">
                     <div class="mb-middle">
-                        <div class="mb-title"><span class="fa fa-sign-out"></span> Log <strong>Out</strong> ?</div>
+                        <div class="mb-title"><span class="fa fa-sign-out"></span> Войти <strong>Выйти</strong> ?</div>
                         <div class="mb-content">
-                            <p>Are you sure you want to log out?</p>                    
-                            <p>Press No if you want to continue work. Press Yes to logout current user.</p>
+                            <p>Вы действительно хотите выйти?</p>
+                            <p>Нажмите "Нет", если вы хотите продолжить работу. Нажмите "Да", чтобы выйти из текущего пользователя.</p>
                         </div>
                         <div class="mb-footer">
                             <div class="pull-right">
-                                <a href="{{ url('logout') }}" class="btn btn-success">Yes</a>
-                                <button class="btn btn-default mb-control-close">No</button>
+                                <a href="{{ url('logout') }}" class="btn btn-success">Да</a>
+                                <button class="btn btn-default mb-control-close">Нет</button>
                             </div>
                         </div>
                     </div>

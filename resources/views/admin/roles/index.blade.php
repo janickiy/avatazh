@@ -17,11 +17,11 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        <i class="fa fa-key"></i> Roles
+        <i class="fa fa-key"></i> Роли
     </h1>
     <ol class="breadcrumb">
-        <li><a href="{{ url('admin/dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li class="active"><i class="fa fa-key"></i> Roles</li>
+        <li><a href="{{ url('admin/dashboard') }}"><i class="fa fa-dashboard"></i> Панель управления</a></li>
+        <li class="active"><i class="fa fa-key"></i> Роли</li>
     </ol>
 </section>
 
@@ -30,7 +30,7 @@
     <!-- Default box -->
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Roles List</h3>
+            <h3 class="box-title">Список ролей</h3>
             <div class="box-tools pull-right">
                 <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
             </div>
@@ -40,10 +40,10 @@
                 <thead>
                     <tr>
                         <th>id</th>
-                        <th>Name</th>
-                        <th>Routes</th>
-                        <th>Created At</th>
-                        <th>Actions</th>
+                        <th>Название</th>
+                        <th>Роутинг</th>
+                        <th>Создан</th>
+                        <th>Действия</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -53,8 +53,8 @@
         </div><!-- /.box-body -->
         <div class="box-footer">
             <p class="text-muted small">
-                <i class="fa fa-pencil"></i> Edit Role | 
-                <i class="fa fa-remove"></i> Delete Role
+                <i class="fa fa-pencil"></i> Редактировать |
+                <i class="fa fa-remove"></i> Удалить
             </p>
         </div><!-- /.box-footer-->
     </div><!-- /.box -->

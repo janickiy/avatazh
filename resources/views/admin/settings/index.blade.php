@@ -17,11 +17,11 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        <i class="fa fa-gears"></i> Settings
+        <i class="fa fa-gears"></i> Настройки
     </h1>
     <ol class="breadcrumb">
-        <li><a href="{{ url('admin/home') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li class="active"><i class="fa fa-gears"></i> Settings</li>
+        <li><a href="{{ url('admin/home') }}"><i class="fa fa-dashboard"></i> Быстрый доступ </a></li>
+        <li class="active"><i class="fa fa-gears"></i>Настройки</li>
     </ol>
 </section>
 
@@ -30,7 +30,7 @@
     <!-- Default box -->
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Settings List</h3>
+            <h3 class="box-title">Список параметров</h3>
             <div class="box-tools pull-right">
                 <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
             </div>
@@ -39,9 +39,9 @@
             <table id="data_table" class="table datatable dt-responsive" style="width:100%;">
                 <thead>
                     <tr>
-                        <th>Setting</th>
-                        <th>Value</th>
-                        <th>Actions</th>
+                        <th>Параметр</th>
+                        <th>Значение</th>
+                        <th>Действия</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -51,7 +51,7 @@
         </div><!-- /.box-body -->
         <div class="box-footer">
             <p class="text-muted small">
-                <i class="fa fa-pencil"></i> Edit Setting
+                <i class="fa fa-pencil"></i> Редактировать
             </p>
         </div><!-- /.box-footer-->
     </div><!-- /.box -->

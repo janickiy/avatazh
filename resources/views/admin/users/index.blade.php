@@ -16,11 +16,11 @@
         <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        <i class="fa fa-users"></i> Users
+        <i class="fa fa-users"></i> Пользователи
     </h1>
     <ol class="breadcrumb">
-        <li><a href="{{ url('admin/dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li class="active"><i class="fa fa-users"></i> Users</li>
+        <li><a href="{{ url('admin/dashboard') }}"><i class="fa fa-dashboard"></i> Быстрый доступ</a></li>
+        <li class="active"><i class="fa fa-users"></i> Пользователи</li>
     </ol>
 </section>
 
@@ -29,23 +29,23 @@
     <!-- Default box -->
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Users List</h3>
+            <h3 class="box-title">Список пользователей</h3>
             <div class="box-tools pull-right">
-                <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i
-                            class="fa fa-minus"></i></button>
+                <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
             </div>
         </div>
         <div class="box-body">
             <table id="data_table" class="table datatable dt-responsive" style="width:100%;">
                 <thead>
                 <tr>
-                    <th>Avatar</th>
-                    <th>Name</th>
+                    <th>Аватар</th>
+                    <th>Имя</th>
                     <th>Email</th>
-                    <th>Package</th>
-                    <th>Role</th>
-                    <th>Created At</th>
-                    <th>Actions</th>
+                    <th>Роль</th>
+                    <th>Зарегистрирован</th>
+                    <th>Действия</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -55,8 +55,8 @@
         </div><!-- /.box-body -->
         <div class="box-footer">
             <p class="text-muted small">
-                <i class="fa fa-pencil"></i> Edit User |
-                <i class="fa fa-remove"></i> Delete User
+                <i class="fa fa-pencil"></i> Редактировать |
+                <i class="fa fa-remove"></i> Удалить
             </p>
         </div><!-- /.box-footer-->
     </div><!-- /.box -->
@@ -86,7 +86,6 @@
                 {data: 'avatar', name: 'avatar', orderable: false, searchable: false},
                 {data: 'name', name: 'name'},
                 {data: 'email', name: 'email'},
-                {data: 'package_id', name: 'package_id'},
                 {data: 'role_id', name: 'role_id'},
                 {data: 'created_at', name: 'created_at'},
                 {data: 'actions', name: 'actions', orderable: false, searchable: false}

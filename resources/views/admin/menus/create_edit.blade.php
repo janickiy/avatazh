@@ -11,14 +11,13 @@
         <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        <i class="fa fa-list-alt"></i> {{ isset($menu) ? 'Edit' : 'Add' }} Menu
+        <i class="fa fa-list-alt"></i> {{ isset($menu) ? 'Редактировать' : 'Добавить' }} Меню
     </h1>
     <ol class="breadcrumb">
-        <li><a href="{{ url('admin/dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li><a href="{{ url('admin/menus') }}"><i class="fa fa-list-alt"></i> Menus</a></li>
-        <li class="active"><i
-                    class="fa {{ isset($menu) ? 'fa-pencil' : 'fa-plus' }}"></i> {{ isset($menu) ? 'Edit' : 'Add' }}
-            Menu
+        <li><a href="{{ url('admin/dashboard') }}"><i class="fa fa-dashboard"></i> Быстрый доступ</a></li>
+        <li><a href="{{ url('admin/menus') }}"><i class="fa fa-list-alt"></i> Меня</a></li>
+        <li class="active"><i class="fa {{ isset($menu) ? 'fa-pencil' : 'fa-plus' }}"></i> {{ isset($menu) ? 'Редактировать' : 'Добавить' }}
+            Меню
         </li>
     </ol>
 </section>
@@ -28,10 +27,11 @@
     <!-- Default box -->
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Menu Details Form</h3>
+            <h3 class="box-title">Форма данных меню</h3>
             <div class="box-tools pull-right">
-                <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i
-                            class="fa fa-minus"></i></button>
+                <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
             </div>
         </div>
         <div class="box-body">
@@ -40,7 +40,7 @@
                 <div class="form-group">
                     {!! Form::label('title', 'Title *', ['class' => 'control-label col-md-2']) !!}
                     <div class="col-md-4">
-                        {!! Form::text('title', old('title', isset($menu) ? $menu->title : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Title']) !!}
+                        {!! Form::text('title', old('title', isset($menu) ? $menu->title : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Загаловок']) !!}
                     </div>
                 </div>
                 <div class="form-group">
@@ -50,9 +50,9 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    {!! Form::label('item_order', 'Item Order *', ['class' => 'control-label col-md-2']) !!}
+                    {!! Form::label('item_order', 'Порядок *', ['class' => 'control-label col-md-2']) !!}
                     <div class="col-md-4">
-                        {!! Form::number('item_order', old('item_order',   isset($menu) ? $menu->item_order : null ), ['class' => 'form-control validate[required,custom[integer],min[1]]', 'placeholder'=>'Item Order']) !!}
+                        {!! Form::number('item_order', old('item_order',   isset($menu) ? $menu->item_order : null ), ['class' => 'form-control validate[required,custom[integer],min[1]]', 'placeholder'=>'Порядок']) !!}
                     </div>
                 </div>
                 <div class="form-group">
@@ -62,7 +62,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    {!! Form::label('status', 'Status', ['class' => 'control-label col-md-2']) !!}
+                    {!! Form::label('status', 'Статус', ['class' => 'control-label col-md-2']) !!}
                     <div class="col-md-4">
                         <label class="check">{!! Form::checkbox('status',1,  old('status' , (isset($menu) && ($menu->getOriginal('status') == 1) ) ? true : false ) ,['class'=>'minimal']) !!}
                             Active</label>
@@ -70,7 +70,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-8 col-md-offset-2">
-                        {!! Form::submit( (isset($menu) ? 'Update': 'Add') . ' Menu', ['class'=>'btn btn-primary']) !!}
+                        {!! Form::submit( (isset($menu) ? 'Обновить': 'Добавить') . '', ['class'=>'btn btn-primary']) !!}
                     </div>
                 </div>
             </div><!-- .col-md-12 -->

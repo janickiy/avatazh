@@ -12,12 +12,12 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        <i class="fa fa-key"></i> {{ isset($role) ? 'Edit' : 'Add' }} Role
+        <i class="fa fa-key"></i> {{ isset($role) ? 'Редактировать' : 'Добавить' }} роль
     </h1>
     <ol class="breadcrumb">
-        <li><a href="{{ url('admin/dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li><a href="{{ url('admin/roles') }}"><i class="fa fa-key"></i> Roles</a></li>
-        <li class="active"><i class="fa {{ isset($role) ? 'fa-pencil' : 'fa-plus' }}"></i> {{ isset($role) ? 'Edit' : 'Add' }} Role</li>
+        <li><a href="{{ url('admin/dashboard') }}"><i class="fa fa-dashboard"></i> Быстрый доступ</a></li>
+        <li><a href="{{ url('admin/roles') }}"><i class="fa fa-key"></i> Роли</a></li>
+        <li class="active"><i class="fa {{ isset($role) ? 'fa-pencil' : 'fa-plus' }}"></i> {{ isset($role) ? 'Редактировать' : 'Добавить' }} Роль</li>
     </ol>
 </section>
 
@@ -26,7 +26,7 @@
     <!-- Default box -->
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Role Details Form</h3>
+            <h3 class="box-title">Форма данных ролей</h3>
             <div class="box-tools pull-right">
                 <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
             </div>
@@ -36,20 +36,20 @@
             {!! Form::hidden('role_id', isset($role) ? $role->id: null) !!}
             <div class="col-md-12">
                 <div class="form-group">
-                    {!! Form::label('name', 'Role Name *', ['class' => 'control-label col-md-2']) !!}
+                    {!! Form::label('name', 'Название роли *', ['class' => 'control-label col-md-2']) !!}
                     <div class="col-md-8">
-                        {!! Form::text('name', old('name', isset($role) ? $role->name : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Role Name']) !!}
+                        {!! Form::text('name', old('name', isset($role) ? $role->name : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Название роли']) !!}
                     </div>
                 </div>
                 <div class="form-group">
-                    {!! Form::label('routes', 'Role Routes', ['class' => 'control-label col-md-2']) !!}
+                    {!! Form::label('routes', 'Роль роутинг', ['class' => 'control-label col-md-2']) !!}
                     <div class="col-md-8">
-                        {!! Form::select('routes[]', $routes, old('routes', isset($role) ? json_decode($role->routes): null), ['class' => 'form-control select2', 'multiple', 'data-placeholder'=>'Select a Route', 'style'=>'width: 100%;']) !!}
+                        {!! Form::select('routes[]', $routes, old('routes', isset($role) ? json_decode($role->routes): null), ['class' => 'form-control select2', 'multiple', 'data-placeholder'=>'Выберите маршрут', 'style'=>'width: 100%;']) !!}
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-8 col-md-offset-2">
-                        {!! Form::submit( (isset($role) ? 'Update': 'Add') . ' Role', ['class'=>'btn btn-primary']) !!}
+                        {!! Form::submit( (isset($role) ? 'Обновить': 'Добавить') . '', ['class'=>'btn btn-primary']) !!}
                     </div>
                 </div>
             </div><!-- .col-md-12 -->

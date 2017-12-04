@@ -83,7 +83,7 @@
                         <div class="form-group">
                             {!! Form::label('role', 'Роль *', ['class' => 'control-label col-md-3']) !!}
                             <div class="col-md-9">
-                                {!! Form::select('role', array_add($roles, '','Пожалуйста выберит'), old('role', isset($user) ? $user->role_id: null), ['class' => 'form-control select2 validate[required]']) !!}
+                                {!! Form::select('role', array_add($roles, '','Пожалуйста выберите'), old('role', isset($user) ? $user->role_id: null), ['class' => 'form-control select2 validate[required]']) !!}
                             </div>
                         </div>
                         <div class="form-group">
@@ -154,7 +154,7 @@
     $(document).ready(function () {
         //Initialize Select2 Elements
         $(".select2").select2({
-            placeholder: "Please Select",
+            placeholder: "Пожалуйста выберите",
             allowClear: true
         });
 

@@ -11,12 +11,12 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        <i class="fa fa-gear"></i> Add Setting
+        <i class="fa fa-gear"></i> Добавление параметра
     </h1>
     <ol class="breadcrumb">
-        <li><a href="{{ url('admin/home') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li class=""><a href="{{ url('admin/settings') }}"><i class="fa fa-gears"></i> Settings</a></li>
-        <li class="active"><i class="fa fa-gear"></i> Add Setting</li>
+        <li><a href="{{ url('admin/home') }}"><i class="fa fa-dashboard"></i> Быстрый доступ </a></li>
+        <li class=""><a href="{{ url('admin/settings') }}"><i class="fa fa-gears"></i> Настройки</a></li>
+        <li class="active"><i class="fa fa-gear"></i> Добавить параметр</li>
     </ol>
 </section>
 
@@ -25,7 +25,7 @@
     <!-- Default box -->
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Add Setting</h3>
+            <h3 class="box-title">Добавить параметр</h3>
             <div class="box-tools pull-right">
                 <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
             </div>
@@ -35,13 +35,13 @@
                 <div class="col-md-12">
                     
                          <div class="col-md-4">
-                            <a href="{{ url('admin/settings/create/TEXT') }}"  style="width:150px" class="btn btn-primary">Add Text Setting</a>
+                            <a href="{{ url('admin/settings/create/TEXT') }}"  style="width:150px" class="btn btn-primary">Добавить Text параметр</a>
                         </div>
                         <div class="col-md-4">
-                            <a href="{{ url('admin/settings/create/SELECT') }}" style="width:150px" class="btn btn-primary">Add Select Setting</a>
+                            <a href="{{ url('admin/settings/create/SELECT') }}" style="width:150px" class="btn btn-primary">Добавить Select параметр</a>
                         </div>
                          <div class="col-md-4">
-                            <a href="{{ url('admin/settings/create/FILE') }}" style="width:150px" class="btn btn-primary">Add File Setting</a>
+                            <a href="{{ url('admin/settings/create/FILE') }}" style="width:150px" class="btn btn-primary">Добавить File параметр</a>
                         </div>
                     
                 </div>

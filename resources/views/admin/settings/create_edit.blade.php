@@ -54,7 +54,7 @@
                 <div class="form-group">
                     {!! Form::label('display_value', 'Свойство *', ['class' => 'control-label col-md-2']) !!}
                     <div class="col-md-8">
-                        {!! Form::text('display_value', old('display_value', isset($setting) ? $setting->display_value : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Display Value']) !!}
+                        {!! Form::text('display_value', old('display_value', isset($setting) ? $setting->display_value : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Свойство']) !!}
                     </div>
                 </div>
                 @if(isset($setting) && $setting->type == 'SELECT' || $type == 'SELECT' )
@@ -70,7 +70,7 @@
                 <div class="form-group" id="type_text">
                     {!! Form::label('value', 'Значение *', ['class' => 'control-label col-md-2']) !!}
                     <div class="col-md-4">
-						<span class="btn  btn-file  btn-primary">Upload File 
+						<span class="btn  btn-file  btn-primary">Загрузить файл
                         {!! Form::file('value') !!}
 						</span>
                     </div>
