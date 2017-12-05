@@ -16,8 +16,7 @@
         <div class="col-md-12">
             <div class="alert alert-danger text-center">
                 <h1>500 Error</h1>
-                <p>Thats an error. 
-There was an error. Please Try again later. Thats all we know</p>
+                <p>Ошибка сервера!</p>
             </div>
         </div>
     </div>

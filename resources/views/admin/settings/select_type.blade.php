@@ -14,7 +14,7 @@
         <i class="fa fa-gear"></i> Добавление параметра
     </h1>
     <ol class="breadcrumb">
-        <li><a href="{{ url('admin/home') }}"><i class="fa fa-dashboard"></i> Быстрый доступ </a></li>
+        <li><a href="{{ url('admin/home') }}"><i class="fa fa-dashboard"></i> Панель управления </a></li>
         <li class=""><a href="{{ url('admin/settings') }}"><i class="fa fa-gears"></i> Настройки</a></li>
         <li class="active"><i class="fa fa-gear"></i> Добавить параметр</li>
     </ol>
@@ -35,13 +35,13 @@
                 <div class="col-md-12">
                     
                          <div class="col-md-4">
-                            <a href="{{ url('admin/settings/create/TEXT') }}"  style="width:150px" class="btn btn-primary">Добавить Text параметр</a>
+                            <a href="{{ url('admin/settings/create/TEXT') }}"  style="width:200px" class="btn btn-primary">Добавить Text параметр</a>
                         </div>
                         <div class="col-md-4">
-                            <a href="{{ url('admin/settings/create/SELECT') }}" style="width:150px" class="btn btn-primary">Добавить Select параметр</a>
+                            <a href="{{ url('admin/settings/create/SELECT') }}" style="width:200px" class="btn btn-primary">Добавить Select параметр</a>
                         </div>
                          <div class="col-md-4">
-                            <a href="{{ url('admin/settings/create/FILE') }}" style="width:150px" class="btn btn-primary">Добавить File параметр</a>
+                            <a href="{{ url('admin/settings/create/FILE') }}" style="width:200px" class="btn btn-primary">Добавить File параметр</a>
                         </div>
                     
                 </div>

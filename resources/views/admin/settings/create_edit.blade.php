@@ -14,7 +14,7 @@
         <i class="fa fa-gear"></i> {{ isset($setting) ? 'Редактировать' : 'Добавить' }} настройки
     </h1>
     <ol class="breadcrumb">
-        <li><a href="{{ url('admin/home') }}"><i class="fa fa-dashboard"></i> Быстрый доступ</a></li>
+        <li><a href="{{ url('admin/home') }}"><i class="fa fa-dashboard"></i> Панель управления</a></li>
         <li><a href="{{ url('admin/settings') }}"><i class="fa fa-gears"></i> Настройки</a></li>
         <li class="active"><i class="fa {{ isset($setting) ? 'fa-pencil' : 'fa-plus' }}"></i> {{ isset($setting) ? 'Редактировать' : 'Добавить' }} настройки</li>
     </ol>
@@ -105,7 +105,7 @@
 
 @section('js')
 
-{!! Html::script('assets/plugins/validationengine/languages/jquery.validationEngine-en.js') !!}
+{!! Html::script('assets/plugins/validationengine/languages/jquery.validationEngine-ru.js') !!}
 
 {!! Html::script('assets/plugins/validationengine/jquery.validationEngine.js') !!}
 

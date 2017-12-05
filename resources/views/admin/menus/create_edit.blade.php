@@ -14,7 +14,7 @@
         <i class="fa fa-list-alt"></i> {{ isset($menu) ? 'Редактировать' : 'Добавить' }} Меню
     </h1>
     <ol class="breadcrumb">
-        <li><a href="{{ url('admin/dashboard') }}"><i class="fa fa-dashboard"></i> Быстрый доступ</a></li>
+        <li><a href="{{ url('admin/dashboard') }}"><i class="fa fa-dashboard"></i> Панель управления</a></li>
         <li><a href="{{ url('admin/menus') }}"><i class="fa fa-list-alt"></i> Меня</a></li>
         <li class="active"><i class="fa {{ isset($menu) ? 'fa-pencil' : 'fa-plus' }}"></i> {{ isset($menu) ? 'Редактировать' : 'Добавить' }}
             Меню
@@ -88,7 +88,7 @@
         <!-- iCheck 1.0.1 -->
 {!! Html::script('assets/plugins/iCheck/icheck.min.js') !!}
 
-{!! Html::script('assets/plugins/validationengine/languages/jquery.validationEngine-en.js') !!}
+{!! Html::script('assets/plugins/validationengine/languages/jquery.validationEngine-ru.js') !!}
 
 {!! Html::script('assets/plugins/validationengine/jquery.validationEngine.js') !!}
 

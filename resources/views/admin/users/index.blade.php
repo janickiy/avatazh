@@ -19,7 +19,7 @@
         <i class="fa fa-users"></i> Пользователи
     </h1>
     <ol class="breadcrumb">
-        <li><a href="{{ url('admin/dashboard') }}"><i class="fa fa-dashboard"></i> Быстрый доступ</a></li>
+        <li><a href="{{ url('admin/dashboard') }}"><i class="fa fa-dashboard"></i> Панель управления</a></li>
         <li class="active"><i class="fa fa-users"></i> Пользователи</li>
     </ol>
 </section>

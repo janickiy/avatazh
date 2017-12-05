@@ -13,7 +13,7 @@
             <li class="header">Главное меню</li>
             <li class="{{ Request::is('admin/dashboard') ? 'active': '' }}">
                 <a href="{{ url('admin/dashboard') }}">
-                    <i class="fa fa-dashboard"></i> <span>Быстрый доступ</span>
+                    <i class="fa fa-dashboard"></i> <span>Панель управления</span>
                 </a>
             </li>
             <li class="{{ Request::is('/') ? 'active': '' }}">

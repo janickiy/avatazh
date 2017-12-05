@@ -1,6 +1,6 @@
 @extends('layouts.frontend.app')
 
-@section('title', 'Login')
+@section('title', 'Авторизация')
 
 @section('css')
 
@@ -9,13 +9,13 @@
 @section('content')
     <div class="row">
         <div class="col-md-6">
-            <h4> Login with <strong>{{ getSetting('SITE_TITLE') }} Account :</strong></h4>
+            <h4> Login with <strong>{{ getSetting('SITE_TITLE') }} Аккаунт :</strong></h4>
             <br/>
             <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                 {!! csrf_field() !!}
 
                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                    <label class="col-md-3 control-label">E-Mail Address *</label>
+                    <label class="col-md-3 control-label">E-Mail адрес *</label>
 
                     <div class="col-md-9">
                         <div class="input-group">
@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                    <label class="col-md-3 control-label">Password *</label>
+                    <label class="col-md-3 control-label">Пароль *</label>
 
                     <div class="col-md-9">
                         <div class="input-group">
@@ -50,7 +50,7 @@
                     <div class="col-md-9 col-md-offset-3">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="remember"> Remember Me
+                                <input type="checkbox" name="remember"> Запомнить меня
                             </label>
                         </div>
                     </div>
@@ -59,42 +59,13 @@
                 <div class="form-group">
                     <div class="col-md-9 col-md-offset-3">
                         <button type="submit" class="btn btn-primary">
-                            <i class="fa fa-btn fa-sign-in"></i> Login
+                            <i class="fa fa-btn fa-sign-in"></i> Войти
                         </button>
 
-                        <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
+                        <a class="btn btn-link" href="{{ url('/password/reset') }}">Забыли пароль?</a>
                     </div>
                 </div>
             </form>
-        </div>
-        <div class="col-md-6">
-            <div class="alert alert-info">
-                <p>Laraship Pro is the first user membership software built on Laravel that provides complete
-                    management to any subscription site Including :
-
-
-                <ul>
-                    <li>User Management</li>
-                    <li>Subscription Management</li>
-                    <li>Role Management</li>
-                    <li>Features Management</li>
-                    <li>Package Management</li>
-                    <li>Setting Management</li>
-                    <li>Content Management</li>
-                </ul>
-                </p>
-            </div>
-            <div class="alert alert-success">
-                <strong> Instructions To Install:</strong>
-                <ul>
-                    <li>
-                        Please Navigation to Instructions Manual at root folder for delailed installations and usage
-                        steps
-                    </li>
-
-                </ul>
-
-            </div>
         </div>
     </div>
 @endsection

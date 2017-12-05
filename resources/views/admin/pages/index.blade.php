@@ -1,6 +1,6 @@
 @extends('layouts.admin.app')
 
-@section('title', 'Content')
+@section('title', 'Контент')
 
 @section('css')
         <!-- DataTables -->
@@ -16,11 +16,11 @@
         <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        <i class="fa fa-files-o"></i> Content
+        <i class="fa fa-files-o"></i> Контент
     </h1>
     <ol class="breadcrumb">
-        <li><a href="{{ url('admin/dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li class="active"><i class="fa fa-files-o"></i> Content</li>
+        <li><a href="{{ url('admin/dashboard') }}"><i class="fa fa-dashboard"></i> Панель управления</a></li>
+        <li class="active"><i class="fa fa-files-o"></i> Контент</li>
     </ol>
 </section>
 
@@ -29,23 +29,24 @@
     <!-- Default box -->
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Content List</h3>
+            <h3 class="box-title">Материалы</h3>
             <div class="box-tools pull-right">
-                <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i
-                            class="fa fa-minus"></i></button>
+                <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
             </div>
         </div>
         <div class="box-body">
             <table id="data_table" class="table datatable dt-responsive" style="width:100%;">
                 <thead>
                 <tr>
-                    <th>Title</th>
-                    <th>Slug</th>
-                    <th>Published</th>
-                    <th>Published At</th>
-                    <th>Type</th>
-                    <th>Created At</th>
-                    <th>Actions</th>
+                    <th>Загаловок</th>
+                    <th>Заголовок для URL-адреса</th>
+                    <th>Опубликовано</th>
+                    <th>Размещено</th>
+                    <th>Тип</th>
+                    <th>Создано</th>
+                    <th>Действия</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -55,9 +56,9 @@
         </div><!-- /.box-body -->
         <div class="box-footer">
             <p class="text-muted small">
-                <i class="fa fa-pencil"></i> Edit Content |
-                <i class="fa fa-remove"></i> Delete Content |
-                <i class="fa fa-eye"></i> View Content
+                <i class="fa fa-pencil"></i> Редактировать |
+                <i class="fa fa-remove"></i> Удалить |
+                <i class="fa fa-eye"></i> Просмотр
             </p>
         </div><!-- /.box-footer-->
     </div><!-- /.box -->

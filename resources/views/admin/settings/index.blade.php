@@ -20,7 +20,7 @@
         <i class="fa fa-gears"></i> Настройки
     </h1>
     <ol class="breadcrumb">
-        <li><a href="{{ url('admin/home') }}"><i class="fa fa-dashboard"></i> Быстрый доступ </a></li>
+        <li><a href="{{ url('admin/home') }}"><i class="fa fa-dashboard"></i> Панель управления </a></li>
         <li class="active"><i class="fa fa-gears"></i>Настройки</li>
     </ol>
 </section>

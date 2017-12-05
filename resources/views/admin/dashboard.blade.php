@@ -11,10 +11,10 @@
         <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        <i class="fa fa-dashboard"></i> Быстрый доступ
+        <i class="fa fa-dashboard"></i> Панель управления
     </h1>
     <ol class="breadcrumb">
-        <li class="active"><i class="fa fa-dashboard"></i> Быстрый доступ</li>
+        <li class="active"><i class="fa fa-dashboard"></i> Панель управления</li>
     </ol>
 </section>
 

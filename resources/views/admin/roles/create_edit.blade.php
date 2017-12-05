@@ -15,7 +15,7 @@
         <i class="fa fa-key"></i> {{ isset($role) ? 'Редактировать' : 'Добавить' }} роль
     </h1>
     <ol class="breadcrumb">
-        <li><a href="{{ url('admin/dashboard') }}"><i class="fa fa-dashboard"></i> Быстрый доступ</a></li>
+        <li><a href="{{ url('admin/dashboard') }}"><i class="fa fa-dashboard"></i> Панель управления</a></li>
         <li><a href="{{ url('admin/roles') }}"><i class="fa fa-key"></i> Роли</a></li>
         <li class="active"><i class="fa {{ isset($role) ? 'fa-pencil' : 'fa-plus' }}"></i> {{ isset($role) ? 'Редактировать' : 'Добавить' }} Роль</li>
     </ol>
@@ -64,7 +64,7 @@
 
 @section('js')
 
-{!! Html::script('assets/plugins/validationengine/languages/jquery.validationEngine-en.js') !!}
+{!! Html::script('assets/plugins/validationengine/languages/jquery.validationEngine-ru.js') !!}
 
 {!! Html::script('assets/plugins/validationengine/jquery.validationEngine.js') !!}
 

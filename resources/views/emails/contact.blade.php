@@ -1,7 +1,7 @@
-You received a message from Contact Form:
+Вы получили сообщение из формы обратной связи:
 
 <p>
-    Name: {{ $name }}
+    Имя: {{ $name }}
 </p>
 
 
@@ -10,9 +10,9 @@ You received a message from Contact Form:
 </p>
 
 <p>
-    Subject : {{ $subject }}
+    Тема : {{ $subject }}
 </p>
 
 <p>
-    Message: {{ $form_message }}
+    Сообщение: {{ $form_message }}
 </p>

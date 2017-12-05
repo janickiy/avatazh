@@ -113,7 +113,7 @@
 @endsection
 
 @section('js')
-    {!! Html::script('assets/plugins/validationengine/languages/jquery.validationEngine-en.js') !!}
+    {!! Html::script('assets/plugins/validationengine/languages/jquery.validationEngine-ru.js') !!}
 
     {!! Html::script('assets/plugins/validationengine/jquery.validationEngine.js') !!}
     <script type="text/javascript">

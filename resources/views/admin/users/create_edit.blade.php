@@ -14,10 +14,10 @@
         <i class="fa fa-user"></i> {{ isset($user) ? 'Редактировать' : 'Добавить' }} пользователя
     </h1>
     <ol class="breadcrumb">
-        <li><a href="{{ url('admin/dashboard') }}"><i class="fa fa-dashboard"></i> Быстрый доступ</a></li>
+        <li><a href="{{ url('admin/dashboard') }}"><i class="fa fa-dashboard"></i> Панель управления</a></li>
         <li><a href="{{ url('admin/users') }}"><i class="fa fa-users"></i> Пользователи</a></li>
-        <li class="active"><i class="fa {{ isset($user) ? 'fa-pencil' : 'fa-plus' }}"></i> {{ isset($user) ? 'Edit' : 'Add' }}
-            Пользователь
+        <li class="active"><i class="fa {{ isset($user) ? 'fa-pencil' : 'fa-plus' }}"></i> {{ isset($user) ? 'Редактировать' : 'Добавить' }}
+            пользователя
         </li>
     </ol>
 </section>
@@ -69,7 +69,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            {!! Form::label('password_confirmation', 'Павтор пароля', ['class' => 'control-label col-md-3']) !!}
+                            {!! Form::label('password_confirmation', 'Повтор пароля', ['class' => 'control-label col-md-3']) !!}
                             <div class="col-md-9">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-lock"></i></span>
@@ -146,7 +146,7 @@
         <!-- iCheck 1.0.1 -->
 {!! Html::script('assets/plugins/iCheck/icheck.min.js') !!}
 
-{!! Html::script('assets/plugins/validationengine/languages/jquery.validationEngine-en.js') !!}
+{!! Html::script('assets/plugins/validationengine/languages/jquery.validationEngine-ru.js') !!}
 
 {!! Html::script('assets/plugins/validationengine/jquery.validationEngine.js') !!}
 
