@@ -41,7 +41,7 @@ class MenusController extends Controller
 
         $menu->save();
 
-        return redirect('admin/menus')->with('success', 'New Menu Added Successfully');
+        return redirect('admin/menus')->with('success', 'Новое меню добавлено успешно');
     }
 
     /**
@@ -75,10 +75,9 @@ class MenusController extends Controller
         $menu->url = $request->input('url');
         $menu->item_order = $request->input('item_order');
         $menu->status = $request->input('status');
-
         $menu->save();
 
-        return redirect('admin/menus')->with('success', $menu->title . ' Menu Updated Successfully');
+        return redirect('admin/menus')->with('success', $menu->title . ' Меню обнавлено');
     }
 
     /**
@@ -88,9 +87,9 @@ class MenusController extends Controller
     {
         if ($request->ajax()) {
             $menu->delete();
-            return response()->json(['success' => 'Menu has been deleted successfully']);
+            return response()->json(['success' => 'Меню успешно удалено']);
         } else {
-            return 'You can\'t proceed in delete operation';
+            return 'Вы не можете продолжить операцию удаления';
         }
     }
 }

@@ -16,21 +16,34 @@ class Feature extends BaseModel
      */
     protected $guarded = ['id'];
 
-    function scopeActive($query)
+    /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopeActive($query)
     {
         return $query->where('status', 1);
     }
 
-    function getStatusAttribute()
+    /**
+     * @return string
+     */
+    public function getStatusAttribute()
     {
         return $this->attributes['status'] ? 'active' : 'inactive';
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function Packages()
     {
         return $this->belongsToMany(Package::class)->withPivot('spec')->withTimestamps();
     }
 
+    /**
+     * @return bool
+     */
     public function isActive()
     {
         return $this->attributes['status'] ? true : false;

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class ProfileRequest extends Request
+class UserReviewRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,16 +29,16 @@ class ProfileRequest extends Request
                 return [];
             }
             case 'POST': {
-                return [];
+                return [
+                    'author' => 'required|max:255',
+                    'message' => 'required',
+                ];
             }
             case 'PUT':
             case 'PATCH': {
                 return [
-                    'name' => 'required|max:255',
-                    'password' => 'confirmed|min:6',
-                   // 'address' => 'required',
-                    'job_title' => 'required',
-                    'avatar' => 'mimes:jpg,jpeg,png|max:500'
+                    'author' => 'required|max:255',
+                    'message' => 'required',
                 ];
             }
             default:

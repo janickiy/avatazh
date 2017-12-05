@@ -9,7 +9,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <h2 class="page-head-line">Update Profile</h2>
+            <h2 class="page-head-line">Обновить профиль</h2>
         </div>
     </div>
     <div class="row">
@@ -18,7 +18,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        {!! Form::label('name', 'Name *', ['class' => 'control-label col-md-3']) !!}
+                        {!! Form::label('name', 'Имя *', ['class' => 'control-label col-md-3']) !!}
                         <div class="col-md-9">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
@@ -36,7 +36,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        {!! Form::label('password', 'Password', ['class' => 'control-label col-md-3']) !!}
+                        {!! Form::label('password', 'Пароль', ['class' => 'control-label col-md-3']) !!}
                         <div class="col-md-9">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
@@ -45,7 +45,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        {!! Form::label('password_confirmation', 'Confirmation', ['class' => 'control-label col-md-3']) !!}
+                        {!! Form::label('password_confirmation', 'Повтор пароля', ['class' => 'control-label col-md-3']) !!}
                         <div class="col-md-9">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
@@ -66,7 +66,7 @@
                         @else
                             <div class="col-md-9">
                                 <img src="{{ asset('uploads/avatars/avatar.png') }}" width="30%"
-                                     class="img-circle" alt="User Avatar"/>
+                                     class="img-circle" alt="аватар"/>
                             </div>
                         @endif
                         <div class="col-md-9 col-md-offset-3" style="margin-top: 10px;">
@@ -80,29 +80,23 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        {!! Form::label('mobile', 'Mobile', ['class' => 'control-label col-md-3']) !!}
+                        {!! Form::label('mobile', 'Телефон', ['class' => 'control-label col-md-3']) !!}
                         <div class="col-md-9">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
-                                {!! Form::text('mobile', old('mobile', $user->mobile), ['class' => 'form-control', 'placeholder'=>'Mobile']) !!}
+                                {!! Form::text('mobile', old('mobile', $user->mobile), ['class' => 'form-control', 'placeholder'=>'Телефон']) !!}
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        {!! Form::label('job_title', 'Job Title', ['class' => 'control-label col-md-3']) !!}
+                        {!! Form::label('job_title', 'Должность', ['class' => 'control-label col-md-3']) !!}
                         <div class="col-md-9">
                             {!! Form::select('job_title', $job_titles, old('job_title', $user->job_title), ['class' => 'form-control select2']) !!}
                         </div>
                     </div>
                     <div class="form-group">
-                        {!! Form::label('address', 'Address *', ['class' => 'control-label col-md-3']) !!}
-                        <div class="col-md-9">
-                            {!! Form::text('address', old('address', $user->address), ['class' => 'form-control validate[required]', 'placeholder'=>'Address']) !!}
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <div class="col-md-9 col-md-offset-3">
-                            {!! Form::submit('Update Profile', ['class'=>'btn btn-primary']) !!}
+                            {!! Form::submit('Обновить профиль', ['class'=>'btn btn-primary']) !!}
                         </div>
                     </div>
                 </div><!-- .col-md-6 -->

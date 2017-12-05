@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
 use Laravel\Cashier\Billable;
 
 class User extends Authenticatable
@@ -35,13 +34,11 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
+    /**
+     * @return string
+     */
     public function getAvatarAttribute()
     {
         return 'uploads/avatars/' . $this->attributes['avatar'];
-    }
-
-    public function package()
-    {
-        return $this->belongsTo(Package::class);
     }
 }

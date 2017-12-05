@@ -7,17 +7,8 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <h2 class="page-head-line">Dashboard</h2>
+            <h2 class="page-head-line">Панель управления</h2>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="alert alert-success">
-                Laraship Pro is the first user membership software built on Laravel that provides complete
-                management to any subscription site
-            </div>
-        </div>
-
     </div>
     <div class="row">
         <div class="col-md-3 col-sm-3 col-xs-6">

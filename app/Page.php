@@ -16,42 +16,65 @@ class Page extends BaseModel
 
     protected $dates = ['published_at'];
 
-    function scopePublished($query)
+    /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopePublished($query)
     {
         return $query->where('published', 1);
     }
 
-    function scopePage($query)
+    /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopePage($query)
     {
         return $query->where('blog_post', 0);
     }
 
-    function scopePost($query)
+    /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopePost($query)
     {
         return $query->where('blog_post', 1)->orderBy('published_at', 'desc');
     }
 
-    function getPublishedAttribute()
+    /**
+     * @return string
+     */
+    public function getPublishedAttribute()
     {
-        return $this->attributes['published'] ? 'published' : 'not yet';
+        return $this->attributes['published'] ? 'публикован' : 'не опубликован';
     }
 
-    function getBlogPostAttribute()
+    /**
+     * @return string
+     */
+    public function getBlogPostAttribute()
     {
         return $this->attributes['blog_post'] ? 'Blog Post' : 'Page';
     }
 
-    function getSlugAttribute()
+    /**
+     * @return string
+     */
+    public function getSlugAttribute()
     {
         return ($this->attributes['blog_post'] ? 'blog/' : 'page/') . $this->attributes['slug'];
     }
-    function excerpt()
+
+    /**
+     * @return string
+     */
+    public function excerpt()
     {
 		$content = preg_replace("/<img(.*?)>/si", "", $this->content);
 		$content = preg_replace('/(<.*?>)|(&.*?;)/', '', $content)  ;
 
-        return Str::words($content,30); 
-
-    }	
-	
+        return Str::words($content,30);
+    }
 }

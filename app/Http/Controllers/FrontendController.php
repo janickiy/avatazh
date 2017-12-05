@@ -3,30 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Page;
-use App\Package;
-use App\Feature;
 
 class FrontendController extends Controller
 {
     public function index()
     {
-        $packages = Package::active()->get();
-
-        $features = Feature::active()->get();
-
-        return view('frontend.welcome')->with(compact('packages', 'features'));
-    }
-
-    public function pricing()
-    {
-        $packages = Package::active()->get();
-
-        $features = Feature::active()->get();
-
-        return view('frontend.pricing')->with(compact('packages', 'features'));
+        return view('frontend.welcome');
     }
 
     public function components()
@@ -34,13 +18,16 @@ class FrontendController extends Controller
         return view('frontend.components');
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function contactUsSubmit(Request $request)
     {
         $name = $request->input('name');
         $email = $request->input('email');
         $subject = $request->input('subject');
         $form_message = $request->input('message');
-
         $to_email = \Config::get('app.contact_email');
 
         \Mail::send('emails.contact',
@@ -51,22 +38,28 @@ class FrontendController extends Controller
                 'form_message' => $form_message
             ],
             function ($message) use ($to_email) {
-                $message->to($to_email, getSetting('SITE_TITLE') . ' Support')->subject('Contact Form Message');
+                $message->to($to_email, getSetting('SITE_TITLE') . ' Поддержка')->subject('Сообщение из формы контактов');
             }
         );
 
-        return redirect('/login')->with(['success' => 'Thanks for contacting us!']);
+        return redirect('/login')->with(['success' => 'Спасибо что связались с нами!']);
     }
 
+    /**
+     * @return $this
+     */
     public function blog()
     {
         $posts_per_page = getSetting('POSTS_PER_PAGE');
-
         $posts = Page::published()->post()->paginate($posts_per_page);
 
         return view('frontend.blog')->with(compact('posts'));
     }
 
+    /**
+     * @param string $slug
+     * @return $this
+     */
     public function post($slug = '')
     {
         $post = Page::whereSlug($slug)->published()->post()->get()->first();
@@ -77,6 +70,10 @@ class FrontendController extends Controller
         abort(404);
     }
 
+    /**
+     * @param string $slug
+     * @return $this
+     */
     public function staticPages($slug = '')
     {
         $page = Page::whereSlug($slug)->published()->page()->get()->first();
@@ -86,5 +83,10 @@ class FrontendController extends Controller
         }
 
         abort(404);
+    }
+
+    public function ajax(Request $request)
+    {
+
     }
 }

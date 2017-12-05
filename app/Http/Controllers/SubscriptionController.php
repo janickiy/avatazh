@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Package;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 
 class SubscriptionController extends Controller
@@ -15,17 +14,6 @@ class SubscriptionController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-    }
-
-    public function getSubscribe($package_id)
-    {
-        $package = Package::findOrfail($package_id);
-
-        if (\Auth::user()->subscribed('MEMBERSHIP') || $package->id == getSetting('DEFAULT_PACKAGE_ID')) {
-            return view('member.confirm_subscription')->with(compact('package'));
-        } else {
-            return view('member.card_configuration')->with(compact('package'));
-        }
     }
 
     public function getCard()

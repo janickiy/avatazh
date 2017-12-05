@@ -1,11 +1,7 @@
 @extends('layouts.admin.app')
-
 @section('title', 'Users')
-
 @section('css')
-
 @endsection
-
 
 @section('content')
         <!-- Content Header (Page header) -->
@@ -145,9 +141,7 @@
 @section('js')
         <!-- iCheck 1.0.1 -->
 {!! Html::script('assets/plugins/iCheck/icheck.min.js') !!}
-
 {!! Html::script('assets/plugins/validationengine/languages/jquery.validationEngine-ru.js') !!}
-
 {!! Html::script('assets/plugins/validationengine/jquery.validationEngine.js') !!}
 
 <script type="text/javascript">

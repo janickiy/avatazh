@@ -43,39 +43,28 @@
                                 <div class="icon">
                                     <i class="ion ion-person"></i>
                                 </div>
-                                <a href="{{ url('admin/users') }}" class="small-box-footer">More info <i
-                                            class="fa fa-arrow-circle-right"></i></a>
+                                <a href="{{ url('admin/users') }}" class="small-box-footer">подробно
+                                    <i class="fa fa-arrow-circle-right"></i>
+                                </a>
                             </div>
                         </div><!-- ./col -->
                         <div class="col-lg-3 col-xs-6">
                             <!-- small box -->
                             <div class="small-box bg-green">
                                 <div class="inner">
-                                    <h3>{{ $subscriptions }}</h3>
-                                    <p>Subscriptions</p>
+                                    <h3>{{ $reviews }}</h3>
+                                    <p>Отзывы</p>
                                 </div>
                                 <div class="icon">
-                                    <i class="ion ion-stats-bars"></i>
+                                    <i class="fa fa-comment-o"></i>
                                 </div>
-                                <a href="{{ url('admin/users') }}" class="small-box-footer">More info <i
-                                            class="fa fa-arrow-circle-right"></i></a>
+                                <a href="{{ url('admin/review') }}" class="small-box-footer">подробно
+                                    <i class="fa fa-arrow-circle-right"></i>
+                                </a>
                             </div>
                         </div><!-- ./col -->
 
-                        <div class="col-lg-3 col-xs-6">
-                            <!-- small box -->
-                            <div class="small-box bg-red">
-                                <div class="inner">
-                                    <h3>{{ $features }}</h3>
-                                    <p>Features</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-star"></i>
-                                </div>
-                                <a href="{{ url('admin/features') }}" class="small-box-footer">More info <i
-                                            class="fa fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div><!-- ./col -->
+
                         <div class="col-lg-3 col-xs-6">
                             <!-- small box -->
                             <div class="small-box bg-gray">
@@ -86,8 +75,9 @@
                                 <div class="icon">
                                     <i class="fa fa-files-o"></i>
                                 </div>
-                                <a href="{{ url('admin/pages') }}" class="small-box-footer">More info <i
-                                            class="fa fa-arrow-circle-right"></i></a>
+                                <a href="{{ url('admin/pages') }}" class="small-box-footer">подробно
+                                    <i class="fa fa-arrow-circle-right"></i>
+                                </a>
                             </div>
                         </div><!-- ./col -->
                         <div class="col-lg-3 col-xs-6">
@@ -100,8 +90,9 @@
                                 <div class="icon">
                                     <i class="fa fa-paperclip"></i>
                                 </div>
-                                <a href="{{ url('admin/pages') }}" class="small-box-footer">More info <i
-                                            class="fa fa-arrow-circle-right"></i></a>
+                                <a href="{{ url('admin/pages') }}" class="small-box-footer">подробно
+                                    <i class="fa fa-arrow-circle-right"></i>
+                                </a>
                             </div>
                         </div><!-- ./col -->
                     </div><!-- /.row -->

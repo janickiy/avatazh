@@ -13,7 +13,10 @@ class Menu extends BaseModel
      */
     protected $guarded = ['id'];
 
-    function getStatusAttribute()
+    /**
+     * @return string
+     */
+    public function getStatusAttribute()
     {
         return $this->attributes['status'] ? 'active' : 'inactive';
     }

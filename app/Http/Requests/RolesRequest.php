@@ -44,5 +44,4 @@ class RolesRequest extends Request {
                 //
         ];
     }
-
 }

@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Feature;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-use App\Package;
 use App\Page;
 use App\User;
+use App\UserReview;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -28,13 +28,15 @@ class DashboardController extends Controller
     public function index()
     {
         $users = User::all()->count();
-        $packages = Package::all()->count();
-        $features = Feature::all()->count();
         $pages = Page::page()->count();
         $posts = Page::post()->count();
-        $subscriptions = \DB::table('subscriptions')->count();
-        
-        return view('admin.dashboard')->with(compact('users', 'packages', 'features', 'subscriptions', 'pages', 'posts'));
+        $reviews = UserReview::all()->count();
+
+        return view('admin.dashboard')->with(compact('users', 'packages', 'features', 'pages', 'posts', 'reviews'));
     }
 
+    public function ajax(Request $request)
+    {
+
+    }
 }

@@ -10,7 +10,7 @@
     <nav class="navbar navbar-static-top" role="navigation">
         <!-- Sidebar toggle button-->
         <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-            <span class="sr-only">Toggle navigation</span>
+            <span class="sr-only">Переключить навигацию</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -20,14 +20,14 @@
                 <!-- User Account: style can be found in dropdown.less -->
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle"  data-toggle="dropdown">
-						<span class="hidden-xs">Welcome {{ Auth::user()->name }} !</span>
+						<span class="hidden-xs">Добро пожаловать {{ Auth::user()->name }} !</span>
 						<span class="caret"></span>
-                        <img src="{{ asset(Auth::user()->avatar) }}" class="user-image" alt="User Image"/>
+                        <img src="{{ asset(Auth::user()->avatar) }}" class="user-image" alt="картинка пользователя"/>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
-                            <img src="{{ asset(Auth::user()->avatar) }}" class="img-circle" alt="User Image">
+                            <img src="{{ asset(Auth::user()->avatar) }}" class="img-circle" alt="картинка пользователя">
                             <p>
                                 {{ Auth::user()->name }}
                                 <small>{{ Auth::user()->job_title }}</small>
@@ -37,10 +37,10 @@
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="{{ url('admin/users/'.Auth::user()->id) }}" class="btn btn-default btn-flat"><i class="fa fa-btn fa-user"></i> Profile</a>
+                                <a href="{{ url('admin/users/'.Auth::user()->id) }}" class="btn btn-default btn-flat"><i class="fa fa-btn fa-user"></i> Профиль</a>
                             </div>
                             <div class="pull-right">
-                                <a href="#" data-box="#mb-signout" class="btn btn-danger btn-flat mb-control"><i class="fa fa-btn fa-sign-out"></i> Log out</a>
+                                <a href="#" data-box="#mb-signout" class="btn btn-danger btn-flat mb-control"><i class="fa fa-btn fa-sign-out"></i> Выйти</a>
                             </div>
                         </li>
                     </ul>

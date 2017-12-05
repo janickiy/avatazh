@@ -18,7 +18,7 @@
             </li>
             <li class="{{ Request::is('/') ? 'active': '' }}">
                 <a href="{{ url('/') }}">
-                    <i class="fa fa-desktop"></i> <span>Смотреть сайт</span>
+                    <i class="fa fa-desktop"></i> <span>Перейти на сайт</span>
                 </a>
             </li>
             <li class="treeview {{ Request::is('admin/user*') ? 'active': '' || Request::is('admin/role*') ? 'active': '' }}">

@@ -22,26 +22,42 @@ class Package extends BaseModel
      */
     protected $guarded = ['id'];
 
-    function scopeActive($query)
+    /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopeActive($query)
     {
         return $query->where('status', 1)->orderBy('pricing_order');
     }
 
-    function getStatusAttribute()
+    /**
+     * @return string
+     */
+    public function getStatusAttribute()
     {
         return $this->attributes['status'] ? 'active' : 'inactive';
     }
 
-    function getFeaturedAttribute()
+    /**
+     * @return string
+     */
+    public function getFeaturedAttribute()
     {
         return $this->attributes['featured'] ? 'featured' : 'normal';
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function features()
     {
         return $this->belongsToMany(Feature::class)->withPivot('spec')->withTimestamps();
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function users()
     {
         return $this->hasMany(User::class);

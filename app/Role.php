@@ -16,5 +16,4 @@ class Role extends BaseModel {
     public function Users() {
         return $this->hasMany(User::class);
     }
-
 }
