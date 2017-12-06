@@ -10,10 +10,10 @@ use Yajra\Datatables\Datatables;
 use App\User;
 use App\Setting;
 use App\Role;
+use App\UserReview;
 
 class DatatablesController extends Controller
 {
-
     //
     public function __construct()
     {
@@ -93,7 +93,7 @@ class DatatablesController extends Controller
                 $editBtn = '<a style="margin-right: 0.2em;" href="' . url('admin/roles/' . $role->id . '/edit/') . '"  title="Редактировать"><i class="fa fa-2 fa-pencil"></i></a>';
                 $deleteBtn = '';
                 if ($role->name != 'Admin') {
-                    $deleteBtn = '&nbsp;<a href="' . url('admin/roles/' . $role->id) . '" class="message_box text-danger" data-box="#message-box-delete" data-action="Удалить" title="Удалить навсегда"><i class="fa fa-2 fa-remove"></i></i></a>';
+                    $deleteBtn = '&nbsp;<a href="' . url('admin/roles/' . $role->id) . '" class="message_box text-danger" data-box="#message-box-delete" data-action="DELETE" title="Удалить навсегда"><i class="fa fa-2 fa-remove"></i></a>';
                 }
                 return $editBtn . $deleteBtn;
             })->make(true);
@@ -109,9 +109,22 @@ class DatatablesController extends Controller
         return Datatables::of($menus)
             ->addColumn('actions', function ($menu) {
                 $editBtn = '<a style="margin-right: 0.2em;" href="' . url('admin/menus/' . $menu->id . '/edit/') . '"  title="Редактировать"><i class="fa fa-2 fa-pencil"></i></a>';
-                $deleteBtn = '&nbsp;<a href="' . url('admin/menus/' . $menu->id) . '" class="message_box text-danger" data-box="#message-box-delete" data-action="Удалить" title="Удалить навсегда"><i class="fa fa-2 fa-remove"></i></i></a>';
+                $deleteBtn = '&nbsp;<a href="' . url('admin/menus/' . $menu->id) . '" class="message_box text-danger" data-box="#message-box-delete" data-action="DELETE" title="Удалить навсегда"><i class="fa fa-2 fa-remove"></i></a>';
                 return $editBtn . $deleteBtn;
             })->make(true);
+    }
+
+    public function getReviews()
+    {
+        $userReviews = UserReview::all();
+
+        return Datatables::of( $userReviews)
+            ->addColumn('actions', function ($userReviews) {
+                $editBtn = '<a style="margin-right: 0.2em;" href="' . url('admin/reviews/' . $userReviews->id . '/edit/') . '"  title="Редактировать"><i class="fa fa-2 fa-pencil"></i></a>';
+                $deleteBtn = '&nbsp;<a href="' . url('admin/reviews/' . $userReviews->id) . '" class="message_box text-danger" data-box="#message-box-delete" data-action="DELETE" title="Удалить навсегда"><i class="fa fa-2 fa-remove"></i></a>';
+                return $editBtn . $deleteBtn;
+            })->make(true);
+
     }
 
     /**
@@ -128,7 +141,7 @@ class DatatablesController extends Controller
             })
             ->addColumn('actions', function ($package) {
                 $editBtn = '<a style="margin-right: 0.1em;" href="' . url('admin/packages/' . $package->id . '/edit') . '"  title="Edit"><i class="fa fa-2 fa-pencil"></i></a>';
-                $deleteBtn = '&nbsp;<a href="' . url('admin/packages/' . $package->id) . '" class="message_box text-danger" data-box="#message-box-delete" data-action="Удалить" title="Удалить"><i class="fa fa-2 fa-remove"></i></i></a>';
+                $deleteBtn = '&nbsp;<a href="' . url('admin/packages/' . $package->id) . '" class="message_box text-danger" data-box="#message-box-delete" data-action="DELETE" title="Удалить"><i class="fa fa-2 fa-remove"></i></a>';
                 $buttons = '' . $editBtn . $deleteBtn;
                 return $buttons;
             })->make(true);
@@ -145,7 +158,7 @@ class DatatablesController extends Controller
             //->editColumn('name', '<a href="{{ url(\'admin/features/\'.$id) }}"><b>{{ $name }}</b></a>')
             ->addColumn('actions', function ($feature) {
                 $editBtn = '<a style="margin-right: 0.1em;" href="' . url('admin/features/' . $feature->id . '/edit') . '"  title="Редактировать"><i class="fa fa-2 fa-pencil"></i></a>';
-                $deleteBtn = '&nbsp;<a href="' . url('admin/features/' . $feature->id) . '" class="message_box text-danger" data-box="#message-box-delete" data-action="Удалить" title="Удалить"><i class="fa fa-2 fa-remove"></i></i></a>';
+                $deleteBtn = '&nbsp;<a href="' . url('admin/features/' . $feature->id) . '" class="message_box text-danger" data-box="#message-box-delete" data-action="DELETE" title="Удалить"><i class="fa fa-2 fa-remove"></i></a>';
                 $buttons = '' . $editBtn . $deleteBtn;
                 return $buttons;
             })->make(true);
@@ -162,7 +175,7 @@ class DatatablesController extends Controller
             ->editColumn('title', '<a href="{{ url(\'admin/pages/\'.$id) }}" target="_blank"><b>{{ $title }}</b></a>')
             ->addColumn('actions', function ($page) {
                 $editBtn = '<a style="margin-right: 0.1em;" href="' . url('admin/pages/' . $page->id . '/edit') . '"  title="Edit"><i class="fa fa-2 fa-pencil"></i></a>';
-                $deleteBtn = '&nbsp;<a href="' . url('admin/pages/' . $page->id) . '" class="message_box text-danger" data-box="#message-box-delete" data-action="Удалить" title="Delete"><i class="fa fa-2 fa-remove"></i></i></a>';
+                $deleteBtn = '&nbsp;<a href="' . url('admin/pages/' . $page->id) . '" class="message_box text-danger" data-box="#message-box-delete" data-action="DELETE" title="Delete"><i class="fa fa-2 fa-remove"></i></a>';
                 $viewBtn = '<a style="margin-right: 0.2em;" href="' . url($page->slug) . '"  title="View" target="blank"><i class="fa fa-2 fa-eye"></i></a>';
                 $buttons = '' . $editBtn . $viewBtn . $deleteBtn;
                 return $buttons;

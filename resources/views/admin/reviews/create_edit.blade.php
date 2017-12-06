@@ -11,7 +11,7 @@
         <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        <i class="fa fa-list-alt"></i> {{ isset($review) ? 'Редактировать' : 'Добавить' }} отзвы
+        <i class="fa fa-list-alt"></i> {{ isset($review) ? 'Редактировать' : 'Добавить' }} отзвыв
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{ url('admin/dashboard') }}"><i class="fa fa-dashboard"></i> Панель управления</a></li>

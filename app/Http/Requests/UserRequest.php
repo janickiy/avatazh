@@ -32,8 +32,7 @@ class UserRequest extends Request {
                         'email' => 'required|email|max:255|unique:users',
                         'password' => 'required|confirmed|min:6',
                         'role' => 'required',
-                       // 'address' => 'required',
-                        'avatar' => 'mimes:jpg,jpeg,png|max:500'
+                        'avatar' => 'mimes:jpg,jpeg,png,gif|max:500'
                     ];
                 }
             case 'PUT':
@@ -43,8 +42,7 @@ class UserRequest extends Request {
                         'email' => 'required|email|max:255|unique:users,email,' . $this->input('user_id'),
                         'password' => 'confirmed|min:6',
                         'role' => 'required',
-                        'address' => 'required',
-                        'avatar' => 'mimes:jpg,jpeg,png|max:500'
+                        'avatar' => 'mimes:jpg,jpeg,png,gif|max:500'
                     ];
                 }
             default:

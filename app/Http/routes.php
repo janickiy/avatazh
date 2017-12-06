@@ -34,7 +34,7 @@ Route::model('settings', Setting::class);
 Route::model('roles', Role::class);
 Route::model('pages', Page::class);
 Route::model('menus', Menu::class);
-Route::model('menus', UserReview::class);
+Route::model('reviews', UserReview::class);
 
 Route::group(['middleware' => ['web']], function () {
     Route::get('/page/{slug}', 'FrontendController@staticPages');
@@ -70,7 +70,7 @@ Route::group(['middleware' => 'web'], function () {
         Route::resource('roles', 'Admin\RolesController');
         Route::resource('pages', 'Admin\PagesController');
         Route::resource('menus', 'Admin\MenusController');
-        Route::resource('reviews', 'Admin\ReviewController');
+        Route::resource('reviews', 'Admin\ReviewsController');
     });
 
     /**

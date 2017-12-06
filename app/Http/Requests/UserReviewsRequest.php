@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class UserReviewRequest extends Request
+class UserReviewsRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -31,6 +31,7 @@ class UserReviewRequest extends Request
             case 'POST': {
                 return [
                     'author' => 'required|max:255',
+                    'email' => 'email',
                     'message' => 'required',
                 ];
             }
@@ -38,6 +39,7 @@ class UserReviewRequest extends Request
             case 'PATCH': {
                 return [
                     'author' => 'required|max:255',
+                    'email' => 'email',
                     'message' => 'required',
                 ];
             }

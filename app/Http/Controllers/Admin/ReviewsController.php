@@ -9,7 +9,7 @@ use App\Http\Requests\UserReviewRequest;
 use App\Http\Controllers\Controller;
 use App\UserReview;
 
-class ReviewController extends Controller
+class ReviewsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +18,7 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        return view('admin.review.index');
+        return view('admin.reviews.index');
     }
 
     /**
@@ -38,7 +38,7 @@ class ReviewController extends Controller
      */
     public function edit(UserReview $userReview)
     {
-        return view('admin.review.create_edit')->with(compact('userReview'));
+        return view('admin.reviews.create_edit')->with(compact('userReview'));
     }
 
     /**
@@ -46,14 +46,15 @@ class ReviewController extends Controller
      * @param UserReview $userReview
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UserReviewRequest $request, UserReview $userReview)
+    public function update(UserReviewsRequest $request, UserReview $userReviews)
     {
-        $userReview->author = $request->input('author');
-        $userReview->message = $request->input('message');
-        $userReview->published = $request->input('published');
-        $userReview->save();
+        $userReviews->author = $request->input('author');
+        $userReviews->author = $request->input('author');
+        $userReviews->message = $request->input('message');
+        $userReviews->published = $request->input('published');
+        $userReviews->save();
 
-        return redirect('admin/review')->with('success', ' Отзыв обнавлен');
+        return redirect('admin/reviews')->with('success', ' Отзыв обнавлен');
     }
 
     /**
@@ -61,10 +62,10 @@ class ReviewController extends Controller
      * @param UserReview $userReview
      * @return \Illuminate\Http\JsonResponse|string
      */
-    public function destroy(Request $request, UserReview $userReview)
+    public function destroy(Request $request, UserReview $userReviews)
     {
         if ($request->ajax()) {
-            $userReview->delete();
+            $userReviews->delete();
             return response()->json(['success' => 'Отзыв удален']);
         } else {
             return 'Вы не можете продолжить операцию удаления';
