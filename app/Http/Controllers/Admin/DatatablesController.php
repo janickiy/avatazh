@@ -118,12 +118,19 @@ class DatatablesController extends Controller
     {
         $userReviews = UserReview::all();
 
+
+
         return Datatables::of( $userReviews)
             ->addColumn('actions', function ($userReviews) {
-                $editBtn = '<a style="margin-right: 0.2em;" href="' . url('admin/reviews/' . $userReviews->id . '/edit/') . '"  title="Редактировать"><i class="fa fa-2 fa-pencil"></i></a>';
+                $editBtn = '<a style="margin-right: 0.2em;" href="' . url('admin/reviews/' . $userReviews->id . '/edit/') . '"  title="Редактировать"><i class="fa fa-2 fa-pencil"></i></a>'. $userReviews->published.'';
+                $approveBtn = $userReviews->published == 1 ? '' : '&nbsp;<a href="' . url('admin/ajax?action=approve&id=' . $userReviews->id) . '" class="approve-review text-success"  data-id="' . $userReviews->id . '" title="Опубликовать"><i class="fa fa-2 fa-check"></i></a>';
                 $deleteBtn = '&nbsp;<a href="' . url('admin/reviews/' . $userReviews->id) . '" class="message_box text-danger" data-box="#message-box-delete" data-action="DELETE" title="Удалить навсегда"><i class="fa fa-2 fa-remove"></i></a>';
-                return $editBtn . $deleteBtn;
-            })->make(true);
+                return $editBtn . $approveBtn . $deleteBtn;
+            })
+
+
+
+            ->make(true);
 
     }
 

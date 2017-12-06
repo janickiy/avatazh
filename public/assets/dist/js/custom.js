@@ -44,6 +44,35 @@ $(document).ready(function () {
         return false;
     });
 
+    $(document).on("click", ".approve-review", function (e) {
+
+
+
+        var userReviewId = $(this).attr('data-id');
+        message_box_url = $(this).attr('href');
+
+
+        $.ajax({
+            url:  message_box_url,
+            type: 'GET',
+            headers: {'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')},
+            success: function (data) {
+                if (data['success'])
+                {
+                    notify('success', data['success']);
+                    $("#data_table").DataTable().ajax.reload();
+                }
+
+                if (data['error'])
+                    notify('error', data['error']);
+            },
+            error: function (data) {
+                alert(data.responseText);
+            }
+        });
+        return false;
+    });
+
     $(".mb-control-action").on("click", function () {
         $(this).parents(".message-box").removeClass("open");
         $.ajax({

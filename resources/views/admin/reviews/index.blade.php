@@ -71,11 +71,8 @@
 @section('js')
         <!-- DataTables -->
 {!! Html::script('assets/dist/js/datatable/jquery.dataTables.min.js') !!}
-
 {!! Html::script('assets/dist/js/datatable/dataTables.bootstrap.min.js') !!}
-
 {!! Html::script('assets/dist/js/datatable/dataTables.responsive.min.js') !!}
-
 {!! Html::script('assets/dist/js/datatable/responsive.bootstrap.min.js') !!}
 
 <script type="text/javascript">
@@ -95,5 +92,8 @@
         });
         //table.column('0:visible').order('desc').draw();
     });
+
+
+
 </script>
 @endsection

@@ -30,16 +30,16 @@ class UserReviewsRequest extends Request
             }
             case 'POST': {
                 return [
-                    'author' => 'required|max:255',
-                    'email' => 'email',
+                    'author'  => 'required|max:255',
+                    'email'   => 'email',
                     'message' => 'required',
                 ];
             }
             case 'PUT':
             case 'PATCH': {
                 return [
-                    'author' => 'required|max:255',
-                    'email' => 'email',
+                    'author'  => 'required|max:255',
+                    'email'   => 'email',
                     'message' => 'required',
                 ];
             }

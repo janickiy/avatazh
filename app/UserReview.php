@@ -14,11 +14,22 @@ class UserReview extends BaseModel
     protected $guarded = ['id'];
     protected $dates = ['published_at'];
 
+
+    /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopePublished($query)
+    {
+        return $query->where('published', 1);
+    }
+
+
     /**
      * @return string
      */
     public function getPublishedAttribute()
     {
-        return $this->attributes['published'] ? 'публикован' : 'не опубликован';
+        return $this->attributes['published'] ? 'опубликован' : 'не опубликован';
     }
 }
