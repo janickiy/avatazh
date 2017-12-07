@@ -23,13 +23,4 @@ class UserReview extends BaseModel
     {
         return $query->where('published', 1);
     }
-
-
-    /**
-     * @return string
-     */
-    public function getPublishedAttribute()
-    {
-        return $this->attributes['published'] ? 'опубликован' : 'не опубликован';
-    }
 }

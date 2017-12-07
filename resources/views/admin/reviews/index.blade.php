@@ -85,7 +85,7 @@
                 {data: 'author', name: 'author'},
                 {data: 'email', name: 'email'},
                 {data: 'message', name: 'message'},
-                {data: 'published', name: 'published'},
+                {data: 'status', name: 'status'},
                 {data: 'published_at', name: 'published_at'},
                 {data: 'actions', name: 'actions', orderable: false, searchable: false}
             ]

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Page;
+use App\UserReview;
 
 class FrontendController extends Controller
 {
@@ -88,5 +89,42 @@ class FrontendController extends Controller
     public function ajax(Request $request)
     {
 
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function reviews()
+    {
+        $reviews = UserReview::all()->where('published', 1);
+
+        $data = [
+            'title' => 'Отзывы',
+            'reviews' => $reviews,
+        ];
+
+        return view('frontend.reviews', $data);
+
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function reviewsSubmit(Request $request)
+    {
+        $author = trim($request->input('author'));
+        $email = trim($request->input('email'));
+        $message = trim($request->input('message'));
+
+        $userReview = new UserReview();
+
+        $userReview->author = $author;
+        $userReview->email = $email;
+        $userReview->message = $message;
+        $userReview->published = 0;
+        $userReview->save();
+
+        return redirect('/reviews')->with(['success' => 'Ваш коментарий отправлен. После проверки модератора он будет доступен!']);
     }
 }
