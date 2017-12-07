@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePackageFeatureTable extends Migration
+class CreateCarEquipmentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,9 @@ class CreatePackageFeatureTable extends Migration
      */
     public function up()
     {
-        Schema::create('feature_package', function (Blueprint $table) {
+        Schema::create('car_equipments', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('package_id')->unsigned();;
-            $table->integer('feature_id')->unsigned();;
-            $table->string('spec');
+
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ class CreatePackageFeatureTable extends Migration
      */
     public function down()
     {
-        Schema::drop('feature_package');
+        Schema::drop('car_equipments');
     }
 }

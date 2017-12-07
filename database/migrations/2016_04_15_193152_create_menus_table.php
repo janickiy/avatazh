@@ -19,7 +19,6 @@ class CreateMenusTable extends Migration
 			$table->string('url');
 			$table->boolean('status');
 			$table->integer('item_order');
-			
 			$table->timestamps();
 		});
     }

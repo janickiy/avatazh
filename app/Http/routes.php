@@ -28,6 +28,17 @@ use App\Role;
 use App\Page;
 use App\Menu;
 use App\UserReview;
+use App\CarGeneration;
+use App\CarMark;
+use App\CarModel;
+use App\CarModification;
+use App\CarSerie;
+use App\CarType;
+use App\CarCharacteristic;
+use App\CarCharacteristicValue;
+use App\CarEquipment;
+use App\CarOption;
+use App\CarOptionValue;
 
 Route::model('users', User::class);
 Route::model('settings', Setting::class);
@@ -35,6 +46,17 @@ Route::model('roles', Role::class);
 Route::model('pages', Page::class);
 Route::model('menus', Menu::class);
 Route::model('reviews', UserReview::class);
+Route::model('cargenerations',CarGeneration::class);
+Route::model('carmarks',CarMark::class);
+Route::model('carmodes',CarModel::class);
+Route::model('carmodifications',CarModification::class);
+Route::model('carseries',CarSerie::class);
+Route::model('cartypes',CarType::class);
+Route::model('carcharacteristics',CarCharacteristic::class);
+Route::model('carcharacteristicvalues',CarCharacteristicValue::class);
+Route::model('carequipments',CarEquipment::class);
+Route::model('caroptions',CarOption::class);
+Route::model('caroptionvalues',CarOptionValue::class);
 
 Route::group(['middleware' => ['web']], function () {
     Route::get('/page/{slug}', 'FrontendController@staticPages');
@@ -44,12 +66,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/contact-us', 'FrontendController@contactUsSubmit');
     Route::get('/blog', 'FrontendController@blog');
     Route::get('/blog/{slug}', 'FrontendController@post');
-
     Route::get('/reviews', 'FrontendController@reviews');
     Route::post('/reviews', 'FrontendController@reviewsSubmit');
-
-
-
     Route::post('stripe/webhook', '\Laravel\Cashier\WebhookController@handleWebhook');
 });
 

@@ -149,7 +149,6 @@ return [
         Laravel\Cashier\CashierServiceProvider::class,
 		Orangehill\Iseed\IseedServiceProvider::class,
 		Roumen\Sitemap\SitemapServiceProvider::class,
-		
     ],
     /*
       |--------------------------------------------------------------------------

@@ -104,7 +104,6 @@ class FrontendController extends Controller
         ];
 
         return view('frontend.reviews', $data);
-
     }
 
     /**
