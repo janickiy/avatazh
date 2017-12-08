@@ -23,18 +23,14 @@
 <div class="site_wrapper">
     <div class="site row">
         @include('layouts.frontend.includes.header')
+        <div class="page main_width">
         @include('layouts.frontend.includes.breadcrumbs')
 
 
-        <section>
-            <h1>Заявка на автокредит</h1>
-            <div class="row">
-                @include('layouts.frontend.includes.notifications')
+
+
                 @yield('content')
-            </div>
-            <div class="logos"><img src="images/logos.jpg" /></div>
-        </section>
-    </div>
+
 
     <!-- CONTENT-WRAPPER SECTION END-->
     @include('layouts.frontend.includes.footer')
