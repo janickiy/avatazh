@@ -1,6 +1,6 @@
 @extends('layouts.frontend.single')
 
-@section('title', 'Welcome to '.getSetting('SITE_TITLE'))
+@section('title', getSetting('SITE_TITLE'))
 
 @section('css')
     {!! Html::style('assets/plugins/pricingTable/pricingTable.min.css') !!}
@@ -13,21 +13,7 @@
 
     @section('content')
             <!-- start home -->
-    <section id="home">
-        <div class="overlay">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-10 col-md-offset-1 wow fadeIn" data-wow-delay="0.3s">
-                        <h1 class="text-upper">Welcome to {{ getSetting('SITE_TITLE') }}</h1>
-                        <p class="tm-white">Laraship Pro is the first user membership software built on Laravel that
-                            provides complete management to any subscription site</p>
-                        <img src="{{ asset('assets/dist/img/software-img-admin.png') }}" class="img-responsive"
-                             alt="home img">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+
     <!-- end home -->
     <!-- start divider -->
     <section id="divider">

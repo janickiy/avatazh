@@ -126,4 +126,51 @@ class FrontendController extends Controller
 
         return redirect('/reviews')->with(['success' => 'Ваш коментарий отправлен. После проверки модератора он будет доступен!']);
     }
+
+
+    public function auto()
+    {
+        $data = [
+            'title' => 'Автомобили с пробегом',
+            'meta_desc' => '',
+            'meta_keywords' => '',
+        ];
+
+        return view('frontend.auto', $data);
+    }
+
+    public function credit()
+    {
+        $data = [
+            'title' => 'Автомобили с пробегом',
+            'meta_desc' => '',
+            'meta_keywords' => '',
+        ];
+
+        return view('frontend.credit', $data);
+    }
+
+    public function tradeIn()
+    {
+        $data = [
+            'title' => 'Trade-In',
+            'meta_desc' => '',
+            'meta_keywords' => '',
+        ];
+
+        return view('frontend.tradein', $data);
+    }
+
+    public function contact()
+    {
+        $data = [
+            'title' => 'Контакты',
+            'meta_desc' => '',
+            'meta_keywords' => '',
+        ];
+
+        return view('frontend.contact', $data);
+    }
+
+
 }

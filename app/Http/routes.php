@@ -59,16 +59,23 @@ Route::model('caroptions',CarOption::class);
 Route::model('caroptionvalues',CarOptionValue::class);
 
 Route::group(['middleware' => ['web']], function () {
-    Route::get('/page/{slug}', 'FrontendController@staticPages');
+
     Route::get('/', 'FrontendController@index');
-    Route::get('/components', 'FrontendController@components');
-    Route::get('/contact-us', 'FrontendController@contactUs');
-    Route::post('/contact-us', 'FrontendController@contactUsSubmit');
-    Route::get('/blog', 'FrontendController@blog');
-    Route::get('/blog/{slug}', 'FrontendController@post');
+
+    Route::get('/auto', 'FrontendController@auto');
+    Route::get('/credit', 'FrontendController@credit');
+    Route::get('/tradein', 'FrontendController@tradeIn');
     Route::get('/reviews', 'FrontendController@reviews');
     Route::post('/reviews', 'FrontendController@reviewsSubmit');
-    Route::post('stripe/webhook', '\Laravel\Cashier\WebhookController@handleWebhook');
+    Route::get('/contacts', 'FrontendController@contact');
+    Route::post('/contacts', 'FrontendController@contactUsSubmit');
+    Route::get('/page/{slug}', 'FrontendController@staticPages');
+    Route::any('/ajax', 'FrontendController@ajax');
+    Route::get('/{slug}', 'FrontendController@staticPages');
+   // Route::get('/blog', 'FrontendController@blog');
+  //  Route::get('/blog/{slug}', 'FrontendController@post');
+
+
 });
 
 Route::group(['middleware' => 'web'], function () {
@@ -102,7 +109,6 @@ Route::group(['middleware' => 'web'], function () {
      */
     Route::group(['prefix' => 'member'], function () {
         Route::get('/home', ['as' => 'member.home', 'uses' => 'MemberController@index']);
-        Route::get('/pricing', ['as' => 'member.pricing', 'uses' => 'MemberController@pricing']);
         Route::get('/profile', ['as' => 'member.profile', 'uses' => 'MemberController@profile']);
         Route::get('/profile/edit', ['as' => 'member.profile.edit', 'uses' => 'MemberController@editProfile']);
         Route::put('/profile/edit', ['as' => 'member.profile.update', 'uses' => 'MemberController@updateProfile']);
