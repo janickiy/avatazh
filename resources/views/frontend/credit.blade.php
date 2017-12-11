@@ -10,17 +10,57 @@
 
 @endsection
 
-@section('content')
-    <div class="row">
-        <div class="col-md-12">
-            <h2 class="page-head-line"></h2>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
 
-        </div>
+@section('marks')
+    <div class="main_marks row">
+        <ul>
+            <li><a href="">LADA (ВАЗ)</a><span>6943</span></li>
+            <li><a href="">Audi</a><span>5197</span></li>
+            <li><a href="">BMW</a><span>7243</span></li>
+        </ul>
+        <ul>
+            <li><a href="">Citroen</a><span>1313</span></li>
+            <li><a href="">Daewoo</a><span>973</span></li>
+            <li><a href="">Dodge</a><span>520</span></li>
+        </ul>
+        <ul>
+            <li><a href="">LADA (ВАЗ)</a><span>6943</span></li>
+            <li><a href="">Audi</a><span>5197</span></li>
+            <li><a href="">BMW</a><span>7243</span></li>
+        </ul>
+        <ul>
+            <li><a href="">Citroen</a><span>1313</span></li>
+            <li><a href="">Daewoo</a><span>973</span></li>
+            <li><a href="">Dodge</a><span>520</span></li>
+        </ul>
+        <ul>
+            <li><a href="">LADA (ВАЗ)</a><span>6943</span></li>
+            <li><a href="">Audi</a><span>5197</span></li>
+            <li><a href="">BMW</a><span>7243</span></li>
+        </ul>
+        <ul>
+            <li><a href="">Citroen</a><span>1313</span></li>
+            <li><a href="">Daewoo</a><span>973</span></li>
+            <li><a href="">Dodge</a><span>520</span></li>
+        </ul>
+        <ul>
+            <li><a href="">LADA (ВАЗ)</a><span>6943</span></li>
+            <li><a href="">Audi</a><span>5197</span></li>
+            <li><a href="">BMW</a><span>7243</span></li>
+        </ul>
+        <ul>
+            <li><a href="">Citroen</a><span>1313</span></li>
+            <li><a href="">Daewoo</a><span>973</span></li>
+        </ul>
+        <a href="" class="allmarks">Все марки</a>
     </div>
+@endsection
+
+
+
+
+@section('content')
+
 @endsection
 
 @section('js')

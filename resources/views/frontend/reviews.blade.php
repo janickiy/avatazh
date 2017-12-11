@@ -1,87 +1,124 @@
 @extends('layouts.frontend.app')
 
-@section('title', $title)
+@section('title', isset($title) ? $title : '' )
+
+@section('meta_desc', isset($meta_desc) ? $meta_desc : '')
+
+@section('meta_keywords', isset($meta_keywords) ? $meta_keywords : '')
 
 @section('css')
 
 @endsection
 
+
+@section('marks')
+    <div class="main_marks row">
+        <ul>
+            <li><a href="">LADA (ВАЗ)</a><span>6943</span></li>
+            <li><a href="">Audi</a><span>5197</span></li>
+            <li><a href="">BMW</a><span>7243</span></li>
+        </ul>
+        <ul>
+            <li><a href="">Citroen</a><span>1313</span></li>
+            <li><a href="">Daewoo</a><span>973</span></li>
+            <li><a href="">Dodge</a><span>520</span></li>
+        </ul>
+        <ul>
+            <li><a href="">LADA (ВАЗ)</a><span>6943</span></li>
+            <li><a href="">Audi</a><span>5197</span></li>
+            <li><a href="">BMW</a><span>7243</span></li>
+        </ul>
+        <ul>
+            <li><a href="">Citroen</a><span>1313</span></li>
+            <li><a href="">Daewoo</a><span>973</span></li>
+            <li><a href="">Dodge</a><span>520</span></li>
+        </ul>
+        <ul>
+            <li><a href="">LADA (ВАЗ)</a><span>6943</span></li>
+            <li><a href="">Audi</a><span>5197</span></li>
+            <li><a href="">BMW</a><span>7243</span></li>
+        </ul>
+        <ul>
+            <li><a href="">Citroen</a><span>1313</span></li>
+            <li><a href="">Daewoo</a><span>973</span></li>
+            <li><a href="">Dodge</a><span>520</span></li>
+        </ul>
+        <ul>
+            <li><a href="">LADA (ВАЗ)</a><span>6943</span></li>
+            <li><a href="">Audi</a><span>5197</span></li>
+            <li><a href="">BMW</a><span>7243</span></li>
+        </ul>
+        <ul>
+            <li><a href="">Citroen</a><span>1313</span></li>
+            <li><a href="">Daewoo</a><span>973</span></li>
+        </ul>
+        <a href="" class="allmarks">Все марки</a>
+    </div>
+@endsection
+
 @section('content')
-    <div class="row">
-        <div class="col-md-12">
-            <h2 class="page-head-line">{{ $title }}</h2>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            @foreach($reviews as $review)
-                {{ $review->author }}
-                {{ $review->email }}
-                {{ $review->message }}
-            @endforeach
-        </div>
-    </div>
-
-    <div class="Compose-Message">
-        <div class="panel panel-success">
-            <div class="panel-heading">
-                Оствить отзыв
-            </div>
-            <div class="panel-body">
-                {!! Form::open(['url' =>  '/reviews', 'method' => 'post', 'class' => 'form-horizontal', 'id'=>'validate']) !!}
-                <div class="form-group">
-                    {!! Form::label('author', 'Автор', ['class' => 'control-label col-md-2']) !!}
-                    <div class="col-md-10">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                            {!! Form::text('author', old('author'), ['class' => 'form-control validate[required]', 'placeholder'=>'Имя']) !!}
+    <section>
+        <h1>Отзывы</h1>
+        <div class="row mentions">
+            <div class="mentions_list">
+                <ul>
+                    <li>
+                        <div class="row">
+                            <div class="mention_pic"><img src="images/mention.jpg" /></div>
+                            <div class="mention_text">
+                                <div class="mention_title">Игорь Ку</div>
+                                <div class="mention_date">04.09.2016</div>
+                                <p>Хочу выразить огромную благодарность менеджеру салона Евгению, за подход к клиентам и профессионализм в его работе. 02.09.2016 года преобретал автомобиль hyundai creta. Остался очень доволен в обслуживании персонала!!</p>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    {!! Form::label('email', 'Email', ['class' => 'control-label col-md-2']) !!}
-                    <div class="col-md-10">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                            {!! Form::email('email', old('email'), ['class' => 'form-control  validate[required,custom[email]]', 'placeholder'=>'Email']) !!}
+                    </li>
+                    <li>
+                        <div class="row">
+                            <div class="mention_pic"><img src="images/mention.jpg" /></div>
+                            <div class="mention_text">
+                                <div class="mention_title">Кто-то, придумавший себе слишком слинное имя.</div>
+                                <div class="mention_date">04.09.2016</div>
+                                <p>Хочу выразить огромную благодарность менеджеру салона Евгению, за подход к клиентам и профессионализм в его работе. 02.09.2016 года преобретал автомобиль hyundai creta. Остался очень доволен в обслуживании персонала!!</p>
+                            </div>
                         </div>
-                    </div>
+                    </li>
+                    <li>
+                        <div class="row">
+                            <div class="mention_pic"><img src="images/mention.jpg" /></div>
+                            <div class="mention_text">
+                                <div class="mention_title">Игорь Ку</div>
+                                <div class="mention_date">04.09.2016</div>
+                                <p>Хочу выразить огромную благодарность менеджеру салона Евгению, за подход к клиентам и профессионализм в его работе. 02.09.2016 года преобретал автомобиль hyundai creta. Остался очень доволен в обслуживании персонала!!</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="pager">
+                    <a href="">1</a>
+                    <a href="" class="active">2</a>
+                    <a href="">3</a>
+                    <a href="">4</a>
                 </div>
-                <div class="form-group">
-                    {!! Form::label('message', 'Сообщение', ['class' => 'control-label col-md-2']) !!}
-                    <div class="col-md-10">
-                        {!! Form::textarea('message', old('message'), ['class' => 'form-control  validate[required]', 'rows'=> 5]) !!}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-12">
-                        {!! Form::submit('Отправить', ['class'=>'btn btn-primary pull-right']) !!}
-                    </div>
-                </div>
-                {!! Form::close() !!}
             </div>
-        </div>
-    </div>
+            <div class="sidebar">
+                <div class="feedback_form">
+                    <div class="form_title">Напишите свой отзыв</div>
+                    <form>
+                        <input type="text" class="form_control" placeholder="Ваше имя">
+                        <input type="mail" class="form_control" placeholder="E-mail">
+                        <textarea  class="form_control" placeholder="Ваш отзыв"></textarea>
+                        <input type="submit" class="btn" value="отправить отзыв" />
+                    </form>
+                </div>
+            </div>
 
+        </div>
+    </section>
 @endsection
 
 @section('js')
-    {!! Html::script('http://maps.googleapis.com/maps/api/js') !!}
-    {!! Html::script('assets/plugins/validationengine/languages/jquery.validationEngine-ru.js') !!}
-    {!! Html::script('assets/plugins/validationengine/jquery.validationEngine.js') !!}
-
     <script type="text/javascript">
 
-
-        $(document).ready(function () {
-            // Validation Engine init
-            var prefix = 's2id_';
-            $("form[id^='validate']").validationEngine('attach',
-                {
-                    promptPosition: "bottomRight", scroll: false,
-                    prettySelect: true,
-                    usePrefix: prefix
-                });
-        });
     </script>
 @endsection
+

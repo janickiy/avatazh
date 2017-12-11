@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8"/>
-
     {!! Html::style('assets/bootstrap/css/style.css') !!}
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
@@ -14,29 +12,31 @@
     {!! Html::script('assets/plugins/jQuery/jquery-1.11.1.min.js') !!}
     {!! Html::script('assets/plugins/jQuery/select.js') !!}
     {!! Html::script('assets/plugins/jQuery/jquery.maskedinput.js') !!}
-
 </head>
-<body>
-
-
 <body>
 <div class="site_wrapper">
     <div class="site row">
         @include('layouts.frontend.includes.header')
         <div class="page main_width">
-        @include('layouts.frontend.includes.breadcrumbs')
+
+
+            @yield('marks')
 
 
 
 
-                @yield('content')
+            @include('layouts.frontend.includes.breadcrumbs')
+        @yield('content')
 
 
-    <!-- CONTENT-WRAPPER SECTION END-->
-    @include('layouts.frontend.includes.footer')
+        <!-- CONTENT-WRAPPER SECTION END-->
+        </div>
 
+        @include('layouts.frontend.includes.footer')
     </div>
 </div>
+
+
 <!-- Bootstrap 3.3.5 -->
 {!! Html::script('assets/bootstrap/js/bootstrap.min.js') !!}
 
@@ -51,5 +51,23 @@
 </script>
 @yield('js')
 
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
