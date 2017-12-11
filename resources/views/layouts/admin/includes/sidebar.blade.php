@@ -21,6 +21,12 @@
                     <i class="fa fa-desktop"></i> <span>Перейти на сайт</span>
                 </a>
             </li>
+
+
+
+
+
+
             <li class="treeview {{ Request::is('admin/user*') ? 'active': '' || Request::is('admin/role*') ? 'active': '' }}">
                 <a href="#">
                     <i class="fa fa-users"></i> <span>Пользователи</span> <i class="fa fa-angle-left pull-right"></i>
@@ -48,6 +54,11 @@
                     </li>
                 </ul>
             </li>
+
+
+
+
+
             <li class="treeview {{ Request::is('admin/page*')? 'active': '' }}">
                 <a href="#">
                     <i class="fa fa-files-o"></i> <span>Контент</span> <i class="fa fa-angle-left pull-right"></i>
@@ -65,6 +76,9 @@
                     </li>
                 </ul>
             </li>
+
+
+
             <li class="treeview {{ Request::is('admin/menu*')? 'active': '' }}">
                 <a href="#"><i class="fa fa-list-alt"></i> Настройки меню <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">

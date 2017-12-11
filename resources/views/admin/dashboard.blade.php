@@ -1,6 +1,6 @@
 @extends('layouts.admin.app')
 
-@section('title', 'Dashboard')
+@section('title', 'Панель управления')
 
 @section('css')
 {!! Html::style('assets/dist/css/ionicons.min.css') !!}

@@ -11,7 +11,11 @@ class FrontendController extends Controller
 {
     public function index()
     {
-        return view('frontend.welcome');
+        $data = [
+            'title' => 'Главная',
+        ];
+
+        return view('frontend.index', $data);
     }
 
     public function components()
@@ -125,12 +129,6 @@ class FrontendController extends Controller
 
     public function auto()
     {
-        $data = [
-            'title' => 'Автомобили с пробегом',
-            'meta_desc' => '',
-            'meta_keywords' => '',
-        ];
-
         return view('frontend.auto', $data);
     }
 
