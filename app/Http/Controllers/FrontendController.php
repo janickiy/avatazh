@@ -96,14 +96,9 @@ class FrontendController extends Controller
      */
     public function reviews()
     {
-        $reviews = UserReview::all()->where('published', 1);
+        $reviews = UserReview::where('published', 1)->paginate(5);
 
-        $data = [
-            'title' => 'Отзывы',
-            'reviews' => $reviews,
-        ];
-
-        return view('frontend.reviews', $data);
+        return view('frontend.reviews', compact('reviews'));
     }
 
     /**

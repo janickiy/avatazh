@@ -40,7 +40,7 @@ class DashboardController extends Controller
         if (isset($request->action)) {
             switch($request->action) {
                 case 'approve':
-                    $userReview->id = 3;
+                    $userReview->id = $request->id;
                     $userReview->exists = true;
                     $userReview->published = 1;
                     $userReview->published_at = \Carbon::now();

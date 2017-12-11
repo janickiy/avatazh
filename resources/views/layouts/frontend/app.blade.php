@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+
     {!! Html::style('assets/bootstrap/css/style.css') !!}
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
@@ -26,6 +28,8 @@
 
 
             @include('layouts.frontend.includes.breadcrumbs')
+
+        @include('layouts.frontend.includes.notifications')
         @yield('content')
 
 

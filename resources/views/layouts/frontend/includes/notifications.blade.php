@@ -15,9 +15,8 @@
         @endif
         @if(session('success'))
             <div class="noti-alert pad no-print">
-                <div class="alert alert-success alert-dismissable">
+                <div class="success alert alert-success alert-dismissable">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
-                    <h4><i class="icon fa fa-check"></i> Success</h4>
                     <ul>
                         <li>{{ session('success') }}</li>
                     </ul>

@@ -1,10 +1,8 @@
 @extends('layouts.frontend.app')
 
-@section('title', isset($title) ? $title : '' )
-
-@section('meta_desc', isset($meta_desc) ? $meta_desc : '')
-
-@section('meta_keywords', isset($meta_keywords) ? $meta_keywords : '')
+@section('title', 'Отзывы')
+@section('meta_desc', '')
+@section('meta_keywords','')
 
 @section('css')
 
@@ -56,59 +54,52 @@
     </div>
 @endsection
 
+
 @section('content')
     <section>
         <h1>Отзывы</h1>
         <div class="row mentions">
             <div class="mentions_list">
                 <ul>
+
+                    @foreach($reviews as $review)
+
                     <li>
                         <div class="row">
-                            <div class="mention_pic"><img src="images/mention.jpg" /></div>
+                            <div class="mention_pic"></div>
                             <div class="mention_text">
-                                <div class="mention_title">Игорь Ку</div>
-                                <div class="mention_date">04.09.2016</div>
-                                <p>Хочу выразить огромную благодарность менеджеру салона Евгению, за подход к клиентам и профессионализм в его работе. 02.09.2016 года преобретал автомобиль hyundai creta. Остался очень доволен в обслуживании персонала!!</p>
+                                <div class="mention_title">{{ $review->author }}</div>
+                                <div class="mention_date">{{ $review->published_at }}</div>
+                                <p>{{ $review->message }}</p>
                             </div>
                         </div>
                     </li>
-                    <li>
-                        <div class="row">
-                            <div class="mention_pic"><img src="images/mention.jpg" /></div>
-                            <div class="mention_text">
-                                <div class="mention_title">Кто-то, придумавший себе слишком слинное имя.</div>
-                                <div class="mention_date">04.09.2016</div>
-                                <p>Хочу выразить огромную благодарность менеджеру салона Евгению, за подход к клиентам и профессионализм в его работе. 02.09.2016 года преобретал автомобиль hyundai creta. Остался очень доволен в обслуживании персонала!!</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="row">
-                            <div class="mention_pic"><img src="images/mention.jpg" /></div>
-                            <div class="mention_text">
-                                <div class="mention_title">Игорь Ку</div>
-                                <div class="mention_date">04.09.2016</div>
-                                <p>Хочу выразить огромную благодарность менеджеру салона Евгению, за подход к клиентам и профессионализм в его работе. 02.09.2016 года преобретал автомобиль hyundai creta. Остался очень доволен в обслуживании персонала!!</p>
-                            </div>
-                        </div>
-                    </li>
+
+                   @endforeach
+
                 </ul>
+
                 <div class="pager">
-                    <a href="">1</a>
-                    <a href="" class="active">2</a>
-                    <a href="">3</a>
-                    <a href="">4</a>
+                    {{ $reviews->render() }}
                 </div>
+
             </div>
             <div class="sidebar">
                 <div class="feedback_form">
                     <div class="form_title">Напишите свой отзыв</div>
-                    <form>
-                        <input type="text" class="form_control" placeholder="Ваше имя">
-                        <input type="mail" class="form_control" placeholder="E-mail">
-                        <textarea  class="form_control" placeholder="Ваш отзыв"></textarea>
-                        <input type="submit" class="btn" value="отправить отзыв" />
-                    </form>
+
+                    {!! Form::open(['url' =>  '/reviews', 'method' => 'post', 'id'=>'validate']) !!}
+
+                    {!! Form::text('author', old('author'), ['class' => 'form_control  validate[required]', 'placeholder'=>'Ваше имя']) !!}
+
+                    {!! Form::email('email', old('email'), ['class' => 'form_control  validate[custom[email]]', 'placeholder'=>'E-mail']) !!}
+
+                    {!! Form::textarea('message', old('message'), ['class' => 'form_control  validate[required]', 'rows'=>5, 'placeholder'=>'Ваш отзыв']) !!}
+
+                    {!! Form::submit('отправить отзыв', ['class'=>'btn']) !!}
+
+                    {!! Form::close() !!}
+
                 </div>
             </div>
 
@@ -121,4 +112,3 @@
 
     </script>
 @endsection
-
