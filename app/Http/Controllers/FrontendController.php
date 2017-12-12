@@ -11,11 +11,7 @@ class FrontendController extends Controller
 {
     public function index()
     {
-        $data = [
-            'title' => 'Главная',
-        ];
-
-        return view('frontend.index', $data);
+        return view('frontend.index')->with('title', 'Главная');
     }
 
     public function components()
@@ -102,7 +98,7 @@ class FrontendController extends Controller
     {
         $reviews = UserReview::where('published', 1)->paginate(5);
 
-        return view('frontend.reviews', compact('reviews'));
+        return view('frontend.reviews', compact('reviews'))->with('title', 'Отзывы');
     }
 
     /**
@@ -129,40 +125,22 @@ class FrontendController extends Controller
 
     public function auto()
     {
-        return view('frontend.auto', $data);
+        return view('frontend.auto')->with('title', 'Автомобили с пробегом');
     }
 
     public function credit()
     {
-        $data = [
-            'title' => 'Автомобили с пробегом',
-            'meta_desc' => '',
-            'meta_keywords' => '',
-        ];
-
-        return view('frontend.credit', $data);
+        return view('frontend.credit')->with('title', 'Автокредит');
     }
 
     public function tradeIn()
     {
-        $data = [
-            'title' => 'Trade-In',
-            'meta_desc' => '',
-            'meta_keywords' => '',
-        ];
-
-        return view('frontend.tradein', $data);
+        return view('frontend.tradein')->with('title', 'Trade-in');
     }
 
     public function contact()
     {
-        $data = [
-            'title' => 'Контакты',
-            'meta_desc' => '',
-            'meta_keywords' => '',
-        ];
-
-        return view('frontend.contact', $data);
+        return view('frontend.contact')->with('title', 'Контакты');
     }
 
 

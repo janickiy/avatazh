@@ -36,9 +36,10 @@ class ReviewsController extends Controller
      * @param UserReview $userReview
      * @return $this
      */
-    public function edit(UserReview $userReview)
+    public function edit(UserReview $review)
     {
-        return view('admin.reviews.create_edit')->with(compact('userReview'));
+       /// dd($review);
+        return view('admin.reviews.create_edit')->with(compact('review'));
     }
 
     /**

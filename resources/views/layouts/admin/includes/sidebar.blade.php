@@ -55,36 +55,36 @@
                 </ul>
             </li>
 
-            <li class="treeview {{ Request::is('admin/avto*') ? 'active': '' }}">
+            <li class="treeview {{ Request::is('admin/carmark*') ? 'active': '' || Request::is('admin/carmodel*') ? 'active': '' || Request::is('admin/carmodification*') ? 'active': '' }}">
                 <a href="#">
-                    <i class="fa fa-users"></i> <span>Автомобили</span> <i class="fa fa-angle-left pull-right"></i>
+                    <i class="fa fa-automobile"></i> <span>Автомобили</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="{{ Request::is('admin/avto')? 'active': '' }}">
-                        <a href="{{ url('admin/avto') }}">
+                    <li class="{{ Request::is('admin/carmarks') ? 'active': '' }}">
+                        <a href="{{ url('admin/carmarks') }}">
                             <i class="fa fa-list"></i> <span>Марка</span>
                         </a>
                     </li>
-                    <li class="{{ Request::is('admin/avto/create')? 'active': '' }}">
-                        <a href="{{ url('admin/avto/create') }}">
+                    <li class="{{ Request::is('admin/carmarks/create') ? 'active': '' }}">
+                        <a href="{{ url('admin/carmarks/create') }}">
                             <i class="fa fa-plus"></i> <span>Добавить</span>
                         </a>
                     </li>
-                    <li class="{{ Request::is('admin/model*')? 'active': '' }}">
-                        <a href="#"><i class="fa fa-key"></i> Модели <i class="fa fa-angle-left pull-right"></i></a>
+                    <li class="{{ Request::is('admin/carmodels*')? 'active': '' }}">
+                        <a href="#"><i class="fa fa-car "></i> Модель <i class="fa fa-angle-left pull-right"></i></a>
                         <ul class="treeview-menu">
-                            <li class="{{ Request::is('admin/model')? 'active': '' }}"><a
-                                        href="{{ url('admin/model') }}"><i class="fa fa-list"></i> Управление моделями</a></li>
-                            <li class="{{ Request::is('admin/model/create')? 'active': '' }}"><a
-                                        href="{{ url('admin/model/create') }}"><i class="fa fa-plus"></i> Добавить модель</a>
+                            <li class="{{ Request::is('admin/carmodels/{}')? 'active': '' }}"><a
+                                        href="{{ url('admin/carmodels') }}"><i class="fa fa-list"></i> Редактировать модели</a></li>
+                            <li class="{{ Request::is('admin/carmodels/create')? 'active': '' }}"><a
+                                        href="{{ url('admin/carmodels/create') }}"><i class="fa fa-plus"></i> Добавить модель</a>
                             </li>
-                            <li class="{{ Request::is('admin/model*')? 'active': '' }}">
-                                <a href="#"><i class="fa fa-key"></i> Комплектация <i class="fa fa-angle-left pull-right"></i></a>
+                            <li class="{{ Request::is('admin/carmodification*')? 'active': '' }}">
+                                <a href="#"><i class="fa fa-asterisk"></i> Модификация <i class="fa fa-angle-left pull-right"></i></a>
                                 <ul class="treeview-menu">
-                                    <li class="{{ Request::is('admin/model')? 'active': '' }}"><a
-                                                href="{{ url('admin/model') }}"><i class="fa fa-list"></i> Управление моделями</a></li>
-                                    <li class="{{ Request::is('admin/model/create')? 'active': '' }}"><a
-                                                href="{{ url('admin/model/create') }}"><i class="fa fa-plus"></i> Добавить модель</a>
+                                    <li class="{{ Request::is('admin/carmodifications')? 'active': '' }}"><a
+                                                href="{{ url('admin/carmodifications') }}"><i class="fa fa-list"></i> Редактировать модификацию</a></li>
+                                    <li class="{{ Request::is('admin/carmodifications/create')? 'active': '' }}"><a
+                                                href="{{ url('admin/carmodifications/create') }}"><i class="fa fa-plus"></i> Добавить модификацию</a>
                                     </li>
                                 </ul>
                             </li>

@@ -4,14 +4,14 @@ namespace App;
 
 use App\BaseModel;
 
-class CarModel extends Model
+class CarModel extends BaseModel
 {
     /**
      * The primary column associated with the table
      *
      * @var string
      */
-    protected $guarded = 'id';
+    protected $guarded = ['id'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

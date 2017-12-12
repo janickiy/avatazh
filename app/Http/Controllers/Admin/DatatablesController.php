@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Feature;
 use App\Http\Controllers\Controller;
 use App\Menu;
 use App\Page;
@@ -11,6 +10,8 @@ use App\User;
 use App\Setting;
 use App\Role;
 use App\UserReview;
+use App\CarMark;
+use App\CarModel;
 
 class DatatablesController extends Controller
 {
@@ -121,7 +122,7 @@ class DatatablesController extends Controller
     {
         $userReviews = UserReview::all();
 
-        return Datatables::of( $userReviews)
+        return Datatables::of($userReviews)
             ->addColumn('status', function ($userReviews) {
                 return $userReviews->published ? 'опубликован' : 'не опубликован';
             })
@@ -138,38 +139,39 @@ class DatatablesController extends Controller
     /**
      * @return mixed
      */
-    public function getPackages()
+    public function getCarmarks()
     {
-        $packages = Package::all();
+        $carMarks = CarMark::all();
 
-        return Datatables::of($packages)
-            ->editColumn('name', '<a href="{{ url(\'admin/packages/\'.$id) }}"><b>{{ $name }}</b></a>')
-            ->editColumn('cost', function ($package) {
-                return $package->cost . '/' . $package->cost_per;
+        return Datatables::of($carMarks)
+            ->addColumn('status', function ($carMarks) {
+                return $carMarks->published ? 'опубликован' : 'не опубликован';
             })
-            ->addColumn('actions', function ($package) {
-                $editBtn = '<a style="margin-right: 0.1em;" href="' . url('admin/packages/' . $package->id . '/edit') . '"  title="Edit"><i class="fa fa-2 fa-pencil"></i></a>';
-                $deleteBtn = '&nbsp;<a href="' . url('admin/packages/' . $package->id) . '" class="message_box text-danger" data-box="#message-box-delete" data-action="DELETE" title="Удалить"><i class="fa fa-2 fa-remove"></i></a>';
-                $buttons = '' . $editBtn . $deleteBtn;
-                return $buttons;
-            })->make(true);
+            ->addColumn('actions', function ($carMarks) {
+                $editBtn = '<a style="margin-right: 0.2em;" href="' . url('admin/carmarks/' . $carMarks->id . '/edit/') . '"  title="Редактировать"><i class="fa fa-2 fa-pencil"></i></a>';
+                $deleteBtn = '&nbsp;<a href="' . url('admin/carmarks/' . $carMarks->id) . '" class="message_box text-danger" data-box="#message-box-delete" data-action="DELETE" title="Удалить навсегда"><i class="fa fa-2 fa-remove"></i></a>';
+                return $editBtn . $deleteBtn;
+            })
+            ->make(true);
     }
 
     /**
      * @return mixed
      */
-    public function getFeatures()
+    public function getCarmodels()
     {
-        $features = Feature::all();
+        $carModels = CarModel::all();
 
-        return Datatables::of($features)
-            //->editColumn('name', '<a href="{{ url(\'admin/features/\'.$id) }}"><b>{{ $name }}</b></a>')
-            ->addColumn('actions', function ($feature) {
-                $editBtn = '<a style="margin-right: 0.1em;" href="' . url('admin/features/' . $feature->id . '/edit') . '"  title="Редактировать"><i class="fa fa-2 fa-pencil"></i></a>';
-                $deleteBtn = '&nbsp;<a href="' . url('admin/features/' . $feature->id) . '" class="message_box text-danger" data-box="#message-box-delete" data-action="DELETE" title="Удалить"><i class="fa fa-2 fa-remove"></i></a>';
-                $buttons = '' . $editBtn . $deleteBtn;
-                return $buttons;
-            })->make(true);
+        return Datatables::of($carModels)
+            ->addColumn('status', function ($carModels) {
+                return $carModels->published ? 'опубликован' : 'не опубликован';
+            })
+            ->addColumn('actions', function ($carModels) {
+                $editBtn = '<a style="margin-right: 0.2em;" href="' . url('admin/carmodels/' . $carModels->id . '/edit/') . '"  title="Редактировать"><i class="fa fa-2 fa-pencil"></i></a>';
+                $deleteBtn = '&nbsp;<a href="' . url('admin/carmodels/' . $carModels->id) . '" class="message_box text-danger" data-box="#message-box-delete" data-action="DELETE" title="Удалить навсегда"><i class="fa fa-2 fa-remove"></i></a>';
+                return $editBtn . $deleteBtn;
+            })
+            ->make(true);
     }
 
     /**

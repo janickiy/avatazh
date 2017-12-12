@@ -4,14 +4,14 @@ namespace App;
 
 use App\BaseModel;
 
-class CarModification extends Model
+class CarModification extends BaseModel
 {
     /**
      * The primary column associated with the table
      *
      * @var string
      */
-    protected $guarded = 'id';
+    protected $guarded = ['id'];
 
     /**
      * @return mixed

@@ -1,10 +1,10 @@
 @extends('layouts.frontend.app')
 
-@section('title', isset($title) ? $title : '' )
+@section('title', 'Trade-in' )
 
-@section('meta_desc', isset($meta_desc) ? $meta_desc : '')
+@section('meta_desc', '')
 
-@section('meta_keywords', isset($meta_keywords) ? $meta_keywords : '')
+@section('meta_keywords', '')
 
 @section('css')
 

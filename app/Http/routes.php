@@ -48,7 +48,7 @@ Route::model('menus', Menu::class);
 Route::model('reviews', UserReview::class);
 Route::model('cargenerations',CarGeneration::class);
 Route::model('carmarks',CarMark::class);
-Route::model('carmodes',CarModel::class);
+Route::model('carmodels',CarModel::class);
 Route::model('carmodifications',CarModification::class);
 Route::model('carseries',CarSerie::class);
 Route::model('cartypes',CarType::class);
@@ -106,6 +106,17 @@ Route::group(['middleware' => 'web'], function () {
         Route::resource('pages', 'Admin\PagesController');
         Route::resource('menus', 'Admin\MenusController');
         Route::resource('reviews', 'Admin\ReviewsController');
+
+
+        Route::resource('carmarks', 'Admin\CarmarksController');
+
+
+
+        Route::resource('carmodels', 'Admin\CarmodelsController');
+
+
+        Route::resource('modifications', 'Admin\ModificationsController');
+
     });
 
     /**

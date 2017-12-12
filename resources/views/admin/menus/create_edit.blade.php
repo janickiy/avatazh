@@ -1,6 +1,6 @@
 @extends('layouts.admin.app')
 
-@section('title', 'Menus')
+@section('title', 'Меню')
 
 @section('css')
         <!-- iCheck for checkboxes and radio inputs -->
@@ -11,11 +11,11 @@
         <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        <i class="fa fa-list-alt"></i> {{ isset($menu) ? 'Редактировать' : 'Добавить' }} Меню
+        <i class="fa fa-list-alt"></i> {{ isset($menu) ? 'Редактировать' : 'Добавить' }} меню
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{ url('admin/dashboard') }}"><i class="fa fa-dashboard"></i> Панель управления</a></li>
-        <li><a href="{{ url('admin/menus') }}"><i class="fa fa-list-alt"></i> Меня</a></li>
+        <li><a href="{{ url('admin/menus') }}"><i class="fa fa-list-alt"></i> Меню</a></li>
         <li class="active"><i class="fa {{ isset($menu) ? 'fa-pencil' : 'fa-plus' }}"></i> {{ isset($menu) ? 'Редактировать' : 'Добавить' }}
             Меню
         </li>

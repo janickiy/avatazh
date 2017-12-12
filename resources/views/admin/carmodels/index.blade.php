@@ -1,6 +1,6 @@
 @extends('layouts.admin.app')
 
-@section('title', 'Меню')
+@section('title', 'Марки')
 
 @section('css')
         <!-- DataTables -->
@@ -17,11 +17,11 @@
         <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        <i class="fa fa-list-alt"></i> Меню
+        <i class="fa fa-list-alt"></i> Марка
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{ url('admin/dashboard') }}"><i class="fa fa-dashboard"></i> Панель управления</a></li>
-        <li class="active"><i class="fa fa-list-alt"></i> Меню</li>
+        <li class="active"><i class="fa fa-list-alt"></i> Марка</li>
     </ol>
 </section>
 
@@ -30,7 +30,7 @@
     <!-- Default box -->
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Список меню</h3>
+            <h3 class="box-title">Автомобильные марки</h3>
             <div class="box-tools pull-right">
                 <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
                     <i class="fa fa-minus"></i>
@@ -41,10 +41,8 @@
             <table id="data_table" class="table datatable dt-responsive" style="width:100%;">
                 <thead>
                 <tr>
-                    <th>Загаловок</th>
-                    <th>Положение</th>
+                    <th>Название</th>
                     <th>Статус</th>
-                    <th>Порядок</th>
                     <th>Действия</th>
                 </tr>
                 </thead>
@@ -82,12 +80,10 @@
         var table = $("#data_table").DataTable({
             processing: true,
             serverSide: true,
-            ajax: '{!! url("admin/datatables/menus") !!}',
+            ajax: '{!! url("admin/datatables/carmodels") !!}',
             columns: [
-                {data: 'title', name: 'title'},
-                {data: 'location', name: 'location'},
+                {data: 'name', name: 'name'},
                 {data: 'status', name: 'status'},
-                {data: 'item_order', name: 'item_order'},
                 {data: 'actions', name: 'actions', orderable: false, searchable: false}
             ]
         });

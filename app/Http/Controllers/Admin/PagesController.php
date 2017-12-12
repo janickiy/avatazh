@@ -59,7 +59,7 @@ class PagesController extends Controller
 
         $page->save();
 
-        return redirect('admin/pages')->with('success', $page->title . ' has been added Successfully');
+        return redirect('admin/pages')->with('success', 'Раздел ' .$page->title . ' создан');
     }
 
     /**
