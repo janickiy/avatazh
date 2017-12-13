@@ -1,6 +1,6 @@
 @extends('layouts.admin.app')
 
-@section('title', 'Марки')
+@section('title', 'Модели')
 
 @section('css')
         <!-- DataTables -->
@@ -17,11 +17,11 @@
         <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        <i class="fa fa-list-alt"></i> Марка
+        <i class="fa fa-list-alt"></i> Модели
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{ url('admin/dashboard') }}"><i class="fa fa-dashboard"></i> Панель управления</a></li>
-        <li class="active"><i class="fa fa-list-alt"></i> Марка</li>
+        <li class="active"><i class="fa fa-list-alt"></i> Модели</li>
     </ol>
 </section>
 
@@ -30,7 +30,7 @@
     <!-- Default box -->
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Автомобильные марки</h3>
+            <h3 class="box-title">Модели</h3>
             <div class="box-tools pull-right">
                 <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
                     <i class="fa fa-minus"></i>
@@ -47,6 +47,7 @@
                 </tr>
                 </thead>
                 <tbody>
+
 
                 </tbody>
             </table>
@@ -77,10 +78,11 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+
         var table = $("#data_table").DataTable({
             processing: true,
             serverSide: true,
-            ajax: '{!! url("admin/datatables/carmodels/{$id}") !!}',
+            ajax: '{!! url("admin/datatables/carmarkmodels/$id") !!}',
             columns: [
                 {data: 'name', name: 'name'},
                 {data: 'status', name: 'status'},
@@ -89,5 +91,20 @@
         });
         //table.column('0:visible').order('desc').draw();
     });
+
+    var getUrlParameter = function getUrlParameter(sParam) {
+        var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+            sURLVariables = sPageURL.split('&'),
+            sParameterName,
+            i;
+
+        for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('=');
+
+            if (sParameterName[0] === sParam) {
+                return sParameterName[1] === undefined ? true : sParameterName[1];
+            }
+        }
+    };
 </script>
 @endsection

@@ -97,6 +97,7 @@ Route::group(['middleware' => 'web'], function () {
         ]);
 
         Route::get('/dashboard', 'Admin\DashboardController@index');
+        Route::get('carmodels/carmark/{id}', 'Admin\CarmodelsController@carmark');
         Route::any('/ajax', 'Admin\DashboardController@ajax');
         Route::resource('users', 'Admin\UsersController');
         Route::get('settings/create/{type}', ['as' => 'admin.settings.create.type', 'uses' => 'Admin\SettingsController@createForm']);
@@ -116,6 +117,10 @@ Route::group(['middleware' => 'web'], function () {
 
 
         Route::resource('modifications', 'Admin\ModificationsController');
+
+
+
+
 
     });
 

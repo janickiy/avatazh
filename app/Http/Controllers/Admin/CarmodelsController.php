@@ -45,6 +45,12 @@ class CarmodelsController extends Controller
         return view('admin.carmodels.create_edit')->with(compact('carmodel'));
     }
 
+    public function carmark($id)
+    {
+        $carmodels = CarModel::all()->where('id', $id);
+        return view('admin.carmodels.carmark', compact('carmodels'))->with('id', $id);
+    }
+
     /**
      * @param CarModelsRequest $request
      * @param CarModel $carModel
