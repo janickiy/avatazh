@@ -24,20 +24,29 @@
         <li class="active"><i class="fa fa-list-alt"></i> Марка</li>
     </ol>
 </section>
-
+        <p><a href=""> + Добавить модель </a></p>
 <!-- Main content -->
 <section class="content">
     <!-- Default box -->
+
+
+
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Автомобильные марки</h3>
+            <h3 class="box-title">Автомобильные марки8</h3>
             <div class="box-tools pull-right">
                 <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
                     <i class="fa fa-minus"></i>
                 </button>
             </div>
         </div>
+
+
+
         <div class="box-body">
+
+
+
             <table id="data_table" class="table datatable dt-responsive" style="width:100%;">
                 <thead>
                 <tr>

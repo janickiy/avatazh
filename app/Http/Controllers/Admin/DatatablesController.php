@@ -12,6 +12,7 @@ use App\Role;
 use App\UserReview;
 use App\CarMark;
 use App\CarModel;
+use App\CarModification;
 
 class DatatablesController extends Controller
 {
@@ -144,6 +145,11 @@ class DatatablesController extends Controller
         $carMarks = CarMark::all();
 
         return Datatables::of($carMarks)
+
+            ->addColumn('carmodel', function ($carMarks) {
+                return '<a href="' . url('admin/carmodels/carmark/' . $carMarks->id . '/') .'">' . $carMarks->name . '</a>';
+            })
+
             ->addColumn('status', function ($carMarks) {
                 return $carMarks->published ? 'опубликован' : 'не опубликован';
             })
@@ -174,17 +180,40 @@ class DatatablesController extends Controller
             ->make(true);
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function getCarmarkmodels($id)
     {
-        $carModels = CarModel::where('id_car_mark', $id);
+        $carModels = CarModel::where('id_car_mark', $id)->get();
 
         return Datatables::of($carModels)
+
+            ->addColumn('modification', function ($carModels) {
+                return '<a title="модификация" href="' . url('admin/modifications/model/' . $carModels->id). '">' . $carModels->name . '</a>';
+            })
+
             ->addColumn('status', function ($carModels) {
                 return $carModels->published ? 'опубликован' : 'не опубликован';
             })
+
             ->addColumn('actions', function ($carModels) {
                 $editBtn = '<a style="margin-right: 0.2em;" href="' . url('admin/carmodels/' . $carModels->id . '/edit/') . '"  title="Редактировать"><i class="fa fa-2 fa-pencil"></i></a>';
                 $deleteBtn = '&nbsp;<a href="' . url('admin/carmodels/' . $carModels->id) . '" class="message_box text-danger" data-box="#message-box-delete" data-action="DELETE" title="Удалить навсегда"><i class="fa fa-2 fa-remove"></i></a>';
+                return $editBtn . $deleteBtn;
+            })
+            ->make(true);
+    }
+
+    public function getCarmodifications($id)
+    {
+        $carModifications = CarModification::where('id_car_model', $id)->get();
+
+        return Datatables::of($carModifications)
+            ->addColumn('actions', function ($carModification) {
+                $editBtn = '<a style="margin-right: 0.2em;" href="' . url('admin/carmodifications/' . $carModification->id . '/edit/') . '"  title="Редактировать"><i class="fa fa-2 fa-pencil"></i></a>';
+                $deleteBtn = '&nbsp;<a href="' . url('admin/carmodifications/' . $carModification->id) . '" class="message_box text-danger" data-box="#message-box-delete" data-action="DELETE" title="Удалить навсегда"><i class="fa fa-2 fa-remove"></i></a>';
                 return $editBtn . $deleteBtn;
             })
             ->make(true);

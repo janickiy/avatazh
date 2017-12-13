@@ -67,29 +67,10 @@
                     </li>
                     <li class="{{ Request::is('admin/carmarks/create') ? 'active': '' }}">
                         <a href="{{ url('admin/carmarks/create') }}">
-                            <i class="fa fa-plus"></i> <span>Добавить</span>
+                            <i class="fa fa-plus"></i> <span>Добавить марку</span>
                         </a>
                     </li>
-                    <li class="{{ Request::is('admin/carmodels*')? 'active': '' }}">
-                        <a href="#"><i class="fa fa-car "></i> Модель <i class="fa fa-angle-left pull-right"></i></a>
-                        <ul class="treeview-menu">
-                            <li class="{{ Request::is('admin/carmodels/{}')? 'active': '' }}"><a
-                                        href="{{ url('admin/carmodels') }}"><i class="fa fa-list"></i> Редактировать модели</a></li>
-                            <li class="{{ Request::is('admin/carmodels/create')? 'active': '' }}"><a
-                                        href="{{ url('admin/carmodels/create') }}"><i class="fa fa-plus"></i> Добавить модель</a>
-                            </li>
-                            <li class="{{ Request::is('admin/carmodification*')? 'active': '' }}">
-                                <a href="#"><i class="fa fa-asterisk"></i> Модификация <i class="fa fa-angle-left pull-right"></i></a>
-                                <ul class="treeview-menu">
-                                    <li class="{{ Request::is('admin/carmodifications')? 'active': '' }}"><a
-                                                href="{{ url('admin/carmodifications') }}"><i class="fa fa-list"></i> Редактировать модификацию</a></li>
-                                    <li class="{{ Request::is('admin/carmodifications/create')? 'active': '' }}"><a
-                                                href="{{ url('admin/carmodifications/create') }}"><i class="fa fa-plus"></i> Добавить модификацию</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
+
                 </ul>
             </li>
 
@@ -119,6 +100,18 @@
             </li>
 
 
+            <li class="treeview {{ Request::is('admin/review*')? 'active': '' }}">
+                <a href="#">
+                    <i class="fa fa-comments"></i> <span>Отзывы</span> <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{{ Request::is('admin/reviews')? 'active': '' }}">
+                        <a href="{{ url('admin/reviews') }}">
+                            <i class="fa fa-list"></i> <span>Управление отзывами</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
 
             <li class="treeview {{ Request::is('admin/menu*')? 'active': '' }}">
                 <a href="#"><i class="fa fa-list-alt"></i> Настройки меню <i class="fa fa-angle-left pull-right"></i></a>

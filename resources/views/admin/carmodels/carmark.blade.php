@@ -17,7 +17,7 @@
         <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        <i class="fa fa-list-alt"></i> Модели
+        <i class="fa fa-list-alt"></i> Модели {{ $carmark->name }}
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{ url('admin/dashboard') }}"><i class="fa fa-dashboard"></i> Панель управления</a></li>
@@ -25,9 +25,12 @@
     </ol>
 </section>
 
+
 <!-- Main content -->
 <section class="content">
     <!-- Default box -->
+    <p><a class="btn btn-success" href="/admin/carmodels/create/{{ $carmark->id }}"> + Добавить модель </a></p>
+
     <div class="box">
         <div class="box-header with-border">
             <h3 class="box-title">Модели</h3>
@@ -37,6 +40,9 @@
                 </button>
             </div>
         </div>
+
+
+
         <div class="box-body">
             <table id="data_table" class="table datatable dt-responsive" style="width:100%;">
                 <thead>
@@ -82,9 +88,9 @@
         var table = $("#data_table").DataTable({
             processing: true,
             serverSide: true,
-            ajax: '{!! url("admin/datatables/carmarkmodels/$id") !!}',
+            ajax: '{!! url("admin/datatables/carmarkmodels/$carmark->id") !!}',
             columns: [
-                {data: 'name', name: 'name'},
+                {data: 'modification', name: 'modification'},
                 {data: 'status', name: 'status'},
                 {data: 'actions', name: 'actions', orderable: false, searchable: false}
             ]
@@ -92,19 +98,5 @@
         //table.column('0:visible').order('desc').draw();
     });
 
-    var getUrlParameter = function getUrlParameter(sParam) {
-        var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-            sURLVariables = sPageURL.split('&'),
-            sParameterName,
-            i;
-
-        for (i = 0; i < sURLVariables.length; i++) {
-            sParameterName = sURLVariables[i].split('=');
-
-            if (sParameterName[0] === sParam) {
-                return sParameterName[1] === undefined ? true : sParameterName[1];
-            }
-        }
-    };
 </script>
 @endsection

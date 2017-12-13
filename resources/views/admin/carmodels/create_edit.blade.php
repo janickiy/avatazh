@@ -36,6 +36,15 @@
         </div>
         <div class="box-body">
             {!! Form::open(['url' => isset($carmodel) ? URL::to('admin/carmodels/' . $carmodel->id )  :  URL::to('admin/carmodels') , 'method' => isset($carmodel) ? 'put': 'post', 'class' => 'form-horizontal', 'id'=>'validate']) !!}
+
+            @if(isset($id_car_mark)) {!! Form::hidden('id_car_mark', $id_car_mark) !!} @endif
+
+
+            {!! Form::hidden('id_car_type', 1) !!}
+
+
+
+
             <div class="col-md-12">
 
                 <div class="form-group">
@@ -52,11 +61,16 @@
                     </div>
                 </div>
 
-
                 <div class="form-group">
                     {!! Form::label('published', 'Опубликован', ['class' => 'control-label col-md-2']) !!}
                     <div class="col-md-4">
-                        <label class="check">{!! Form::checkbox('published',1,  old('published' , (isset($carmodel) && ($carmodel->getOriginal('published') == 1) ) ? true : false ) ,['class'=>'minimal']) !!}
+                        <label class="check">
+                            @if(isset($carmodel))
+
+                            {!! Form::checkbox('published',1,  old('published' , (isset($carmodel) && ($carmodel->getOriginal('published') == 1) ) ? true : false ) ,['class'=>'minimal']) !!}
+                            @else
+                                {!! Form::checkbox('published',1,  old('published' , true) ,['class'=>'minimal']) !!}
+                            @endif
                             Да</label>
                     </div>
                 </div>

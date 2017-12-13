@@ -58,6 +58,8 @@ Route::model('carequipments',CarEquipment::class);
 Route::model('caroptions',CarOption::class);
 Route::model('caroptionvalues',CarOptionValue::class);
 
+
+
 Route::group(['middleware' => ['web']], function () {
 
     Route::get('/', 'FrontendController@index');
@@ -98,6 +100,10 @@ Route::group(['middleware' => 'web'], function () {
 
         Route::get('/dashboard', 'Admin\DashboardController@index');
         Route::get('carmodels/carmark/{id}', 'Admin\CarmodelsController@carmark');
+        Route::any('carmodels/create/{id}', 'Admin\CarmodelsController@create');
+
+        Route::get('carmodifications/model/{id}', 'Admin\CarmodificationsController@index');
+
         Route::any('/ajax', 'Admin\DashboardController@ajax');
         Route::resource('users', 'Admin\UsersController');
         Route::get('settings/create/{type}', ['as' => 'admin.settings.create.type', 'uses' => 'Admin\SettingsController@createForm']);
@@ -107,20 +113,9 @@ Route::group(['middleware' => 'web'], function () {
         Route::resource('pages', 'Admin\PagesController');
         Route::resource('menus', 'Admin\MenusController');
         Route::resource('reviews', 'Admin\ReviewsController');
-
-
         Route::resource('carmarks', 'Admin\CarmarksController');
-
-
-
         Route::resource('carmodels', 'Admin\CarmodelsController');
-
-
-        Route::resource('modifications', 'Admin\ModificationsController');
-
-
-
-
+        Route::resource('carmodifications', 'Admin\CarmodificationsController');
 
     });
 

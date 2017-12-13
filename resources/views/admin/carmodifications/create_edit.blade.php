@@ -1,6 +1,6 @@
 @extends('layouts.admin.app')
 
-@section('title', 'Марки')
+@section('title', 'Модификации')
 
 @section('css')
         <!-- iCheck for checkboxes and radio inputs -->
@@ -11,13 +11,13 @@
         <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        <i class="fa fa-list-alt"></i> {{ isset($carmark) ? 'Редактировать' : 'Добавить' }} марку
+        <i class="fa fa-list-alt"></i> {{ isset($carmodification) ? 'Редактировать' : 'Добавить' }} модификацию
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{ url('admin/dashboard') }}"><i class="fa fa-dashboard"></i> Панель управления</a></li>
-        <li><a href="{{ url('admin/carmarks') }}"><i class="fa fa-list-alt"></i> Марки</a></li>
-        <li class="active"><i class="fa {{ isset($carmark) ? 'fa-pencil' : 'fa-plus' }}"></i> {{ isset($carmark) ? 'Редактировать' : 'Добавить' }}
-            марка
+        <li><a href="{{ url('admin/carmodifications/model/' . $carmodification->id_car_model) }}"><i class="fa fa-list-alt"></i> Модификации</a></li>
+        <li class="active"><i class="fa {{ isset($carmodification) ? 'fa-pencil' : 'fa-plus' }}"></i> {{ isset($carmodification) ? 'Редактировать' : 'Добавить' }}
+           модификацию
         </li>
     </ol>
 </section>
@@ -27,7 +27,7 @@
     <!-- Default box -->
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Форма данных марки</h3>
+            <h3 class="box-title">Форма данных модификации</h3>
             <div class="box-tools pull-right">
                 <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
                     <i class="fa fa-minus"></i>
@@ -35,41 +35,37 @@
             </div>
         </div>
         <div class="box-body">
-            {!! Form::open(['url' => isset($carmark) ? URL::to('admin/carmarks/' . $carmark->id )  :  URL::to('admin/carmarks') , 'method' => isset($carmark) ? 'put': 'post', 'class' => 'form-horizontal', 'id'=>'validate']) !!}
+            {!! Form::open(['url' => isset($carmodification) ? URL::to('admin/modifications/' . $carmodification->id )  :  URL::to('admin/modifications/model/' . $carmodification->id_car_model) , 'method' => isset($modificatio) ? 'put': 'post', 'class' => 'form-horizontal', 'id'=>'validate']) !!}
             <div class="col-md-12">
 
                 <div class="form-group">
-                    {!! Form::label('name', 'Название марки *', ['class' => 'control-label col-md-2']) !!}
+                    {!! Form::label('name', 'Название *', ['class' => 'control-label col-md-2']) !!}
                     <div class="col-md-4">
-                        {!! Form::text('name', old('name', isset($carmark) ? $carmark->name : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Название марки']) !!}
+                        {!! Form::text('name', old('name', isset($carmodification) ? $carmodification->name : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Название модификации']) !!}
                     </div>
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('name_rus', 'Название марки кирилицей*', ['class' => 'control-label col-md-2']) !!}
+                    {!! Form::label('body_type', 'Тип кузова*', ['class' => 'control-label col-md-2']) !!}
                     <div class="col-md-4">
-                        {!! Form::text('name_rus', old('name_rus', isset($carmark) ? $carmark->name_rus : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Название марки кирилицей']) !!}
+                        {!! Form::text('body_type', old('body_type', isset($carmodification) ? $carmodification->body_type : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Тип кузов']) !!}
                     </div>
                 </div>
-
 
                 <div class="form-group">
-                    {!! Form::label('published', 'Опубликован', ['class' => 'control-label col-md-2']) !!}
+                    {!! Form::label('body_type', 'Год ввыпуска*', ['class' => 'control-label col-md-2']) !!}
                     <div class="col-md-4">
-                        <label class="check">
-                            @if(isset($carmark))
-                               {!! Form::checkbox('published',1,  old('published' , (isset($carmark) && ($carmark->getOriginal('published') == 1) ) ? true : false ) ,['class'=>'minimal']) !!}
-                            @else
-                                {!! Form::checkbox('published',1,  old('published' , true),['class'=>'minimal']) !!}
-                            @endif
-
-                            Да</label>
+                        {!! Form::text('body_type', old('body_type', isset($carmodification) ? $carmodification->body_type : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Тип кузов']) !!}
                     </div>
                 </div>
+
+
+
+
 
                 <div class="form-group">
                     <div class="col-md-8 col-md-offset-2">
-                        {!! Form::submit( (isset($carmark) ? 'Обновить': 'Добавить') . '', ['class'=>'btn btn-primary']) !!}
+                        {!! Form::submit( (isset($carmodification) ? 'Обновить': 'Добавить') . '', ['class'=>'btn btn-primary']) !!}
                     </div>
                 </div>
             </div><!-- .col-md-12 -->

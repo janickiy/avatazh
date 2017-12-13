@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Requests\CarModelsRequest;
 use App\Http\Controllers\Controller;
 use App\CarModel;
+use App\CarMark;
 
 class CarmodelsController extends Controller
 {
@@ -31,9 +32,9 @@ class CarmodelsController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function create()
+    public function create($id)
     {
-        return view('admin.carmodels.create_edit');
+        return view('admin.carmodels.create_edit')->with('id_car_mark', $id);
     }
 
     /**
@@ -45,10 +46,14 @@ class CarmodelsController extends Controller
         return view('admin.carmodels.create_edit')->with(compact('carmodel'));
     }
 
+    /**
+     * @param $id
+     * @return $this
+     */
     public function carmark($id)
     {
-        $carmodels = CarModel::all()->where('id', $id);
-        return view('admin.carmodels.carmark', compact('carmodels'))->with('id', $id);
+        $carmark = CarMark::where('id', $id)->first();
+        return view('admin.carmodels.carmark', compact('carmodels'))->with(compact('carmark'));
     }
 
     /**
@@ -77,7 +82,7 @@ class CarmodelsController extends Controller
         $carmodel = CarModel::create($request->except('_token'));
         $carmodel->save();
 
-        return redirect('admin/carmarks')->with('success', ' добавлена');
+        return redirect('admin/carmodels/carmark/' . $request->id_car_mark)->with('success', ' добавлена');
     }
 
     /**
