@@ -27,6 +27,7 @@
 
 <!-- Main content -->
 <section class="content">
+    <p><a class="btn btn-success" href="/admin/carmodifications/create/{{ $id }}"> + Добавить модификацию </a></p>
     <!-- Default box -->
     <div class="box">
         <div class="box-header with-border">

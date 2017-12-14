@@ -191,7 +191,7 @@ class DatatablesController extends Controller
         return Datatables::of($carModels)
 
             ->addColumn('modification', function ($carModels) {
-                return '<a title="модификация" href="' . url('admin/modifications/model/' . $carModels->id). '">' . $carModels->name . '</a>';
+                return '<a title="модификация" href="' . url('admin/carmodifications/model/' . $carModels->id). '">' . $carModels->name . '</a>';
             })
 
             ->addColumn('status', function ($carModels) {

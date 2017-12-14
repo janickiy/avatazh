@@ -24,12 +24,9 @@
         <li class="active"><i class="fa fa-list-alt"></i> Марка</li>
     </ol>
 </section>
-        <p><a href=""> + Добавить модель </a></p>
 <!-- Main content -->
 <section class="content">
     <!-- Default box -->
-
-
 
     <div class="box">
         <div class="box-header with-border">
@@ -41,12 +38,7 @@
             </div>
         </div>
 
-
-
         <div class="box-body">
-
-
-
             <table id="data_table" class="table datatable dt-responsive" style="width:100%;">
                 <thead>
                 <tr>
@@ -72,7 +64,6 @@
 @include('layouts.admin.includes.message_boxes', ['item' => 'Menu', 'delete' => true])
 
 @endsection
-
 
 @section('js')
         <!-- DataTables -->

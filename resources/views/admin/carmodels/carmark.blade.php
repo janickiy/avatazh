@@ -41,8 +41,6 @@
             </div>
         </div>
 
-
-
         <div class="box-body">
             <table id="data_table" class="table datatable dt-responsive" style="width:100%;">
                 <thead>

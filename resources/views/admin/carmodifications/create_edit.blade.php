@@ -15,7 +15,7 @@
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{ url('admin/dashboard') }}"><i class="fa fa-dashboard"></i> Панель управления</a></li>
-        <li><a href="{{ url('admin/carmodifications/model/' . $carmodification->id_car_model) }}"><i class="fa fa-list-alt"></i> Модификации</a></li>
+        <li><a href="{{ url('admin/carmodifications/model/' . (isset($carmodification) ? $carmodification->id_car_model : $id_car_model) ) }}"><i class="fa fa-list-alt"></i> Модификации</a></li>
         <li class="active"><i class="fa {{ isset($carmodification) ? 'fa-pencil' : 'fa-plus' }}"></i> {{ isset($carmodification) ? 'Редактировать' : 'Добавить' }}
            модификацию
         </li>
@@ -35,9 +35,9 @@
             </div>
         </div>
         <div class="box-body">
-            {!! Form::open(['url' => isset($carmodification) ? URL::to('admin/modifications/' . $carmodification->id )  :  URL::to('admin/modifications/model/' . $carmodification->id_car_model) , 'method' => isset($modificatio) ? 'put': 'post', 'class' => 'form-horizontal', 'id'=>'validate']) !!}
+            {!! Form::open(['url' => isset($carmodification) ? URL::to('admin/carmodifications/' . $carmodification->id )  :  URL::to('admin/carmodifications/') , 'method' => isset($carmodification) ? 'put': 'post', 'class' => 'form-horizontal', 'id'=>'validate']) !!}
             <div class="col-md-12">
-
+                @if(isset($id_car_model)) {!! Form::hidden('id_car_model', $id_car_model) !!} @endif
                 <div class="form-group">
                     {!! Form::label('name', 'Название *', ['class' => 'control-label col-md-2']) !!}
                     <div class="col-md-4">
@@ -53,15 +53,18 @@
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('body_type', 'Год ввыпуска*', ['class' => 'control-label col-md-2']) !!}
+                    {!! Form::label('year_begin', 'Год начала производства*', ['class' => 'control-label col-md-2']) !!}
                     <div class="col-md-4">
-                        {!! Form::text('body_type', old('body_type', isset($carmodification) ? $carmodification->body_type : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Тип кузов']) !!}
+                        {!!  Form::selectYear('year_begin', 1980, date("Y"), isset($carmodification) ? $carmodification->year_begin : date("Y"), ['class' => 'form-control select2 validate[required]']) !!}
                     </div>
                 </div>
 
-
-
-
+                <div class="form-group">
+                    {!! Form::label('year_end', 'Год окончания производства*', ['class' => 'control-label col-md-2']) !!}
+                    <div class="col-md-4">
+                        {!!  Form::selectYear('year_end', 1980, date("Y"), isset($carmodification) ? $carmodification->year_end : date("Y"), ['class' => 'form-control select2 validate[required]']) !!}
+                    </div>
+                </div>
 
                 <div class="form-group">
                     <div class="col-md-8 col-md-offset-2">

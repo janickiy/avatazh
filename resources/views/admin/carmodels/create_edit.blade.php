@@ -39,11 +39,7 @@
 
             @if(isset($id_car_mark)) {!! Form::hidden('id_car_mark', $id_car_mark) !!} @endif
 
-
             {!! Form::hidden('id_car_type', 1) !!}
-
-
-
 
             <div class="col-md-12">
 

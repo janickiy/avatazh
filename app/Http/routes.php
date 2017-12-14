@@ -103,6 +103,7 @@ Route::group(['middleware' => 'web'], function () {
         Route::any('carmodels/create/{id}', 'Admin\CarmodelsController@create');
 
         Route::get('carmodifications/model/{id}', 'Admin\CarmodificationsController@index');
+        Route::get('carmodifications/create/{id}', 'Admin\CarmodificationsController@create');
 
         Route::any('/ajax', 'Admin\DashboardController@ajax');
         Route::resource('users', 'Admin\UsersController');
