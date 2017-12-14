@@ -52,8 +52,21 @@ class CatalogUsedCarsController extends Controller
      */
     public function update(CatalogUsedCarsRequest $request, CatalogUsedCar $catalogUsedCar)
     {
-        $catalogUsedCar->name = $request->input('name');
-
+        $catalogUsedCar->mark = trim($request->input('mark'));
+        $catalogUsedCar->model = trim($request->input('model'));
+        $catalogUsedCar->price = $request->input('price');
+        $catalogUsedCar->year = $request->input('year');
+        $catalogUsedCar->mileage = $request->input('mileage');
+        $catalogUsedCar->gearbox = trim($request->input('gearbox'));
+        $catalogUsedCar->drive = trim($request->input('drive'));
+        $catalogUsedCar->drive = trim($request->input('engine_type'));
+        $catalogUsedCar->power = $request->input('power');
+        $catalogUsedCar->body = trim($request->input('body'));
+        $catalogUsedCar->wheel = trim($request->input('color'));
+        $catalogUsedCar->salon = trim($request->input('salon'));
+        $catalogUsedCar->meta_title = trim($request->input('meta_title'));
+        $catalogUsedCar->meta_keywords = trim($request->input('meta_keywords'));
+     	$catalogUsedCar->meta_description = trim('description');
         $catalogUsedCar->published = $request->input('published');
         $catalogUsedCar->save();
 
@@ -68,7 +81,6 @@ class CatalogUsedCarsController extends Controller
     {
         $catalogUsedCar = CatalogUsedCar::create($request->except('_token'));
         $catalogUsedCar->save();
-
         return redirect('admin/catalogusedcars')->with('success', 'Автомобиль добавлен');
     }
 

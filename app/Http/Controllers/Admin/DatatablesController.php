@@ -245,7 +245,7 @@ class DatatablesController extends Controller
     /**
      * @return mixed
      */
-    public function getCatalogusedcar()
+    public function getCatalogusedcars()
     {
         $catalogUsedCar = CatalogUsedCar::all();
 
