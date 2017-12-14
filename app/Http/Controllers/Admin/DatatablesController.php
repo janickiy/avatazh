@@ -13,6 +13,7 @@ use App\UserReview;
 use App\CarMark;
 use App\CarModel;
 use App\CarModification;
+use App\CatalogUsedCar;
 
 class DatatablesController extends Controller
 {
@@ -206,6 +207,10 @@ class DatatablesController extends Controller
             ->make(true);
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function getCarmodifications($id)
     {
         $carModifications = CarModification::where('id_car_model', $id)->get();
@@ -235,6 +240,25 @@ class DatatablesController extends Controller
                 $buttons = '' . $editBtn . $viewBtn . $deleteBtn;
                 return $buttons;
             })->make(true);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCatalogusedcar()
+    {
+        $catalogUsedCar = CatalogUsedCar::all();
+
+        return Datatables::of($catalogUsedCar)
+            ->addColumn('status', function ($catalogUsedCar) {
+                return $catalogUsedCar->published ? 'опубликован' : 'не опубликован';
+            })
+            ->addColumn('actions', function ($catalogUsedCar) {
+                $editBtn = '<a style="margin-right: 0.2em;" href="' . url('admin/catalogusedcars/' . $catalogUsedCar->id . '/edit/') . '"  title="Редактировать"><i class="fa fa-2 fa-pencil"></i></a>';
+                $deleteBtn = '&nbsp;<a href="' . url('admin/catalogusedcars/' . $catalogUsedCar->id) . '" class="message_box text-danger" data-box="#message-box-delete" data-action="DELETE" title="Удалить навсегда"><i class="fa fa-2 fa-remove"></i></a>';
+                return $editBtn . $deleteBtn;
+            })
+            ->make(true);
     }
 }
 				

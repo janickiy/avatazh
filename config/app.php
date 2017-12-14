@@ -149,6 +149,7 @@ return [
         Laravel\Cashier\CashierServiceProvider::class,
 		Orangehill\Iseed\IseedServiceProvider::class,
 		Roumen\Sitemap\SitemapServiceProvider::class,
+        Orchestra\Parser\XmlServiceProvider::class,
     ],
     /*
       |--------------------------------------------------------------------------
@@ -196,5 +197,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'Carbon' => Carbon\Carbon::class,
+        'XmlParser' => Orchestra\Parser\Xml\Facade::class,
+
     ],
 ];

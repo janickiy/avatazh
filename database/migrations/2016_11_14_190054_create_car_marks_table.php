@@ -14,7 +14,7 @@ class CreateCarMarksTable extends Migration {
 	{
 		Schema::create('car_marks', function(Blueprint $table)
 		{
-			$table->integer('id', true);
+			$table->increments('id');
 			$table->string('name');
 			$table->integer('id_car_type')->index('id_car_type');
 			$table->string('name_rus')->nullable();

@@ -14,7 +14,7 @@ class CreateCarModelsTable extends Migration {
 	{
 		Schema::create('car_models', function(Blueprint $table)
 		{
-			$table->integer('id', true);
+			$table->increments('id');
 			$table->integer('id_car_mark')->index('id_car_mark');
 			$table->string('name')->index('name');
 			$table->integer('id_car_type')->index('id_car_type');

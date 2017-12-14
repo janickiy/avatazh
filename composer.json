@@ -15,7 +15,8 @@
     "laravel/cashier": "~6.0",
 	"roumen/sitemap": "^2.6",  
     "intervention/image": "2.3.*",
-    "bigperson/auto-base-buy": "^0.1.3"
+    "bigperson/auto-base-buy": "^0.1.3",
+    "orchestra/parser": "~3.0"
   },
   "require-dev": {
     "fzaninotto/faker": "~1.4",

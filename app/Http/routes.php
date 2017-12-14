@@ -28,17 +28,16 @@ use App\Role;
 use App\Page;
 use App\Menu;
 use App\UserReview;
-use App\CarGeneration;
 use App\CarMark;
 use App\CarModel;
 use App\CarModification;
-use App\CarSerie;
 use App\CarType;
 use App\CarCharacteristic;
 use App\CarCharacteristicValue;
 use App\CarEquipment;
 use App\CarOption;
 use App\CarOptionValue;
+use App\CatalogUsedCar;
 
 Route::model('users', User::class);
 Route::model('settings', Setting::class);
@@ -46,17 +45,21 @@ Route::model('roles', Role::class);
 Route::model('pages', Page::class);
 Route::model('menus', Menu::class);
 Route::model('reviews', UserReview::class);
-Route::model('cargenerations',CarGeneration::class);
 Route::model('carmarks',CarMark::class);
 Route::model('carmodels',CarModel::class);
 Route::model('carmodifications',CarModification::class);
-Route::model('carseries',CarSerie::class);
 Route::model('cartypes',CarType::class);
 Route::model('carcharacteristics',CarCharacteristic::class);
 Route::model('carcharacteristicvalues',CarCharacteristicValue::class);
 Route::model('carequipments',CarEquipment::class);
 Route::model('caroptions',CarOption::class);
 Route::model('caroptionvalues',CarOptionValue::class);
+
+
+Route::model('catalogusedcars', CatalogUsedCar::class);
+
+
+
 
 
 
@@ -105,6 +108,15 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('carmodifications/model/{id}', 'Admin\CarmodificationsController@index');
         Route::get('carmodifications/create/{id}', 'Admin\CarmodificationsController@create');
 
+
+        Route::get('carmarks/import', 'Admin\CarmarksController@import');
+
+        Route::post('carmarks/imporcarmarks', 'Admin\CarmarksController@imporCarmarks');
+
+
+
+
+
         Route::any('/ajax', 'Admin\DashboardController@ajax');
         Route::resource('users', 'Admin\UsersController');
         Route::get('settings/create/{type}', ['as' => 'admin.settings.create.type', 'uses' => 'Admin\SettingsController@createForm']);
@@ -117,6 +129,11 @@ Route::group(['middleware' => 'web'], function () {
         Route::resource('carmarks', 'Admin\CarmarksController');
         Route::resource('carmodels', 'Admin\CarmodelsController');
         Route::resource('carmodifications', 'Admin\CarmodificationsController');
+
+
+        Route::resource('catalogusedcars', 'Admin\CatalogUsedCarsController');
+
+
 
     });
 

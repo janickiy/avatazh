@@ -87,4 +87,17 @@ class CarmarksController extends Controller
             return 'Ошибка веб приложения! Действия не были выполнены.';
         }
     }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function import()
+    {
+        return view('admin.carmarks.import');
+    }
+
+    public function imporCarmarks()
+    {
+
+    }
 }
