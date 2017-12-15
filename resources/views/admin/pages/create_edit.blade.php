@@ -87,10 +87,10 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    {!! Form::label('published', 'Опубликован', ['class' => 'control-label col-md-2']) !!}
+                    {!! Form::label('published', 'Публиковать', ['class' => 'control-label col-md-2']) !!}
                     <div class="col-sm-10">
                         <label class="check">{!! Form::checkbox('published', 1, isset($page) ? ($page->published == 'published' ? true: false): false, ['class'=>'minimal']) !!}
-                            Опубликован
+                            Да
                         </label>
                     </div>
                 </div>

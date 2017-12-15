@@ -1,6 +1,6 @@
 @extends('layouts.admin.app')
 
-@section('title', 'Отзывы')
+@section('title', 'Фото')
 
 @section('css')
         <!-- iCheck for checkboxes and radio inputs -->
@@ -11,13 +11,13 @@
         <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        <i class="fa fa-list-alt"></i> {{ isset($review) ? 'Редактировать' : 'Добавить' }} отзвыв
+        <i class="fa fa-list-alt"></i> {{ isset($image) ? 'Редактировать' : 'Добавить' }} фото
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{ url('admin/dashboard') }}"><i class="fa fa-dashboard"></i> Панель управления</a></li>
-        <li><a href="{{ url('admin/reviews') }}"><i class="fa fa-list-alt"></i> Отзвывы</a></li>
-        <li class="active"><i class="fa {{ isset($review) ? 'fa-pencil' : 'fa-plus' }}"></i> {{ isset($review) ? 'Редактировать' : 'Добавить' }}
-            отзыв
+        <li><a href="{{ url('admin/menus') }}"><i class="fa fa-list-alt"></i> Фото</a></li>
+        <li class="active"><i class="fa {{ isset($image) ? 'fa-pencil' : 'fa-plus' }}"></i> {{ isset($image) ? 'Редактировать' : 'Добавить' }}
+            фото
         </li>
     </ol>
 </section>
@@ -27,7 +27,7 @@
     <!-- Default box -->
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Форма данных отзыва</h3>
+            <h3 class="box-title">Фото</h3>
             <div class="box-tools pull-right">
                 <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
                     <i class="fa fa-minus"></i>
@@ -35,33 +35,30 @@
             </div>
         </div>
         <div class="box-body">
-            {!! Form::open(['url' => isset($review) ? URL::to('admin/reviews/' . $review->id )  :  URL::to('admin/reviews') , 'method' => isset($review) ? 'put': 'post', 'class' => 'form-horizontal', 'id'=>'validate']) !!}
-            <div class="col-md-12">
-                <div class="form-group">
-                    {!! Form::label('message', 'Комментарий *', ['class' => 'control-label col-md-2']) !!}
-                    <div class="col-md-4">
-                        {!! Form::textarea('message', old('message', isset($review) ? $review->message : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Комментарий']) !!}
-                    </div>
+            {!! Form::open(['url' => URL::to('admin/images'), 'method' => 'post', 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal', 'id'=>'validate']) !!}
+
+            <div class="form-group">
+                {!! Form::label('category', 'категория *', ['class' => 'control-label col-md-2']) !!}
+                <div class="col-md-4">
+                    {!! Form::text('category', old('category', null), ['class' => 'form-control validate[required]', 'placeholder'=>'категория']) !!}
                 </div>
+            </div>
 
-                <div class="form-group">
-                    {!! Form::label('status', 'Опубликован', ['class' => 'control-label col-md-2']) !!}
-                    <div class="col-md-4">
-                        <label class="check">{!! Form::checkbox('published',1,  old('status' , (isset($review) && ($review->getOriginal('published') == 1) ) ? true : false ) ,['class'=>'minimal']) !!}
-                            Да</label>
-                    </div>
+            <div class="form-group">
+                {!! Form::label('image[]', 'Фото (jpeg, png, gif)*', ['class' => 'control-label col-md-2']) !!}
+                <div class="col-md-4">
+                    {!! Form::file('image[]',  ['class' => 'validate[required]', 'multiple' => true]) !!}
                 </div>
+            </div>
 
-
-
-
-                <div class="form-group">
-                    <div class="col-md-8 col-md-offset-2">
-                        {!! Form::submit( (isset($review) ? 'Обновить': 'Добавить') . '', ['class'=>'btn btn-primary']) !!}
-                    </div>
+            <div class="form-group">
+                <div class="col-md-8 col-md-offset-2">
+                    {!! Form::submit( 'Добавить', ['class'=>'btn btn-primary']) !!}
                 </div>
-            </div><!-- .col-md-12 -->
+            </div>
+
             {!! Form::close() !!}
+
         </div><!-- /.box-body -->
         <div class="box-footer">
         </div><!-- /.box-footer-->

@@ -150,6 +150,7 @@ return [
 		Orangehill\Iseed\IseedServiceProvider::class,
 		Roumen\Sitemap\SitemapServiceProvider::class,
         Orchestra\Parser\XmlServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
     ],
     /*
       |--------------------------------------------------------------------------
@@ -198,6 +199,6 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'Carbon' => Carbon\Carbon::class,
         'XmlParser' => Orchestra\Parser\Xml\Facade::class,
-
+        'Image' => Intervention\Image\Facades\Image::class,
     ],
 ];

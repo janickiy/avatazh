@@ -31,13 +31,13 @@ use App\UserReview;
 use App\CarMark;
 use App\CarModel;
 use App\CarModification;
-use App\CarType;
 use App\CarCharacteristic;
 use App\CarCharacteristicValue;
 use App\CarEquipment;
 use App\CarOption;
 use App\CarOptionValue;
 use App\CatalogUsedCar;
+use App\Image;
 
 Route::model('users', User::class);
 Route::model('settings', Setting::class);
@@ -48,25 +48,17 @@ Route::model('reviews', UserReview::class);
 Route::model('carmarks',CarMark::class);
 Route::model('carmodels',CarModel::class);
 Route::model('carmodifications',CarModification::class);
-Route::model('cartypes',CarType::class);
 Route::model('carcharacteristics',CarCharacteristic::class);
 Route::model('carcharacteristicvalues',CarCharacteristicValue::class);
 Route::model('carequipments',CarEquipment::class);
 Route::model('caroptions',CarOption::class);
 Route::model('caroptionvalues',CarOptionValue::class);
-
-
 Route::model('catalogusedcars', CatalogUsedCar::class);
-
-
-
-
-
+Route::model('images', Image::class);
 
 Route::group(['middleware' => ['web']], function () {
 
     Route::get('/', 'FrontendController@index');
-
     Route::get('/auto', 'FrontendController@auto');
     Route::get('/credit', 'FrontendController@credit');
     Route::get('/tradein', 'FrontendController@tradeIn');
@@ -76,15 +68,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/contacts', 'FrontendController@contactUsSubmit');
     Route::get('/page/{slug}', 'FrontendController@staticPages');
     Route::any('/ajax', 'FrontendController@ajax');
-
-
-
-    //Route::get('/login', 'FrontendController@login');
-
-   // Route::get('/blog', 'FrontendController@blog');
-  //  Route::get('/blog/{slug}', 'FrontendController@post');
-
-
 });
 
 Route::group(['middleware' => 'web'], function () {
@@ -104,19 +87,10 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('/dashboard', 'Admin\DashboardController@index');
         Route::get('carmodels/carmark/{id}', 'Admin\CarmodelsController@carmark');
         Route::any('carmodels/create/{id}', 'Admin\CarmodelsController@create');
-
         Route::get('carmodifications/model/{id}', 'Admin\CarmodificationsController@index');
         Route::get('carmodifications/create/{id}', 'Admin\CarmodificationsController@create');
-
-
         Route::get('carmarks/import', 'Admin\CarmarksController@import');
-
         Route::post('carmarks/imporcarmarks', 'Admin\CarmarksController@imporCarmarks');
-
-
-
-
-
         Route::any('/ajax', 'Admin\DashboardController@ajax');
         Route::resource('users', 'Admin\UsersController');
         Route::get('settings/create/{type}', ['as' => 'admin.settings.create.type', 'uses' => 'Admin\SettingsController@createForm']);
@@ -129,11 +103,8 @@ Route::group(['middleware' => 'web'], function () {
         Route::resource('carmarks', 'Admin\CarmarksController');
         Route::resource('carmodels', 'Admin\CarmodelsController');
         Route::resource('carmodifications', 'Admin\CarmodificationsController');
-
-
         Route::resource('catalogusedcars', 'Admin\CatalogUsedCarsController');
-
-
+        Route::resource('images', 'Admin\ImagesController');
 
     });
 

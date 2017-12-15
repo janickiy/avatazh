@@ -35,7 +35,7 @@
             </div>
         </div>
         <div class="box-body">
-            {!! Form::open(['mark' => isset($catalogusedcar) ? URL::to('admin/catalogusedcars/'.$catalogusedcar->id )  :  URL::to('admin/catalogusedcars') , 'method' => isset($catalogusedcar) ? 'put': 'post', 'class' => 'form-horizontal', 'id'=>'validate']) !!}
+            {!! Form::open(['mark' => isset($catalogusedcar) ? URL::to('admin/catalogusedcars/'.$catalogusedcar->id )  :  URL::to('admin/catalogusedcars') , 'method' => isset($catalogusedcar) ? 'put': 'post', 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal', 'id'=>'validate']) !!}
             <div class="col-md-12">
                 <div class="form-group">
                     {!! Form::label('mark', 'Марка *', ['class' => 'control-label col-md-2']) !!}
@@ -43,7 +43,6 @@
                         {!! Form::text('mark', old('mark', isset($catalogusedcar) ? $catalogusedcar->mark : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Марка']) !!}
                     </div>
                 </div>
-
 
                 <div class="form-group">
                     {!! Form::label('model', 'Модель *', ['class' => 'control-label col-md-2']) !!}
@@ -62,93 +61,116 @@
                 <div class="form-group">
                     {!! Form::label('year', 'Год *', ['class' => 'control-label col-md-2']) !!}
                     <div class="col-md-4">
-                        {!! Form::text('price', old('price', isset($catalogusedcar) ? $catalogusedcar->price : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Цена']) !!}
-                    </div>
-                </div>
+                        {!!  Form::selectYear('year', 1980, date("Y"), isset($catalogusedcar) ? $catalogusedcar->year_begin : date("Y"), ['class' => 'form-control select2 validate[required]']) !!}
+                         </div>
+                     </div>
 
                 <div class="form-group">
-                    {!! Form::label('year', 'Год *', ['class' => 'control-label col-md-2']) !!}
+                    {!! Form::label('mileager', 'Пробег *', ['class' => 'control-label col-md-2']) !!}
                     <div class="col-md-4">
-                        {!! Form::text('price', old('price', isset($catalogusedcar) ? $catalogusedcar->price : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Цена']) !!}
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    {!! Form::label('year', 'Год *', ['class' => 'control-label col-md-2']) !!}
-                    <div class="col-md-4">
-                        {!! Form::text('price', old('price', isset($catalogusedcar) ? $catalogusedcar->price : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Цена']) !!}
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    {!! Form::label('year', 'Год *', ['class' => 'control-label col-md-2']) !!}
-                    <div class="col-md-4">
-                        {!! Form::text('price', old('price', isset($catalogusedcar) ? $catalogusedcar->price : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Цена']) !!}
+                        {!! Form::text('mileage', old('mileage', isset($catalogusedcar) ? $catalogusedcar->mileage : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Пробег']) !!}
                     </div>
                 </div>
 
 
                 <div class="form-group">
-                    {!! Form::label('year', 'Год *', ['class' => 'control-label col-md-2']) !!}
+                    {!! Form::label('gearbox', 'КПП *', ['class' => 'control-label col-md-2']) !!}
                     <div class="col-md-4">
-                        {!! Form::text('price', old('price', isset($catalogusedcar) ? $catalogusedcar->price : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Цена']) !!}
+                        {!! Form::text('gearbox', old('gearbox', isset($catalogusedcar) ? $catalogusedcar->gearbox : null), ['class' => 'form-control validate[required]', 'placeholder'=>'КПП']) !!}
                     </div>
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('year', 'Год *', ['class' => 'control-label col-md-2']) !!}
+                    {!! Form::label('drive', 'Привод *', ['class' => 'control-label col-md-2']) !!}
                     <div class="col-md-4">
-                        {!! Form::text('price', old('price', isset($catalogusedcar) ? $catalogusedcar->price : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Цена']) !!}
-                    </div>
-                </div>
-
-
-                <div class="form-group">
-                    {!! Form::label('year', 'Год *', ['class' => 'control-label col-md-2']) !!}
-                    <div class="col-md-4">
-                        {!! Form::text('price', old('price', isset($catalogusedcar) ? $catalogusedcar->price : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Цена']) !!}
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    {!! Form::label('year', 'Год *', ['class' => 'control-label col-md-2']) !!}
-                    <div class="col-md-4">
-                        {!! Form::text('price', old('price', isset($catalogusedcar) ? $catalogusedcar->price : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Цена']) !!}
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    {!! Form::label('year', 'Год *', ['class' => 'control-label col-md-2']) !!}
-                    <div class="col-md-4">
-                        {!! Form::text('price', old('price', isset($catalogusedcar) ? $catalogusedcar->price : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Цена']) !!}
+                        {!! Form::text('drive', old('drive', isset($catalogusedcar) ? $catalogusedcar->drive : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Привод']) !!}
                     </div>
                 </div>
 
 
                 <div class="form-group">
-                    {!! Form::label('year', 'Год *', ['class' => 'control-label col-md-2']) !!}
+                    {!! Form::label('engine_type', 'Тип двигателя *', ['class' => 'control-label col-md-2']) !!}
                     <div class="col-md-4">
-                        {!! Form::text('price', old('price', isset($catalogusedcar) ? $catalogusedcar->price : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Цена']) !!}
+                        {!! Form::text('engine_type', old('engine_type', isset($catalogusedcar) ? $catalogusedcar->engine_type : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Тип двигателя']) !!}
                     </div>
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('year', 'Год *', ['class' => 'control-label col-md-2']) !!}
+                    {!! Form::label('power', 'Мощность двигателя *', ['class' => 'control-label col-md-2']) !!}
                     <div class="col-md-4">
-                        {!! Form::text('price', old('price', isset($catalogusedcar) ? $catalogusedcar->price : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Цена']) !!}
+                        {!! Form::text('power', old('power', isset($catalogusedcar) ? $catalogusedcar->power : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Мощность двигателя']) !!}
                     </div>
                 </div>
 
-
-
-
-
+                <div class="form-group">
+                    {!! Form::label('body', 'Кузов *', ['class' => 'control-label col-md-2']) !!}
+                    <div class="col-md-4">
+                        {!! Form::text('body', old('body', isset($catalogusedcar) ? $catalogusedcar->body : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Кузов']) !!}
+                    </div>
+                </div>
 
                 <div class="form-group">
-                    {!! Form::label('status', 'Статус', ['class' => 'control-label col-md-2']) !!}
+                    {!! Form::label('wheel', 'Руль *', ['class' => 'control-label col-md-2']) !!}
                     <div class="col-md-4">
-                        <label class="check">{!! Form::checkbox('status',1,  old('status' , (isset($catalogusedcar) && ($catalogusedcar->getOriginal('status') == 1) ) ? true : false ) ,['class'=>'minimal']) !!}
-                            Active</label>
+                        {!! Form::text('wheel', old('wheel', isset($catalogusedcar) ? $catalogusedcar->wheel : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Руль']) !!}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('color', 'Цвет *', ['class' => 'control-label col-md-2']) !!}
+                    <div class="col-md-4">
+                        {!! Form::text('color', old('color', isset($catalogusedcar) ? $catalogusedcar->color : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Цвет']) !!}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('salon', 'Салон *', ['class' => 'control-label col-md-2']) !!}
+                    <div class="col-md-4">
+                        {!! Form::text('salon', old('salon', isset($catalogusedcar) ? $catalogusedcar->salon : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Салон']) !!}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('description', 'Комментарий продовца', ['class' => 'control-label col-md-2']) !!}
+                    <div class="col-md-4">
+                        {!! Form::textarea('description', old('description', isset($review) ? $review->message : null), ['class' => 'form-control validate[required]', 'placeholder'=>'комментарий продовца', 'rows' => 5]) !!}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('meta_title', 'meta title', ['class' => 'control-label col-md-2']) !!}
+                    <div class="col-md-4">
+                        {!! Form::text('meta_title', old('meta_title', isset($catalogusedcar) ? $catalogusedcar->meta_title : null), ['class' => 'form-control validate[required]', 'placeholder'=>'meta title']) !!}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('meta_keywords', 'meta keywords', ['class' => 'control-label col-md-2']) !!}
+                    <div class="col-md-4">
+                        {!! Form::text('meta_keywords', old('meta_keywordse', isset($catalogusedcar) ? $catalogusedcar->meta_keywords : null), ['class' => 'form-control validate[required]', 'placeholder'=>'meta keywords']) !!}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('meta_description', 'meta description', ['class' => 'control-label col-md-2']) !!}
+                    <div class="col-md-4">
+                        {!! Form::textarea('meta_description', old('message', isset($catalogusedcar) ? $catalogusedcar->meta_description : null), ['class' => 'form-control validate[required]', 'placeholder'=>'meta description', 'rows' => 2]) !!}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('image[]', 'Фото (jpeg, png, gif)*', ['class' => 'control-label col-md-2']) !!}
+                    <div class="col-md-4">
+                        {!! Form::file('image[]',  ['class' => 'validate[required]', 'multiple' => true]) !!}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('published', 'Публиковать', ['class' => 'control-label col-md-2']) !!}
+                    <div class="col-sm-10">
+                        <label class="check">{!! Form::checkbox('published', 1, isset($catalogusedcar) ? ($catalogusedcar->published == 'published' ? true: false) : true, ['class'=>'minimal']) !!}
+                            Да
+                        </label>
                     </div>
                 </div>
 

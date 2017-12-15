@@ -79,6 +79,29 @@ class CatalogUsedCarsController extends Controller
      */
     public function store(CatalogUsedCarsRequest $request)
     {
+        $small_path = public_path() . '/uploads/images/small/';
+        $big_path = public_path() . '/uploads/images/big/';
+        $file = $request->file('image');
+
+        foreach ($file as $f) {
+            $filename = str_random(20) . '.' . $f->getClientOriginalExtension() ? : 'png';
+            $imageName = $f->getClientOriginalName();
+            $img = ImageInt::make($f);
+
+            $img->resize(300, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($small_path . $filename);
+
+
+            $img->resize(1000, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($big_path . $filename);
+
+
+            Image::create(['title' => $imageName, 'img' => $filename, 'category' => 'usedcar']);
+        }
+
+
         $catalogUsedCar = CatalogUsedCar::create($request->except('_token'));
         $catalogUsedCar->save();
         return redirect('admin/catalogusedcars')->with('success', 'Автомобиль добавлен');

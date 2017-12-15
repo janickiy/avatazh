@@ -14,6 +14,7 @@ use App\CarMark;
 use App\CarModel;
 use App\CarModification;
 use App\CatalogUsedCar;
+use App\Image;
 
 class DatatablesController extends Controller
 {
@@ -256,6 +257,27 @@ class DatatablesController extends Controller
             ->addColumn('actions', function ($catalogUsedCar) {
                 $editBtn = '<a style="margin-right: 0.2em;" href="' . url('admin/catalogusedcars/' . $catalogUsedCar->id . '/edit/') . '"  title="Редактировать"><i class="fa fa-2 fa-pencil"></i></a>';
                 $deleteBtn = '&nbsp;<a href="' . url('admin/catalogusedcars/' . $catalogUsedCar->id) . '" class="message_box text-danger" data-box="#message-box-delete" data-action="DELETE" title="Удалить навсегда"><i class="fa fa-2 fa-remove"></i></a>';
+                return $editBtn . $deleteBtn;
+            })
+            ->make(true);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImages()
+    {
+        $image = Image::all();
+
+        return Datatables::of($image)
+
+            ->addColumn('image', function ($image) {
+                return '<img width="200px" src="' . url('uploads/images/small/' . $image->img) . '">';
+            })
+
+            ->addColumn('actions', function ($image) {
+                $editBtn = '<a style="margin-right: 0.2em;" href="' . url('admin/images/' . $image->id . '/edit/') . '"  title="Редактировать"><i class="fa fa-2 fa-pencil"></i></a>';
+                $deleteBtn = '&nbsp;<a href="' . url('admin/images/' . $image->id) . '" class="message_box text-danger" data-box="#message-box-delete" data-action="DELETE" title="Удалить навсегда"><i class="fa fa-2 fa-remove"></i></a>';
                 return $editBtn . $deleteBtn;
             })
             ->make(true);

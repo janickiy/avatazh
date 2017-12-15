@@ -125,6 +125,19 @@
                 </ul>
             </li>
 
+            <li class="treeview {{ Request::is('admin/image*')? 'active': '' }}">
+                <a href="#">
+                    <i class="fa fa-comments"></i> <span>Фотографии</span> <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{{ Request::is('admin/images')? 'active': '' }}">
+                        <a href="{{ url('admin/images') }}">
+                            <i class="fa fa-list"></i> <span>Администрирование</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
             <li class="treeview {{ Request::is('admin/menu*')? 'active': '' }}">
                 <a href="#"><i class="fa fa-list-alt"></i> Настройки меню <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
