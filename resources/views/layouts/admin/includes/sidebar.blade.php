@@ -127,7 +127,7 @@
 
             <li class="treeview {{ Request::is('admin/image*')? 'active': '' }}">
                 <a href="#">
-                    <i class="fa fa-comments"></i> <span>Фотографии</span> <i class="fa fa-angle-left pull-right"></i>
+                    <i class="fa fa-photo"></i> <span>Фотографии</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
                     <li class="{{ Request::is('admin/images')? 'active': '' }}">
@@ -137,6 +137,33 @@
                     </li>
                 </ul>
             </li>
+
+            <li class="treeview {{ Request::is('admin/requestcredit*')? 'active': '' }}">
+                <a href="#">
+                    <i class="fa fa-photo"></i> <span>Заявки на автокредит</span> <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{{ Request::is('admin/requestcredits')? 'active': '' }}">
+                        <a href="{{ url('admin/requestcredits') }}">
+                            <i class="fa fa-list"></i> <span>Администрирование</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="treeview {{ Request::is('admin/requesttradein*')? 'active': '' }}">
+                <a href="#">
+                    <i class="fa fa-photo"></i> <span>Заявка на Trade-in</span> <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{{ Request::is('admin/requesttradeins')? 'active': '' }}">
+                        <a href="{{ url('admin/requesttradeins') }}">
+                            <i class="fa fa-list"></i> <span>Администрирование</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
 
             <li class="treeview {{ Request::is('admin/menu*')? 'active': '' }}">
                 <a href="#"><i class="fa fa-list-alt"></i> Настройки меню <i class="fa fa-angle-left pull-right"></i></a>

@@ -63,22 +63,6 @@ class ReviewsController extends Controller
      * @param UserReview $userReview
      * @return \Illuminate\Http\JsonResponse|string
      */
-    public function approve(Request $request, UserReview $userReview)
-    {
-        if ($request->ajax()) {
-            $userReview->published = 1;
-            $userReview->save();
-            return response()->json(['success' => 'Отзыв одобрен']);
-        } else {
-            return 'Ошибка веб приложения! Действия не были выполнены.';
-        }
-    }
-
-    /**
-     * @param Request $request
-     * @param UserReview $userReview
-     * @return \Illuminate\Http\JsonResponse|string
-     */
     public function destroy(Request $request, UserReview $userReview)
     {
         if ($request->ajax()) {

@@ -38,6 +38,8 @@ use App\CarOption;
 use App\CarOptionValue;
 use App\CatalogUsedCar;
 use App\Image;
+use App\RequestCredit;
+use App\RequestTradeIn;
 
 Route::model('users', User::class);
 Route::model('settings', Setting::class);
@@ -55,6 +57,8 @@ Route::model('caroptions',CarOption::class);
 Route::model('caroptionvalues',CarOptionValue::class);
 Route::model('catalogusedcars', CatalogUsedCar::class);
 Route::model('images', Image::class);
+Route::model('requestcredits', RequestCredit::class);
+Route::model('requesttradeins', RequestTradeIn::class);
 
 Route::group(['middleware' => ['web']], function () {
 
@@ -105,7 +109,8 @@ Route::group(['middleware' => 'web'], function () {
         Route::resource('carmodifications', 'Admin\CarmodificationsController');
         Route::resource('catalogusedcars', 'Admin\CatalogUsedCarsController');
         Route::resource('images', 'Admin\ImagesController');
-
+        Route::resource('images', 'Admin\RequestcreditsController');
+        Route::resource('requesttradeins', 'Admin\RequestTradeInsController');
     });
 
     /**
