@@ -68,6 +68,7 @@ class CatalogUsedCarsController extends Controller
         $catalogUsedCar->meta_keywords = trim($request->input('meta_keywords'));
      	$catalogUsedCar->meta_description = trim('description');
         $catalogUsedCar->published = $request->input('published');
+        $catalogUsedCar->updated_at = \Carbon::now();
         $catalogUsedCar->save();
 
         return redirect('admin/catalogusedcars')->with('success', 'Данные обнавлены');

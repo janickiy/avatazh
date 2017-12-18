@@ -35,6 +35,7 @@
             </div>
         </div>
         <div class="box-body">
+            <p>* - обязательные поля</p>
             {!! Form::open(['url' => URL::to('admin/images'), 'method' => 'post', 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal', 'id'=>'validate']) !!}
 
             <div class="form-group">

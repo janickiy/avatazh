@@ -106,7 +106,7 @@ class PagesController extends Controller
         $page->updated_at = \Carbon::now();
         $page->save();
 
-        return redirect('admin/pages')->with('success', $page->title . ' успешно обновлена');
+        return redirect('admin/pages')->with('success', 'Страница ' . $page->title . ' успешно обновлена');
     }//update
 
     /**
@@ -119,10 +119,9 @@ class PagesController extends Controller
         if ($request->ajax()) {
             $page->delete();
 
-            return response()->json(['success' => 'Page has been deleted successfully']);
+            return response()->json(['success' => 'Страница удалена']);
         } else {
-            return 'You can\'t proceed in delete operation';
+            return 'Ошибка веб приложения! Действия не были выполнены.';
         }
     }
-
 }

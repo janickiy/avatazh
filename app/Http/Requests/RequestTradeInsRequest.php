@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class RequesttradeinsRequest extends Request
+class RequestTradeInsRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -30,33 +30,31 @@ class RequesttradeinsRequest extends Request
             }
             case 'POST': {
                 return [
-                    'name' => 'required',
+                    'name'  => 'required',
                     'phone' => 'required',
                     'email' => 'email',
-                    'mark' => 'required',
+                    'mark'  => 'required',
                     'model' => 'required',
-                    'year' => 'required|numeric',
+                    'year'  => 'required|numeric',
                     'mileage' => 'required|numeric',
                     'gearbox' => 'required',
-                    'trade_in_mark' => 'required',
+                    'trade_in_mark'  => 'required',
                     'trade_in_model' => 'required',
-                    'trade_in_year' => 'required|numeric',
                 ];
             }
             case 'PUT':
             case 'PATCH': {
                 return [
-                    'name' => 'required',
+                    'name'  => 'required',
                     'phone' => 'required',
                     'email' => 'email',
-                    'mark' => 'required',
+                    'mark'  => 'required',
                     'model' => 'required',
-                    'year' => 'required|numeric',
+                    'year'  => 'required|numeric',
                     'mileage' => 'required|numeric',
                     'gearbox' => 'required',
-                    'trade_in_mark' => 'required',
+                    'trade_in_mark'  => 'required',
                     'trade_in_model' => 'required',
-                    'trade_in_year' => 'required|numeric',
                 ];
             }
             default:

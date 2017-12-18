@@ -15,6 +15,7 @@ use App\CarModel;
 use App\CarModification;
 use App\CatalogUsedCar;
 use App\Image;
+use App\RequestTradeIn;
 
 class DatatablesController extends Controller
 {
@@ -281,6 +282,19 @@ class DatatablesController extends Controller
                 return $editBtn . $deleteBtn;
             })
             ->make(true);
+    }
+
+    public function getRequesttradeins()
+    {
+        $requestTradeIn = RequestTradeIn::all();
+
+        return Datatables::of($requestTradeIn)
+        ->addColumn('actions', function ($requestTradeIn) {
+            $editBtn = '<a style="margin-right: 0.2em;" href="' . url('admin/requesttradeins/' . $requestTradeIn->id . '/edit/') . '"  title="Редактировать"><i class="fa fa-2 fa-pencil"></i></a>';
+            $deleteBtn = '&nbsp;<a href="' . url('admin/requesttradeins/' . $requestTradeIn->id) . '" class="message_box text-danger" data-box="#message-box-delete" data-action="DELETE" title="Удалить навсегда"><i class="fa fa-2 fa-remove"></i></a>';
+            return $editBtn . $deleteBtn;
+        })->make(true);
+
     }
 }
 				

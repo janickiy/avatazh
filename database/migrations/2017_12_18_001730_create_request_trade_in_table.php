@@ -12,15 +12,15 @@ class CreateRequestTradeInTable extends Migration
      */
     public function up()
     {
-        Schema::create('request_trade_in', function (Blueprint $table) {
+        Schema::create('request_trade_ins', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->comment('ФИО');
-            $table->integer('age')->nullable()->comment('возвраст');
             $table->string('phone')->comment('телефон');
             $table->string('email')->nullable()->comment('email');
             $table->string('ip')->nullable()->comment('ip');
-            $table->string('mark')->comment('марка');
-            $table->string('model')->comment('модель');
+            $table->string('mark')->comment('марка авто клиента');
+            $table->string('model')->comment('модель авто клиента');
+            $table->integer('year')->nullable()->comment('год');
             $table->integer('mileage')->comment('пробег');
             $table->string('gearbox')->comment('кпп');
             $table->string('trade_in_mark')->comment('марка новый автомобиль');
@@ -37,6 +37,6 @@ class CreateRequestTradeInTable extends Migration
      */
     public function down()
     {
-        Schema::drop('request_trade_in');
+        Schema::drop('request_trade_ins');
     }
 }

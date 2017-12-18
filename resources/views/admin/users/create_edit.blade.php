@@ -31,6 +31,7 @@
             </div>
         </div>
         <div class="box-body">
+            <p>* - обязательные поля</p>
             {!! Form::open(['url' =>  isset($user) ? 'admin/users/'.$user->id  :  'admin/users', 'method' => isset($user) ? 'put' : 'post', 'files' => true, 'class' => 'form-horizontal', 'id'=>'validate']) !!}
             {!! Form::hidden('user_id', isset($user) ? $user->id: null) !!}
             <fieldset>

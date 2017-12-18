@@ -140,7 +140,7 @@
 
             <li class="treeview {{ Request::is('admin/requestcredit*')? 'active': '' }}">
                 <a href="#">
-                    <i class="fa fa-photo"></i> <span>Заявки на автокредит</span> <i class="fa fa-angle-left pull-right"></i>
+                    <i class="fa fa-money"></i> <span>Заявки на автокредит</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
                     <li class="{{ Request::is('admin/requestcredits')? 'active': '' }}">
@@ -153,7 +153,7 @@
 
             <li class="treeview {{ Request::is('admin/requesttradein*')? 'active': '' }}">
                 <a href="#">
-                    <i class="fa fa-photo"></i> <span>Заявка на Trade-in</span> <i class="fa fa-angle-left pull-right"></i>
+                    <i class="fa fa-usd"></i> <span>Заявка на Trade-in</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
                     <li class="{{ Request::is('admin/requesttradeins')? 'active': '' }}">

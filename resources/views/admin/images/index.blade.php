@@ -17,11 +17,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            <i class="fa fa-list-alt"></i> Фото
+            <i class="fa fa-photo"></i> Фото
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{ url('admin/dashboard') }}"><i class="fa fa-dashboard"></i> Панель управления</a></li>
-            <li class="active"><i class="fa fa-list-alt"></i> Фото</li>
+            <li class="active"><i class="fa fa-photo"></i> Фото</li>
         </ol>
     </section>
 

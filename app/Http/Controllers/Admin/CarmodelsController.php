@@ -65,9 +65,10 @@ class CarmodelsController extends Controller
     {
         $carModel->name = $request->input('name');
         $carModel->id_car_type = 1;
-        $carModel->name_rus = $request->input('name_rus');
+        $carModel->name_rus = trim($request->input('name_rus'));
         $carModel->id_car_mark = $request->input('id_car_mark');
         $carModel->published = $request->input('published');
+        $carModel->updated_at = \Carbon::now();
         $carModel->save();
 
         return redirect('admin/carmodels')->with('success', 'Данные обнавлены');

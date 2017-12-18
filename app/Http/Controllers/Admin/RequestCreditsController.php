@@ -47,21 +47,19 @@ class RequestCreditsController extends Controller
      */
     public function update(RequestCreditsRequest $request, RequestCredit $requestCredit)
     {
-        $requestCredit->name = $request->input('name');
-        $requestCredit->phone = $request->input('phone');
-        $requestCredit->email = $request->input('email');
-        $requestCredit->ip = $request->input('ip');
-        $requestCredit->mark = $request->input('mark');
-        $requestCredit->model = $request->input('model');
-        $requestCredit->year = $request->input('year');
-        $requestCredit->mileage = $request->input('mileage');
-        $requestCredit->gearbox = $request->input('gearbox');
-        $requestCredit->trade_in_mark = $request->input('trade_in_mark');
-        $requestCredit->trade_in_model = $request->input('trade_in_model');
-        $requestCredit->trade_in_year = $request->input('trade_in_year');
+        $requestCredit->name = trim($request->input('name'));
+        $requestCredit->age = $request->input('age');
+        $requestCredit->phone = trim($request->input('phone'));
+        $requestCredit->email = trim($request->input('email'));
+        $requestCredit->registration = trim($request->input('registration'));
+        $requestCredit->mark = trim($request->input('mark'));
+        $requestCredit->model = trim($request->input('model'));
+        $requestCredit->car_equipments = trim($request->input('car_equipments'));
+        $requestCredit->initial_paymen = $request->input('initial_paymen');
+        $requestCredit->updated_at = \Carbon::now();
         $requestCredit->save();
 
-        return redirect('admin/requestcredits')->with('success', ' Отзыв обнавлен');
+        return redirect('admin/requesttradeins')->with('success', 'Заявка на авто № ' . $requestCredit->id . ' успешно обнавлена');
     }
 
     /**
@@ -73,7 +71,7 @@ class RequestCreditsController extends Controller
     {
         if ($request->ajax()) {
             $requestCredit->delete();
-            return response()->json(['success' => 'Отзыв удален']);
+            return response()->json(['success' => 'Заявка на авто удалена']);
         } else {
             return 'Ошибка веб приложения! Действия не были выполнены.';
         }

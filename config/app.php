@@ -199,6 +199,5 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'Carbon' => Carbon\Carbon::class,
         'XmlParser' => Orchestra\Parser\Xml\Facade::class,
-        'Image' => Intervention\Image\Facades\Image::class,
     ],
 ];

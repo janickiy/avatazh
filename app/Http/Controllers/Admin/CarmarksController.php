@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\CarMarksRequest;
 use App\Http\Controllers\Controller;
+use Orchestra\Parser\Xml\Facade as XmlParser;
 use App\CarMark;
 
 class CarmarksController extends Controller
@@ -96,8 +97,25 @@ class CarmarksController extends Controller
         return view('admin.carmarks.import');
     }
 
-    public function imporCarmarks()
+    public function imporCarmarks(Request $request)
     {
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+
+
+            dd($file);
+
+            $xml = XmlParser::load($file);
+
+
+            $modification = $xml->parse([
+                'mark_id' => ['uses' => 'modification::mark_id'],
+            ]);
+
+
+        }
+
+
 
     }
 }

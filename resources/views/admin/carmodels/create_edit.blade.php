@@ -35,6 +35,7 @@
             </div>
         </div>
         <div class="box-body">
+            <p>* - обязательные поля</p>
             {!! Form::open(['url' => isset($carmodel) ? URL::to('admin/carmodels/' . $carmodel->id )  :  URL::to('admin/carmodels') , 'method' => isset($carmodel) ? 'put': 'post', 'class' => 'form-horizontal', 'id'=>'validate']) !!}
 
             @if(isset($id_car_mark)) {!! Form::hidden('id_car_mark', $id_car_mark) !!} @endif

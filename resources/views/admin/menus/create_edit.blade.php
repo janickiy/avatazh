@@ -35,6 +35,7 @@
             </div>
         </div>
         <div class="box-body">
+            <p>* - обязательные поля</p>
             {!! Form::open(['url' => isset($menu) ? URL::to('admin/menus/'.$menu->id )  :  URL::to('admin/menus') , 'method' => isset($menu) ? 'put': 'post', 'class' => 'form-horizontal', 'id'=>'validate']) !!}
             <div class="col-md-12">
                 <div class="form-group">

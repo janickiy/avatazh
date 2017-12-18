@@ -11,12 +11,12 @@
         <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        <i class="fa fa-list-alt"></i> {{ isset($menu) ? 'Редактировать' : 'Добавить' }} автомобиль
+        <i class="fa fa-automobile"></i> {{ isset($catalogusedcar) ? 'Редактировать' : 'Добавить' }} автомобиль
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{ url('admin/dashboard') }}"><i class="fa fa-dashboard"></i> Панель управления</a></li>
-        <li><a href="{{ url('admin/menus') }}"><i class="fa fa-list-alt"></i> Меню</a></li>
-        <li class="active"><i class="fa {{ isset($menu) ? 'fa-pencil' : 'fa-plus' }}"></i> {{ isset($menu) ? 'Редактировать' : 'Добавить' }}
+        <li><a href="{{ url('admin/catalogusedcars') }}"><i class="fa fa-automobile"></i> Автомобили</a></li>
+        <li class="active"><i class="fa {{ isset($catalogusedcar) ? 'fa-pencil' : 'fa-plus' }}"></i> {{ isset($catalogusedcar) ? 'Редактировать' : 'Добавить' }}
             автомобиль
         </li>
     </ol>
@@ -35,6 +35,7 @@
             </div>
         </div>
         <div class="box-body">
+            <p>* - обязательные поля</p>
             {!! Form::open(['mark' => isset($catalogusedcar) ? URL::to('admin/catalogusedcars/'.$catalogusedcar->id )  :  URL::to('admin/catalogusedcars') , 'method' => isset($catalogusedcar) ? 'put': 'post', 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal', 'id'=>'validate']) !!}
             <div class="col-md-12">
                 <div class="form-group">

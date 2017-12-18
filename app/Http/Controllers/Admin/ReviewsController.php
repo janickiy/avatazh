@@ -49,9 +49,9 @@ class ReviewsController extends Controller
      */
     public function update(UserReviewsRequest $request, UserReview $userReview)
     {
-        $userReview->author = $request->input('author');
-        $userReview->email = $request->input('email');
-        $userReview->message = $request->input('message');
+        $userReview->author = trim($request->input('author'));
+        $userReview->email = trim($request->input('email'));
+        $userReview->message = trim($request->input('message'));
         $userReview->published = $request->input('published');
         $userReview->save();
 

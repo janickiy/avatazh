@@ -42,27 +42,26 @@ class RequestTradeInsController extends Controller
     }
 
     /**
-     * @param RequestTradeinsRequest $request
+     * @param RequestTradeInsRequest $request
      * @param RequestTradeIn $requestTradeIn
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(RequestTradeInsRequest $request, RequestTradeIn $requestTradeIn)
     {
-        $requestTradeIn->name = $request->input('name');
-        $requestTradeIn->phone = $request->input('phone');
-        $requestTradeIn->email = $request->input('email');
-        $requestTradeIn->ip = $request->input('ip');
-        $requestTradeIn->mark = $request->input('mark');
-        $requestTradeIn->model = $request->input('model');
-        $requestTradeIn->year = $request->input('year');
-        $requestTradeIn->mileage = $request->input('mileage');
-        $requestTradeIn->gearbox = $request->input('gearbox');
-        $requestTradeIn->trade_in_mark = $request->input('trade_in_mark');
-        $requestTradeIn->trade_in_model = $request->input('trade_in_model');
-        $requestTradeIn->trade_in_year = $request->input('trade_in_year');
+        $requestTradeIn->name = trim($request->input('name'));
+        $requestTradeIn->phone = trim($request->input('phone'));
+        $requestTradeIn->email = trim($request->input('email'));
+        $requestTradeIn->mark = trim($request->input('mark'));
+        $requestTradeIn->model = trim($request->input('model'));
+        $requestTradeIn->year = trim($request->input('year'));
+        $requestTradeIn->mileage = trim($request->input('mileage'));
+        $requestTradeIn->gearbox = trim($request->input('gearbox'));
+        $requestTradeIn->trade_in_mark = trim($request->input('trade_in_mark'));
+        $requestTradeIn->trade_in_model = trim($request->input('trade_in_model'));
+        $requestTradeIn->updated_at = \Carbon::now();
         $requestTradeIn->save();
 
-        return redirect('admin/requesttradeins')->with('success', ' Отзыв обнавлен');
+        return redirect('admin/requesttradeins')->with('success', 'Заявка на Trade-in № ' . $requestTradeIn->id . ' успешно обнавлена');
     }
 
     /**
@@ -74,7 +73,7 @@ class RequestTradeInsController extends Controller
     {
         if ($request->ajax()) {
             $requestTradeIn->delete();
-            return response()->json(['success' => 'Отзыв удален']);
+            return response()->json(['success' => 'Заявка на Trade-in удалена']);
         } else {
             return 'Ошибка веб приложения! Действия не были выполнены.';
         }

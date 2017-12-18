@@ -4,7 +4,7 @@ namespace App;
 
 use App\BaseModel;
 
-class Requesttradein extends BaseModel
+class RequestTradeIn extends BaseModel
 {
     /**
      * The attributes that aren't mass assignable.

@@ -10,11 +10,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            <i class="fa fa-file"></i> Импорт
+            <i class="fa fa-download"></i> Импорт
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{ url('admin/dashboard') }}"><i class="fa fa-dashboard"></i> Панель  управления</a></li>
-            <li class="active"><i class="fa fa-file"></i> Импорт</li>
+            <li class="active"><i class="fa fa-download"></i> Импорт</li>
         </ol>
     </section>
 
@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div class="box-body">
-                {!! Form::open(['url' => URL::to('admin/carmarks/imporcarmarks' ), 'method' => 'post', 'class' => 'form-horizontal', 'id'=>'validate']) !!}
+                {!! Form::open(['url' => URL::to('admin/carmarks/imporcarmarks' ), 'method' => 'post', 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal', 'id'=>'validate']) !!}
                 <div class="col-md-12">
 
                     <div class="form-group">

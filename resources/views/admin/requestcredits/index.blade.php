@@ -1,6 +1,6 @@
 @extends('layouts.admin.app')
 
-@section('title', 'Автомобили с пробеогом')
+@section('title', 'Заявки на автокредит')
 
 @section('css')
         <!-- DataTables -->
@@ -17,11 +17,11 @@
         <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        <i class="fa fa-automobile"></i> Автомобили с пробеогом
+        <i class="fa fa-money"></i> Заявки на автокредит
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{ url('admin/dashboard') }}"><i class="fa fa-dashboard"></i> Панель управления</a></li>
-        <li class="active"><i class="fa fa-automobile"></i> Автомобили с пробеогом</li>
+        <li class="active"><i class="fa fa-money"></i> Заявки на автокредит</li>
     </ol>
 </section>
 
@@ -30,7 +30,7 @@
     <!-- Default box -->
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Автомобили с пробеогом</h3>
+            <h3 class="box-title">Отзывы пользователей</h3>
             <div class="box-tools pull-right">
                 <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
                     <i class="fa fa-minus"></i>
@@ -41,15 +41,11 @@
             <table id="data_table" class="table datatable dt-responsive" style="width:100%;">
                 <thead>
                 <tr>
-                    <th>Марка</th>
-                    <th>Модель</th>
-                    <th>Цена</th>
-                    <th>Год</th>
-                    <th>Пробег</th>
-                    <th>КПП</th>
-                    <th>привод</th>
-                    <th>кузов</th>
-                    <th>Статус</th>
+                    <th>Автор</th>
+                    <th>Email</th>
+                    <th>Отзыв</th>
+                    <th>Опубликован</th>
+                    <th>Время публикации</th>
                     <th>Действия</th>
                 </tr>
                 </thead>
@@ -67,7 +63,7 @@
     </div><!-- /.box -->
 </section><!-- /.content -->
 
-@include('layouts.admin.includes.message_boxes', ['item' => 'Menu', 'delete' => true])
+@include('layouts.admin.includes.message_boxes', ['item' => 'Review', 'delete' => true])
 
 @endsection
 
@@ -75,11 +71,8 @@
 @section('js')
         <!-- DataTables -->
 {!! Html::script('assets/dist/js/datatable/jquery.dataTables.min.js') !!}
-
 {!! Html::script('assets/dist/js/datatable/dataTables.bootstrap.min.js') !!}
-
 {!! Html::script('assets/dist/js/datatable/dataTables.responsive.min.js') !!}
-
 {!! Html::script('assets/dist/js/datatable/responsive.bootstrap.min.js') !!}
 
 <script type="text/javascript">
@@ -87,21 +80,20 @@
         var table = $("#data_table").DataTable({
             processing: true,
             serverSide: true,
-            ajax: '{!! url("admin/datatables/catalogusedcars") !!}',
+            ajax: '{!! url("admin/datatables/reviews") !!}',
             columns: [
-                {data: 'mark', name: 'mark'},
-                {data: 'model', name: 'model'},
-                {data: 'price', name: 'price'},
-                {data: 'year', name: 'year'},
-                {data: 'mileage', name: 'mileage'},
-                {data: 'gearbox', name: 'gearbox'},
-                {data: 'drive', name: 'drive'},
-                {data: 'body', name: 'body'},
+                {data: 'author', name: 'author'},
+                {data: 'email', name: 'email'},
+                {data: 'message', name: 'message'},
                 {data: 'status', name: 'status'},
+                {data: 'published_at', name: 'published_at'},
                 {data: 'actions', name: 'actions', orderable: false, searchable: false}
             ]
         });
         //table.column('0:visible').order('desc').draw();
     });
+
+
+
 </script>
 @endsection
