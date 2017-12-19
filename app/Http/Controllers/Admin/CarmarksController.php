@@ -9,6 +9,7 @@ use App\Http\Requests\CarMarksRequest;
 use App\Http\Controllers\Controller;
 use Orchestra\Parser\Xml\Facade as XmlParser;
 use App\CarMark;
+use Illuminate\Support\Facades\DB;
 
 class CarmarksController extends Controller
 {
@@ -101,7 +102,7 @@ class CarmarksController extends Controller
         return view('admin.carmarks.import');
     }
 
-    public function imporCarmarks(Request $request, CarMark $carMark)
+    public function imporCarmarks(Request $request)
     {
         if ($request->hasFile('file')) {
             $file = $request->file('file');
@@ -113,9 +114,10 @@ class CarmarksController extends Controller
 
             $xml = simplexml_load_file($file);
 
-            dd($xml->mark->folder);
+          //  dd($xml->mark->folder);
 
 foreach($xml->mark as $row_folder) {
+
 
 
 
@@ -123,21 +125,28 @@ foreach($xml->mark as $row_folder) {
     if ($row_folder->code) {
         // echo $folder->code;
 
+        $flight = new CarMark;
+
+        //$flight->id = 0;
+        $flight->name = $row_folder->code;
+        $flight->name_rus = $row_folder->code;
+        $flight->id_car_type = 1;
+        $flight->published  = 0;
+        $flight->save();
+
+      //  CarMark::( array('name' => $row_folder->code, 'name_rus' => $row_folder->code, 'id' => 0, 'id_car_type' => 1, 'published' => 1));
 
 
-        CarMark::s( array('name' => $row_folder->code, 'name_rus' => $row_folder->code, 'id' => 0, 'id_car_type' => 1, 'published' => 1));
 
 
-
-
-        echo '<br>';
+      //  echo '<br>';
 
         foreach($row_folder->folder as $row_model) {
             // dd($model);
             foreach($row_model->modification as $modification) {
-                echo $modification->modification_id;
+             //   echo $modification->modification_id;
                 // dd($modification);
-                echo '<br>';
+            //    echo '<br>';
             }
 
         }
