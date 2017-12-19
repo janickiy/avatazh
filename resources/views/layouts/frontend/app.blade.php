@@ -2,7 +2,6 @@
 <html>
 <head>
 
-
     {!! Html::style('assets/bootstrap/css/style.css') !!}
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
@@ -21,17 +20,12 @@
         @include('layouts.frontend.includes.header')
         <div class="page main_width">
 
+        @yield('marks')
 
-            @yield('marks')
-
-
-
-
-            @include('layouts.frontend.includes.breadcrumbs')
+        @include('layouts.frontend.includes.breadcrumbs')
 
         @include('layouts.frontend.includes.notifications')
         @yield('content')
-
 
         <!-- CONTENT-WRAPPER SECTION END-->
         </div>
@@ -39,7 +33,6 @@
         @include('layouts.frontend.includes.footer')
     </div>
 </div>
-
 
 <!-- Bootstrap 3.3.5 -->
 {!! Html::script('assets/bootstrap/js/bootstrap.min.js') !!}

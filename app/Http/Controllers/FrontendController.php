@@ -5,13 +5,24 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Page;
+use App\CarMark;
+use App\CarModel;
+use App\CarModification;
 use App\UserReview;
 
 class FrontendController extends Controller
 {
     public function index()
     {
-        return view('frontend.index')->with('title', 'Главная');
+        $marks = CarMark::where('published', 1)
+            ->take(23)
+            ->get();
+
+        $data = [
+            'marks' => $marks,
+        ];
+
+        return view('frontend.index', $data)->with('title', 'Главная');
     }
 
     public function components()
@@ -44,17 +55,6 @@ class FrontendController extends Controller
         );
 
         return redirect('/login')->with(['success' => 'Спасибо что связались с нами!']);
-    }
-
-    /**
-     * @return $this
-     */
-    public function blog()
-    {
-        $posts_per_page = getSetting('POSTS_PER_PAGE');
-        $posts = Page::published()->post()->paginate($posts_per_page);
-
-        return view('frontend.blog')->with(compact('posts'));
     }
 
     /**
@@ -96,9 +96,16 @@ class FrontendController extends Controller
      */
     public function reviews()
     {
-        $reviews = UserReview::where('published', 1)->paginate(5);
+        $marks = CarMark::where('published', 1)
+            ->take(23)
+            ->get();
 
-        return view('frontend.reviews', compact('reviews'))->with('title', 'Отзывы');
+        $data = [
+            'marks' => $marks,
+            'reviews' => UserReview::where('published', 1)->paginate(5),
+        ];
+
+        return view('frontend.reviews', $data)->with(['title' => 'Отзывы']);
     }
 
     /**
@@ -112,7 +119,6 @@ class FrontendController extends Controller
         $message = trim($request->input('message'));
 
         $userReview = new UserReview();
-
         $userReview->author = $author;
         $userReview->email = $email;
         $userReview->message = $message;
@@ -130,18 +136,40 @@ class FrontendController extends Controller
 
     public function credit()
     {
-        return view('frontend.credit')->with('title', 'Автокредит');
+        $marks = CarMark::where('published', 1)
+            ->take(23)
+            ->get();
+
+        $data = [
+            'marks' => $marks,
+        ];
+
+        return view('frontend.credit', $data)->with('title', 'Автокредит');
     }
 
     public function tradeIn()
     {
-        return view('frontend.tradein')->with('title', 'Trade-in');
+        $marks = CarMark::where('published', 1)
+            ->take(23)
+            ->get();
+
+        $data = [
+            'marks' => $marks ,
+        ];
+
+        return view('frontend.tradein', $data)->with('title', 'Trade-in');
     }
 
     public function contact()
     {
-        return view('frontend.contact')->with('title', 'Контакты');
+        $marks = CarMark::where('published', 1)
+            ->take(23)
+            ->get();
+
+        $data = [
+            'marks' => $marks ,
+        ];
+
+        return view('frontend.contact', $data)->with('title', 'Контакты');
     }
-
-
 }

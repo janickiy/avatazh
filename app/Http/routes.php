@@ -64,6 +64,8 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('/', 'FrontendController@index');
     Route::get('/auto', 'FrontendController@auto');
+    Route::get('/auto/{slug}/used', 'FrontendController@usedAuto');
+    Route::get('/auto/used', 'FrontendController@allUsedAuto');
     Route::get('/credit', 'FrontendController@credit');
     Route::get('/tradein', 'FrontendController@tradeIn');
     Route::get('/reviews', 'FrontendController@reviews');
@@ -72,6 +74,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/contacts', 'FrontendController@contactUsSubmit');
     Route::get('/page/{slug}', 'FrontendController@staticPages');
     Route::any('/ajax', 'FrontendController@ajax');
+    ;
 });
 
 Route::group(['middleware' => 'web'], function () {

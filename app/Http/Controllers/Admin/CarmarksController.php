@@ -6,16 +6,16 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Requests\CarMarksRequest;
+use App\Http\Requests\CarMarksImportRequest;
 use App\Http\Controllers\Controller;
-use Orchestra\Parser\Xml\Facade as XmlParser;
+use App\Helpers\TextHelper;
 use App\CarMark;
-use Illuminate\Support\Facades\DB;
+use App\CarModel;
+use App\CarModification;
 
 class CarmarksController extends Controller
 {
-
-
-
+    const IDCARTYPE = 1;
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -59,7 +59,7 @@ class CarmarksController extends Controller
     public function update(CarMarksRequest $request, CarMark $carMark)
     {
         $carMark->name = $request->input('name');
-        $carMark->id_car_type = 1;
+        $carMark->id_car_type = self::IDCARTYPE;
         $carMark->name_rus = $request->input('name_rus');
         $carMark->published = $request->input('published');
         $carMark->save();
@@ -102,66 +102,62 @@ class CarmarksController extends Controller
         return view('admin.carmarks.import');
     }
 
-    public function imporCarmarks(Request $request)
+    /**
+     * @param CarMarksImportRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function imporCarmarks(CarMarksImportRequest $request)
     {
         if ($request->hasFile('file')) {
             $file = $request->file('file');
-
-
-
-
-            //$xml = XmlParser::load($file);
-
             $xml = simplexml_load_file($file);
 
-          //  dd($xml->mark->folder);
-
-foreach($xml->mark as $row_folder) {
-
-
-
-
-
-    if ($row_folder->code) {
-        // echo $folder->code;
-
-        $flight = new CarMark;
-
-        //$flight->id = 0;
-        $flight->name = $row_folder->code;
-        $flight->name_rus = $row_folder->code;
-        $flight->id_car_type = 1;
-        $flight->published  = 0;
-        $flight->save();
-
-      //  CarMark::( array('name' => $row_folder->code, 'name_rus' => $row_folder->code, 'id' => 0, 'id_car_type' => 1, 'published' => 1));
-
-
-
-
-      //  echo '<br>';
-
-        foreach($row_folder->folder as $row_model) {
-            // dd($model);
-            foreach($row_model->modification as $modification) {
-             //   echo $modification->modification_id;
-                // dd($modification);
-            //    echo '<br>';
+            if ($xml) {
+                CarMark::query()->truncate();
+                CarModel::query()->truncate();
+                CarModification::query()->truncate();
             }
 
+            foreach($xml->mark as $row_mark) {
+                if ($row_mark->code) {
+                    $carMarks = new CarMark;
+                    $carMarks->name = TextHelper::formatMarkNames($row_mark->code);
+                    $carMarks->name_rus = TextHelper::formatMarkNames(TextHelper::Lat2ru($row_mark->code));
+                    $carMarks->id_car_type = self::IDCARTYPE;
+                    $carMarks->published = 1;
+
+                    if ($carMarks->save()) {
+                        $id_car_mark = $carMarks->id;
+
+                        foreach($row_mark->folder as $row_folder){
+                            $carModel = new CarModel;
+                            $carModel->id_car_mark = $id_car_mark;
+                            $carModel->id_car_type = self::IDCARTYPE;
+                            $carModel->name = $row_folder[0]['name'];
+                            $carModel->name_rus = TextHelper::Lat2ru($row_folder[0]['name']);
+                            $carModel->published  = 1;
+
+                            if ($carModel->save()) {
+                                $id_car_model = $carModel->id;
+                                $carModification = new CarModification;
+                                $carModification->id_car_model = $id_car_model;
+                                $carModification->name = $row_folder->modification->modification_id[0];
+                                $carModification->body_type = $row_folder->modification->body_type[0];
+                                $carModification->id_car_type = self::IDCARTYPE;
+                                $years = $row_folder->modification->years[0];
+
+                                preg_match('/(\d+)\s+-\s(\d+)$/', $years, $matches);
+
+                                $carModification->year_begin = isset($matches[1]) ? $matches[1] : 0;
+                                $carModification->year_end = isset($matches[2]) ? $matches[2] : 0;
+                                $carModification->save();
+                            }
+                        }
+                    }
+                }
+            }
         }
-    }
 
-
-//dd($folder->code);
-}
-
-
-
-
-        }
-
-
-
+        return redirect('admin/carmarks/import')->with('success', 'Импорт завершен');
     }
 }
