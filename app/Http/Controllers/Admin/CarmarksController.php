@@ -12,6 +12,10 @@ use App\CarMark;
 
 class CarmarksController extends Controller
 {
+
+
+
+
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -97,20 +101,53 @@ class CarmarksController extends Controller
         return view('admin.carmarks.import');
     }
 
-    public function imporCarmarks(Request $request)
+    public function imporCarmarks(Request $request, CarMark $carMark)
     {
         if ($request->hasFile('file')) {
             $file = $request->file('file');
 
 
-            dd($file);
-
-            $xml = XmlParser::load($file);
 
 
-            $modification = $xml->parse([
-                'mark_id' => ['uses' => 'modification::mark_id'],
-            ]);
+            //$xml = XmlParser::load($file);
+
+            $xml = simplexml_load_file($file);
+
+            dd($xml->mark->folder);
+
+foreach($xml->mark as $row_folder) {
+
+
+
+
+    if ($row_folder->code) {
+        // echo $folder->code;
+
+
+
+        CarMark::s( array('name' => $row_folder->code, 'name_rus' => $row_folder->code, 'id' => 0, 'id_car_type' => 1, 'published' => 1));
+
+
+
+
+        echo '<br>';
+
+        foreach($row_folder->folder as $row_model) {
+            // dd($model);
+            foreach($row_model->modification as $modification) {
+                echo $modification->modification_id;
+                // dd($modification);
+                echo '<br>';
+            }
+
+        }
+    }
+
+
+//dd($folder->code);
+}
+
+
 
 
         }
