@@ -84,17 +84,84 @@
                             <!-- small box -->
                             <div class="small-box bg-blue">
                                 <div class="inner">
-                                    <h3>{{ $posts }}</h3>
-                                    <p>Posts</p>
+                                    <h3>{{ $images }}</h3>
+                                    <p>Фотографии</p>
                                 </div>
                                 <div class="icon">
-                                    <i class="fa fa-paperclip"></i>
+                                    <i class="fa fa-photo"></i>
                                 </div>
-                                <a href="{{ url('admin/pages') }}" class="small-box-footer">подробно
+                                <a href="{{ url('admin/images') }}" class="small-box-footer">подробно
                                     <i class="fa fa-arrow-circle-right"></i>
                                 </a>
                             </div>
                         </div><!-- ./col -->
+
+                        <div class="col-lg-3 col-xs-6">
+                            <!-- small box -->
+                            <div class="small-box bg-red">
+                                <div class="inner">
+                                    <h3>{{ $requestcredits }}</h3>
+                                    <p>Заявки на автокредит</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fa fa-money"></i>
+                                </div>
+                                <a href="{{ url('admin/requestcredits') }}" class="small-box-footer">подробно
+                                    <i class="fa fa-arrow-circle-right"></i>
+                                </a>
+                            </div>
+                        </div><!-- ./col -->
+
+                        <div class="col-lg-3 col-xs-6">
+                            <!-- small box -->
+                            <div class="small-box bg-yellow">
+                                <div class="inner">
+                                    <h3>{{ $requesttradeins }}</h3>
+                                    <p>Заявки на Trade-in</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fa fa-usd"></i>
+                                </div>
+                                <a href="{{ url('admin/requesttradeins') }}" class="small-box-footer">подробно
+                                    <i class="fa fa-arrow-circle-right"></i>
+                                </a>
+                            </div>
+                        </div><!-- ./col -->
+
+                        <div class="col-lg-3 col-xs-6">
+                            <!-- small box -->
+                            <div class="small-box bg-orange">
+                                <div class="inner">
+                                    <h3>{{ $catalogusedcars }}</h3>
+                                    <p>Автомобили с пробегом</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fa fa-automobile"></i>
+                                </div>
+                                <a href="{{ url('admin/catalogusedcars') }}" class="small-box-footer">подробно
+                                    <i class="fa fa-arrow-circle-right"></i>
+                                </a>
+                            </div>
+                        </div><!-- ./col -->
+
+                        <div class="col-lg-3 col-xs-6">
+                            <!-- small box -->
+                            <div class="small-box bg-purple">
+                                <div class="inner">
+                                    <h3>{{ $carmarks }}</h3>
+                                    <p>Марки и модели</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fa fa-files-o"></i>
+                                </div>
+                                <a href="{{ url('admin/carmarks') }}" class="small-box-footer">подробно
+                                    <i class="fa fa-arrow-circle-right"></i>
+                                </a>
+                            </div>
+                        </div><!-- ./col -->
+
+
+
                     </div><!-- /.row -->
                 </div><!-- /.box-body -->
                 <div class="box-footer">

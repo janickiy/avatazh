@@ -18,11 +18,7 @@ class FrontendController extends Controller
             ->take(23)
             ->get();
 
-        $data = [
-            'marks' => $marks,
-        ];
-
-        return view('frontend.index', $data)->with('title', 'Главная');
+        return view('frontend.index', compact('marks'))->with('title', 'Главная');
     }
 
     public function components()
@@ -100,12 +96,10 @@ class FrontendController extends Controller
             ->take(23)
             ->get();
 
-        $data = [
-            'marks' => $marks,
-            'reviews' => UserReview::where('published', 1)->paginate(5),
-        ];
+        $reviews = UserReview::where('published', 1)
+            ->paginate(5);
 
-        return view('frontend.reviews', $data)->with(['title' => 'Отзывы']);
+        return view('frontend.reviews', compact('marks','reviews'))->with(['title' => 'Отзывы']);
     }
 
     /**
@@ -140,11 +134,7 @@ class FrontendController extends Controller
             ->take(23)
             ->get();
 
-        $data = [
-            'marks' => $marks,
-        ];
-
-        return view('frontend.credit', $data)->with('title', 'Автокредит');
+        return view('frontend.credit', compact('marks'))->with('title', 'Автокредит');
     }
 
     public function tradeIn()
@@ -153,11 +143,7 @@ class FrontendController extends Controller
             ->take(23)
             ->get();
 
-        $data = [
-            'marks' => $marks ,
-        ];
-
-        return view('frontend.tradein', $data)->with('title', 'Trade-in');
+        return view('frontend.tradein', compact('marks'))->with('title', 'Trade-in');
     }
 
     public function contact()
@@ -166,10 +152,6 @@ class FrontendController extends Controller
             ->take(23)
             ->get();
 
-        $data = [
-            'marks' => $marks ,
-        ];
-
-        return view('frontend.contact', $data)->with('title', 'Контакты');
+        return view('frontend.contact', compact('marks'))->with('title', 'Контакты');
     }
 }

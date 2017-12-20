@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Feature;
+
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use Illuminate\Http\Request;
 use App\Page;
 use App\User;
 use App\UserReview;
-use Illuminate\Http\Request;
+use App\Image;
+use App\RequestCredit;
+use App\RequestTradeIn;
+use App\CatalogUsedCar;
+use App\CarMark;
 
 class DashboardController extends Controller
 {
@@ -29,10 +34,14 @@ class DashboardController extends Controller
     {
         $users = User::all()->count();
         $pages = Page::page()->count();
-        $posts = Page::post()->count();
+        $images = Image::all()->count();
+        $requestcredits = RequestCredit::all()->count();
+        $requesttradeins = RequestTradeIn::all()->count();
         $reviews = UserReview::all()->count();
+        $carmarks = CarMark::all()->count();
+        $catalogusedcars = CatalogUsedCar::all()->count();
 
-        return view('admin.dashboard')->with(compact('users', 'packages', 'features', 'pages', 'posts', 'reviews'));
+        return view('admin.dashboard')->with(compact('users', 'packages', 'features', 'pages', 'posts', 'reviews', 'images', 'requestcredits', 'requesttradeins', 'catalogusedcars', 'carmarks'));
     }
 
     public function ajax(Request $request, UserReview $userReview)
