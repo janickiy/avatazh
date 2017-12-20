@@ -10,6 +10,7 @@ use App\CarModel;
 use App\CarModification;
 use App\UserReview;
 
+
 class FrontendController extends Controller
 {
     public function index()
@@ -82,9 +83,32 @@ class FrontendController extends Controller
         abort(404);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function ajax(Request $request)
     {
+        if (isset($request->action)) {
+            switch($request->action) {
+                case 'search_mark':
 
+                    $marks = CarMark::where('published', 1)
+                    ->where('name', 'LIKE', '%bmw%')->get();
+                    $rows = [];
+
+                    foreach( $marks as $mark) {
+                        $rows[] = [
+                            "id" => $mark->id,
+                            'name' => $mark->name
+                        ];
+                    }
+
+                    return response()->json(['item' => $rows ]);
+
+                    break;
+            }
+        }
     }
 
     /**

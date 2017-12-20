@@ -43,7 +43,7 @@ class CatalogUsedCarsRequest extends Request
                     'wheel' => 'required',
                     'color' => 'required',
                     'salon' => 'required',
-                    'image[]' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                   // 'image[]' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 ];
             }
             case 'PUT':
@@ -62,7 +62,7 @@ class CatalogUsedCarsRequest extends Request
                     'wheel' => 'required',
                     'color' => 'required',
                     'salon' => 'required',
-                    'image[]' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                    //'image[]' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 ];
             }
             default:

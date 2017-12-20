@@ -44,6 +44,11 @@ class DashboardController extends Controller
         return view('admin.dashboard')->with(compact('users', 'packages', 'features', 'pages', 'posts', 'reviews', 'images', 'requestcredits', 'requesttradeins', 'catalogusedcars', 'carmarks'));
     }
 
+    /**
+     * @param Request $request
+     * @param UserReview $userReview
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function ajax(Request $request, UserReview $userReview)
     {
         if (isset($request->action)) {
