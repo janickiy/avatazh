@@ -19,7 +19,7 @@
 |
 */
 
-ini_set('max_execution_time', 512);
+ini_set('max_execution_time', 10512);
 
 require __DIR__.'/../bootstrap/autoload.php';
 

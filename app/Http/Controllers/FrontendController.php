@@ -185,4 +185,35 @@ class FrontendController extends Controller
 
         return view('frontend.allmarks', compact('marks'))->with('title', 'Все марки');
     }
+
+    /**
+     * @param $mark
+     * @return $this
+     */
+    public function usedAuto($mark)
+    {
+        $models = CarModel::select(['car_models.name', 'car_models.slug as model', 'car_marks.slug as mark'])
+        ->where('car_models.published', 1)
+                    ->join('car_marks', 'car_marks.id', '=', 'car_models.id_car_mark')
+                    ->where('car_marks.slug', $mark)
+                    ->get();
+
+        return view('frontend.usedauto.mark', compact('models'))->with('title', 'Все модели: ' . $mark);
+    }
+
+    /**
+     * @param $mark
+     * @param $model
+     * @return $this
+     */
+    public function usedAutoModel($model)
+    {
+        $modifications = CarModel::select(['car_modifications.id','car_modifications.name','car_modifications.body_type'])
+            ->join('car_modifications', 'car_models.id', '=', 'car_modifications.id_car_model')
+            ->where('car_models.slug', $model)
+            ->get();
+
+        return view('frontend.usedauto.model', compact('modifications'))->with('title', 'Автомобили с пробегом');
+    }
+
 }
