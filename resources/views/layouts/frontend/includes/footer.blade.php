@@ -3,7 +3,7 @@
 <footer>
     <div class="main_width">
         <div class="row">
-            <a href="/" class="logo"><img src="{!! getSetting('SITE_LOGO_FOOTER') !!}" /></a>
+            <a href="/" class="logo"><img src="/{!! getSetting('SITE_LOGO_FOOTER') !!}" /></a>
             <div class="address">{!! getSetting('FRONTEND_ADDRESS') !!}</div>
             <div class="times">{!! getSetting('FRONTEND_TIMES') !!}</div>
             <div class="phones">

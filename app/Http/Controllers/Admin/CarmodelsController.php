@@ -71,7 +71,7 @@ class CarmodelsController extends Controller
         $carModel->updated_at = \Carbon::now();
         $carModel->save();
 
-        return redirect('admin/carmodels')->with('success', 'Данные обнавлены');
+        return redirect('admin/carmodels/carmark/' . $carModel->id_car_mark)->with('success', 'Данные обнавлены');
     }
 
     /**

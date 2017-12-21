@@ -40,6 +40,7 @@ class TextHelper
      */
     public static function formatMarkNames($text)
     {
+        $text = str_replace("_"," ",$text);
         return mb_strlen($text, 'UTF-8') > 3 ? self::ucfirst_utf8(mb_strtolower($text)) : $text;
     }
 

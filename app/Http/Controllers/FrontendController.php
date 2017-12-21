@@ -147,7 +147,7 @@ class FrontendController extends Controller
     }
 
 
-    public function auto()
+    public function allUsedAuto()
     {
         return view('frontend.auto')->with('title', 'Автомобили с пробегом');
     }
@@ -177,5 +177,12 @@ class FrontendController extends Controller
             ->get();
 
         return view('frontend.contact', compact('marks'))->with('title', 'Контакты');
+    }
+
+    public function allmarks()
+    {
+        $marks = CarMark::all()->where('published', 1);
+
+        return view('frontend.allmarks', compact('marks'))->with('title', 'Все марки');
     }
 }

@@ -12,6 +12,6 @@ class CarMark extends BaseModel
      * @var string
      */
     protected $guarded = ['id'];
-
+    protected $dates = ['published_at'];
 
 }

@@ -40,7 +40,6 @@ class CarModelsRequest extends Request
                 return [
                     'name' => 'required',
                     'name_rus' => 'required',
-                    'id_car_mark' => 'required|numeric',
                 ];
             }
             default:

@@ -36,7 +36,7 @@
         </div>
         <div class="box-body">
             <p>* - обязательные поля</p>
-            {!! Form::open(['url' => isset($catalogusedcar) ? URL::to('admin/catalogusedcars/' . $catalogusedcar->id )  :  URL::to('admin/catalogusedcars/') , 'method' => isset($catalogusedcar) ? 'put': 'post', 'class' => 'form-horizontal', 'id'=>'validate']) !!}
+            {!! Form::open(['mark' => isset($catalogusedcar) ? URL::to('admin/catalogusedcars/'.$catalogusedcar->id )  :  URL::to('admin/catalogusedcars') , 'method' => isset($catalogusedcar) ? 'put': 'post', 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal', 'id'=>'validate']) !!}
             <div class="col-md-12">
                 <div class="form-group">
                     {!! Form::label('mark', 'Марка *', ['class' => 'control-label col-md-2']) !!}
@@ -159,7 +159,12 @@
                     </div>
                 </div>
 
-
+                <div class="form-group">
+                    {!! Form::label('image[]', 'Фото (jpeg, png, gif)*', ['class' => 'control-label col-md-2']) !!}
+                    <div class="col-md-4">
+                        {!! Form::file('image[]',  ['class' => 'validate[required]', 'multiple' => true]) !!}
+                    </div>
+                </div>
 
                 <div class="form-group">
                     {!! Form::label('published', 'Публиковать', ['class' => 'control-label col-md-2']) !!}
@@ -196,46 +201,6 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $(document).on("change keyup input click", "input[id^='search_']", function() {
-
-            if(this.value.length >= 2) {
-                var itemId = $(this).attr('data-item');
-                $.ajax({
-                    type: 'GET',
-                    url: './?t=ajax&action=search_model&model=' + this.value,
-                    dataType : "json",
-                    success: function(data){
-                        if (data != null && data.item != null) {
-                            var html = '';
-                            for(var i=0; i < data.item.length; i++) {
-                                html += '<li data-item-id="' + itemId + '" data-item="' + data.item[i].id + '">' + data.item[i].name + '</li>';
-                            }
-
-                            console.log(html);
-                            if (html != '')
-                                $("#search_result_" + itemId).html(html).fadeIn();
-                            else
-                                $("#search_result_" + itemId).fadeOut();
-                        }
-                    }
-                })
-            }
-        })
-
-        $(".search_result").hover(function(){
-            $(".who").blur();
-        })
-
-        $(document).on("click", "ul[id^='search_result_'] li", function(){
-            var text = $(this).html();
-            var item = $(this).attr('data-item');
-            var itemId = $(this).attr('data-item-id');
-            $('#search_' + itemId).val(text);
-            $('#model_id_' + itemId).val(item);
-            $("#search_result_" + itemId).fadeOut();
-        })
-
-
 
         $('input[type="checkbox"].minimal').iCheck({
             checkboxClass: 'icheckbox_minimal-blue'

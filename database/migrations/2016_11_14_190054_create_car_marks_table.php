@@ -18,8 +18,12 @@ class CreateCarMarksTable extends Migration {
 			$table->string('name');
 			$table->integer('id_car_type')->index('id_car_type');
 			$table->string('name_rus')->nullable();
+            $table->string('slug')->index('slug');
+            $table->boolean('published')->default(1);
+            $table->string('meta_title')->nullable();
+            $table->string('meta_keywords')->nullable();
+            $table->text('meta_description')->nullable();
             $table->timestamps();
-
 		});
 	}
 

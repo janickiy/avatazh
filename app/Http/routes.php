@@ -63,9 +63,9 @@ Route::model('requesttradeins', RequestTradeIn::class);
 Route::group(['middleware' => ['web']], function () {
 
     Route::get('/', 'FrontendController@index');
-    Route::get('/auto', 'FrontendController@auto');
-    Route::get('/auto/{slug}/used', 'FrontendController@usedAuto');
     Route::get('/auto/used', 'FrontendController@allUsedAuto');
+    Route::any('/auto/used/allmarks', 'FrontendController@allmarks');
+    Route::get('/auto/used/{slug}', 'FrontendController@usedAuto');
     Route::get('/credit', 'FrontendController@credit');
     Route::get('/tradein', 'FrontendController@tradeIn');
     Route::get('/reviews', 'FrontendController@reviews');
@@ -74,7 +74,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/contacts', 'FrontendController@contactUsSubmit');
     Route::get('/page/{slug}', 'FrontendController@staticPages');
     Route::any('/ajax', 'FrontendController@ajax');
-    ;
+
 });
 
 Route::group(['middleware' => 'web'], function () {
@@ -97,7 +97,7 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('carmodifications/model/{id}', 'Admin\CarmodificationsController@index');
         Route::get('carmodifications/create/{id}', 'Admin\CarmodificationsController@create');
         Route::get('carmarks/import', 'Admin\CarmarksController@import');
-        Route::post('carmarks/imporcarmarks', 'Admin\CarmarksController@imporCarmarks');
+        Route::post('carmarks/imporcarmarks', 'Admin\CarmarksController@importCarmarks');
         Route::any('/ajax', 'Admin\DashboardController@ajax');
         Route::resource('users', 'Admin\UsersController');
         Route::get('settings/create/{type}', ['as' => 'admin.settings.create.type', 'uses' => 'Admin\SettingsController@createForm']);
@@ -107,15 +107,13 @@ Route::group(['middleware' => 'web'], function () {
         Route::resource('pages', 'Admin\PagesController');
         Route::resource('menus', 'Admin\MenusController');
         Route::resource('reviews', 'Admin\ReviewsController');
-        Route::resource('carmarks', 'Admin\CarmarksController');
+        Route::resource('carmarks', 'Admin\CarMarksController');
         Route::resource('carmodels', 'Admin\CarmodelsController');
         Route::resource('carmodifications', 'Admin\CarmodificationsController');
         Route::resource('catalogusedcars', 'Admin\CatalogUsedCarsController');
         Route::resource('images', 'Admin\ImagesController');
         Route::resource('requestcredits', 'Admin\RequestcreditsController');
         Route::resource('requesttradeins', 'Admin\RequestTradeInsController');
-
-
 
     });
 

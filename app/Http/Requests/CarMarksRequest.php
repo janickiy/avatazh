@@ -32,6 +32,7 @@ class CarMarksRequest extends Request
                 return [
                     'name'  => 'required',
                     'name_rus'  => 'required',
+                    'slug' => 'required|unique:car_marks',
                 ];
             }
             case 'PUT':
@@ -39,6 +40,7 @@ class CarMarksRequest extends Request
                 return [
                     'name'  => 'required',
                     'name_rus'  => 'required',
+                    'slug' => 'required|unique:car_marks,slug,' . $this->input('mark_id'),
                 ];
             }
             default:

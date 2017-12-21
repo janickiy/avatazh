@@ -9,7 +9,7 @@
     </div>
     <div class="header row">
         <div class="main_width">
-            <a href="/" class="logo"><img src="{!! getSetting('SITE_LOGO') !!}" /></a>
+            <a href="/" class="logo"><img src="/{!! getSetting('SITE_LOGO') !!}" /></a>
             <nav>
                 <ul>
                     @foreach(getMenuItems('HEADER') as $item)

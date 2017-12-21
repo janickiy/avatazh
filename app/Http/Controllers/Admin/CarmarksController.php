@@ -62,6 +62,10 @@ class CarmarksController extends Controller
         $carMark->id_car_type = self::IDCARTYPE;
         $carMark->name_rus = $request->input('name_rus');
         $carMark->published = $request->input('published');
+        $carMark->slug = $request->input('slug');
+        $carMark->meta_keywords = $request->input('meta_keywords');
+        $carMark->meta_description = $request->input('meta_description');
+        $carMark->updated_at = \Carbon::now();
         $carMark->save();
 
         return redirect('admin/carmarks')->with('success', 'Данные обнавлены');
@@ -73,10 +77,16 @@ class CarmarksController extends Controller
      */
     public function store(CarMarksRequest $request)
     {
-        $carmark = CarMark::create($request->except('_token'));
+        $carmark = new CarMark($request->except('_token', 'mark_id', 'published'));
+        $carmark->published = 0;
+
+        if($request->input('published')) {
+            $carmark->published = 1;
+        }
+
         $carmark->save();
 
-        return redirect('admin/carmarks')->with('success', ' добавлена');
+        return redirect('admin/carmarks')->with('success', 'Марка ' . $carmark->name . ' успешно добавлена');
     }
 
     /**
@@ -106,7 +116,7 @@ class CarmarksController extends Controller
      * @param CarMarksImportRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function imporCarmarks(CarMarksImportRequest $request)
+    public function importCarmarks(CarMarksImportRequest $request)
     {
         if ($request->hasFile('file')) {
             $file = $request->file('file');
@@ -124,6 +134,8 @@ class CarmarksController extends Controller
                     $carMarks->name = TextHelper::formatMarkNames($row_mark->code);
                     $carMarks->name_rus = TextHelper::formatMarkNames(TextHelper::Lat2ru($row_mark->code));
                     $carMarks->id_car_type = self::IDCARTYPE;
+                    $carMarks->slug = trim(strtolower($row_mark->code));
+                    $carMarks->meta_title = TextHelper::formatMarkNames($row_mark->code);
                     $carMarks->published = 1;
 
                     if ($carMarks->save()) {
@@ -135,22 +147,28 @@ class CarmarksController extends Controller
                             $carModel->id_car_type = self::IDCARTYPE;
                             $carModel->name = $row_folder[0]['name'];
                             $carModel->name_rus = TextHelper::Lat2ru($row_folder[0]['name']);
+                            $carModel->slug = trim(strtolower($row_folder->model));
+                            $carModel->meta_title = $row_folder[0]['name'];
                             $carModel->published  = 1;
 
                             if ($carModel->save()) {
                                 $id_car_model = $carModel->id;
-                                $carModification = new CarModification;
-                                $carModification->id_car_model = $id_car_model;
-                                $carModification->name = $row_folder->modification->modification_id[0];
-                                $carModification->body_type = $row_folder->modification->body_type[0];
-                                $carModification->id_car_type = self::IDCARTYPE;
-                                $years = $row_folder->modification->years[0];
+                                foreach ($row_folder->modification as $modification) {
+                                    if ($modification->modification_id && $modification->body_type) {
+                                        $carModification = new CarModification;
+                                        $carModification->id_car_model = $id_car_model;
+                                        $carModification->name = $modification->modification_id;
+                                        $carModification->body_type = $modification->body_type;
+                                        $carModification->id_car_type = self::IDCARTYPE;
+                                        $years = $modification->years;
 
-                                preg_match('/(\d+)\s+-\s(\d+)$/', $years, $matches);
+                                        preg_match('/(\d+)\s+-\s((по н\.в\.)|(\d+))$/', $years, $matches);
 
-                                $carModification->year_begin = isset($matches[1]) ? $matches[1] : 0;
-                                $carModification->year_end = isset($matches[2]) ? $matches[2] : 0;
-                                $carModification->save();
+                                        $carModification->year_begin = isset($matches[1]) && is_numeric($matches[1]) ? $matches[1] : date("Y");
+                                        $carModification->year_end = isset($matches[2]) && is_numeric($matches[2])? $matches[2] : date("Y");
+                                        $carModification->save();
+                                    }
+                                }
                             }
                         }
                     }
