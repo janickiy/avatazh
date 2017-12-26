@@ -16,8 +16,8 @@ class CreateCarCharacteristicsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('id_parent')->nullable();
-            $table->timestamps();
             $table->integer('id_car_type')->index('id_car_type');
+            $table->timestamps();
         });
     }
 

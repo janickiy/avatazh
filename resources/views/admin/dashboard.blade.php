@@ -152,7 +152,7 @@
                                     <p>Марки и модели</p>
                                 </div>
                                 <div class="icon">
-                                    <i class="fa fa-files-o"></i>
+                                    <i class="fa fa-folder-open-o"></i>
                                 </div>
                                 <a href="{{ url('admin/carmarks') }}" class="small-box-footer">подробно
                                     <i class="fa fa-arrow-circle-right"></i>

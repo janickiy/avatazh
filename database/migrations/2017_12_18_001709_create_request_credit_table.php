@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRequestCreditTable extends Migration
+class CreateRequestCreditsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateRequestCreditTable extends Migration
      */
     public function up()
     {
-        Schema::create('request_credit', function (Blueprint $table) {
+        Schema::create('request_credits', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->comment('ФИО');
             $table->integer('age')->nullable()->comment('возвраст');
@@ -35,6 +35,6 @@ class CreateRequestCreditTable extends Migration
      */
     public function down()
     {
-        Schema::drop('request_credit');
+        Schema::drop('request_credits');
     }
 }
