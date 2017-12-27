@@ -70,7 +70,21 @@
                     {!! Form::label('gearbox', 'КПП *', ['class' => 'control-label col-md-2']) !!}
                     <div class="col-md-4">
                         {!! Form::text('gearbox', old('gearbox', isset($requesttradein) ? $requesttradein->gearbox : null), ['class' => 'form-control validate[required]', 'placeholder'=>'КПП']) !!}
+                    </div>
                 </div>
+
+                <div class="form-group">
+                    {!! Form::label('name', 'ФИО клиента*', ['class' => 'control-label col-md-2']) !!}
+                    <div class="col-md-4">
+                        {!! Form::text('name', old('name', isset($requesttradein) ? $requesttradein->name : null), ['class' => 'form-control validate[required]', 'placeholder'=>'ФИО клиента']) !!}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('phone', 'Телефон*', ['class' => 'control-label col-md-2']) !!}
+                    <div class="col-md-4">
+                        {!! Form::text('phone', old('phone', isset($requesttradein) ? $requesttradein->phone : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Телефон']) !!}
+                    </div>
                 </div>
 
                 <div class="form-group">
@@ -86,7 +100,6 @@
                         {!! Form::text('trade_in_model', old('trade_in_model', isset($requesttradein) ? $requesttradein->trade_in_model : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Модель авто клиента']) !!}
                     </div>
                 </div>
-
 
                 <div class="form-group">
                     <div class="col-md-8 col-md-offset-2">

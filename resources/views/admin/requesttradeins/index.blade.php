@@ -98,7 +98,7 @@
                 {data: 'phone', name: 'phone'},
                 {data: 'trade_in_mark', name: 'trade_in_mark'},
                 {data: 'trade_in_model', name: 'trade_in_model'},
-                {data: 'published_at', name: 'published_at'},
+                {data: 'created_at', name: 'created_at'},
                 {data: 'actions', name: 'actions', orderable: false, searchable: false}
             ]
         });

@@ -91,7 +91,7 @@
             </div>
 
             <div class="select">
-                {!! Form::text('name', old('name'), ['class' => 'form_control validate[required]', 'placeholder'=>'ФИО', 'autocomplete' => 'off']) !!}
+                {!! Form::text('name', old('name'), ['class' => 'form_control validate[required]', 'placeholder'=>'ФИО']) !!}
             </div>
 
             <div class="select">

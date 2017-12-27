@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\RequestCreditsRequest;
+use App\Http\Requests\RequestTradeInsRequest;
 use App\Page;
 use App\CarMark;
 use App\CarModel;
@@ -12,6 +13,7 @@ use App\CarModification;
 use App\UserReview;
 use App\GeoRegion;
 use App\RequestCredit;
+use App\RequestTradeIn;
 
 class FrontendController extends Controller
 {
@@ -268,7 +270,7 @@ class FrontendController extends Controller
 
         $requestCredit = RequestCredit::create($request->except('_token'));
         $requestCredit->save();
-        return redirect('/credit')->with('success', 'Ваша заявка отправлена на автокредит. Мы свяжемся с Вами в ближайшее время!');
+        return redirect('/credit')->with('success', 'Ваша заявка на автокредит отправлена. Мы свяжемся с Вами в ближайшее время!');
     }
 
     public function tradeIn()
@@ -278,6 +280,24 @@ class FrontendController extends Controller
             ->get();
 
         return view('frontend.tradein', compact('marks'))->with('title', 'Trade-in');
+    }
+
+    /**
+     * @param RequestTradeInsRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function requestTradein(RequestTradeInsRequest $request)
+    {
+        $request->request->remove('id_mark');
+        $request->request->remove('id_model');
+        $request->request->remove('id_trade_in_mark');
+        $request->request->remove('id_trade_in_model');
+        $request->request->remove('confirmation');
+        $request->request->remove('agree');
+
+        $requestTradeIn = RequestTradeIn::create($request->except('_token'));
+        $requestTradeIn->save();
+        return redirect('/tradein')->with('success', 'Ваша заявка на Trade-In отправлена. Мы свяжемся с Вами в ближайшее время!');
     }
 
     public function contact()

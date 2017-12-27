@@ -40,6 +40,8 @@ class RequestTradeInsRequest extends Request
                     'gearbox' => 'required',
                     'trade_in_mark'  => 'required',
                     'trade_in_model' => 'required',
+                    'confirmation' => 'required',
+                    'agree' => 'required',
                 ];
             }
             case 'PUT':

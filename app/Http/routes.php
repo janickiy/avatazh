@@ -75,6 +75,15 @@ Route::group(['middleware' => ['web']], function () {
 
 
     Route::get('/tradein', 'FrontendController@tradeIn');
+
+
+    Route::post('/request-tradein', 'FrontendController@requestTradein');
+
+
+
+
+
+
     Route::get('/reviews', 'FrontendController@reviews');
     Route::post('/reviews', 'FrontendController@reviewsSubmit');
     Route::get('/contacts', 'FrontendController@contact');
