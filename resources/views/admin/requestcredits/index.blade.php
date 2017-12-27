@@ -41,11 +41,17 @@
             <table id="data_table" class="table datatable dt-responsive" style="width:100%;">
                 <thead>
                 <tr>
-                    <th>Автор</th>
-                    <th>Email</th>
-                    <th>Отзыв</th>
-                    <th>Опубликован</th>
-                    <th>Время публикации</th>
+                    <th>ID заявки</th>
+                    <th>Марка</th>
+                    <th>Модель</th>
+                    <th>Модификация</th>
+                    <th>Первоначальный взнос</th>
+                    <th>ФИО</th>
+                    <th>Телефон</th>
+                    <th>Возраст</th>
+                    <th>Регистрация</th>
+                    <th>IP</th>
+                    <th>Время заявки</th>
                     <th>Действия</th>
                 </tr>
                 </thead>
@@ -80,20 +86,24 @@
         var table = $("#data_table").DataTable({
             processing: true,
             serverSide: true,
-            ajax: '{!! url("admin/datatables/reviews") !!}',
+            ajax: '{!! url("admin/datatables/requestcredits") !!}',
             columns: [
-                {data: 'author', name: 'author'},
-                {data: 'email', name: 'email'},
-                {data: 'message', name: 'message'},
-                {data: 'status', name: 'status'},
-                {data: 'published_at', name: 'published_at'},
+                {data: 'id', name: 'id'},
+                {data: 'mark', name: 'mark'},
+                {data: 'model', name: 'model'},
+                {data: 'modification', name: 'modification'},
+                {data: 'fee', name: 'fee'},
+                {data: 'name', name: 'name'},
+                {data: 'phone', name: 'phone'},
+                {data: 'age', name: 'age'},
+                {data: 'registration', name: 'registration'},
+                {data: 'ip', name: 'ip'},
+                {data: 'created_at', name: 'created_at'},
                 {data: 'actions', name: 'actions', orderable: false, searchable: false}
             ]
         });
         //table.column('0:visible').order('desc').draw();
     });
-
-
 
 </script>
 @endsection

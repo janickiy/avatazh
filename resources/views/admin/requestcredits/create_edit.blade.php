@@ -36,7 +36,7 @@
         </div>
         <div class="box-body">
             <p>* - обязательные поля</p>
-            {!! Form::open(['url' => isset($requestcredit) ? URL::to('admin/requesttradeins/' . $requestcredit->id )  :  URL::to('admin/requesttradeins') , 'method' => isset($requestcredit) ? 'put': 'post', 'class' => 'form-horizontal', 'id'=>'validate']) !!}
+            {!! Form::open(['url' => isset($requestcredit) ? URL::to('admin/requestcredits/' . $requestcredit->id )  :  URL::to('admin/requestcredits') , 'method' => isset($requestcredit) ? 'put': 'post', 'class' => 'form-horizontal', 'id'=>'validate']) !!}
             <div class="col-md-12">
                 <div class="form-group">
                     {!! Form::label('mark', 'Марка *', ['class' => 'control-label col-md-2']) !!}
@@ -53,16 +53,16 @@
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('car_equipments', 'Комплектация *', ['class' => 'control-label col-md-2']) !!}
+                    {!! Form::label('modification', 'Комплектация *', ['class' => 'control-label col-md-2']) !!}
                     <div class="col-md-4">
-                        {!! Form::text('car_equipments', old('car_equipment', isset($requestcredit) ? $requestcredit->car_equipments : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Комплектация автомобиля']) !!}
+                        {!! Form::text('modification', old('modification', isset($requestcredit) ? $requestcredit->modification : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Комплектация автомобиля']) !!}
                     </div>
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('car_equipments', 'Первоначальный взнос *', ['class' => 'control-label col-md-2']) !!}
+                    {!! Form::label('fee', 'Первоначальный взнос *', ['class' => 'control-label col-md-2']) !!}
                     <div class="col-md-4">
-                        {!! Form::text('car_equipments', old('car_equipment', isset($requestcredit) ? $requestcredit->car_equipments : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Первоначальный взнос']) !!}
+                        {!! Form::text('fee', old('fee', isset($requestcredit) ? $requestcredit->fee : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Первоначальный взнос']) !!}
                     </div>
                 </div>
 

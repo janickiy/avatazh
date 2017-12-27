@@ -54,12 +54,12 @@ class RequestCreditsController extends Controller
         $requestCredit->registration = trim($request->input('registration'));
         $requestCredit->mark = trim($request->input('mark'));
         $requestCredit->model = trim($request->input('model'));
-        $requestCredit->car_equipments = trim($request->input('car_equipments'));
-        $requestCredit->initial_paymen = $request->input('initial_paymen');
+        $requestCredit->modification = trim($request->input('modification'));
+        $requestCredit->fee = $request->input('fee');
         $requestCredit->updated_at = \Carbon::now();
         $requestCredit->save();
 
-        return redirect('admin/requesttradeins')->with('success', 'Заявка на авто № ' . $requestCredit->id . ' успешно обнавлена');
+        return redirect('admin/requestcredits')->with('success', 'Заявка на авто № ' . $requestCredit->id . ' успешно обнавлена');
     }
 
     /**
@@ -71,7 +71,7 @@ class RequestCreditsController extends Controller
     {
         if ($request->ajax()) {
             $requestCredit->delete();
-            return response()->json(['success' => 'Заявка на авто удалена']);
+            return response()->json(['success' => 'Заявка на авторедит удалена']);
         } else {
             return 'Ошибка веб приложения! Действия не были выполнены.';
         }

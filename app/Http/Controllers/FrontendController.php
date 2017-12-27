@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Http\Requests\RequestCreditsRequest;
 use App\Page;
 use App\CarMark;
 use App\CarModel;
 use App\CarModification;
 use App\UserReview;
-
+use App\GeoRegion;
+use App\RequestCredit;
 
 class FrontendController extends Controller
 {
@@ -179,6 +181,26 @@ class FrontendController extends Controller
 
                     break;
 
+                case 'search_registration':
+
+                    $search_region = trim(strip_tags(stripcslashes(htmlspecialchars($request->registration))));
+
+                    $regions = GeoRegion::where('id_country', 149)
+                        ->where('name_ru', 'LIKE', '%' .  $search_region . '%')
+                        ->get();
+
+                    $rows = [];
+
+                    foreach($regions as $region) {
+                        $rows[] = [
+                            "id"   => $region->id,
+                            "name" => $region->name_ru,
+                        ];
+                    }
+
+                    return response()->json(['item' => $rows]);
+
+                    break;
             }
         }
     }
@@ -231,6 +253,22 @@ class FrontendController extends Controller
             ->get();
 
         return view('frontend.credit', compact('marks'))->with('title', 'Автокредит');
+    }
+
+    /**
+     * @param RequestCreditsRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function requestCredit(RequestCreditsRequest $request)
+    {
+        $request->request->remove('id_mark');
+        $request->request->remove('id_model');
+        $request->request->remove('confirmation');
+        $request->request->remove('agree');
+
+        $requestCredit = RequestCredit::create($request->except('_token'));
+        $requestCredit->save();
+        return redirect('/credit')->with('success', 'Ваша заявка отправлена на автокредит. Мы свяжемся с Вами в ближайшее время!');
     }
 
     public function tradeIn()
@@ -287,5 +325,4 @@ class FrontendController extends Controller
 
         return view('frontend.usedauto.model', compact('modifications'))->with('title', 'Автомобили с пробегом');
     }
-
 }

@@ -32,12 +32,15 @@ class RequestCreditsRequest extends Request
                 return [
                     'mark' => 'required',
                     'model' => 'required',
-                    'car_equipments' => 'required',
-                    'initial_payment' => 'required|numeric',
+                    'modification' => 'required',
+                    'fee' => 'required|numeric',
                     'name' => 'required',
                     'age' => 'required|numeric',
                     'registration' => 'required',
                     'phone' => 'required',
+                    'email' => 'email',
+                    'confirmation' => 'required',
+                    'agree' => 'required',
                 ];
             }
             case 'PUT':
@@ -45,12 +48,13 @@ class RequestCreditsRequest extends Request
                 return [
                     'mark' => 'required',
                     'model' => 'required',
-                    'car_equipments' => 'required',
-                    'initial_payment' => 'required|numeric',
+                    'modification' => 'required',
+                    'fee' => 'required|numeric',
                     'name' => 'required',
                     'age' => 'required|numeric',
                     'registration' => 'required',
                     'phone' => 'required',
+                    'email' => 'email',
                 ];
             }
             default:

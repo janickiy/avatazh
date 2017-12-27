@@ -16,6 +16,7 @@ use App\CarModification;
 use App\CatalogUsedCar;
 use App\Image;
 use App\RequestTradeIn;
+use App\RequestCredit;
 
 class DatatablesController extends Controller
 {
@@ -294,7 +295,18 @@ class DatatablesController extends Controller
             $deleteBtn = '&nbsp;<a href="' . url('admin/requesttradeins/' . $requestTradeIn->id) . '" class="message_box text-danger" data-box="#message-box-delete" data-action="DELETE" title="Удалить навсегда"><i class="fa fa-2 fa-remove"></i></a>';
             return $editBtn . $deleteBtn;
         })->make(true);
+    }
 
+    public function getRequestcredits()
+    {
+        $requestCredit = RequestCredit::all();
+
+        return Datatables::of($requestCredit)
+            ->addColumn('actions', function ($requestCredit) {
+                $editBtn = '<a style="margin-right: 0.2em;" href="' . url('admin/requestcredits/' . $requestCredit->id . '/edit/') . '"  title="Редактировать"><i class="fa fa-2 fa-pencil"></i></a>';
+                $deleteBtn = '&nbsp;<a href="' . url('admin/requestcredits/' . $requestCredit->id) . '" class="message_box text-danger" data-box="#message-box-delete" data-action="DELETE" title="Удалить навсегда"><i class="fa fa-2 fa-remove"></i></a>';
+                return $editBtn . $deleteBtn;
+            })->make(true);
     }
 }
 				
