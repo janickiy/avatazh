@@ -18,6 +18,8 @@
         <h1>Отзывы</h1>
         <div class="row mentions">
             <div class="mentions_list">
+
+                @if(count($reviews) > 0)
                 <ul>
 
                     @foreach($reviews as $review)
@@ -36,6 +38,9 @@
                    @endforeach
 
                 </ul>
+                @else
+                    <p style="text-align: center">нет отзывов</p>
+                @endif
 
                 <div class="pager">
                     {{ $reviews->render() }}

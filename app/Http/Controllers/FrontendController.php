@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\RequestCreditsRequest;
 use App\Http\Requests\RequestTradeInsRequest;
+use App\Http\Requests\UserReviewsRequest;
 use App\Page;
 use App\CarMark;
 use App\CarModel;
@@ -226,22 +227,13 @@ class FrontendController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function reviewsSubmit(Request $request)
+    public function reviewsSubmit(UserReviewsRequest $request)
     {
-        $author = trim($request->input('author'));
-        $email = trim($request->input('email'));
-        $message = trim($request->input('message'));
-
-        $userReview = new UserReview();
-        $userReview->author = $author;
-        $userReview->email = $email;
-        $userReview->message = $message;
-        $userReview->published = 0;
+        $userReview = UserReview::create($request->except('_token'));
         $userReview->save();
 
         return redirect('/reviews')->with(['success' => 'Ваш коментарий отправлен. После проверки модератора он будет доступен!']);
     }
-
 
     public function allUsedAuto()
     {
