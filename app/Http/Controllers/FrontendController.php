@@ -15,6 +15,7 @@ use App\UserReview;
 use App\GeoRegion;
 use App\RequestCredit;
 use App\RequestTradeIn;
+use App\CatalogUsedCar;
 
 class FrontendController extends Controller
 {
@@ -340,12 +341,16 @@ class FrontendController extends Controller
     public function usedAuto($mark)
     {
         $models = CarModel::select(['car_models.name', 'car_models.slug as model', 'car_marks.slug as mark'])
-        ->where('car_models.published', 1)
+                    ->where('car_models.published', 1)
                     ->join('car_marks', 'car_marks.id', '=', 'car_models.id_car_mark')
                     ->where('car_marks.slug', $mark)
                     ->get();
 
-        return view('frontend.usedauto.mark', compact('models'))->with('title', 'Все модели: ' . $mark);
+        $model_list = CatalogUsedCar::where('mark', 'like', $mark)
+            ->where('published', 1)
+            ->paginate(10);
+
+        return view('frontend.usedauto.mark', compact('models', 'model_list'))->with('title', 'Все модели: ' . $mark);
     }
 
     /**
@@ -358,8 +363,15 @@ class FrontendController extends Controller
         $modifications = CarModel::select(['car_modifications.id','car_modifications.name','car_modifications.body_type'])
             ->join('car_modifications', 'car_models.id', '=', 'car_modifications.id_car_model')
             ->where('car_models.slug', $model)
+            ->where('car_models.published', 1)
             ->get();
 
-        return view('frontend.usedauto.model', compact('modifications'))->with('title', 'Автомобили с пробегом');
+        $model_list = CarModel::where('slug', $model)
+            ->where('published', 1)
+            ->paginate(10);
+
+
+
+        return view('frontend.usedauto.model', compact('modifications','model_list'))->with('title', 'Автомобили с пробегом');
     }
 }

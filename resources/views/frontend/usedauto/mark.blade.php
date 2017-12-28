@@ -32,8 +32,31 @@
                 @endforeach
 
             </table>
-
         </div>
+
+        <ul>
+
+            @foreach($model_list as $model)
+
+            <li class="item">
+                <div class="item_pic"><img src="images/item.jpg" /></div>
+                <div class="idem_desc">
+                    <a class="item_name" href="">Nissan NP300</a>
+                    <p>2012 г., 56 274 км, Дизель, КППМКПП</p>
+                    <div class="item_price">758 000<span class="rub">o</span></div>
+                    <a class="item_btn" href="">Подробнее</a>
+                </div>
+            </li>
+
+            @endforeach
+
+
+                <div class="pager">
+                    {{ $model_list->render() }}
+                </div>
+
+        </ul>
+
     </section>
 @endsection
 

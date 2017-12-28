@@ -23,17 +23,21 @@
             <table width="100%">
                 <?php $i=0; ?>
 
-                    @foreach($modifications as $modification)
-                        @if($i == 0) <tr> @endif
-                        <td><a href="/auto/{!! $modification->slug !!}/used">{!! $modification->name !!}</a><span> 0 </span></td>
-                        <?php $i++; ?>
-                        @if($i == 6) </tr> <?php $i=0; ?> @endif
-                    @endforeach
+                @foreach($modifications as $modification)
+                    @if($i == 0) <tr> @endif
+                    <td><a href="/auto/{!! $modification->slug !!}/used">{!! $modification->name !!}</a><span> 0 </span></td>
+                    <?php $i++; ?>
+                    @if($i == 6) </tr> <?php $i=0; ?> @endif
+                @endforeach
 
             </table>
 
         </div>
     </section>
+
+
+
+
 @endsection
 
 @section('js')
