@@ -14,7 +14,6 @@ class UserReview extends BaseModel
     protected $guarded = ['id'];
     protected $dates = ['published_at'];
 
-
     /**
      * @param $query
      * @return mixed

@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Requests\CatalogUsedCarsRequest;
 use App\Http\Controllers\Controller;
 use App\CatalogUsedCar;
+use Intervention\Image\Facades\Image as ImageInt;
 
 class CatalogUsedCarsController extends Controller
 {
@@ -40,7 +41,31 @@ class CatalogUsedCarsController extends Controller
         $request->request->remove('id_mark');
         $request->request->remove('id_model');
 
+        $images = [];
+
+        if ($request->hasFile('image')) {
+            $small_path = public_path() . '/uploads/usedcars/small/';
+            $big_path = public_path() . '/uploads/usedcars/big/';
+            $file = $request->file('image');
+
+            foreach ($file as $f) {
+                $filename = str_random(20) . '.' . $f->getClientOriginalExtension() ? : 'png';
+                $img = ImageInt::make($f);
+
+                $img->resize(300, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save($small_path . $filename);
+
+                $img->resize(1000, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save($big_path . $filename);
+
+                $images[] = ['small' => $small_path . $filename, 'big' => $big_path . $filename, 'name' => $f->getClientOriginalName()];
+            }
+        }
+
         $catalogUsedCar = CatalogUsedCar::create($request->except('_token'));
+        $catalogUsedCar->image = !empty($images) ? serialize($images) : '';
         $catalogUsedCar->save();
 
         return redirect('admin/catalogusedcars')->with('success', 'Новое меню добавлено успешно');
@@ -76,6 +101,38 @@ class CatalogUsedCarsController extends Controller
         $request->request->remove('id_mark');
         $request->request->remove('id_model');
 
+       // if (!empty($file)) {
+        //    CatalogUsedCar::where()
+      //  }
+
+        $images = [];
+
+        if ($request->hasFile('image')) {
+            foreach(unserialize($catalogUsedCar->image) as $image) {
+                if (file_exists($image['small'])) @unlink($image['small']);
+                if (file_exists($image['big'])) @unlink($image['big']);
+            }
+
+            $small_path = public_path() . '/uploads/usedcars/small/';
+            $big_path = public_path() . '/uploads/usedcars/big/';
+            $file = $request->file('image');
+
+            foreach ($file as $f) {
+                $filename = str_random(20) . '.' . $f->getClientOriginalExtension() ? : 'png';
+                $img = ImageInt::make($f);
+
+                $img->resize(300, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save($small_path . $filename);
+
+                $img->resize(1000, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save($big_path . $filename);
+
+                $images[] = ['small' => $small_path . $filename, 'big' => $big_path . $filename, 'name' => $f->getClientOriginalName()];
+            }
+        }
+
         $catalogUsedCar->mark = trim($request->input('mark'));
         $catalogUsedCar->model = trim($request->input('model'));
         $catalogUsedCar->price = trim($request->input('price'));
@@ -93,6 +150,7 @@ class CatalogUsedCarsController extends Controller
         $catalogUsedCar->meta_keywords = trim($request->input('meta_keywords'));
         $catalogUsedCar->meta_description = trim($request->input('meta_description'));
         $catalogUsedCar->description = trim($request->input('description'));
+        if (!empty($images)) $catalogUsedCar->image = serialize($images);
         $catalogUsedCar->published = 0;
 
         if ($request->input('published')) {
@@ -102,7 +160,7 @@ class CatalogUsedCarsController extends Controller
         $catalogUsedCar->updated_at = \Carbon::now();
         $catalogUsedCar->save();
 
-        return redirect('admin/catalogusedcars')->with('success', $catalogUsedCar->title . ' спешно добавлен в каталог');
+        return redirect('admin/catalogusedcars')->with('success', $catalogUsedCar->id . 'спешно обнавлен');
     }
 
     /**

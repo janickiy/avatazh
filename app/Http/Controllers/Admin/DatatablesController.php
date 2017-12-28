@@ -256,6 +256,11 @@ class DatatablesController extends Controller
             ->addColumn('status', function ($catalogUsedCar) {
                 return $catalogUsedCar->published ? 'опубликован' : 'не опубликован';
             })
+
+            ->addColumn('has_images', function ($catalogUsedCar) {
+                return unserialize($catalogUsedCar->image) ? 'да' : 'нет';
+            })
+
             ->addColumn('actions', function ($catalogUsedCar) {
                 $editBtn = '<a style="margin-right: 0.2em;" href="' . url('admin/catalogusedcars/' . $catalogUsedCar->id . '/edit/') . '"  title="Редактировать"><i class="fa fa-2 fa-pencil"></i></a>';
                 $deleteBtn = '&nbsp;<a href="' . url('admin/catalogusedcars/' . $catalogUsedCar->id) . '" class="message_box text-danger" data-box="#message-box-delete" data-action="DELETE" title="Удалить навсегда"><i class="fa fa-2 fa-remove"></i></a>';

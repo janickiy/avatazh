@@ -235,6 +235,13 @@
                     </div>
 
                     <div class="form-group">
+                        {!! Form::label('image[]', 'Фото (jpeg, png, gif)*', ['class' => 'control-label col-md-2']) !!}
+                        <div class="col-md-4">
+                            {!! Form::file('image[]',  ['multiple' => true]) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         {!! Form::label('published', 'Публиковать', ['class' => 'control-label col-md-2']) !!}
                         <div class="col-sm-10">
                             <label class="check">{!! Form::checkbox('published', 1, isset($catalogusedcar) ? ($catalogusedcar->published == 'published' ? true: false) : true, ['class'=>'minimal']) !!}

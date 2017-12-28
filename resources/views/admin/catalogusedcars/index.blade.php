@@ -47,8 +47,9 @@
                     <th>Год</th>
                     <th>Пробег</th>
                     <th>КПП</th>
-                    <th>привод</th>
-                    <th>кузов</th>
+                    <th>Привод</th>
+                    <th>Кузов</th>
+                    <th>Фото</th>
                     <th>Статус</th>
                     <th>Действия</th>
                 </tr>
@@ -97,6 +98,7 @@
                 {data: 'gearbox', name: 'gearbox'},
                 {data: 'drive', name: 'drive'},
                 {data: 'body', name: 'body'},
+                {data: 'has_images', name: 'has_images'},
                 {data: 'status', name: 'status'},
                 {data: 'actions', name: 'actions', orderable: false, searchable: false}
             ]

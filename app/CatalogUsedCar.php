@@ -14,6 +14,10 @@ class CatalogUsedCar extends BaseModel
     protected $guarded = ['id'];
     protected $dates = ['published_at'];
 
+    protected $casts = [
+        'image' => 'array',
+    ];
+
     /**
      * @param $query
      * @return mixed

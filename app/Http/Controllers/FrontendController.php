@@ -20,7 +20,11 @@ class FrontendController extends Controller
 {
     public function index()
     {
-        $marks = CarMark::where('published', 1)
+        $marks = CarMark::selectRaw('car_marks.id,car_marks.name,car_marks.slug,count(catalog_used_cars.id) as countusedcars')
+             ->where('car_marks.published', 1)
+            ->leftJoin('catalog_used_cars', 'car_marks.name', 'like', 'catalog_used_cars.mark')
+            ->groupBy('car_marks.id')
+            ->orderBy('car_marks.name')
             ->take(23)
             ->get();
 
@@ -213,7 +217,11 @@ class FrontendController extends Controller
      */
     public function reviews()
     {
-        $marks = CarMark::where('published', 1)
+        $marks = CarMark::selectRaw('car_marks.id,car_marks.name,car_marks.slug,count(catalog_used_cars.id) as countusedcars')
+            ->where('car_marks.published', 1)
+            ->leftJoin('catalog_used_cars', 'car_marks.name', 'like', 'catalog_used_cars.mark')
+            ->groupBy('car_marks.id')
+            ->orderBy('car_marks.name')
             ->take(23)
             ->get();
 
@@ -242,7 +250,11 @@ class FrontendController extends Controller
 
     public function credit()
     {
-        $marks = CarMark::where('published', 1)
+        $marks = CarMark::selectRaw('car_marks.id,car_marks.name,car_marks.slug,count(catalog_used_cars.id) as countusedcars')
+            ->where('car_marks.published', 1)
+            ->leftJoin('catalog_used_cars', 'car_marks.name', 'like', 'catalog_used_cars.mark')
+            ->groupBy('car_marks.id')
+            ->orderBy('car_marks.name')
             ->take(23)
             ->get();
 
@@ -267,7 +279,11 @@ class FrontendController extends Controller
 
     public function tradeIn()
     {
-        $marks = CarMark::where('published', 1)
+        $marks = CarMark::selectRaw('car_marks.id,car_marks.name,car_marks.slug,count(catalog_used_cars.id) as countusedcars')
+            ->where('car_marks.published', 1)
+            ->leftJoin('catalog_used_cars', 'car_marks.name', 'like', 'catalog_used_cars.mark')
+            ->groupBy('car_marks.id')
+            ->orderBy('car_marks.name')
             ->take(23)
             ->get();
 
@@ -294,7 +310,11 @@ class FrontendController extends Controller
 
     public function contact()
     {
-        $marks = CarMark::where('published', 1)
+        $marks = CarMark::selectRaw('car_marks.id,car_marks.name,car_marks.slug,count(catalog_used_cars.id) as countusedcars')
+            ->where('car_marks.published', 1)
+            ->leftJoin('catalog_used_cars', 'car_marks.name', 'like', 'catalog_used_cars.mark')
+            ->groupBy('car_marks.id')
+            ->orderBy('car_marks.name')
             ->take(23)
             ->get();
 
@@ -303,7 +323,12 @@ class FrontendController extends Controller
 
     public function allmarks()
     {
-        $marks = CarMark::all()->where('published', 1);
+        $marks = CarMark::selectRaw('car_marks.id,car_marks.name,car_marks.slug,count(catalog_used_cars.id) as countusedcars')
+            ->where('car_marks.published', 1)
+            ->leftJoin('catalog_used_cars', 'car_marks.name', 'like', 'catalog_used_cars.mark')
+            ->groupBy('car_marks.id')
+            ->orderBy('car_marks.name')
+            ->get();
 
         return view('frontend.allmarks', compact('marks'))->with('title', 'Все марки');
     }
