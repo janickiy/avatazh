@@ -32,17 +32,7 @@ class CatalogUsedCarsRequest extends Request
                 return [
                     'mark'  => 'required',
                     'model' => 'required',
-                    'price' => 'required|numeric',
-                    'year'  => 'required|numeric',
-                    'mileage' => 'required|numeric',
-                    'gearbox' => 'required',
-                    'drive'   => 'required',
-                    'engine_type' => 'required',
-                    'power' => 'required|numeric',
-                    'body'  => 'required',
-                    'wheel' => 'required',
-                    'color' => 'required',
-                    'salon' => 'required',
+
                    // 'image[]' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 ];
             }
@@ -51,17 +41,7 @@ class CatalogUsedCarsRequest extends Request
                 return [
                     'mark'  => 'required',
                     'model' => 'required',
-                    'price' => 'required|numeric',
-                    'year'  => 'required|numeric',
-                    'mileage' => 'required|numeric',
-                    'gearbox' => 'required',
-                    'drive'   => 'required',
-                    'engine_type' => 'required',
-                    'power' => 'required|numeric',
-                    'body'  => 'required',
-                    'wheel' => 'required',
-                    'color' => 'required',
-                    'salon' => 'required',
+
                     //'image[]' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 ];
             }

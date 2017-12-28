@@ -53,6 +53,33 @@
                     </div>
                 </div>
 
+                <div class="form-group">
+                    {!! Form::label('slug', 'Slug*', ['class' => 'control-label col-md-2']) !!}
+                    <div class="col-md-4">
+                        {!! Form::text('slug', old('slug', isset($carmark) ? $carmark->slug : null), ['class' => 'form-control validate[required]', 'placeholder'=>'slug']) !!}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('meta_title', 'meta title', ['class' => 'control-label col-md-2']) !!}
+                    <div class="col-md-4">
+                        {!! Form::text('meta_title', old('meta_title', isset($carmark) ? $carmark->meta_title : null), ['class' => 'form-control', 'placeholder'=>'meta title']) !!}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('meta_keywords', 'meta keywords', ['class' => 'control-label col-md-2']) !!}
+                    <div class="col-md-4">
+                        {!! Form::text('meta_keywords', old('meta_keywordse', isset($carmark) ? $carmark->meta_keywords : null), ['class' => 'form-control', 'placeholder'=>'meta keywords']) !!}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('meta_description', 'meta description', ['class' => 'control-label col-md-2']) !!}
+                    <div class="col-md-4">
+                        {!! Form::textarea('meta_description', old('message', isset($carmark) ? $carmark->meta_description : null), ['class' => 'form-control', 'placeholder'=>'meta description', 'rows' => 2]) !!}
+                    </div>
+                </div>
 
                 <div class="form-group">
                     {!! Form::label('published', 'Опубликован', ['class' => 'control-label col-md-2']) !!}
