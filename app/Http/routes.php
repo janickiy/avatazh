@@ -65,6 +65,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/', 'FrontendController@index');
     Route::get('/auto/used', 'FrontendController@allUsedAuto');
     Route::any('/auto/used/allmarks', 'FrontendController@allmarks');
+    Route::get('/auto/used/detail/{id}', 'FrontendController@usedAutoDetail');
     Route::get('/auto/used/{mark}', 'FrontendController@usedAuto');
     Route::get('/auto/used/{mark}/{model}', 'FrontendController@usedAutoModel');
     Route::get('/credit', 'FrontendController@credit');

@@ -374,4 +374,19 @@ class FrontendController extends Controller
 
         return view('frontend.usedauto.model', compact('modifications','model_list'))->with('title', 'Автомобили с пробегом');
     }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function usedAutoDetail($id)
+    {
+        $detail = CatalogUsedCar::where('id', $id)->get()->first();
+
+        if ($detail) {
+            return view('frontend.usedauto.detail', compact('detail','detail'));
+        }
+
+        abort(404);
+    }
 }

@@ -41,15 +41,14 @@
             <li class="item">
                 <div class="item_pic"><img src="images/item.jpg" /></div>
                 <div class="idem_desc">
-                    <a class="item_name" href="">Nissan NP300</a>
-                    <p>2012 г., 56 274 км, Дизель, КППМКПП</p>
-                    <div class="item_price">758 000<span class="rub">o</span></div>
-                    <a class="item_btn" href="">Подробнее</a>
+                    <a class="item_name" href="/auto/used/detail/{{ $model->id }}">{{ $model->mark }} {{ $model->model }}</a>
+                    <p>{{ $model->year }} г., {{ $model->mileage }} км, {{ $model->engine_type }}, {{ $model->gearbox }}</p>
+                    <div class="item_price">{{ $model->price }}<span class="rub">o</span></div>
+                    <a class="item_btn" href="/auto/used/detail/{{ $model->id }}">Подробнее</a>
                 </div>
             </li>
 
             @endforeach
-
 
                 <div class="pager">
                     {{ $model_list->render() }}
