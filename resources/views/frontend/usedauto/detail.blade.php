@@ -31,7 +31,7 @@
                     </div>
                     <div class="detail_main_info">
                         <div class="detail_price">
-                            758 000 <span class="rub">i</span>
+                           {{ $detail->price }} <span class="rub">i</span>
                         </div>
                         <ul>
                             <li><span>Год выпуска</span><strong>{{ $detail->year }} г</strong></li>

@@ -1,6 +1,6 @@
 @extends('layouts.admin.app')
 
-@section('title', 'Settings')
+@section('title', 'Настройки')
 
 @section('css')
 <!-- DataTables -->

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use Illuminate\Http\Request;
@@ -15,6 +14,7 @@ use App\RequestTradeIn;
 use App\CatalogUsedCar;
 use App\CarMark;
 use App\CarModel;
+use App\CarModification;
 
 class DashboardController extends Controller
 {
@@ -146,6 +146,27 @@ class DashboardController extends Controller
                             "name" => $model->name,
                             "name_rus" => $model->name_rus,
                             "slug" => $model->slug,
+                        ];
+                    }
+
+                    return response()->json(['item' => $rows]);
+
+                    break;
+
+                case 'get_modification':
+
+                    $modifications = CarModification::where('id_car_model', $request->id_car_model)
+                        ->get();
+
+                    $rows = [];
+
+                    foreach($modifications as $modification) {
+                        $rows[] = [
+                            "id"   => $modification->id,
+                            "name" => $modification->name,
+                            "body_type" => $modification->body_type,
+                            "year_begin" => $modification->year_begin,
+                            "year_end" => $modification->year_end,
                         ];
                     }
 

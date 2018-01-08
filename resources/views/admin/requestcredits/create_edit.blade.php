@@ -11,7 +11,7 @@
         <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        <i class="fa fa-usd"></i> {{ isset($requestcredit) ? 'Редактировать' : 'Добавить' }} заявку на автокредит
+        <i class="fa fa-bell-o"></i> {{ isset($requestcredit) ? 'Редактировать' : 'Добавить' }} заявку на автокредит
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{ url('admin/dashboard') }}"><i class="fa fa-dashboard"></i> Панель управления</a></li>

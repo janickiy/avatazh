@@ -138,35 +138,27 @@
                 </ul>
             </li>
 
-            <li class="treeview {{ Request::is('admin/requestcredit*')? 'active': '' }}">
+            <li class="treeview {{ Request::is('admin/requesttradein*') || Request::is('admin/requestcredit*') ? 'active': '' }}">
                 <a href="#">
-                    <i class="fa fa-money"></i> <span>Заявки на автокредит</span> <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li class="{{ Request::is('admin/requestcredits')? 'active': '' }}">
-                        <a href="{{ url('admin/requestcredits') }}">
-                            <i class="fa fa-list"></i> <span>Администрирование</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="treeview {{ Request::is('admin/requesttradein*')? 'active': '' }}">
-                <a href="#">
-                    <i class="fa fa-usd"></i> <span>Заявка на Trade-in</span> <i class="fa fa-angle-left pull-right"></i>
+                    <i class="fa fa-bell-o"></i> <span>Заявки</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
                     <li class="{{ Request::is('admin/requesttradeins')? 'active': '' }}">
                         <a href="{{ url('admin/requesttradeins') }}">
-                            <i class="fa fa-list"></i> <span>Администрирование</span>
+                            <i class="fa fa-list"></i> <span>Заявки на Trade-in</span>
+                        </a>
+                    </li>
+
+                    <li class="{{ Request::is('admin/requestcredits')? 'active': '' }}">
+                        <a href="{{ url('admin/requestcredits') }}">
+                            <i class="fa fa-list"></i> <span>Заявки на автокредит</span>
                         </a>
                     </li>
                 </ul>
             </li>
 
-
             <li class="treeview {{ Request::is('admin/menu*')? 'active': '' }}">
-                <a href="#"><i class="fa fa-list-alt"></i> Настройки меню <i class="fa fa-angle-left pull-right"></i></a>
+                <a href="#"><i class="fa fa-list-alt"></i> Меню <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     <li class="{{ Request::is('admin/menus')? 'active': '' }}"><a href="{{ url('admin/menus') }}"><i class="fa fa-list"></i> Управление меню</a></li>
                     <li class="{{ Request::is('admin/menus/create')? 'active': '' }}"><a href="{{ url('admin/menus/create') }}"><i class="fa fa-plus"></i> Добавить меню</a></li>

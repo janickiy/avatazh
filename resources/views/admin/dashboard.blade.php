@@ -1,7 +1,6 @@
 @extends('layouts.admin.app')
 
 @section('title', 'Панель управления')
-
 @section('css')
 {!! Html::style('assets/dist/css/ionicons.min.css') !!}
 @endsection
@@ -120,7 +119,7 @@
                                     <p>Заявки на Trade-in</p>
                                 </div>
                                 <div class="icon">
-                                    <i class="fa fa-usd"></i>
+                                    <i class="fa fa-bell-o"></i>
                                 </div>
                                 <a href="{{ url('admin/requesttradeins') }}" class="small-box-footer">подробно
                                     <i class="fa fa-arrow-circle-right"></i>

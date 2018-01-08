@@ -17,11 +17,11 @@
         <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        <i class="fa fa-usd"></i> Заявки на Trade-in
+        <i class="fa fa-bell-o"></i> Заявки на Trade-in
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{ url('admin/dashboard') }}"><i class="fa fa-dashboard"></i> Панель управления</a></li>
-        <li class="active"><i class="fa fa-usd"></i> Заявки на Trade-in</li>
+        <li class="active"><i class="fa fa-bell-o"></i> Заявки на Trade-in</li>
     </ol>
 </section>
 

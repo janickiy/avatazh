@@ -232,10 +232,6 @@
                 $(".search_trade_in_model").blur();
             })
 
-
-
-
-
             $("#search_mark").on("change keyup input click", function() {
                 if(this.value.length >= 2){
                     $.ajax({

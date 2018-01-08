@@ -22,7 +22,6 @@
         <div class="main_marks row">
             <table width="100%">
 
-
                 <?php $i=0; ?>
                 @foreach($models as $model)
                     @if($i == 0) <tr> @endif

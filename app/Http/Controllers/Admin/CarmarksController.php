@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Requests\CarMarksRequest;
 use App\Http\Requests\CarMarksImportRequest;
@@ -12,6 +11,7 @@ use App\Helpers\TextHelper;
 use App\CarMark;
 use App\CarModel;
 use App\CarModification;
+use Intervention\Image\Facades\Image as ImageInt;
 
 class CarmarksController extends Controller
 {
@@ -63,6 +63,21 @@ class CarmarksController extends Controller
         $carMark->name_rus = $request->input('name_rus');
         $carMark->published = $request->input('published');
         $carMark->slug = $request->input('slug');
+
+        if ($request->hasFile('logo')) {
+            $logo_path = public_path() . '/uploads/mark/';
+            $logo = $request->file('logo');
+
+            $filename = str_random(20) . '.' . $logo->getClientOriginalExtension() ? : 'png';
+            $img = ImageInt::make($logo);
+
+            $img->resize(300, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($logo_path . $filename);
+
+            $carMark->logo = '/uploads/mark/' . $filename;
+        }
+
         $carMark->meta_keywords = $request->input('meta_keywords');
         $carMark->meta_description = $request->input('meta_description');
         $carMark->updated_at = \Carbon::now();
@@ -82,6 +97,20 @@ class CarmarksController extends Controller
 
         if($request->input('published')) {
             $carmark->published = 1;
+        }
+
+        if ($request->hasFile('logo')) {
+            $logo_path = public_path() . '/uploads/mark/';
+            $logo = $request->file('logo');
+
+            $filename = str_random(20) . '.' . $logo->getClientOriginalExtension() ? : 'png';
+            $img = ImageInt::make($logo);
+
+            $img->resize(300, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($logo_path . $filename);
+
+            $carmark->logo = $logo_path . $filename;
         }
 
         $carmark->save();

@@ -1,6 +1,6 @@
 @extends('layouts.admin.app')
 
-@section('title', 'Меню')
+@section('title', 'Автомобили с пробегом')
 
 @section('css')
     <!-- iCheck for checkboxes and radio inputs -->
@@ -50,13 +50,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            <i class="fa fa-list-alt"></i> {{ isset($menu) ? 'Редактировать' : 'Добавить' }} меню
+            <i class="fa fa-list-alt"></i> {{ isset($menu) ? 'Редактировать' : 'Добавить' }} автомобиль
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{ url('admin/dashboard') }}"><i class="fa fa-dashboard"></i> Панель управления</a></li>
-            <li><a href="{{ url('admin/menus') }}"><i class="fa fa-list-alt"></i> Меню</a></li>
+            <li><a href="{{ url('admin/menus') }}"><i class="fa fa-list-alt"></i> Автомобили с пробегом</a></li>
             <li class="active"><i class="fa {{ isset($menu) ? 'fa-pencil' : 'fa-plus' }}"></i> {{ isset($menu) ? 'Редактировать' : 'Добавить' }}
-                Меню
+                автомобиль
             </li>
         </ol>
     </section>
@@ -66,7 +66,7 @@
         <!-- Default box -->
         <div class="box">
             <div class="box-header with-border">
-                <h3 class="box-title">Форма данных меню</h3>
+                <h3 class="box-title">Форма данных</h3>
                 <div class="box-tools pull-right">
                     <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
                         <i class="fa fa-minus"></i>
@@ -89,9 +89,11 @@
                     <div class="form-group">
                         {!! Form::hidden('id_model', null, ['id' => 'id_model']) !!}
                         {!! Form::label('model', 'Модель *', ['class' => 'control-label col-md-2']) !!}
-                        <div class="col-md-4">
-                            {!! Form::text('model', old('model', isset($catalogusedcar) ? $catalogusedcar->model : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Модель', 'id' => 'search_model', 'autocomplete' => 'off']) !!}
-                            <ul class="search_result_model search_result"></ul>
+                        <div id="search_result_model" class="col-md-4">
+
+                                {!! Form::select('model', $model_list
+                                , isset($catalogusedcar) ? $catalogusedcar->model : null, ['class' => 'form-control select2 validate[required]']
+                                ) !!}
                         </div>
                     </div>
 
@@ -121,12 +123,12 @@
                         <div class="col-md-4">
                             {!! Form::select('gearbox', [
                              null => 'КПП',
-                             'MT' => 'Механическая',
-                             'AT' => 'Автоматическая',
-                             'RGT' => 'Роботизированная',
-                             'CVT' => 'Вариатор',
-                             'AMT' => 'Автоматизированная механическая',
-                            ], isset($catalogusedcar) ? $catalogusedcar->gearbox : null, ['class' => 'form-control validate[required]']
+                             'Механическая' => 'Механическая',
+                             'Автоматическая' => 'Автоматическая',
+                             'Роботизированная' => 'Роботизированная',
+                             'Вариатор' => 'Вариатор',
+                             'Автоматизированная механическая' => 'Автоматизированная механическая',
+                            ], isset($catalogusedcar) ? $catalogusedcar->gearbox : null, ['class' => 'form-control select2 validate[required]']
                             ) !!}
                         </div>
                     </div>
@@ -138,7 +140,7 @@
                              'Передний' => 'Передний',
                              'Задний' => 'Задний',
                              'Полный' => 'Полный'
-                            ], isset($catalogusedcar) ? $catalogusedcar->drive : null, ['class' => 'form-control validate[required]']
+                            ], isset($catalogusedcar) ? $catalogusedcar->drive : null, ['class' => 'select2 form-control validate[required]']
                             ) !!}
                         </div>
                     </div>
@@ -153,7 +155,7 @@
                              'Дизельный турбированный' => 'Дизельный турбированный',
                              'Электро' => 'Электро',
                              'Гибрид' => 'Гибрид',
-                            ], isset($catalogusedcar) ? $catalogusedcar->engine_type : null, ['class' => 'form-control validate[required]']
+                            ], isset($catalogusedcar) ? $catalogusedcar->engine_type : null, ['class' => 'select2 form-control validate[required]']
                             ) !!}
                         </div>
                     </div>
@@ -170,12 +172,7 @@
                         <div class="col-md-4">
                             {!! Form::select('body', [
                             'sedan' => 'Седан',
-                            'hatchback' => 'Хэтчбек',
-                            'coupe' => 'Купе',
-                            'wagon' => 'Универсал',
-                            'suv' => 'Внедорожник',
-                            'truck' => 'Пикап',
-                           ], isset($catalogusedcar) ? $catalogusedcar->body : null, ['class' => 'form-control validate[required]']
+                           ], isset($catalogusedcar) ? $catalogusedcar->body : null, ['class' => 'select2 form-control validate[required]']
                            ) !!}
                         </div>
                     </div>
@@ -186,7 +183,7 @@
                             {!! Form::select('wheel', [
                              'Левый' => 'Левый',
                              'Правы' => 'Правый',
-                            ], isset($catalogusedcar) ? $catalogusedcar->wheel : null, ['class' => 'form-control validate[required]']
+                            ], isset($catalogusedcar) ? $catalogusedcar->wheel : null, ['class' => 'select2 form-control validate[required]']
                             ) !!}
 
                         </div>
@@ -244,7 +241,7 @@
                     <div class="form-group">
                         {!! Form::label('published', 'Публиковать', ['class' => 'control-label col-md-2']) !!}
                         <div class="col-sm-10">
-                            <label class="check">{!! Form::checkbox('published', 1, isset($catalogusedcar) ? ($catalogusedcar->published == 'published' ? true: false) : true, ['class'=>'minimal']) !!}
+                            <label class="check">{!! Form::checkbox('published', 1, isset($catalogusedcar) ? ($catalogusedcar->published == 1 ? true: false) : true, ['class'=>'minimal']) !!}
                                 Да
                             </label>
                         </div>
@@ -255,6 +252,7 @@
                             {!! Form::submit( (isset($catalogusedcar) ? 'Обновить': 'Добавить') . '', ['class'=>'btn btn-primary']) !!}
                         </div>
                     </div>
+
                 </div><!-- .col-md-12 -->
                 {!! Form::close() !!}
             </div><!-- /.box-body -->
@@ -330,18 +328,69 @@
 
             $(".search_result_mark").on("click", "li", function(){
                 $("#search_mark").val($(this).text());
-                $("#id_mark").val($(this).attr('data-item'));
+
+                var idMark = $(this).attr('data-item');
+
+                if (idMark != null) {
+                    $("#id_mark").val(idMark);
+
+                    var request = $.ajax({
+                        url: '/admin/ajax?action=get_models&id_car_mark=' + idMark,
+                        method: "GET",
+                        dataType: "json"
+                    });
+
+                    request.done(function( data ) {
+
+                        var html = '<select name="model" class="form-control select2 validate[required]">';
+
+                        for (var i=0; i < data.item.length; i++) {
+                            html += '<option value="' + data.item[i].name + '">' + data.item[i].name + '</option>';
+                        }
+
+                        html += '</select>';
+
+                        console.log(html);
+
+                        if (html != '')
+                            $("#search_result_model").html(html).fadeIn();
+
+                        else
+                            $("#search_result_model").fadeOut();
+
+                        $(".select2").select2();
+                    });
+                }
+
                 $(".search_result_mark").fadeOut();
             })
 
-            $("#search_model").on("change keyup input click", function() {
+            $("#select2-model-container").on("change keyup input click", function() {
                 if (this.value.length >= 2){
 
-                    var idCarMark =  $("#id_mark").val();
+
+
+                    var request = $.ajax({
+                        url: '/admin/ajax?action=search_mark&mark=' + $("#search_mark").val(),
+                        method: "GET",
+                        dataType: "json"
+                    });
+
+                    var idCarMark = null;
+
+                    request.done(function( data ) {
+                        idCarMark = data.item[0].id;
+                    }
+
+                    if (idCarMark != null) {
+
+                    }
+
+
 
                     $.ajax({
                         type: 'GET',
-                        url: '/admin/ajax?action=search_model&model=' + this.value + '&id_car_mark=' + idCarMark,
+                        url: '/admin/ajax?action=get_modifications&model=' + this.value + '&id_car_mark=' + idCarMark,
                         dataType : "json",
                         success: function(data){
                             if (data != null && data.item != null) {

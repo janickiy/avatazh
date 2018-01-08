@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\CarModel;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Requests\CatalogUsedCarsRequest;
 use App\Http\Controllers\Controller;
@@ -88,7 +88,19 @@ class CatalogUsedCarsController extends Controller
      */
     public function edit(CatalogUsedCar $catalogusedcar)
     {
-        return view('admin.catalogusedcars.create_edit')->with(compact('catalogusedcar'));
+        $models = CarModel::select('car_models.name')
+                ->leftJoin('car_marks', 'car_marks.id', '=', 'car_models.id_car_mark')
+                ->where('car_marks.name', 'like', $catalogusedcar->mark)
+                ->where('car_models.published', 1)
+                ->get();
+
+        $model_list = [];
+
+        foreach($models as $model) {
+            $model_list[$model->name] = $model->name;
+        }
+
+        return view('admin.catalogusedcars.create_edit')->with(compact('catalogusedcar', 'model_list'));
     }
 
     /**
@@ -99,7 +111,7 @@ class CatalogUsedCarsController extends Controller
     public function update(CatalogUsedCarsRequest $request, CatalogUsedCar $catalogUsedCar)
     {
         $request->request->remove('id_mark');
-        $request->request->remove('id_model');
+      //  $request->request->remove('id_model');
 
        // if (!empty($file)) {
         //    CatalogUsedCar::where()

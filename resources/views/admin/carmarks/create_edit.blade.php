@@ -36,7 +36,8 @@
         </div>
         <div class="box-body">
             <p>* - обязательные поля</p>
-            {!! Form::open(['url' => isset($carmark) ? URL::to('admin/carmarks/' . $carmark->id )  :  URL::to('admin/carmarks') , 'method' => isset($carmark) ? 'put': 'post', 'class' => 'form-horizontal', 'id'=>'validate']) !!}
+            {!! Form::open(['url' => isset($carmark) ? URL::to('admin/carmarks/' . $carmark->id )  :  URL::to('admin/carmarks') , 'method' => isset($carmark) ? 'put': 'post', 'class' => 'form-horizontal', 'enctype' => 'multipart/form-data', 'id'=>'validate']) !!}
+            {!! Form::hidden('mark_id', isset($carmark) ? $carmark->id: null) !!}
             <div class="col-md-12">
 
                 <div class="form-group">
@@ -57,6 +58,13 @@
                     {!! Form::label('slug', 'Slug*', ['class' => 'control-label col-md-2']) !!}
                     <div class="col-md-4">
                         {!! Form::text('slug', old('slug', isset($carmark) ? $carmark->slug : null), ['class' => 'form-control validate[required]', 'placeholder'=>'slug']) !!}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('logo', 'Фото (jpeg, png, gif)', ['class' => 'control-label col-md-2']) !!}
+                    <div class="col-md-4">
+                        {!! Form::file('logo') !!}
                     </div>
                 </div>
 
@@ -92,6 +100,13 @@
                             @endif
 
                             Да</label>
+                    </div>
+                </div>
+
+                <div class="form-group"><div class="col-md-8 col-md-offset-2">
+                    @if (isset($carmark) && (file_exists(public_path() . $carmark->logo)) )
+                        <img src="{!! $carmark->logo !!}">
+                    @endif
                     </div>
                 </div>
 

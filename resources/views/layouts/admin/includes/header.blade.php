@@ -22,12 +22,12 @@
                     <a href="#" class="dropdown-toggle"  data-toggle="dropdown">
 						<span class="hidden-xs">Добро пожаловать {{ Auth::user()->name }} !</span>
 						<span class="caret"></span>
-                        <img src="{{ asset(Auth::user()->avatar) }}" class="user-image" alt="картинка пользователя"/>
+                        <img src="{{ asset(Auth::user()->avatar) }}" class="user-image" alt="аватар"/>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
-                            <img src="{{ asset(Auth::user()->avatar) }}" class="img-circle" alt="картинка пользователя">
+                            <img src="{{ asset(Auth::user()->avatar) }}" class="img-circle" alt="аватар">
                             <p>
                                 {{ Auth::user()->name }}
                                 <small>{{ Auth::user()->job_title }}</small>

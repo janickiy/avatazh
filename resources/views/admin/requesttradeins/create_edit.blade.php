@@ -11,7 +11,7 @@
         <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        <i class="fa fa-usd"></i> {{ isset($requesttradein) ? 'Редактировать' : 'Добавить' }} заявку на Trade-in
+        <i class="fa fa-bell-o"></i> {{ isset($requesttradein) ? 'Редактировать' : 'Добавить' }} заявку на Trade-in
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{ url('admin/dashboard') }}"><i class="fa fa-dashboard"></i> Панель управления</a></li>
