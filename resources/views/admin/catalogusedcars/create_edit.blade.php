@@ -169,7 +169,7 @@
 
                     <div class="form-group">
                         {!! Form::label('body', 'Кузов *', ['class' => 'control-label col-md-2']) !!}
-                        <div class="col-md-4">
+                        <div id="body_type" class="col-md-4">
                             {!! Form::select('body', [
                             'sedan' => 'Седан',
                            ], isset($catalogusedcar) ? $catalogusedcar->body : null, ['class' => 'select2 form-control validate[required]']
@@ -340,7 +340,7 @@
                         dataType: "json"
                     });
 
-                    request.done(function( data ) {
+                    request.done(function(data) {
 
                         var html = '<select name="model" class="form-control select2 validate[required]">';
 
@@ -354,7 +354,6 @@
 
                         if (html != '')
                             $("#search_result_model").html(html).fadeIn();
-
                         else
                             $("#search_result_model").fadeOut();
 
@@ -366,59 +365,35 @@
             })
 
             $("#select2-model-container").on("change keyup input click", function() {
-                if (this.value.length >= 2){
 
+                var Mark = $("#search_mark").val();
+                var Model = $("#select2-model-container").text();
 
-
-                    var request = $.ajax({
-                        url: '/admin/ajax?action=search_mark&mark=' + $("#search_mark").val(),
-                        method: "GET",
-                        dataType: "json"
-                    });
-
-                    var idCarMark = null;
-
-                    request.done(function( data ) {
-                        idCarMark = data.item[0].id;
-                    }
-
-                    if (idCarMark != null) {
-
-                    }
-
-
-
+                if (Mark != null && Model != null) {
                     $.ajax({
                         type: 'GET',
-                        url: '/admin/ajax?action=get_modifications&model=' + this.value + '&id_car_mark=' + idCarMark,
-                        dataType : "json",
-                        success: function(data){
+                        url: '/admin/ajax?action=search_modifications&mark=' + Mark + '&model=' + Model,
+                        dataType: "json",
+                        success: function (data) {
                             if (data != null && data.item != null) {
-                                var html = '';
 
-                                for(var i=0; i < data.item.length; i++) {
-                                    html += '<li data-item="' + data.item[i].id + '">' + data.item[i].name + '</li>';
+                                var html = '<select name="body" class="form-control select2 validate[required]">';
+
+                                for (var i = 0; i < data.item.length; i++) {
+                                    html += '<option value="' + data.item[i].body_type + '">' + data.item[i].body_type + '</option>';
                                 }
+
+                                html += '</select>';
 
                                 console.log(html);
 
-                                if (html != '')
-                                    $(".search_result_model").html(html).fadeIn();
-                                else
-                                    $(".search_result_model").fadeOut();
+                                if (html != '') $("#body_type").html(html).fadeIn();
+
+                                $(".select2").select2();
                             }
                         }
                     })
                 }
-            })
-
-            $(".search_result_model").hover(function(){
-                $(".search_model").blur();
-            })
-
-            $(".search_result_model").on("click", "li", function(){
-                $("#search_model").val($(this).text());
-                $(".search_result_model").fadeOut();
             })
         })
 

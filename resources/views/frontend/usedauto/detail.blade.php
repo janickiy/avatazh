@@ -7,7 +7,42 @@
 @section('meta_keywords', $detail->meta_keywords)
 
 @section('css')
+    <style>
 
+        .search{
+            position:relative;
+        }
+
+        .search_result {
+            background: #FFF;
+            border: 1px #ccc solid;
+            border-radius: 4px;
+            max-height:100px;
+            overflow-y:scroll;
+            display:none;
+        }
+
+        .dropdownvisible {
+            max-height:100px;
+            overflow-y:scroll;
+
+        }
+
+        .search_result li{
+            list-style: none;
+            padding: 5px 10px;
+            margin: 0;
+            color: #0896D3;
+            border-bottom: 1px #ccc solid;
+            cursor: pointer;
+            transition:0.3s;
+        }
+
+        .search_result li:hover{
+            background: #F9FF00;
+        }
+
+    </style>
 @endsection
 
 
@@ -80,49 +115,46 @@
             <div class="sidebar">
                 <div class="request_form">
                     <div class="form_title">Заявка на кредит</div>
-                    <form>
+                    {!! Form::open(['url' =>  '/request-credit', 'method' => 'post', 'class' => 'form-horizontal', 'id' => 'validate']) !!}
+                    {!! Form::hidden('mark', $detail->mark) !!}
+                    {!! Form::hidden('model', $detail->model) !!}
                         <div class="form_field">
-                            <input type="text" class="form_control" placeholder="ФИО">
+                            {!! Form::text('name', old('name'), ['class' => 'form_control validate[required]', 'placeholder'=>'ФИО']) !!}
                         </div>
-                        <div class="form_field">
-                            <select class="turnintodropdown">
-                                <option>Регион по прописке</option>
-                                <option>Вариант</option>
-                                <option>Вариант</option>
-                                <option>Вариант</option>
-                                <option>Вариант</option>
-                            </select>
+                          <div class="form_field">
+                            {!! Form::text('registration', old('registration'), ['class' => 'form_control validate[required]', 'placeholder'=>'Регион по прописке', 'autocomplete' => 'off', 'id' => 'search_registration']) !!}
+                            <ul class="search_result_registration search_result"></ul>
                         </div>
                         <div class="row">
                             <div class="form_field form_field_age">
-                                <select class="turnintodropdown">
-                                    <option>Возраст</option>
-                                    <option>18</option>
-                                    <option>19</option>
-                                    <option>20</option>
-                                    <option>21</option>
-                                </select>
+                                 {!! Form::selectRange('age', 18, 85, 18, ['class' => 'turnintodropdown validate[required]']) !!}
                             </div>
                             <div class="form_field form_field_phone">
-                                <input type="text" class="form_control form_phone" placeholder="Телефон">
+                                {!! Form::text('phone', old('phone'), ['class' => 'form_control form_phone validate[required]', 'placeholder' => 'Телефон']) !!}
+
                             </div>
                         </div>
                         <div class="form_field">
-                            <select class="turnintodropdown">
-                                <option>Первоначальный взнос</option>
-                                <option>Вариант</option>
-                                <option>Вариант</option>
-                                <option>Вариант</option>
-                                <option>Вариант</option>
-                            </select>
+                            {!! Form::select('fee', [
+                '0' => 'Первоначальный взнос 0%',
+                 '10' => 'Первоначальный взнос 10%',
+                 '20' => 'Первоначальный взнос 20%',
+                 '30' => 'Первоначальный взнос 30%',
+                 '40' => 'Первоначальный взнос 40%',
+                 '50' => 'Первоначальный взнос 50%',
+                 '60' => 'Первоначальный взнос 60%',
+                 '70' => 'Первоначальный взнос 70%',
+                 '80' => 'Первоначальный взнос 80%',
+                ], '0', ['class' => 'turnintodropdown validate[required]']
+                ) !!}
                         </div>
-                        <input type="submit" class="btn" value="Купить в кредит" />
-                    </form>
+                {!! Form::submit('Купить в кредит', ['class'=>'btn']) !!}
+                {!! Form::close() !!}
                 </div>
                 <div class="map">
                     <div>
-                        <div class="address">г. Санкт-Петербург,ул. Кушелевская дорога, д. 20</div>
-                        <div class="times">Ежедневно с 9:00 до 20:00</div>
+                        <div class="address">{!! getSetting('FRONTEND_ADDRESS') !!}</div>
+                        <div class="times">{!! getSetting('FRONTEND_TIMES') !!}</div>
                     </div>
                 </div>
                 <div>
@@ -187,6 +219,43 @@
 
 @section('js')
     <script type="text/javascript">
+        $(function(){
+            $("#search_registration").on("change keyup input click", function() {
+                if (this.value.length >= 2){
+
+                    $.ajax({
+                        type: 'GET',
+                        url: '/ajax?action=search_registration&registration=' + this.value,
+                        dataType : "json",
+                        success: function(data){
+                            if (data != null && data.item != null) {
+                                var html = '';
+
+                                for(var i=0; i < data.item.length; i++) {
+                                    html += '<li data-item="' + data.item[i].id + '">' + data.item[i].name + '</li>';
+                                }
+
+                                console.log(html);
+
+                                if (html != '')
+                                    $(".search_result_registration").html(html).fadeIn();
+                                else
+                                    $(".search_result_registration").fadeOut();
+                            }
+                        }
+                    })
+                }
+            })
+
+            $(".search_result_registration").hover(function(){
+                $(".search_registration").blur();
+            })
+
+            $(".search_result_registration").on("click", "li", function(){
+                $("#search_registration").val($(this).text());
+                $(".search_result_registration").fadeOut();
+            })
+        })
 
     </script>
 @endsection

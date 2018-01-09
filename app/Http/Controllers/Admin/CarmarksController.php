@@ -176,7 +176,7 @@ class CarmarksController extends Controller
                             $carModel->id_car_type = self::IDCARTYPE;
                             $carModel->name = $row_folder[0]['name'];
                             $carModel->name_rus = TextHelper::Lat2ru($row_folder[0]['name']);
-                            $carModel->slug = trim(strtolower($row_folder->model));
+                            $carModel->slug = TextHelper::slug($row_folder->model);
                             $carModel->meta_title = $row_folder[0]['name'];
                             $carModel->published  = 1;
 

@@ -111,11 +111,6 @@ class CatalogUsedCarsController extends Controller
     public function update(CatalogUsedCarsRequest $request, CatalogUsedCar $catalogUsedCar)
     {
         $request->request->remove('id_mark');
-      //  $request->request->remove('id_model');
-
-       // if (!empty($file)) {
-        //    CatalogUsedCar::where()
-      //  }
 
         $images = [];
 

@@ -112,10 +112,36 @@ class DashboardController extends Controller
 
                     break;
 
+                case 'search_modifications':
+
+                    $modifications = CarModification::select('car_modifications.id', 'car_modifications.name', 'car_modifications.body_type', 'car_modifications.year_begin', 'car_modifications.year_end')
+                                    ->join('car_models', 'car_models.id', '=', 'car_modifications.id_car_model')
+                                    ->join('car_marks', 'car_marks.id', '=', 'car_models.id_car_mark')
+                                    ->where('car_marks.name', 'like', $request->mark)
+                                    ->where('car_models.name', 'like', $request->model)
+                                    ->distinct()
+                                    ->get();
+
+                    $rows = [];
+
+                    foreach($modifications as $modification) {
+                        $rows[] = [
+                            "id" => $modification->id,
+                            "name" => $modification->name,
+                            "body_type" => $modification->body_type,
+                            "year_begin" => $modification->year_begin,
+                            "year_end" => $modification->year_end,
+                        ];
+                    }
+
+                    return response()->json(['item' => $rows]);
+
+                    break;
+
                 case 'get_modifications':
 
                     $modifications = CarModification::where('id_car_model', $request->id_car_model)
-                        ->get();
+                                    ->get();
 
                     $rows = [];
 

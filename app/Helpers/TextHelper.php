@@ -88,6 +88,8 @@ class TextHelper
      */
     public static function slug($text)
     {
+        $text = trim($text);
+
         $tr = [
             "А" => "A",
             "Б" => "B",
