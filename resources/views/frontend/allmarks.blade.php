@@ -23,7 +23,7 @@
             <?php $i=0; ?>
             @foreach($marks as $mark)
                 @if($i == 0) <tr> @endif
-                    <td><a href="/auto/used/{!! $mark->slug !!}">{!! $mark->name !!}</a><span> {!! $mark->countusedcars !!} </span></td>
+                    <td><a href="{!! url('/auto/used/' .  $mark->slug) !!}">{!! $mark->name !!}</a><span> {!! $mark->countusedcars !!} </span></td>
                     <?php $i++; ?>
                     @if($i == 6) </tr> <?php $i=0; ?> @endif
             @endforeach

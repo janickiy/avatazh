@@ -70,9 +70,9 @@
                         </div>
                         <ul>
                             <li><span>Год выпуска</span><strong>{{ $detail->year }} г</strong></li>
-                            <li><span>Пробег</span><strong>{{ $detail->mileage }} км</strong></li>
+                            <li><span>Пробег</span><strong>{{ number_format($detail->mileage,0,'',' ') }} км</strong></li>
                             <li><span>Кузов</span><strong>{{ $detail->body }}</strong></li>
-                            <li><span>Двигатель</span><strong>{{ $detail->power }} л., {{ $detail->engine_type }}</strong></li>
+                            <li><span>Двигатель</span><strong>{{ number_format($detail->power,0,'',' ')  }} л., {{ $detail->engine_type }}</strong></li>
                             <li><span>КПП</span><strong>{{ $detail->gearbox }}</strong></li>
                             <li><span>Привод</span><strong>{{ $detail->drive }} привод</strong></li>
                             <li><span>Цвет</span><strong>{{ $detail->color }}</strong></li>
@@ -162,58 +162,33 @@
                 </div>
             </div>
         </div>
+
+        @if(count($similarCars) > 0)
+
+
         <section class="similar">
             <h3>Похожие автомобили с пробегом:</h3>
             <div class="items_list row">
                 <ul>
+
+                    @foreach($similarCars as $similarCar)
+
                     <li class="item">
                         <div class="item_pic"><img src="images/item.jpg" /></div>
                         <div class="idem_desc">
-                            <a class="item_name" href="">Nissan NP300</a>
-                            <p>2012 г., 56 274 км, Дизель, КППМКПП</p>
-                            <div class="item_price">758 000<span class="rub">o</span></div>
-                            <a class="item_btn" href="">Подробнее</a>
+                            <a class="item_name" href="{!! url('/auto/used/detail/' .  $similarCar->id) !!}">{!! $similarCar->mark !!} {!! $similarCar->model !!}</a>
+                            <p>{!! $similarCar->year !!} г., {!! number_format($similarCar->mileage,0,'',' ') !!} км, {!! $similarCar->engine_type !!}, КПП {!! $similarCar->gearbox !!}</p>
+                            <div class="item_price">{!! number_format($similarCar->price,0,'',' ') !!}<span class="rub">o</span></div>
+                            <a class="item_btn" href="{!! url('/auto/used/detail/' .  $similarCar->id) !!}">Подробнее</a>
                         </div>
                     </li>
-                    <li class="item">
-                        <div class="item_pic"><img src="images/item.jpg" /></div>
-                        <div class="idem_desc">
-                            <a class="item_name" href="">Nissan NP300</a>
-                            <p>2012 г., 56 274 км, Дизель, КППМКПП</p>
-                            <div class="item_price">758 000<span class="rub">o</span></div>
-                            <a class="item_btn" href="">Подробнее</a>
-                        </div>
-                    </li>
-                    <li class="item">
-                        <div class="item_pic"><img src="images/item.jpg" /></div>
-                        <div class="idem_desc">
-                            <a class="item_name" href="">Nissan NP300</a>
-                            <p>2012 г., 56 274 км, Дизель, КППМКПП</p>
-                            <div class="item_price">758 000<span class="rub">o</span></div>
-                            <a class="item_btn" href="">Подробнее</a>
-                        </div>
-                    </li>
-                    <li class="item">
-                        <div class="item_pic"><img src="images/item.jpg" /></div>
-                        <div class="idem_desc">
-                            <a class="item_name" href="">Nissan NP300</a>
-                            <p>2012 г., 56 274 км, Дизель, КППМКПП</p>
-                            <div class="item_price">758 000<span class="rub">o</span></div>
-                            <a class="item_btn" href="">Подробнее</a>
-                        </div>
-                    </li>
-                    <li class="item">
-                        <div class="item_pic"><img src="images/item.jpg" /></div>
-                        <div class="idem_desc">
-                            <a class="item_name" href="">Nissan NP300</a>
-                            <p>2012 г., 56 274 км, Дизель, КППМКПП</p>
-                            <div class="item_price">758 000<span class="rub">o</span></div>
-                            <a class="item_btn" href="">Подробнее</a>
-                        </div>
-                    </li>
+
+                    @endforeach
                 </ul>
             </div>
         </section>
+
+        @endif
     </section>
 @endsection
 

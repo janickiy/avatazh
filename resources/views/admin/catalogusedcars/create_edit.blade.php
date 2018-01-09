@@ -91,9 +91,11 @@
                         {!! Form::label('model', 'Модель *', ['class' => 'control-label col-md-2']) !!}
                         <div id="search_result_model" class="col-md-4">
 
-                                {!! Form::select('model', $model_list
+                                {!! Form::select('model', isset($model_list) ? $model_list : [null]
                                 , isset($catalogusedcar) ? $catalogusedcar->model : null, ['class' => 'form-control select2 validate[required]']
                                 ) !!}
+
+
                         </div>
                     </div>
 
@@ -180,6 +182,7 @@
                     <div class="form-group">
                         {!! Form::label('wheel', 'Руль *', ['class' => 'control-label col-md-2']) !!}
                         <div class="col-md-4">
+
                             {!! Form::select('wheel', [
                              'Левый' => 'Левый',
                              'Правы' => 'Правый',
@@ -239,6 +242,24 @@
                     </div>
 
                     <div class="form-group">
+                        {!! Form::label('equipment', 'Комплектация', ['class' => 'control-label col-md-2']) !!}
+                        <div class="col-md-4">
+
+
+
+
+                            {!! Form::select('feeling[]', [
+                               'Happy' => ['Joyous', 'Glad', 'Ecstatic'],
+   'Sad' => ['Bereaved', 'Pensive', 'Down'],
+                              ], isset($catalogusedcar) ? $catalogusedcar->feeling : null, ['class' => 'form-control validate[required]','multiple'=>'multiple' ]
+                              ) !!}
+
+
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
                         {!! Form::label('published', 'Публиковать', ['class' => 'control-label col-md-2']) !!}
                         <div class="col-sm-10">
                             <label class="check">{!! Form::checkbox('published', 1, isset($catalogusedcar) ? ($catalogusedcar->published == 1 ? true: false) : true, ['class'=>'minimal']) !!}
@@ -246,6 +267,16 @@
                             </label>
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        {!! Form::label('special', 'Спец предложение', ['class' => 'control-label col-md-2']) !!}
+                        <div class="col-sm-10">
+                            <label class="check">{!! Form::checkbox('special', 1, isset($catalogusedcar) ? ($catalogusedcar->special == 1 ? true: false) : false, ['class'=>'minimal']) !!}
+                                Да
+                            </label>
+                        </div>
+                    </div>
+
 
                     <div class="form-group">
                         <div class="col-md-8 col-md-offset-2">

@@ -29,6 +29,7 @@ class CatalogUsedCarsController extends Controller
      */
     public function create()
     {
+
         return view('admin.catalogusedcars.create_edit');
     }
 
@@ -162,6 +163,12 @@ class CatalogUsedCarsController extends Controller
 
         if ($request->input('published')) {
             $catalogUsedCar->published = 1;
+        }
+
+        $catalogUsedCar->special = 0;
+
+        if ($request->input('special')) {
+            $catalogUsedCar->special = 1;
         }
 
         $catalogUsedCar->updated_at = \Carbon::now();

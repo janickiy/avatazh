@@ -34,7 +34,9 @@
     },
     "files": [
       "app/Helpers/SettingsHelper.php",
-      "app/Helpers/RolesHelper.php"
+      "app/Helpers/RolesHelper.php",
+      "app/Helpers/ParserHelper.php",
+      "app/Helpers/TextHelper.php"
     ]
   },
   "autoload-dev": {

@@ -29,7 +29,24 @@ class FrontendController extends Controller
             ->take(23)
             ->get();
 
-        return view('frontend.index', compact('marks'))->with('title', 'Главная');
+        $numberCars = CatalogUsedCar::where('published', 1)
+            ->count();
+
+        $soldLastWeek = CatalogUsedCar::where('published', 0)
+            ->count();
+
+        $specialOffer = CatalogUsedCar::where('published', 1)
+            ->where('special', 1)
+            ->orderByRaw('RAND()')
+            ->take(7)
+            ->get();
+
+        $newCars = CatalogUsedCar::where('published', 1)
+            ->orderBy('created_at')
+            ->paginate(10);
+
+
+        return view('frontend.index', compact('marks', 'numberCars', 'soldLastWeek', 'specialOffer', 'newCars'))->with('title', 'Главная');
     }
 
     public function components()
@@ -106,7 +123,8 @@ class FrontendController extends Controller
                     $search_mark = trim(strip_tags(stripcslashes(htmlspecialchars($request->mark))));
 
                     $marks = CarMark::where('published', 1)
-                    ->where('name', 'LIKE', '%' . $search_mark . '%')->get();
+                            ->where('name', 'LIKE', '%' . $search_mark . '%')
+                            ->get();
 
                     $rows = [];
 
@@ -370,8 +388,6 @@ class FrontendController extends Controller
             ->where('published', 1)
             ->paginate(10);
 
-
-
         return view('frontend.usedauto.model', compact('modifications','model_list'))->with('title', 'Автомобили с пробегом');
     }
 
@@ -384,7 +400,14 @@ class FrontendController extends Controller
         $detail = CatalogUsedCar::where('id', $id)->get()->first();
 
         if ($detail) {
-            return view('frontend.usedauto.detail', compact('detail','detail'));
+            $similarCars = CatalogUsedCar::where('published', 1)
+                ->where('mark', 'like', $detail->mark)
+                ->where('model', 'like', '%' . $detail->model . '%')
+                ->orderByRaw('RAND()')
+                ->take(5)
+                ->get();
+
+            return view('frontend.usedauto.detail', compact('detail','similarCars'))->with('title', $detail->mark . ' ' . $detail->model);
         }
 
         abort(404);

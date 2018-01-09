@@ -7,7 +7,6 @@ use App\Http\Requests;
 use App\Http\Requests\CarMarksRequest;
 use App\Http\Requests\CarMarksImportRequest;
 use App\Http\Controllers\Controller;
-use App\Helpers\TextHelper;
 use App\CarMark;
 use App\CarModel;
 use App\CarModification;
@@ -160,11 +159,11 @@ class CarmarksController extends Controller
             foreach($xml->mark as $row_mark) {
                 if ($row_mark->code) {
                     $carMarks = new CarMark;
-                    $carMarks->name = TextHelper::formatMarkNames($row_mark->code);
-                    $carMarks->name_rus = TextHelper::formatMarkNames(TextHelper::Lat2ru($row_mark->code));
+                    $carMarks->name = formatMarkNames($row_mark->code);
+                    $carMarks->name_rus = formatMarkNames(Lat2ru($row_mark->code));
                     $carMarks->id_car_type = self::IDCARTYPE;
                     $carMarks->slug = trim(strtolower($row_mark->code));
-                    $carMarks->meta_title = TextHelper::formatMarkNames($row_mark->code);
+                    $carMarks->meta_title = formatMarkNames($row_mark->code);
                     $carMarks->published = 1;
 
                     if ($carMarks->save()) {
@@ -175,8 +174,8 @@ class CarmarksController extends Controller
                             $carModel->id_car_mark = $id_car_mark;
                             $carModel->id_car_type = self::IDCARTYPE;
                             $carModel->name = $row_folder[0]['name'];
-                            $carModel->name_rus = TextHelper::Lat2ru($row_folder[0]['name']);
-                            $carModel->slug = TextHelper::slug($row_folder->model);
+                            $carModel->name_rus = Lat2ru($row_folder[0]['name']);
+                            $carModel->slug = slug($row_folder[0]['name']);
                             $carModel->meta_title = $row_folder[0]['name'];
                             $carModel->published  = 1;
 

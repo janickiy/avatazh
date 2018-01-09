@@ -50,6 +50,7 @@
                     <th>Привод</th>
                     <th>Кузов</th>
                     <th>Фото</th>
+                    <th>Спец. предложение</th>
                     <th>Статус</th>
                     <th>Действия</th>
                 </tr>
@@ -99,6 +100,7 @@
                 {data: 'drive', name: 'drive'},
                 {data: 'body', name: 'body'},
                 {data: 'has_images', name: 'has_images'},
+                {data: 'special', name: 'special'},
                 {data: 'status', name: 'status'},
                 {data: 'actions', name: 'actions', orderable: false, searchable: false}
             ]
