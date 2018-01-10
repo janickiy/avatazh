@@ -104,7 +104,7 @@ class UsersController extends Controller
     public function update(UserRequest $request, User $user)
     {
         if ($request->hasFile('avatar')) {
-            $destinationPath = public_path() . '/uploads/avatars';
+            $destinationPath = public_path() . PATH_AVATARS;
 
             if ($user->avatar != "uploads/avatars/avatar.png") {
                 @unlink($user->avatar);

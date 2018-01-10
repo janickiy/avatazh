@@ -257,9 +257,27 @@
                     </div>
 
                     <div class="form-group">
+                        {!! Form::label('verified', 'Проверено', ['class' => 'control-label col-md-2']) !!}
+                        <div class="col-sm-10">
+                            <label class="check">{!! Form::checkbox('verified', 1, isset($catalogusedcar) ? ($catalogusedcar->verified == 1 ? true : false) : false, ['class'=>'minimal']) !!}
+                                Да
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('tradein', 'Доступно в Trade-in', ['class' => 'control-label col-md-2']) !!}
+                        <div class="col-sm-10">
+                            <label class="check">{!! Form::checkbox('tradein', 1, isset($catalogusedcar) ? ($catalogusedcar->tradein == 1 ? true : false) : false, ['class'=>'minimal']) !!}
+                                Да
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         {!! Form::label('special', 'Спец предложение', ['class' => 'control-label col-md-2']) !!}
                         <div class="col-sm-10">
-                            <label class="check">{!! Form::checkbox('special', 1, isset($catalogusedcar) ? ($catalogusedcar->special == 1 ? true: false) : false, ['class'=>'minimal']) !!}
+                            <label class="check">{!! Form::checkbox('special', 1, isset($catalogusedcar) ? ($catalogusedcar->special == 1 ? true : false) : false, ['class'=>'minimal']) !!}
                                 Да
                             </label>
                         </div>

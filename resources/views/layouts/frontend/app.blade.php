@@ -3,6 +3,9 @@
 <head>
 
     {!! Html::style('css/style.css') !!}
+
+    {!! Html::style('css/lightslider.css') !!}
+
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
     <meta name="description" content="@yield('meta_desc')"/>
     <meta name="keywords" content="@yield('met_keywords')"/>
@@ -12,6 +15,7 @@
     {!! Html::script('js/jquery-1.11.1.min.js') !!}
     {!! Html::script('js/select.js') !!}
     {!! Html::script('js/jquery.maskedinput.js') !!}
+    {!! Html::script('js/lightslider.js') !!}
 
     @yield('css')
 

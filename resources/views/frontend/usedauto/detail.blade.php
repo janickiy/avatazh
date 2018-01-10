@@ -42,9 +42,29 @@
             background: #F9FF00;
         }
 
+        ul{
+            list-style: none outside none;
+            padding-left: 0;
+            margin: 0;
+        }
+        .demo .item{
+            margin-bottom: 60px;
+        }
+        .content-slider li{
+            background-color: #ed3020;
+            text-align: center;
+            color: #FFF;
+        }
+        .content-slider h3 {
+            margin: 0;
+            padding: 70px 0;
+        }
+        .demo{
+            width: 800px;
+        }
+
     </style>
 @endsection
-
 
 @section('marks')
 
@@ -57,12 +77,30 @@
             <div class="detail">
                 <div class="row">
                     <div class="detail_image_block">
-                        <div class="main_pic"><img src="images/item.jpg" /></div>
-                        <ul class="more_pics">
-                            <li><a href=""><img src="images/item.jpg" /></a></li>
-                            <li><a href=""><img src="images/item.jpg" /></a></li>
-                            <li><a href=""><img src="images/item.jpg" /></a></li>
-                        </ul>
+
+                        <div class="demo">
+                            <div class="item" style="width: 280px">
+
+
+                                    @if(count($images) > 0)
+                                        <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
+
+                                            @foreach($images as $image)
+
+                                                <li data-thumb="{!! $image["small"] !!}">
+                                                    <img src="{!! $image["big"] !!}" />
+                                                </li>
+
+                                            @endforeach
+
+                                        </ul>
+                                    @endif
+
+                                </div>
+
+
+                        </div>
+
                     </div>
                     <div class="detail_main_info">
                         <div class="detail_price">
@@ -81,9 +119,8 @@
                     </div>
                 </div>
                 <div class="detail_banners row">
-                    <div><img src="images/detail_banner_1.jpg" /></div>
-                    <div><img src="images/detail_banner_2.jpg" /></div>
-                    <div><img src="images/detail_banner_3.jpg" /></div>
+                    <div>@if($detail->verified)<img src="/images/detail_banner_1.jpg" />@endif</div>
+                    <div>@if($detail->tradein)<img src="/images/detail_banner_2.jpg" />@endif</div>
                 </div>
 
                 @if(count($equipments) > 0)
@@ -151,7 +188,7 @@
                     </div>
                 </div>
                 <div>
-                    <img src="images/right_banner_detail.jpg" />
+                    <img src="/images/right_banner_detail.jpg" />
                 </div>
             </div>
         </div>
@@ -185,7 +222,29 @@
 @endsection
 
 @section('js')
+
     <script type="text/javascript">
+
+        $(document).ready(function() {
+            $("#content-slider").lightSlider({
+                loop:true,
+                keyPress:true
+            });
+            $('#image-gallery').lightSlider({
+                gallery:true,
+                item:1,
+                thumbItem:3,
+                slideMargin: 0,
+                speed:500,
+                auto:false,
+                loop:true,
+                onSliderLoad: function() {
+                    $('#image-gallery').removeClass('cS-hidden');
+                }
+            });
+        });
+
+
         $(function(){
             $("#search_registration").on("change keyup input click", function() {
                 if (this.value.length >= 2){

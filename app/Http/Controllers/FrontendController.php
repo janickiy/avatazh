@@ -409,8 +409,13 @@ class FrontendController extends Controller
 
             $equipments = unserialize($detail->equipment);
 
+           $images = unserialize($detail->image);
 
-            return view('frontend.usedauto.detail', compact('detail','similarCars', 'equipments'))->with('title', $detail->mark . ' ' . $detail->model);
+
+       //   var_dump($images);
+
+
+            return view('frontend.usedauto.detail', compact('detail','similarCars', 'equipments', 'images'))->with('title', $detail->mark . ' ' . $detail->model);
         }
 
         abort(404);

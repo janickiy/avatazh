@@ -39,8 +39,8 @@ class ImagesController extends Controller
      */
     public function store(Request $request)
     {
-        $small_path = public_path() . '/uploads/images/small/';
-        $big_path = public_path() . '/uploads/images/big/';
+        $small_path = public_path() . PATH_SMALL_IMAGES;
+        $big_path = public_path() . PATH_BIG_IMAGES;
         $file = $request->file('image');
         $category = $request->input('category');
 
@@ -84,8 +84,8 @@ class ImagesController extends Controller
     public function destroy(Request $request, Image $image)
     {
         if ($request->ajax()) {
-            $small_image = public_path() . '/uploads/images/small/' . $image->img;
-            $big_image = public_path() . '/uploads/images/big/' . $image->im;
+            $small_image = public_path() . PATH_SMALL_IMAGES . $image->img;
+            $big_image = public_path() . PATH_BIG_IMAGES . $image->im;
 
             if (file_exists($small_image)) @unlink($small_image);
             if (file_exists($big_image)) @unlink($big_image);

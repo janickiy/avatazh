@@ -51,6 +51,8 @@
                     <th>Кузов</th>
                     <th>Фото</th>
                     <th>Спец. предложение</th>
+                    <th>Проверено</th>
+                    <th>Trade-in</th>
                     <th>Статус</th>
                     <th>Действия</th>
                 </tr>
@@ -101,6 +103,8 @@
                 {data: 'body', name: 'body'},
                 {data: 'has_images', name: 'has_images'},
                 {data: 'special', name: 'special'},
+                {data: 'verified', name: 'verified'},
+                {data: 'tradein', name: 'tradein'},
                 {data: 'status', name: 'status'},
                 {data: 'actions', name: 'actions', orderable: false, searchable: false}
             ]

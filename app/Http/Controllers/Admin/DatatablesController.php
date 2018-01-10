@@ -265,6 +265,14 @@ class DatatablesController extends Controller
                 return $catalogUsedCar->special ? 'да' : 'нет';
             })
 
+            ->addColumn('verified', function ($catalogUsedCar) {
+                return $catalogUsedCar->verified ? 'да' : 'нет';
+            })
+
+            ->addColumn('tradein', function ($catalogUsedCar) {
+                return $catalogUsedCar->tradein ? 'да' : 'нет';
+            })
+
             ->addColumn('actions', function ($catalogUsedCar) {
                 $editBtn = '<a style="margin-right: 0.2em;" href="' . url('admin/catalogusedcars/' . $catalogUsedCar->id . '/edit/') . '"  title="Редактировать"><i class="fa fa-2 fa-pencil"></i></a>';
                 $deleteBtn = '&nbsp;<a href="' . url('admin/catalogusedcars/' . $catalogUsedCar->id) . '" class="message_box text-danger" data-box="#message-box-delete" data-action="DELETE" title="Удалить навсегда"><i class="fa fa-2 fa-remove"></i></a>';

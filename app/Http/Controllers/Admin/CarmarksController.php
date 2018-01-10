@@ -64,7 +64,7 @@ class CarmarksController extends Controller
         $carMark->slug = $request->input('slug');
 
         if ($request->hasFile('logo')) {
-            $logo_path = public_path() . '/uploads/mark/';
+            $logo_path = public_path() . PATH_MARK;
             $logo = $request->file('logo');
 
             $filename = str_random(20) . '.' . $logo->getClientOriginalExtension() ? : 'png';
@@ -74,7 +74,7 @@ class CarmarksController extends Controller
                 $constraint->aspectRatio();
             })->save($logo_path . $filename);
 
-            $carMark->logo = '/uploads/mark/' . $filename;
+            $carMark->logo = PATH_MARK . $filename;
         }
 
         $carMark->meta_keywords = $request->input('meta_keywords');
@@ -99,7 +99,7 @@ class CarmarksController extends Controller
         }
 
         if ($request->hasFile('logo')) {
-            $logo_path = public_path() . '/uploads/mark/';
+            $logo_path = public_path() . PATH_MARK;
             $logo = $request->file('logo');
 
             $filename = str_random(20) . '.' . $logo->getClientOriginalExtension() ? : 'png';

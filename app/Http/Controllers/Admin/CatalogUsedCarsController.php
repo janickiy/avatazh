@@ -65,8 +65,8 @@ class CatalogUsedCarsController extends Controller
         $images = [];
 
         if ($request->hasFile('image')) {
-            $small_path = public_path() . '/uploads/usedcars/small/';
-            $big_path = public_path() . '/uploads/usedcars/big/';
+            $small_path = public_path() . PATH_SMALL_USEDCARS;
+            $big_path = public_path() . PATH_BIG_USEDCARS;
             $file = $request->file('image');
 
             foreach ($file as $f) {
@@ -81,7 +81,7 @@ class CatalogUsedCarsController extends Controller
                     $constraint->aspectRatio();
                 })->save($big_path . $filename);
 
-                $images[] = ['small' => $small_path . $filename, 'big' => $big_path . $filename, 'name' => $f->getClientOriginalName()];
+                $images[] = ['small' => PATH_SMALL_USEDCARS . $filename, 'big' => PATH_BIG_USEDCARS . $filename, 'name' => $f->getClientOriginalName()];
             }
         }
 
@@ -159,13 +159,13 @@ class CatalogUsedCarsController extends Controller
 
             if ($catalogUsedCar->image) {
                 foreach (unserialize($catalogUsedCar->image) as $image) {
-                    if (file_exists($image['small'])) @unlink($image['small']);
-                    if (file_exists($image['big'])) @unlink($image['big']);
+                    if (file_exists(public_path() . $image['small'])) @unlink(public_path() . $image['small']);
+                    if (file_exists(public_path() . $image['big'])) @unlink(public_path() . $image['big']);
                 }
             }
 
-            $small_path = public_path() . '/uploads/usedcars/small/';
-            $big_path = public_path() . '/uploads/usedcars/big/';
+            $small_path = public_path() . PATH_SMALL_USEDCARS;
+            $big_path = public_path() . PATH_BIG_USEDCARS;
             $file = $request->file('image');
 
             foreach ($file as $f) {
@@ -180,7 +180,7 @@ class CatalogUsedCarsController extends Controller
                     $constraint->aspectRatio();
                 })->save($big_path . $filename);
 
-                $images[] = ['small' => $small_path . $filename, 'big' => $big_path . $filename, 'name' => $f->getClientOriginalName()];
+                $images[] = ['small' => PATH_SMALL_USEDCARS . $filename, 'big' => PATH_BIG_USEDCARS . $filename, 'name' => $f->getClientOriginalName()];
             }
         }
 
@@ -208,6 +208,18 @@ class CatalogUsedCarsController extends Controller
 
         if ($request->input('published')) {
             $catalogUsedCar->published = 1;
+        }
+
+        $catalogUsedCar->verified = 0;
+
+        if ($request->input('verified')) {
+            $catalogUsedCar->verified = 1;
+        }
+
+        $catalogUsedCar->tradein = 0;
+
+        if ($request->input('tradein')) {
+            $catalogUsedCar->tradein = 1;
         }
 
         $catalogUsedCar->special = 0;

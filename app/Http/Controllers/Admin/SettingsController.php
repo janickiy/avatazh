@@ -62,7 +62,7 @@ class SettingsController extends Controller {
 							->withInput();
 			}
 			
-            $destinationPath = public_path() . '/uploads/settings';
+            $destinationPath = public_path() . PATH_SETTINGS;
 
             $value = $setting->key_cd . '.' . $request->file('value')->getClientOriginalExtension();
 
@@ -129,7 +129,7 @@ class SettingsController extends Controller {
 			}
             @unlink($setting->value);
 
-            $destinationPath = public_path() . '/uploads/settings';
+            $destinationPath = public_path() . PATH_SETTINGS;
 
             $value = $setting->key_cd . '.' . $request->file('value')->getClientOriginalExtension();
 
