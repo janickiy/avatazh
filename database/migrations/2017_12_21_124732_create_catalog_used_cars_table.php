@@ -27,10 +27,15 @@ class CreateCatalogUsedCarsTable extends Migration
             $table->string('wheel');
             $table->string('color');
             $table->string('salon');
+            $table->string('image');
             $table->string('meta_title')->nullable();
             $table->string('meta_keywords')->nullable();
             $table->string('meta_description')->nullable();
             $table->text('description')->nullable();
+            $table->text('equipment');
+            $table->boolean('special');
+            $table->boolean('verified');
+            $table->boolean('tradein');
             $table->boolean('published')->default(1);
             $table->timestamps();
         });
