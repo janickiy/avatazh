@@ -95,7 +95,6 @@
                                 , isset($catalogusedcar) ? $catalogusedcar->model : null, ['class' => 'form-control select2 validate[required]']
                                 ) !!}
 
-
                         </div>
                     </div>
 
@@ -244,14 +243,9 @@
                     <div class="form-group">
                         {!! Form::label('equipment', 'Комплектация', ['class' => 'control-label col-md-2']) !!}
                         <div class="col-md-4">
-
-                            {!! Form::select('equipment[]', $options, isset($catalogusedcar) ? $catalogusedcar->equipment : null, ['class' => 'form-control validate[required]','multiple'=> true ]
-                              ) !!}
-
-
+                            {!! Form::select('equipment[]', $options, isset($catalogusedcar) ? $catalogusedcar->equipment : null, ['class' => 'form-control','multiple'=> true ]) !!}
                         </div>
                     </div>
-
 
                     <div class="form-group">
                         {!! Form::label('published', 'Публиковать', ['class' => 'control-label col-md-2']) !!}
@@ -270,7 +264,6 @@
                             </label>
                         </div>
                     </div>
-
 
                     <div class="form-group">
                         <div class="col-md-8 col-md-offset-2">

@@ -121,7 +121,27 @@ class CatalogUsedCarsController extends Controller
             $model_list[$model->name] = $model->name;
         }
 
-        return view('admin.catalogusedcars.create_edit')->with(compact('catalogusedcar', 'model_list'));
+        $catalogParameterCategories = CatalogParameterCategory::all();
+
+        $options = [];
+
+        foreach($catalogParameterCategories as $catalogParameterCategory) {
+            $catalogParameterValues = CatalogParameterValue::where('id_category', $catalogParameterCategory->id)
+                ->get()
+                ->toArray();
+
+            $params = [];
+
+            foreach ($catalogParameterValues  as $catalogParameterValue) {
+                $params[$catalogParameterValue['name']] = $catalogParameterValue['name'];
+            }
+
+            $options[$catalogParameterCategory->name] = $params;
+        }
+
+        if (isset($catalogusedcar->equipment)) $catalogusedcar->equipment = unserialize($catalogusedcar->equipment);
+
+        return view('admin.catalogusedcars.create_edit')->with(compact('catalogusedcar', 'model_list', 'options'));
     }
 
     /**
@@ -131,15 +151,17 @@ class CatalogUsedCarsController extends Controller
      */
     public function update(CatalogUsedCarsRequest $request, CatalogUsedCar $catalogUsedCar)
     {
-        $request->merge(['equipment' => serialize($request->equipment)]);
         $request->request->remove('id_mark');
 
         $images = [];
 
         if ($request->hasFile('image')) {
-            foreach(unserialize($catalogUsedCar->image) as $image) {
-                if (file_exists($image['small'])) @unlink($image['small']);
-                if (file_exists($image['big'])) @unlink($image['big']);
+
+            if ($catalogUsedCar->image) {
+                foreach (unserialize($catalogUsedCar->image) as $image) {
+                    if (file_exists($image['small'])) @unlink($image['small']);
+                    if (file_exists($image['big'])) @unlink($image['big']);
+                }
             }
 
             $small_path = public_path() . '/uploads/usedcars/small/';
@@ -179,6 +201,8 @@ class CatalogUsedCarsController extends Controller
         $catalogUsedCar->meta_keywords = trim($request->input('meta_keywords'));
         $catalogUsedCar->meta_description = trim($request->input('meta_description'));
         $catalogUsedCar->description = trim($request->input('description'));
+        $catalogUsedCar->equipment = serialize($request->input('equipment'));
+
         if (!empty($images)) $catalogUsedCar->image = serialize($images);
         $catalogUsedCar->published = 0;
 

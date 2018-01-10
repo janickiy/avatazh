@@ -85,25 +85,18 @@
                     <div><img src="images/detail_banner_2.jpg" /></div>
                     <div><img src="images/detail_banner_3.jpg" /></div>
                 </div>
+
+                @if(count($equipments) > 0)
                 <section>
                     <h3>Комплектация:</h3>
                     <ul class="detail_options">
-                        <li>эл.привод зеркал</li>
-                        <li>тканевый салон</li>
-                        <li>тонировка</li>
-                        <li>парктроник</li>
-                        <li>корректор фар</li>
-                        <li>ABS</li>
-                        <li>4 эл.стеклоподъемника</li>
-                        <li>ГУР</li>
-                        <li>центральный замок</li>
-                        <li>климат-контроль</li>
-                        <li>обогрев заднего стекла</li>
-                        <li>2 Air-Bag</li>
-                        <li>омыватели фар</li>
-                        <li>иммобилайзер</li>
+                        @foreach($equipments as $equipment)
+                        <li>{!! $equipment !!}</li>
+                        @endforeach
                     </ul>
                 </section>
+                @endif
+
                 <section>
                     @if ($detail->description)
                     <h3>Комментарии продавца:</h3>
@@ -164,7 +157,6 @@
         </div>
 
         @if(count($similarCars) > 0)
-
 
         <section class="similar">
             <h3>Похожие автомобили с пробегом:</h3>
