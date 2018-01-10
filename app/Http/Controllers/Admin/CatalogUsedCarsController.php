@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Http\Requests\CatalogUsedCarsRequest;
 use App\Http\Controllers\Controller;
 use App\CatalogUsedCar;
+use App\CatalogParameterCategory;
+use App\CatalogParameterValue;
 use Intervention\Image\Facades\Image as ImageInt;
 
 class CatalogUsedCarsController extends Controller
@@ -29,8 +31,25 @@ class CatalogUsedCarsController extends Controller
      */
     public function create()
     {
+        $catalogParameterCategories = CatalogParameterCategory::all();
 
-        return view('admin.catalogusedcars.create_edit');
+        $options = [];
+
+        foreach($catalogParameterCategories as $catalogParameterCategory) {
+            $catalogParameterValues = CatalogParameterValue::where('id_category', $catalogParameterCategory->id)
+                                        ->get()
+                                        ->toArray();
+
+            $params = [];
+
+            foreach ($catalogParameterValues  as $catalogParameterValue) {
+                $params[$catalogParameterValue['name']] = $catalogParameterValue['name'];
+            }
+
+            $options[$catalogParameterCategory->name] = $params;
+        }
+
+        return view('admin.catalogusedcars.create_edit')->with(compact('options'));
     }
 
     /**
@@ -39,6 +58,7 @@ class CatalogUsedCarsController extends Controller
      */
     public function store(CatalogUsedCarsRequest $request)
     {
+        $request->merge(['equipment' => serialize($request->equipment)]);
         $request->request->remove('id_mark');
         $request->request->remove('id_model');
 
@@ -111,6 +131,7 @@ class CatalogUsedCarsController extends Controller
      */
     public function update(CatalogUsedCarsRequest $request, CatalogUsedCar $catalogUsedCar)
     {
+        $request->merge(['equipment' => serialize($request->equipment)]);
         $request->request->remove('id_mark');
 
         $images = [];

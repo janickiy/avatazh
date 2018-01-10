@@ -245,13 +245,7 @@
                         {!! Form::label('equipment', 'Комплектация', ['class' => 'control-label col-md-2']) !!}
                         <div class="col-md-4">
 
-
-
-
-                            {!! Form::select('feeling[]', [
-                               'Happy' => ['Joyous', 'Glad', 'Ecstatic'],
-   'Sad' => ['Bereaved', 'Pensive', 'Down'],
-                              ], isset($catalogusedcar) ? $catalogusedcar->feeling : null, ['class' => 'form-control validate[required]','multiple'=>'multiple' ]
+                            {!! Form::select('equipment[]', $options, isset($catalogusedcar) ? $catalogusedcar->equipment : null, ['class' => 'form-control validate[required]','multiple'=> true ]
                               ) !!}
 
 
