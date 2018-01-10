@@ -1,12 +1,10 @@
 /vendor
 /node_modules
 /public/storage
-/uploads/avatars/*
-/uploads/images/*
-/uploads/images/small/*
-/uploads/mark/*
-/uploads/usedcars/small/*
-/uploads/usedcars/big/*
+/uploads/avatars
+/uploads/images
+/uploads/mark
+/uploads/usedcars
 Homestead.yaml
 Homestead.json
 .env
