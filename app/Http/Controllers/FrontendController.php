@@ -264,7 +264,10 @@ class FrontendController extends Controller
 
     public function allUsedAuto()
     {
-        return view('frontend.auto')->with('title', 'Автомобили с пробегом');
+        $usedCars = CatalogUsedCar::where('published', 1)
+            ->paginate(12);
+
+        return view('frontend.auto', compact('usedCars'))->with('title', 'Автомобили с пробегом');
     }
 
     public function credit()
@@ -408,12 +411,7 @@ class FrontendController extends Controller
                 ->get();
 
             $equipments = unserialize($detail->equipment);
-
-           $images = unserialize($detail->image);
-
-
-       //   var_dump($images);
-
+            $images = unserialize($detail->image);
 
             return view('frontend.usedauto.detail', compact('detail','similarCars', 'equipments', 'images'))->with('title', $detail->mark . ' ' . $detail->model);
         }

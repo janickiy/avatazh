@@ -81,7 +81,6 @@
                         <div class="demo">
                             <div class="item" style="width: 280px">
 
-
                                     @if(count($images) > 0)
                                         <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
 
@@ -97,7 +96,6 @@
                                     @endif
 
                                 </div>
-
 
                         </div>
 
@@ -203,7 +201,7 @@
                     @foreach($similarCars as $similarCar)
 
                     <li class="item">
-                        <div class="item_pic"><img src="images/item.jpg" /></div>
+                        <div class="item_pic"><img src="{!! mainSmallPic($similarCar->image) !!}" /></div>
                         <div class="idem_desc">
                             <a class="item_name" href="{!! url('/auto/used/detail/' .  $similarCar->id) !!}">{!! $similarCar->mark !!} {!! $similarCar->model !!}</a>
                             <p>{!! $similarCar->year !!} г., {!! number_format($similarCar->mileage,0,'',' ') !!} км, {!! $similarCar->engine_type !!}, КПП {!! $similarCar->gearbox !!}</p>
@@ -214,6 +212,7 @@
 
                     @endforeach
                 </ul>
+
             </div>
         </section>
 

@@ -410,3 +410,15 @@ function getIP() {
 
         return ($ip);
 }
+
+function mainSmallPic($images)
+{
+    $images = unserialize($images);
+    return  $images[0]['small'];
+}
+
+function mainBigPic($images)
+{
+    $images = unserialize($images);
+    return  $images[0]['big'];
+}

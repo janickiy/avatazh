@@ -83,7 +83,6 @@
                 </div>
             </div>
 
-
             @if (count($specialOffer) > 0)
 
             <ul>
@@ -91,12 +90,12 @@
                 @foreach($specialOffer as $special)
 
                 <li class="item">
-                    <div class="item_pic"><img src="images/item.jpg" /></div>
+                    <div class="item_pic"><img src="{!! mainSmallPic($special->image) !!}" /></div>
                     <div class="idem_desc">
-                        <a class="item_name" href="/auto/used/detail/{!! $special->id !!}">{!! $special->mark !!} {!! $special->model !!}</a>
+                        <a class="item_name" href="{!! url('/auto/used/detail/' . $special->id) !!}">{!! $special->mark !!} {!! $special->model !!}</a>
                         <p>{!! $special->year !!} г., {!! number_format($special->mileage,0,'',' ') !!} км, {!! $special->engine_type !!}, КПП {!! $special->gearbox !!}</p>
                         <div class="item_price">{!! number_format($special->price,0,'',' ') !!}<span class="rub">o</span></div>
-                        <a class="item_btn" href="/auto/used/detail/{!! $special->id !!}">Подробнее</a>
+                        <a class="item_btn" href="{!! url('/auto/used/detail/' . $special->id) !!}">Подробнее</a>
                     </div>
                 </li>
 
@@ -116,12 +115,12 @@
 
                 @foreach($newCars as $newCar)
                 <li class="item">
-                    <div class="item_pic"><img src="images/item.jpg" /></div>
+                    <div class="item_pic"><img src="{!! mainSmallPic($newCar->image) !!}" /></div>
                     <div class="idem_desc">
-                        <a class="item_name" href="/auto/used/detail/{!! $newCar->id !!}">{!! $newCar->mark !!} {!! $newCar->model !!}</a>
+                        <a class="item_name" href="{!! url('/auto/used/detail/' . $newCar->id) !!}">{!! $newCar->mark !!} {!! $newCar->model !!}</a>
                         <p>{!! $newCar->year !!} г., {!! number_format($newCar->mileage,0,'',' ') !!} км, {!! $newCar->engine_type !!}, КПП {!! $newCar->gearbox !!}</p>
                         <div class="item_price">{!! number_format($newCar->price,0,'',' ') !!}<span class="rub">o</span></div>
-                        <a class="item_btn" href="/auto/used/detail/{!! $newCar->id !!}">Подробнее</a>
+                        <a class="item_btn" href="{!! url('/auto/used/detail/' . $newCar->id) !!}">Подробнее</a>
                     </div>
                 </li>
                 @endforeach
@@ -133,10 +132,7 @@
             @endif
         </div>
     </section>
-    </div>
-
-
-
+</div>
 
 @endsection
 

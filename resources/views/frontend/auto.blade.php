@@ -20,119 +20,33 @@
         <h1>Автомобили с пробегом</h1>
         <div class="items_list catalog_list row">
             <div class="right_banner_block">
-                <img src="images/right_banner.jpg" />
+                <img src="/images/right_banner.jpg" />
             </div>
+
+            @if(count($usedCars)>0)
             <ul>
+
+                @foreach($usedCars as $car)
+
                 <li class="item">
-                    <div class="item_pic"><img src="images/item.jpg" /></div>
+                    <div class="item_pic"><img src="{!! mainSmallPic($car->image) !!}" /></div>
                     <div class="idem_desc">
-                        <a class="item_name" href="">Nissan NP300</a>
-                        <p>2012 г., 56 274 км, Дизель, КППМКПП</p>
-                        <div class="item_price">758 000<span class="rub">o</span></div>
-                        <a class="item_btn" href="">Подробнее</a>
+                        <a class="item_name" href="{{ url('/auto/used/detail/' .  $car->id) }}">{{ $car->mark }} {{ $car->model }}</a>
+                        <p>{{ $car->year }} г., {{ number_format($car->mileage,0,'',' ') }} км, {{ $car->engine_type }}, КПП {{ $car->gearbox }}</p>
+                        <div class="item_price">{{ number_format($car->price,0,'',' ') }}<span class="rub">o</span></div>
+                        <a class="item_btn" href="{{ url('/auto/used/detail/' .  $car->id) }}">Подробнее</a>
                     </div>
                 </li>
-                <li class="item">
-                    <div class="item_pic"><img src="images/item.jpg" /></div>
-                    <div class="idem_desc">
-                        <a class="item_name" href="">Nissan NP300</a>
-                        <p>2012 г., 56 274 км, Дизель, КППМКПП</p>
-                        <div class="item_price">758 000<span class="rub">o</span></div>
-                        <a class="item_btn" href="">Подробнее</a>
-                    </div>
-                </li>
-                <li class="item">
-                    <div class="item_pic"><img src="images/item.jpg" /></div>
-                    <div class="idem_desc">
-                        <a class="item_name" href="">Nissan NP300</a>
-                        <p>2012 г., 56 274 км, Дизель, КППМКПП</p>
-                        <div class="item_price">758 000<span class="rub">o</span></div>
-                        <a class="item_btn" href="">Подробнее</a>
-                    </div>
-                </li>
-                <li class="item">
-                    <div class="item_pic"><img src="images/item.jpg" /></div>
-                    <div class="idem_desc">
-                        <a class="item_name" href="">Nissan NP300</a>
-                        <p>2012 г., 56 274 км, Дизель, КППМКПП</p>
-                        <div class="item_price">758 000<span class="rub">o</span></div>
-                        <a class="item_btn" href="">Подробнее</a>
-                    </div>
-                </li>
-                <li class="item">
-                    <div class="item_pic"><img src="images/item.jpg" /></div>
-                    <div class="idem_desc">
-                        <a class="item_name" href="">Nissan NP300</a>
-                        <p>2012 г., 56 274 км, Дизель, КППМКПП</p>
-                        <div class="item_price">758 000<span class="rub">o</span></div>
-                        <a class="item_btn" href="">Подробнее</a>
-                    </div>
-                </li>
-                <li class="item">
-                    <div class="item_pic"><img src="images/item.jpg" /></div>
-                    <div class="idem_desc">
-                        <a class="item_name" href="">Nissan NP300</a>
-                        <p>2012 г., 56 274 км, Дизель, КППМКПП</p>
-                        <div class="item_price">758 000<span class="rub">o</span></div>
-                        <a class="item_btn" href="">Подробнее</a>
-                    </div>
-                </li>
-                <li class="item">
-                    <div class="item_pic"><img src="images/item.jpg" /></div>
-                    <div class="idem_desc">
-                        <a class="item_name" href="">Nissan NP300</a>
-                        <p>2012 г., 56 274 км, Дизель, КППМКПП</p>
-                        <div class="item_price">758 000<span class="rub">o</span></div>
-                        <a class="item_btn" href="">Подробнее</a>
-                    </div>
-                </li>
-                <li class="item">
-                    <div class="item_pic"><img src="images/item.jpg" /></div>
-                    <div class="idem_desc">
-                        <a class="item_name" href="">Nissan NP300</a>
-                        <p>2012 г., 56 274 км, Дизель, КППМКПП</p>
-                        <div class="item_price">758 000<span class="rub">o</span></div>
-                        <a class="item_btn" href="">Подробнее</a>
-                    </div>
-                </li>
-                <li class="item">
-                    <div class="item_pic"><img src="images/item.jpg" /></div>
-                    <div class="idem_desc">
-                        <a class="item_name" href="">Nissan NP300</a>
-                        <p>2012 г., 56 274 км, Дизель, КППМКПП</p>
-                        <div class="item_price">758 000<span class="rub">o</span></div>
-                        <a class="item_btn" href="">Подробнее</a>
-                    </div>
-                </li>
-                <li class="item">
-                    <div class="item_pic"><img src="images/item.jpg" /></div>
-                    <div class="idem_desc">
-                        <a class="item_name" href="">Nissan NP300</a>
-                        <p>2012 г., 56 274 км, Дизель, КППМКПП</p>
-                        <div class="item_price">758 000<span class="rub">o</span></div>
-                        <a class="item_btn" href="">Подробнее</a>
-                    </div>
-                </li>
-                <li class="item">
-                    <div class="item_pic"><img src="images/item.jpg" /></div>
-                    <div class="idem_desc">
-                        <a class="item_name" href="">Nissan NP300</a>
-                        <p>2012 г., 56 274 км, Дизель, КППМКПП</p>
-                        <div class="item_price">758 000<span class="rub">o</span></div>
-                        <a class="item_btn" href="">Подробнее</a>
-                    </div>
-                </li>
-                <li class="item">
-                    <div class="item_pic"><img src="images/item.jpg" /></div>
-                    <div class="idem_desc">
-                        <a class="item_name" href="">Nissan NP300</a>
-                        <p>2012 г., 56 274 км, Дизель, КППМКПП</p>
-                        <div class="item_price">758 000<span class="rub">o</span></div>
-                        <a class="item_btn" href="">Подробнее</a>
-                    </div>
-                </li>
+
+                @endforeach
+
             </ul>
-            <a href="" class="more_cars"><img src="images/more_cars_inset.jpg" /></a>
+
+            <div class="pager">
+                {{ $usedCars->render() }}
+            </div>
+
+            @endif
         </div>
 
     </section>
