@@ -143,9 +143,8 @@
             <div class="sidebar">
                 <div class="request_form">
                     <div class="form_title">Заявка на кредит</div>
-                    {!! Form::open(['url' =>  '/request-credit', 'method' => 'post', 'class' => 'form-horizontal', 'id' => 'validate']) !!}
-                    {!! Form::hidden('mark', $detail->mark) !!}
-                    {!! Form::hidden('model', $detail->model) !!}
+                    {!! Form::open(['url' =>  '/usedcar-request-credit', 'method' => 'post', 'class' => 'form-horizontal', 'id' => 'validate']) !!}
+                    {!! Form::hidden('id_car', $detail->id) !!}
                         <div class="form_field">
                             {!! Form::text('name', old('name'), ['class' => 'form_control validate[required]', 'placeholder'=>'ФИО']) !!}
                         </div>
@@ -159,22 +158,21 @@
                             </div>
                             <div class="form_field form_field_phone">
                                 {!! Form::text('phone', old('phone'), ['class' => 'form_control form_phone validate[required]', 'placeholder' => 'Телефон']) !!}
-
                             </div>
                         </div>
                         <div class="form_field">
                             {!! Form::select('fee', [
-                '0' => 'Первоначальный взнос 0%',
-                 '10' => 'Первоначальный взнос 10%',
-                 '20' => 'Первоначальный взнос 20%',
-                 '30' => 'Первоначальный взнос 30%',
-                 '40' => 'Первоначальный взнос 40%',
-                 '50' => 'Первоначальный взнос 50%',
-                 '60' => 'Первоначальный взнос 60%',
-                 '70' => 'Первоначальный взнос 70%',
-                 '80' => 'Первоначальный взнос 80%',
-                ], '0', ['class' => 'turnintodropdown validate[required]']
-                ) !!}
+                            '0' => 'Первоначальный взнос 0%',
+                            '10' => 'Первоначальный взнос 10%',
+                            '20' => 'Первоначальный взнос 20%',
+                            '30' => 'Первоначальный взнос 30%',
+                            '40' => 'Первоначальный взнос 40%',
+                            '50' => 'Первоначальный взнос 50%',
+                            '60' => 'Первоначальный взнос 60%',
+                            '70' => 'Первоначальный взнос 70%',
+                            '80' => 'Первоначальный взнос 80%',
+                            ], '0', ['class' => 'turnintodropdown validate[required]']
+                            ) !!}
                         </div>
                 {!! Form::submit('Купить в кредит', ['class'=>'btn']) !!}
                 {!! Form::close() !!}
@@ -280,6 +278,9 @@
                 $("#search_registration").val($(this).text());
                 $(".search_result_registration").fadeOut();
             })
+
+            $(".form_phone").mask("+7 (999) 999-9999");
+
         })
 
     </script>

@@ -95,6 +95,15 @@
                 </div>
 
                 <div class="form-group">
+                    {!! Form::label('published', 'Статус', ['class' => 'control-label col-md-2']) !!}
+                    <div class="col-sm-10">
+                        <label class="check">{!! Form::checkbox('status', 1, isset($requestcredit) ? ($requestcredit->status == 1 ? true: false): false, ['class'=>'minimal']) !!}
+                            Выполнена
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
                     <div class="col-md-8 col-md-offset-2">
                         {!! Form::submit( (isset($requestcredit) ? 'Обновить': 'Добавить') . '', ['class'=>'btn btn-primary']) !!}
                     </div>

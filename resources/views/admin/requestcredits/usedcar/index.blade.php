@@ -1,9 +1,9 @@
 @extends('layouts.admin.app')
 
-@section('title', 'Заявки на автокредит')
+@section('title', 'Заявки на автокредит (Автомобили с пробегом)')
 
 @section('css')
-        <!-- DataTables -->
+<!-- DataTables -->
 {!! Html::style('assets/dist/css/datatable/dataTables.bootstrap.min.css') !!}
 
 {!! Html::style('assets/dist/css/datatable/responsive.bootstrap.min.css') !!}
@@ -17,11 +17,11 @@
         <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        <i class="fa fa-bell-o"></i> Заявки на автокредит
+        <i class="fa fa-bell-o"></i>Заявки на автокредит (Автомобили с пробегом)
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{ url('admin/dashboard') }}"><i class="fa fa-dashboard"></i> Панель управления</a></li>
-        <li class="active"><i class="fa fa-bell-o"></i> Заявки на автокредит</li>
+        <li class="active"><i class="fa fa-bell-o"></i> Заявки на автокредит (Автомобили с пробегом)</li>
     </ol>
 </section>
 
@@ -30,7 +30,7 @@
     <!-- Default box -->
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Отзывы пользователей</h3>
+            <h3 class="box-title">Заявки</h3>
             <div class="box-tools pull-right">
                 <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
                     <i class="fa fa-minus"></i>
@@ -44,13 +44,13 @@
                     <th>ID заявки</th>
                     <th>Марка</th>
                     <th>Модель</th>
-                    <th>Модификация</th>
                     <th>Первоначальный взнос</th>
                     <th>ФИО</th>
                     <th>Телефон</th>
                     <th>Возраст</th>
                     <th>Регистрация</th>
                     <th>IP</th>
+                    <th>Статус</th>
                     <th>Время заявки</th>
                     <th>Действия</th>
                 </tr>
@@ -86,18 +86,18 @@
         var table = $("#data_table").DataTable({
             processing: true,
             serverSide: true,
-            ajax: '{!! url("admin/datatables/requestcredits") !!}',
+            ajax: '{!! url("admin/datatables/requestusedcarcredits") !!}',
             columns: [
                 {data: 'id', name: 'id'},
                 {data: 'mark', name: 'mark'},
                 {data: 'model', name: 'model'},
-                {data: 'modification', name: 'modification'},
                 {data: 'fee', name: 'fee'},
                 {data: 'name', name: 'name'},
                 {data: 'phone', name: 'phone'},
                 {data: 'age', name: 'age'},
                 {data: 'registration', name: 'registration'},
                 {data: 'ip', name: 'ip'},
+                {data: 'status', name: 'status'},
                 {data: 'created_at', name: 'created_at'},
                 {data: 'actions', name: 'actions', orderable: false, searchable: false}
             ]

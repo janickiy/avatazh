@@ -70,6 +70,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/auto/used/{mark}/{model}', 'FrontendController@usedAutoModel');
     Route::get('/credit', 'FrontendController@credit');
     Route::post('/request-credit', 'FrontendController@requestCredit');
+    Route::post('/usedcar-request-credit', 'FrontendController@requestUsedCarCredit');
     Route::get('/tradein', 'FrontendController@tradeIn');
     Route::post('/request-tradein', 'FrontendController@requestTradein');
     Route::get('/reviews', 'FrontendController@reviews');
@@ -117,6 +118,7 @@ Route::group(['middleware' => 'web'], function () {
         Route::resource('catalogusedcars', 'Admin\CatalogUsedCarsController');
         Route::resource('images', 'Admin\ImagesController');
         Route::resource('requestcredits', 'Admin\RequestcreditsController');
+        Route::resource('requestusedcarcredits', 'Admin\RequestUsedcarcreditsController');
         Route::resource('requesttradeins', 'Admin\RequestTradeInsController');
 
     });

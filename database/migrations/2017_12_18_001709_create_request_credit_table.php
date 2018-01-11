@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRequestCreditsTable extends Migration
+class CreateRequestUsedcarCreditsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateRequestCreditsTable extends Migration
      */
     public function up()
     {
-        Schema::create('request_credits', function (Blueprint $table) {
+        Schema::create('request_usedcar_credits', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->comment('ФИО');
             $table->integer('age')->nullable()->comment('возвраст');
@@ -21,10 +21,8 @@ class CreateRequestCreditsTable extends Migration
             $table->integer('fee')->comment('первоначальный взнос');
             $table->string('ip')->nullable()->comment('ip');
             $table->string('registration')->comment('регион по прописке');
-            $table->string('mark')->comment('марка');
-            $table->string('model')->comment('модель');
-            $table->string('modification')->comment('комплектация');
-            $table->integer('id_car')->comment('марка');
+            $table->integer('id_car');
+            $table->boolean('status');
             $table->timestamps();
         });
     }
@@ -36,6 +34,6 @@ class CreateRequestCreditsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('request_credits');
+        Schema::drop('request_usedcar_credits');
     }
 }

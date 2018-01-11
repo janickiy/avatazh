@@ -286,6 +286,9 @@
                 $("#search_registration").val($(this).text());
                 $(".search_result_registration").fadeOut();
             })
+
+            $(".form_phone").mask("+7 (999) 999-9999");
+
         })
 
     </script>

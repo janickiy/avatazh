@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Http\Requests\RequestCreditsRequest;
+use App\Http\Requests\RequestUsedcarCreditsRequest;
 use App\Http\Controllers\Controller;
-use App\RequestCredit;
+use App\RequestUsedcarCredit;
 
-class RequestCreditsController extends Controller
+class RequestUsedcarCreditsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class RequestCreditsController extends Controller
      */
     public function index()
     {
-        return view('admin.requestcredits.car.index');
+        return view('admin.requestcredits.usedcar.index');
     }
 
     /**
@@ -30,50 +30,40 @@ class RequestCreditsController extends Controller
     }
 
     /**
-     * @param RequestCredit $requestcredit
+     * @param RequestUsedcarCredit $requestcredit
      * @return $this
      */
-    public function edit(RequestCredit $requestcredit)
+    public function edit(RequestUsedcarCredit $requestcredit)
     {
-       /// dd($review);
-        return view('admin.requestcredits.car.create_edit')->with(compact('requestcredit'));
+        return view('admin.requestcredits.usedcar.create_edit')->with(compact('requestcredit'));
     }
 
     /**
-     * @param RequestCreditsRequest $request
-     * @param RequestCredit $requestCredit
+     * @param RequestUsedcarCreditsRequest $request
+     * @param RequestUsedcarCredit $requestCredit
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(RequestCreditsRequest $request, RequestCredit $requestCredit)
+    public function update(RequestUsedcarCreditsRequest $request, RequestUsedcarCredit $requestCredit)
     {
         $requestCredit->name = trim($request->input('name'));
         $requestCredit->age = $request->input('age');
         $requestCredit->phone = trim($request->input('phone'));
         $requestCredit->email = trim($request->input('email'));
         $requestCredit->registration = trim($request->input('registration'));
-        $requestCredit->mark = trim($request->input('mark'));
-        $requestCredit->model = trim($request->input('model'));
-        $requestCredit->modification = trim($request->input('modification'));
         $requestCredit->fee = $request->input('fee');
+        $requestCredit->fee = $request->input('status');
         $requestCredit->updated_at = \Carbon::now();
-
-        $requestCredit->status = 0;
-
-        if($request->input('status')) {
-            $requestCredit->status = 1;
-        }
-
         $requestCredit->save();
 
-        return redirect('admin/requestcredits')->with('success', 'Заявка на авто № ' . $requestCredit->id . ' успешно обнавлена');
+        return redirect('admin/requestusedcarcredits')->with('success', 'Заявка на авто № ' . $requestCredit->id . ' успешно обнавлена');
     }
 
     /**
      * @param Request $request
-     * @param RequestCredit $requestCredit
+     * @param RequestUsedcarCredit $requestCredit
      * @return \Illuminate\Http\JsonResponse|string
      */
-    public function destroy(Request $request, RequestCredit $requestCredit)
+    public function destroy(Request $request, RequestUsedcarCredit $requestCredit)
     {
         if ($request->ajax()) {
             $requestCredit->delete();

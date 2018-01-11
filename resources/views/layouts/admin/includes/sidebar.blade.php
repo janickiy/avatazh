@@ -138,7 +138,7 @@
                 </ul>
             </li>
 
-            <li class="treeview {{ Request::is('admin/requesttradein*') || Request::is('admin/requestcredit*') ? 'active': '' }}">
+            <li class="treeview {{ Request::is('admin/requesttradein*') || Request::is('admin/requestcredit*') ||  Request::is('admin/requestusedcarcredit*') ? 'active': '' }}">
                 <a href="#">
                     <i class="fa fa-bell-o"></i> <span>Заявки</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
@@ -152,6 +152,12 @@
                     <li class="{{ Request::is('admin/requestcredits')? 'active': '' }}">
                         <a href="{{ url('admin/requestcredits') }}">
                             <i class="fa fa-list"></i> <span>Заявки на автокредит</span>
+                        </a>
+                    </li>
+
+                    <li class="{{ Request::is('admin/requestusedcarcredits')? 'active': '' }}">
+                        <a href="{{ url('admin/requestusedcarcredits') }}">
+                            <i class="fa fa-list"></i> <span>Заявки на автокредит<br>(автомобили с пробегом)</span>
                         </a>
                     </li>
                 </ul>

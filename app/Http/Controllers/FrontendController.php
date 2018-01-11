@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Http\Requests\RequestCreditsRequest;
 use App\Http\Requests\RequestTradeInsRequest;
 use App\Http\Requests\UserReviewsRequest;
+use App\Http\Requests\RequestUsedcarCreditsRequest;
 use App\Page;
 use App\CarMark;
 use App\CarModel;
@@ -295,8 +296,31 @@ class FrontendController extends Controller
         $request->request->remove('agree');
 
         $requestCredit = RequestCredit::create($request->except('_token'));
+        $requestCredit->ip = getIP();
         $requestCredit->save();
         return redirect('/credit')->with('success', 'Ваша заявка на автокредит отправлена. Мы свяжемся с Вами в ближайшее время!');
+    }
+
+    /**
+     * @param RequestUsedcarCreditsRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function requestUsedCarCredit(RequestUsedcarCreditsRequest $request)
+    {
+        $usedCar = CatalogUsedCar::where('published', 1)
+                    ->where('id', $request->id_car)
+                    ->get()
+                    ->first();
+
+        if ($usedCar) {
+            $requestCredit = RequestCredit::create($request->except('_token'));
+            $requestCredit->car = 'used';
+            $requestCredit->ip = getIP();
+            $requestCredit->save();
+            return redirect('/auto/used/detail/' . $request->id_car)->with('success', 'Ваша заявка на автокредит отправлена. Мы свяжемся с Вами в ближайшее время!');
+        }
+
+        abort(500);
     }
 
     public function tradeIn()
@@ -327,6 +351,7 @@ class FrontendController extends Controller
 
         $requestTradeIn = RequestTradeIn::create($request->except('_token'));
         $requestTradeIn->save();
+        $requestTradeIn->ip = getIP();
         return redirect('/tradein')->with('success', 'Ваша заявка на Trade-In отправлена. Мы свяжемся с Вами в ближайшее время!');
     }
 
