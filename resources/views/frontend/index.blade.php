@@ -8,6 +8,30 @@
 
 @section('css')
 
+    <style>
+        .select2-container .select2-selection--single {
+            height: 50px;
+            width: 120px;
+
+            }
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            line-height: 50px;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: 50px;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            color: #747474;
+        }
+
+        .select2-container--default .select2-results__option--highlighted[aria-selected] {
+            background-color: #ee8116;
+
+        }
+
+    </style>
+
 @endsection
 
 @section('marks')
@@ -21,21 +45,22 @@
     </div>
     <div class="search_bloсk_container row">
         <div class="search_bloсk select">
-            <select class="turnintodropdown">
+            <select id="mark" class="select2">
                 <option>Марка</option>
-                <option>Вариант</option>
-                <option>Вариант</option>
-                <option>Вариант</option>
-                <option>Вариант</option>
+
+                @foreach($mark_search as $mark)
+                    <option value="{{ $mark->id }}">{{ $mark->name }}</option>
+                @endforeach
+
+
             </select>
         </div>
-        <div class="search_bloсk select disabled">
-            <select class="turnintodropdown">
-                <option>Модель</option>
-                <option>Вариант</option>
-                <option>Вариант</option>
-                <option>Вариант</option>
-                <option>Вариант</option>
+        <div id="search_model" class="search_bloсk select">
+            <select class="select2" disabled>
+                <option >Модель</option>
+
+
+
             </select>
         </div>
         <div class="search_bloсk select">
@@ -48,7 +73,7 @@
             </select>
         </div>
         <div class="search_bloсk select">
-            <select class="turnintodropdown">
+            <select class="select2">
                 <option>Коробка</option>
                 <option>Вариант</option>
                 <option>Вариант</option>
@@ -137,7 +162,58 @@
 @endsection
 
 @section('js')
+
+    {!! Html::script('assets/plugins/select2/select2.full.min.js') !!}
+
     <script type="text/javascript">
+        $(document).ready(function () {
+            $(".select2").select2({
+                width: '100%'
+            });
+        })
+
+        $(function(){
+            $("#mark").on("change keyup input click", function() {
+
+                var idMark = this.value;
+
+                if(idMark != null) {
+
+                    var request = $.ajax({
+                        url: './ajax?action=get_models&id_car_mark=' + idMark,
+                        method: "GET",
+                        dataType: "json"
+                    });
+
+                    request.done(function (data) {
+
+
+                        var html = '<select class="select2"  ' + (data.item.length == 0 ? 'disabled' : '') + '>';
+
+                        html += '<option>Модель</option>';
+
+                        for (var i = 0; i < data.item.length; i++) {
+                            html += '<option value="' + data.item[i].id + '">' + data.item[i].name + '</option>';
+                        }
+
+                        html += '</select>';
+
+                        console.log(html);
+
+                        if (html != '')
+                            $("#search_model").html(html).fadeIn();
+                        else
+                            $("#search_model").fadeOut();
+
+                        $(".select2").select2({
+                            width: '100%'
+                        });
+                    });
+
+                }
+
+            })
+        })
 
     </script>
 @endsection

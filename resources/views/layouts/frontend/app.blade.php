@@ -6,6 +6,8 @@
 
     {!! Html::style('css/lightslider.css') !!}
 
+    {!! Html::style('assets/plugins/select2/select2.min.css') !!}
+
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
     <meta name="description" content="@yield('meta_desc')"/>
     <meta name="keywords" content="@yield('met_keywords')"/>

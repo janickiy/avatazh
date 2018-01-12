@@ -15,6 +15,7 @@ use App\CarModification;
 use App\UserReview;
 use App\GeoRegion;
 use App\RequestCredit;
+use App\RequestUsedcarCredit;
 use App\RequestTradeIn;
 use App\CatalogUsedCar;
 
@@ -46,8 +47,14 @@ class FrontendController extends Controller
             ->orderBy('created_at')
             ->paginate(10);
 
+        $mark_search = CarMark::where('published', 1)
+            ->orderBy('name')
+            ->get();
 
-        return view('frontend.index', compact('marks', 'numberCars', 'soldLastWeek', 'specialOffer', 'newCars'))->with('title', 'Главная');
+
+
+
+        return view('frontend.index', compact('marks', 'numberCars', 'soldLastWeek', 'specialOffer', 'newCars', 'mark_search'))->with('title', 'Главная');
     }
 
     public function components()
@@ -228,6 +235,25 @@ class FrontendController extends Controller
                     return response()->json(['item' => $rows]);
 
                     break;
+
+                case 'get_year':
+
+                    $id_car_model = $request->id_car_model;
+
+                   $min_year = CarModification::selectRaw('MIN(year_begin)')
+                                ->where('id_car_model', $id_car_model)
+                                ->get()
+                                ->toArray();
+
+                   $max_year = CarModification::selectRaw('MAX(year_end)')
+                                ->where('id_car_model', $id_car_model)
+                                ->get()
+                                ->toArray();
+
+
+                   return response()->json(['min' => $min_year[0]["MIN(year_begin)"], 'max' => $max_year[0]["MAX(year_end)"]]);
+
+                 break;
             }
         }
     }
@@ -313,8 +339,7 @@ class FrontendController extends Controller
                     ->first();
 
         if ($usedCar) {
-            $requestCredit = RequestCredit::create($request->except('_token'));
-            $requestCredit->car = 'used';
+            $requestCredit = RequestUsedcarCredit::create($request->except('_token'));
             $requestCredit->ip = getIP();
             $requestCredit->save();
             return redirect('/auto/used/detail/' . $request->id_car)->with('success', 'Ваша заявка на автокредит отправлена. Мы свяжемся с Вами в ближайшее время!');
