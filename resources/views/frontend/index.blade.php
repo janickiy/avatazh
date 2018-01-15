@@ -64,7 +64,7 @@
             </select>
         </div>
         <div class="search_bloсk select">
-            <select class="turnintodropdown">
+            <select class="select2">
                 <option>Год от</option>
                 <option>Вариант</option>
                 <option>Вариант</option>
