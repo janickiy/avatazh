@@ -117,7 +117,7 @@ Route::group(['middleware' => 'web'], function () {
         Route::resource('carmodifications', 'Admin\CarmodificationsController');
         Route::resource('catalogusedcars', 'Admin\CatalogUsedCarsController');
         Route::resource('images', 'Admin\ImagesController');
-        Route::resource('requestcredits', 'Admin\RequestcreditsController');
+        Route::resource('requestcredits', 'Admin\RequestCreditsController');
         Route::resource('requestusedcarcredits', 'Admin\RequestUsedcarCreditsController');
         Route::resource('requesttradeins', 'Admin\RequestTradeInsController');
 
