@@ -20,6 +20,7 @@
             <div class="mentions_list">
 
                 @if(count($reviews) > 0)
+
                 <ul>
 
                     @foreach($reviews as $review)
@@ -29,7 +30,7 @@
                             <div class="mention_pic"></div>
                             <div class="mention_text">
                                 <div class="mention_title">{{ $review->author }}</div>
-                                <div class="mention_date">{{ $review->published_at }}</div>
+                                <div><i>{{ $review->created_at }}</i></div>
                                 <p>{{ $review->message }}</p>
                             </div>
                         </div>

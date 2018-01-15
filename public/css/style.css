@@ -1,23 +1,23 @@
 @font-face {
-    font-family: FontAwesome; 
+    font-family: FontAwesome;
     src: local("FontAwesome.otf"),
-         url(/fonts/FontAwesome.otf); }
+    url(/fonts/FontAwesome.otf); }
 @font-face {
-    font-family: rouble; 
+    font-family: rouble;
     src: local("rouble.otf"),
-         url(/fonts/rouble.otf); }
+    url(/fonts/rouble.otf); }
 @font-face {
-    font-family: RobotoBlack; 
+    font-family: RobotoBlack;
     src: local("RobotoBlack.ttf"),
-         url(/fonts/RobotoBlack.ttf); }
+    url(/fonts/RobotoBlack.ttf); }
 @font-face {
-    font-family: RobotoBold; 
+    font-family: RobotoBold;
     src: local("RobotoBold.ttf"),
-         url(/fonts/RobotoBold.ttf); }
+    url(/fonts/RobotoBold.ttf); }
 @font-face {
-    font-family: RobotoMedium; 
+    font-family: RobotoMedium;
     src: local("RobotoMedium.ttf"),
-         url(/fonts/RobotoMedium.ttf); }		 
+    url(/fonts/RobotoMedium.ttf); }
 input, textarea, button, select {outline:none;vertical-align: middle;}
 * { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;outline:none;}
 a {color: #000000;text-decoration: none;cursor:pointer;}
@@ -65,7 +65,7 @@ header a{color:#fff;font-family:RobotoBlack;}
 
 .search_bloсk_container {margin-top:10px;}
 .search_bloсk {display:inline-block;float:left;width:120px;position:relative;}
-.select .dropcontainer {position:absolute;background:transparent;border:none;width:100%;font-size: 14px;line-height:50px;z-index: 1;} 
+.select .dropcontainer {position:absolute;background:transparent;border:none;width:100%;font-size: 14px;line-height:50px;z-index: 1;}
 
 .select .trigger {background: #fff;display: block;border: 1px solid #b6b6b6;width:100%;line-height:50px;padding: 0 25px 0 10px;color:#747474;position:relative;white-space: nowrap;overflow: hidden; text-overflow: ellipsis;}
 .search_bloсk.select .trigger {border-right:0;}
@@ -83,7 +83,7 @@ header a{color:#fff;font-family:RobotoBlack;}
 .select .dropcontainer ul li:first-child {display: none;}
 .select .dropdownhidden {display: none;}
 .select .dropdownvisible {height: auto;}
-        
+
 
 .search_bloсk .form_control {background: #fff;display: block;border: 1px solid #b6b6b6;border-right:0;width:100%;line-height:50px;padding: 0 25px 0 10px;color:#747474;position:relative;white-space: nowrap;overflow: hidden; text-overflow: ellipsis;}
 .search_bloсk .form_control:focus::placeholder {opacity:0;}
@@ -148,7 +148,7 @@ ul.detail_options li:after {content:'\f0dd';top: -1px;}
 .form_field input.form_control::placeholder{color:#bfbfbf;}
 input.form_control:focus::placeholder {opacity:0;}
 
-.form_field .dropcontainer {position:absolute;background:transparent;border:none;width:100%;font-size: 14px;line-height:38px;z-index:1;} 
+.form_field .dropcontainer {position:absolute;background:transparent;border:none;width:100%;font-size: 14px;line-height:38px;z-index:1;}
 .form_field .trigger {display:block;width:100%;background:#fff;border:none;border-radius:5px;line-height:38px;color:#bfbfbf;padding:0 10px;width:100%;position:relative;white-space: nowrap;overflow: hidden; text-overflow: ellipsis;}
 .form_field .trigger:after {content:'\f107';font-family:FontAwesome;position: absolute; right: 10px;font-weight: bold;color:#bfbfbf;}
 .form_field .activetrigger {display:block;width:100%;background:#fff;border:none;border-radius:5px;line-height:38px;color:#bfbfbf;padding:0 10px;width:100%;position:relative;white-space: nowrap;overflow: hidden; text-overflow: ellipsis;}
@@ -226,10 +226,10 @@ input.form_control:focus::placeholder {opacity:0;}
 .checkbox:checked + label:after {background:#ee8116;}
 
 /*file*/
-.file-upload input[type="file"]{ display: none;} 
-.file-upload { position: relative; overflow: hidden; width: 400px;color: #b6b6b6; } 
-.file-upload:before {content:'\f030';font-family:FontAwesome;}		
-.file-upload label { display: block; position: absolute; top: 0; left: 25px; width: 100%; height: 100%; cursor: pointer; } 
+.file-upload input[type="file"]{ display: none;}
+.file-upload { position: relative; overflow: hidden; width: 400px;color: #b6b6b6; }
+.file-upload:before {content:'\f030';font-family:FontAwesome;}
+.file-upload label { display: block; position: absolute; top: 0; left: 25px; width: 100%; height: 100%; cursor: pointer; }
 .preview-img{ max-width:100px; max-height:100px; margin:10px 0; }
 
 

@@ -21,7 +21,7 @@ use App\CatalogUsedCar;
 
 class FrontendController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $marks = CarMark::selectRaw('car_marks.id,car_marks.name,car_marks.slug,count(catalog_used_cars.id) as countusedcars')
             ->where('car_marks.published', 1)
@@ -47,14 +47,42 @@ class FrontendController extends Controller
             ->orderBy('created_at')
             ->paginate(10);
 
-        $mark_search = CarMark::where('published', 1)
+        $mark_search = CarMark::select(['id', 'name'])
+            ->where('published', 1)
             ->orderBy('name')
-            ->get();
+            ->get()->toArray();
 
+        $mark_options[null] = 'Марка';
 
+        foreach ($mark_search  as $mark) {
+            $mark_options[$mark['id']] = $mark['name'];
+        }
 
+        $models = null;
 
-        return view('frontend.index', compact('marks', 'numberCars', 'soldLastWeek', 'specialOffer', 'newCars', 'mark_search'))->with('title', 'Главная');
+        if (isset($request->mark)) {
+            $models = CarModel::where('published', 1)
+                ->where('id_car_mark', $request->id_car_mark)
+                ->get();
+        }
+
+        $year = null;
+
+        if (isset($request->model)) {
+            $min_year = CarModification::selectRaw('MIN(year_begin)')
+                ->where('id_car_model', $request->model)
+                ->get()
+                ->toArray();
+
+            $max_year = CarModification::selectRaw('MAX(year_end)')
+                ->where('id_car_model', $request->model)
+                ->get()
+                ->toArray();
+
+            $year = ['from' => $min_year[0]["MIN(year_begin)"], 'to' => $max_year[0]["MAX(year_end)"]];
+        }
+
+        return view('frontend.index', compact('marks', 'numberCars', 'soldLastWeek', 'specialOffer', 'newCars', 'mark_options', 'request', 'models', 'year'))->with('title', 'Главная');
     }
 
     public function components()
@@ -240,18 +268,17 @@ class FrontendController extends Controller
 
                     $id_car_model = $request->id_car_model;
 
-                   $min_year = CarModification::selectRaw('MIN(year_begin)')
+                    $min_year = CarModification::selectRaw('MIN(year_begin)')
                                 ->where('id_car_model', $id_car_model)
                                 ->get()
                                 ->toArray();
 
-                   $max_year = CarModification::selectRaw('MAX(year_end)')
+                    $max_year = CarModification::selectRaw('MAX(year_end)')
                                 ->where('id_car_model', $id_car_model)
                                 ->get()
                                 ->toArray();
 
-
-                   return response()->json(['min' => $min_year[0]["MIN(year_begin)"], 'max' => $max_year[0]["MAX(year_end)"]]);
+                    return response()->json(['min' => $min_year[0]["MIN(year_begin)"], 'max' => $max_year[0]["MAX(year_end)"]]);
 
                  break;
             }

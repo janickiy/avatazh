@@ -62,7 +62,7 @@ Route::group(['prefix' => ''], function() {
 
 Route::group(['middleware' => ['web']], function () {
 
-    Route::get('/', 'FrontendController@index');
+    Route::any('/', 'FrontendController@index');
     Route::get('/auto/used', 'FrontendController@allUsedAuto');
     Route::any('/auto/used/allmarks', 'FrontendController@allmarks');
     Route::get('/auto/used/detail/{id}', 'FrontendController@usedAutoDetail');
