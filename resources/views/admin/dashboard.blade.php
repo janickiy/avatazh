@@ -57,7 +57,7 @@
                                 <div class="icon">
                                     <i class="fa fa-comment-o"></i>
                                 </div>
-                                <a href="{{ url('admin/review') }}" class="small-box-footer">подробно
+                                <a href="{{ url('admin/reviews') }}" class="small-box-footer">подробно
                                     <i class="fa fa-arrow-circle-right"></i>
                                 </a>
                             </div>
