@@ -42,10 +42,12 @@
                     <p style="text-align: center">нет отзывов</p>
                 @endif
 
-                <div class="pager">
-                    {{ $reviews->render() }}
-                </div>
 
+
+            </div>
+
+            <div class="pager">
+                {{ $reviews->render() }}
             </div>
             <div class="sidebar">
                 <div class="feedback_form">
