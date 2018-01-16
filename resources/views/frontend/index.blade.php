@@ -45,19 +45,24 @@
     <div class="main_banner">
         <img src="images/index_banner.jpg" />
     </div>
+
     <div class="search_bloсk_container row">
         {!! Form::open(['url' =>  '/', 'method' => 'get']) !!}
-        {!! Form::hidden('serch', 'Y') !!}
+        {!! Form::hidden('search', 'Y') !!}
         <div class="search_bloсk select">
            {!! Form::select('mark', $mark_options, isset($request->mark) ? $request->mark : 'Марка', ['class' => 'select2', 'id' => 'mark']) !!}
         </div>
         <div id="model_filter" class="search_bloсk select">
-            {!! Form::select('model', ['Модель'], isset($request->model) ? $request->model : 'Модель', ['class' => 'select2', 'id' => 'model', 'disabled' => isset($request->model) ? false : true]) !!}
+            {!! Form::select('model', $models_options, isset($request->model) ? $request->model : 'Модель', ['class' => 'select2', 'id' => 'model', !isset($request->model) ? 'disabled' : '']) !!}
         </div>
         <div id="year_filter" class="search_bloсk select">
-            {!! Form::select('year', ['Год от'], isset($request->year) ? $request->year : 'Год от', ['class' => 'select2', 'id' => 'year', 'disabled' => isset($request->year) ? false : true]) !!}
 
-            {!!  Form::selectYear('year', isset($year['from']) ? $year['from'] : 'Год от', isset($year['to']) ? $year['to'] : null, isset($request->year) ? $request->year : 'Год от', ['class' => 'select2', 'disabled' => isset($request->year) ? false : true]) !!}
+            @if(isset($request->year))
+                {!! Form::selectYear('year', isset($year['from']) ? $year['from'] : null, isset($year['to']) ? $year['to'] : null, isset($request->year) ? $request->year : null, ['class' => 'select2', 'id' => 'year']) !!}
+            @else
+                {!! Form::select('year', ['Год от'], 'Год от', ['class' => 'select2', 'id' => 'year', 'disabled']) !!}
+            @endif
+
         </div>
         <div class="search_bloсk select">
             {!! Form::select('gearbox',
@@ -182,27 +187,25 @@
                     });
 
                     request.done(function (data) {
-
-                        var html = '<select id="model" class="select2"  ' + (data.item.length == 0 ? 'disabled' : '') + '>';
-
-                        html += '<option>Модель</option>';
+                        var html = '<option>Модель</option>';
 
                         for (var i = 0; i < data.item.length; i++) {
                             html += '<option value="' + data.item[i].id + '">' + data.item[i].name + '</option>';
                         }
 
-                        html += '</select>';
-
                         console.log(html);
 
-                        if (html != '')
-                            $("#model_filter").html(html).fadeIn();
-                        else
-                            $("#search_filter").fadeOut();
+                        if (data.item.length > 0) {
+                            $('#model').prop('disabled',false);
+                            $("#model").html(html).fadeIn();
+                        } else {
+                            $("#model").html(html).fadeIn();
+                            $('#model').prop('disabled',true);
+                        }
 
-                       $(".select2").select2({
-                          width: '100%'
-                       });
+                        $(".select2").select2({
+                            width: '100%'
+                        });
                     });
                 }
             })
@@ -225,13 +228,17 @@
                             html += '<option value="' + i + '">' + i + '</option>';
                         }
 
-                        if (data.min || data.max) {
+                        if (data.min != null || data.max != null) {
                             $('#year').prop('disabled',false);
                             $("#year").html(html).fadeIn();
                         } else {
                             $("#year").html(html).fadeIn();
                             $('#year').prop('disabled',true);
                         }
+
+                        $(".select2").select2({
+                            width: '100%'
+                        });
                     });
                 }
             })

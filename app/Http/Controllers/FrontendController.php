@@ -50,7 +50,8 @@ class FrontendController extends Controller
         $mark_search = CarMark::select(['id', 'name'])
             ->where('published', 1)
             ->orderBy('name')
-            ->get()->toArray();
+            ->get()
+            ->toArray();
 
         $mark_options[null] = 'Марка';
 
@@ -58,12 +59,17 @@ class FrontendController extends Controller
             $mark_options[$mark['id']] = $mark['name'];
         }
 
-        $models = null;
+        $models_options[null] = 'Модель';
 
         if (isset($request->mark)) {
-            $models = CarModel::where('published', 1)
-                ->where('id_car_mark', $request->id_car_mark)
-                ->get();
+            $models_search = CarModel::where('published', 1)
+                ->where('id_car_mark', $request->mark)
+                ->get()
+                ->toArray();
+
+            foreach ($models_search  as $model) {
+                $models_options[$model['id']] = $model['name'];
+            }
         }
 
         $year = null;
@@ -82,7 +88,7 @@ class FrontendController extends Controller
             $year = ['from' => $min_year[0]["MIN(year_begin)"], 'to' => $max_year[0]["MAX(year_end)"]];
         }
 
-        return view('frontend.index', compact('marks', 'numberCars', 'soldLastWeek', 'specialOffer', 'newCars', 'mark_options', 'request', 'models', 'year'))->with('title', 'Главная');
+        return view('frontend.index', compact('marks', 'numberCars', 'soldLastWeek', 'specialOffer', 'newCars', 'mark_options', 'request', 'models_options', 'year'))->with('title', 'Главная');
     }
 
     public function components()
