@@ -12,7 +12,6 @@
     @include('layouts.frontend.includes.mark_list')
 @endsection
 
-
 @section('content')
     <section>
         <h1>Отзывы</h1>
@@ -43,9 +42,9 @@
                     <p style="text-align: center">нет отзывов</p>
                 @endif
 
-                    <div class="pager">
-                        {{ $reviews->render() }}
-                    </div>
+                <div class="pager">
+                     {{ $reviews->render() }}
+                </div>
 
             </div>
 

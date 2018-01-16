@@ -9,25 +9,6 @@
 @section('css')
 
     <style>
-        .select2-container .select2-selection--single {
-            height: 50px;
-            width: 120px;
-        }
-        .select2-container--default .select2-selection--single .select2-selection__rendered {
-            line-height: 50px;
-        }
-        .select2-container--default .select2-selection--single .select2-selection__arrow {
-            height: 50px;
-        }
-
-        .select2-container--default .select2-selection--single .select2-selection__rendered {
-            color: #747474;
-        }
-
-        .select2-container--default .select2-results__option--highlighted[aria-selected] {
-            background-color: #ee8116;
-
-        }
 
         .select2-container .select2-selection--single {height: 52px;width: 120px; }.select2-container--default .select2-selection--single .select2-selection__rendered {line-height: 50px; }.select2-container--default .select2-selection--single .select2-selection__arrow {height: 50px;}.select2-container--default .select2-selection--single .select2-selection__rendered {color: #747474;}.select2-container--default .select2-results__option--highlighted[aria-selected] {background-color: #ee8116;}
         .select:first-child .select2-container--default .select2-selection--single{border-radius:4px 0 0 4px;}
@@ -58,9 +39,9 @@
         <div id="year_filter" class="search_bloсk select">
 
             @if(isset($request->year))
-                {!! Form::selectYear('year', isset($year['from']) ? $year['from'] : null, isset($year['to']) ? $year['to'] : null, isset($request->year) ? $request->year : null, ['class' => 'select2', 'id' => 'year']) !!}
+                {!! Form::selectYear('year', isset($year['from']) ? $year['from'] : null, isset($year['to']) ? $year['to'] : null, isset($request->year) ? $request->year : null, ['class' => 'select2', 'id' => 'year', 'placeholder' => 'Год от']) !!}
             @else
-                {!! Form::select('year', ['Год от'], 'Год от', ['class' => 'select2', 'id' => 'year', 'disabled']) !!}
+                {!! Form::select('year', [], 'Год от', ['class' => 'select2', 'id' => 'year', 'disabled', 'placeholder' => 'Год от']) !!}
             @endif
 
         </div>
@@ -85,9 +66,55 @@
         {!! Form::close() !!}
 
     </div>
+
+    @if($request->search)
+
+    <section>
+        <h1>Подбор автомобиля</h1>
+
+        <div class="index_items_list row">
+
+
+            @if (count($usedcars) > 0)
+
+                <ul>
+
+                    @foreach($usedcars as $usedcar)
+                        <li class="item">
+                            <div class="item_pic"><img src="{!! mainSmallPic($usedcar->image) !!}" /></div>
+                            <div class="idem_desc">
+                                <a class="item_name" href="{!! url('/auto/used/detail/' . $usedcar->id) !!}">{!! $usedcar->mark !!} {!! $usedcar->model !!}</a>
+                                <p>{!! $usedcar->year !!} г., {!! number_format($usedcar->mileage,0,'',' ') !!} км, {!! $usedcar->engine_type !!}, КПП {!! $usedcar->gearbox !!}</p>
+                                <div class="item_price">{!! number_format($usedcar->price,0,'',' ') !!}<span class="rub">o</span></div>
+                                <a class="item_btn" href="{!! url('/auto/used/detail/' . $usedcar->id) !!}">Подробнее</a>
+                            </div>
+                        </li>
+
+
+                    @endforeach
+
+                </ul>
+
+                <div class="pager">
+                    {{ $usedcars->render() }}
+                </div>
+
+            @else
+
+                <p>По вашему запросу ничего не найдено!</p>
+            @endif
+
+        </div>
+
+   </section>
+
+    @else
+
     <section class="specials">
+
         <h1>Специальные предложения</h1>
         <div class="index_items_list row">
+
             <div class="quantity_cars_block">
                 <div class="row">
                     <div class="quantity_cars fl_l">{{ $numberCars }}</div>
@@ -158,6 +185,9 @@
 
         </div>
     </section>
+
+    @endif
+
 </div>
 
 @endsection
@@ -222,7 +252,7 @@
 
                     request.done(function (data) {
 
-                        var html = '<option>Год от</option>';
+                        var html = '<option value="">Год от</option>';
 
                         for (var i = data.min; i < data.max; i++) {
                             html += '<option value="' + i + '">' + i + '</option>';

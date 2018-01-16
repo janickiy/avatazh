@@ -8,61 +8,11 @@
 
 @section('css')
     <style>
-
-        .search{
-            position:relative;
-        }
-
-        .search_result {
-            background: #FFF;
-            border: 1px #ccc solid;
-            border-radius: 4px;
-            max-height:100px;
-            overflow-y:scroll;
-            display:none;
-        }
-
-        .dropdownvisible {
-            max-height:100px;
-            overflow-y:scroll;
-
-        }
-
-        .search_result li{
-            list-style: none;
-            padding: 5px 10px;
-            margin: 0;
-            color: #0896D3;
-            border-bottom: 1px #ccc solid;
-            cursor: pointer;
-            transition:0.3s;
-        }
-
-        .search_result li:hover{
-            background: #F9FF00;
-        }
-
-        ul{
-            list-style: none outside none;
-            padding-left: 0;
-            margin: 0;
-        }
-        .demo .item{
-            margin-bottom: 60px;
-        }
-        .content-slider li{
-            background-color: #ed3020;
-            text-align: center;
-            color: #FFF;
-        }
-        .content-slider h3 {
-            margin: 0;
-            padding: 70px 0;
-        }
-        .demo{
-            width: 800px;
-        }
-
+        .select2-container .select2-selection--single { height: 38px;width: 100%; border-radius:5px; padding: 0 10px; width: 100%; color: #bfbfbf; }
+        .select2-container--default .select2-selection--single .select2-selection__rendered {line-height: 38px; }
+        .select2-container--default .select2-selection--single .select2-selection__arrow {height: 38px;}
+        .select2-container--default .select2-selection--single .select2-selection__rendered {color: #bfbfbf;}
+        .select2-container--default .select2-results__option--highlighted[aria-selected] {background-color: #ee8116;}
     </style>
 @endsection
 
@@ -143,18 +93,18 @@
             <div class="sidebar">
                 <div class="request_form">
                     <div class="form_title">Заявка на кредит</div>
-                    {!! Form::open(['url' =>  '/usedcar-request-credit', 'method' => 'post', 'class' => 'form-horizontal', 'id' => 'validate']) !!}
+                    {!! Form::open(['url' => '/usedcar-request-credit', 'method' => 'post', 'class' => 'form-horizontal', 'id' => 'validate']) !!}
                     {!! Form::hidden('id_car', $detail->id) !!}
                         <div class="form_field">
                             {!! Form::text('name', old('name'), ['class' => 'form_control validate[required]', 'placeholder'=>'ФИО']) !!}
                         </div>
                           <div class="form_field">
-                            {!! Form::text('registration', old('registration'), ['class' => 'form_control validate[required]', 'placeholder'=>'Регион по прописке', 'autocomplete' => 'off', 'id' => 'search_registration']) !!}
+                            {!! Form::text('registration', old('registration'), ['class' => 'who form_control validate[required]', 'placeholder'=>'Регион по прописке', 'autocomplete' => 'off', 'id' => 'search_registration']) !!}
                             <ul class="search_result_registration search_result"></ul>
                         </div>
                         <div class="row">
                             <div class="form_field form_field_age">
-                                 {!! Form::selectRange('age', 18, 85, 18, ['class' => 'turnintodropdown validate[required]']) !!}
+                                 {!! Form::selectRange('age', 18, 85, 'Возраст', ['class' => 'select2 validate[required]', 'placeholder' => 'Возраст']) !!}
                             </div>
                             <div class="form_field form_field_phone">
                                 {!! Form::text('phone', old('phone'), ['class' => 'form_control form_phone validate[required]', 'placeholder' => 'Телефон']) !!}
@@ -171,7 +121,7 @@
                             '60' => 'Первоначальный взнос 60%',
                             '70' => 'Первоначальный взнос 70%',
                             '80' => 'Первоначальный взнос 80%',
-                            ], '0', ['class' => 'turnintodropdown validate[required]']
+                            ], 'Первоначальный взнос', ['class' => 'select2', 'placeholder' => 'Первоначальный взнос']
                             ) !!}
                         </div>
                 {!! Form::submit('Купить в кредит', ['class'=>'btn']) !!}
@@ -181,6 +131,8 @@
                     <div>
                         <div class="address">{!! getSetting('FRONTEND_ADDRESS') !!}</div>
                         <div class="times">{!! getSetting('FRONTEND_TIMES') !!}</div>
+
+                        <div ><div style="width:260px;height:300px;" id="googleMap"></div> </div>
                     </div>
                 </div>
                 <div>
@@ -220,7 +172,27 @@
 
 @section('js')
 
+    {!! Html::script('http://maps.googleapis.com/maps/api/js') !!}
+    {!! Html::script('assets/plugins/select2/select2.full.min.js') !!}
+
     <script type="text/javascript">
+
+        $(document).ready(function () {
+            $(".select2").select2({
+                width: '100%'
+            });
+        })
+
+        function initialize() {
+            var mapProp = {
+                center: new google.maps.LatLng( {{ getSetting('MAP_LATITUDE') }}, {{ getSetting('MAP_LONGITUDE') }}),
+                zoom: 5,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+
 
         $(document).ready(function() {
             $("#content-slider").lightSlider({
@@ -240,7 +212,6 @@
                 }
             });
         });
-
 
         $(function(){
             $("#search_registration").on("change keyup input click", function() {
@@ -271,7 +242,7 @@
             })
 
             $(".search_result_registration").hover(function(){
-                $(".search_registration").blur();
+                $(".who").blur();
             })
 
             $(".search_result_registration").on("click", "li", function(){

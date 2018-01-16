@@ -3,7 +3,7 @@
 @section('title', 'Заявка на автокредит (Автомобили с пробегом)')
 
 @section('css')
-        <!-- iCheck for checkboxes and radio inputs -->
+<!-- iCheck for checkboxes and radio inputs -->
 {!! Html::style('assets/plugins/iCheck/all.css') !!}
 @endsection
 

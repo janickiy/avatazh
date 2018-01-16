@@ -88,17 +88,36 @@ class FrontendController extends Controller
             $year = ['from' => $min_year[0]["MIN(year_begin)"], 'to' => $max_year[0]["MAX(year_end)"]];
         }
 
+        $usedcars = null;
+
         if (isset($request->search)) {
-            /*
-            $catalogUsedCars = CatalogUsedCar::where('published', 1)
-                ->where('mark', 'like', $mark_search)
-                ->where('model', 'like', $model_search)
-                ->where('year', '>', $year_search)
-                ->where('gearbox', 'like', $gearbox_search)
-            */
+
+            if ($request->mark) $mark_search = CarMark::select(['name'])->where('id', $request->mark)->first()->toArray();
+
+            if ($request->model) $model_search = CarModel::select(['name'])->where('id', $request->model)->first()->toArray();
+
+            if ((isset($request->price_from) && $request->price_from) and (isset($request->price_to) && $request->price_to)) {
+                $usedcars = CatalogUsedCar::where('published', 1)
+                    ->where('mark', isset($request->mark) && $request->mark ? 'like' : 'not like', isset($request->mark) && $request->mark ? $mark_search['name'] : '')
+                    ->where('model', isset($request->model) && $request->model ? 'like' : 'not like',  isset($request->model) && $request->model ? $model_search['name'] : '')
+                    ->where('gearbox', isset($request->gearbox) && $request->gearbox ? 'like' : 'not like', isset($request->gearbox) && $request->gearbox ? $request->gearbox : '')
+                    ->where('year', isset($request->year) && $request->year ? '>' : 'not like', isset($request->year) && $request->year ? $request->year : '')
+                    ->whereBetween('price', [$request->price_from, $request->price_to])
+                    ->paginate(5);
+            } else {
+                $usedcars = CatalogUsedCar::where('published', 1)
+                    ->where('mark', isset($request->mark) && $request->mark ? 'like' : 'not like', isset($request->mark) && $request->mark ? $mark_search['name'] : '')
+                    ->where('model', isset($request->model) && $request->model ? 'like' : 'not like',  isset($request->model) && $request->model ? $model_search['name'] : '')
+                    ->where('gearbox', isset($request->gearbox) && $request->gearbox ? 'like' : 'not like', isset($request->gearbox) && $request->gearbox ? $request->gearbox : '')
+                    ->where('year', isset($request->year) && $request->year ? '>' : 'not like', isset($request->year) && $request->year ? $request->year : '')
+                    ->paginate(5);
+            }
+
+            //var_dump($usedcars);
+          //  exit;
         }
 
-        return view('frontend.index', compact('marks', 'numberCars', 'soldLastWeek', 'specialOffer', 'newCars', 'mark_options', 'request', 'models_options', 'year'))->with('title', 'Главная');
+        return view('frontend.index', compact('marks', 'numberCars', 'soldLastWeek', 'specialOffer', 'newCars', 'mark_options', 'request', 'models_options', 'year', 'usedcars'))->with('title', 'Главная');
     }
 
     public function components()
@@ -391,7 +410,11 @@ class FrontendController extends Controller
         abort(500);
     }
 
-    public function tradeIn()
+    /**
+     * @param Request $request
+     * @return $this
+     */
+    public function tradeIn(Request $request)
     {
         $marks = CarMark::selectRaw('car_marks.id,car_marks.name,car_marks.slug,count(catalog_used_cars.id) as countusedcars')
             ->where('car_marks.published', 1)
@@ -401,7 +424,48 @@ class FrontendController extends Controller
             ->take(23)
             ->get();
 
-        return view('frontend.tradein', compact('marks'))->with('title', 'Trade-in');
+        $mark_search = CarMark::select(['id', 'name'])
+            ->where('published', 1)
+            ->orderBy('name')
+            ->get()
+            ->toArray();
+
+        $mark_options[null] = 'Марка';
+
+        foreach ($mark_search  as $mark) {
+            $mark_options[$mark['id']] = $mark['name'];
+        }
+
+        $models_options[null] = 'Модель';
+
+        if (isset($request->mark)) {
+            $models_search = CarModel::where('published', 1)
+                ->where('id_car_mark', $request->mark)
+                ->get()
+                ->toArray();
+
+            foreach ($models_search  as $model) {
+                $models_options[$model['id']] = $model['name'];
+            }
+        }
+
+        $year = null;
+
+        if (isset($request->model)) {
+            $min_year = CarModification::selectRaw('MIN(year_begin)')
+                ->where('id_car_model', $request->model)
+                ->get()
+                ->toArray();
+
+            $max_year = CarModification::selectRaw('MAX(year_end)')
+                ->where('id_car_model', $request->model)
+                ->get()
+                ->toArray();
+
+            $year = ['from' => $min_year[0]["MIN(year_begin)"], 'to' => $max_year[0]["MAX(year_end)"]];
+        }
+
+        return view('frontend.tradein', compact('marks', 'mark_options', 'models_options', 'year'))->with('title', 'Trade-in');
     }
 
     /**
@@ -410,10 +474,6 @@ class FrontendController extends Controller
      */
     public function requestTradein(RequestTradeInsRequest $request)
     {
-        $request->request->remove('id_mark');
-        $request->request->remove('id_model');
-        $request->request->remove('id_trade_in_mark');
-        $request->request->remove('id_trade_in_model');
         $request->request->remove('confirmation');
         $request->request->remove('agree');
 
