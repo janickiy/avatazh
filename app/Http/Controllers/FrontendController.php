@@ -88,6 +88,16 @@ class FrontendController extends Controller
             $year = ['from' => $min_year[0]["MIN(year_begin)"], 'to' => $max_year[0]["MAX(year_end)"]];
         }
 
+        if (isset($request->search)) {
+            /*
+            $catalogUsedCars = CatalogUsedCar::where('published', 1)
+                ->where('mark', 'like', $mark_search)
+                ->where('model', 'like', $model_search)
+                ->where('year', '>', $year_search)
+                ->where('gearbox', 'like', $gearbox_search)
+            */
+        }
+
         return view('frontend.index', compact('marks', 'numberCars', 'soldLastWeek', 'specialOffer', 'newCars', 'mark_options', 'request', 'models_options', 'year'))->with('title', 'Главная');
     }
 
