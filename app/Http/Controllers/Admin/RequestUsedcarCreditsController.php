@@ -51,7 +51,7 @@ class RequestUsedcarCreditsController extends Controller
         $requestCredit->email = trim($request->input('email'));
         $requestCredit->registration = trim($request->input('registration'));
         $requestCredit->fee = $request->input('fee');
-        $requestCredit->fee = $request->input('status');
+        $requestCredit->status = $request->input('status');
         $requestCredit->updated_at = \Carbon::now();
         $requestCredit->save();
 

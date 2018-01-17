@@ -46,6 +46,7 @@
                 <thead>
                 <tr>
                     <th>Название</th>
+                    <th>Фото</th>
                     <th>Статус</th>
                     <th>Действия</th>
                 </tr>
@@ -89,6 +90,7 @@
             ajax: '{!! url("admin/datatables/carmarkmodels/$carmark->id") !!}',
             columns: [
                 {data: 'modification', name: 'modification'},
+                {data: 'image', name: 'image'},
                 {data: 'status', name: 'status'},
                 {data: 'actions', name: 'actions', orderable: false, searchable: false}
             ]

@@ -57,6 +57,7 @@ Route::group(['prefix' => ''], function() {
     define('PATH_SMALL_IMAGES','/uploads/images/small/');
     define('PATH_BIG_IMAGES','/uploads/images/big/');
     define('PATH_MARK','/uploads/mark/');
+    define('PATH_MODEL','/uploads/model/');
     define('PATH_SETTINGS','/uploads/settings');
     define('PATH_SMALL_USEDCARS','/uploads/usedcars/small/');
     define('PATH_BIG_USEDCARS','/uploads/usedcars/big/');

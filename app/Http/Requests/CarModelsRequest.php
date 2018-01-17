@@ -33,6 +33,7 @@ class CarModelsRequest extends Request
                     'name' => 'required',
                     'name_rus' => 'required',
                     'id_car_mark' => 'required|numeric',
+                    'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 ];
             }
             case 'PUT':
@@ -40,6 +41,7 @@ class CarModelsRequest extends Request
                 return [
                     'name' => 'required',
                     'name_rus' => 'required',
+                    'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 ];
             }
             default:

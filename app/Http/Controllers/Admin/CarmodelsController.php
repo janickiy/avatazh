@@ -9,6 +9,7 @@ use App\Http\Requests\CarModelsRequest;
 use App\Http\Controllers\Controller;
 use App\CarModel;
 use App\CarMark;
+use Intervention\Image\Facades\Image as ImageInt;
 
 class CarmodelsController extends Controller
 {
@@ -66,12 +67,26 @@ class CarmodelsController extends Controller
         $carModel->name = $request->input('name');
         $carModel->id_car_type = 1;
         $carModel->name_rus = trim($request->input('name_rus'));
-        $carModel->id_car_mark = $request->input('id_car_mark');
+
+        if ($request->hasFile('image')) {
+            $image_path = public_path() . PATH_MODEL;
+            $image = $request->file('image');
+
+            $filename = str_random(20) . '.' . $image->getClientOriginalExtension() ? : 'png';
+            $img = ImageInt::make($image);
+
+            $img->resize(600, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($image_path . $filename);
+
+            $carModel->image = PATH_MODEL . $filename;
+        }
+
         $carModel->published = $request->input('published');
         $carModel->updated_at = \Carbon::now();
         $carModel->save();
 
-        return redirect('admin/carmodels/carmark/' . $carModel->id_car_mark)->with('success', 'Данные обнавлены');
+        return redirect('admin/carmodels/' . $carModel->id . '/edit')->with('success', 'Данные обнавлены');
     }
 
     /**
@@ -94,6 +109,10 @@ class CarmodelsController extends Controller
     public function destroy(Request $request, CarModel $carModel)
     {
         if ($request->ajax()) {
+            if ($carModel->image) {
+                if (file_exists(public_path() . $carModel->image)) @unlink(public_path() . $carModel->image);
+            }
+
             $carModel->delete();
             return response()->json(['success' => 'Модель удалена']);
         } else {

@@ -315,7 +315,20 @@ class FrontendController extends Controller
 
                     return response()->json(['min' => $min_year[0]["MIN(year_begin)"], 'max' => $max_year[0]["MAX(year_end)"]]);
 
-                 break;
+                break;
+
+                case 'get_model_info':
+
+                    $model = CarModel::where('published', 1)
+                            ->where('id', $request->id)
+                            ->first()
+                            ->toArray();
+
+                    return response()->json($model);
+
+                break;
+
+
             }
         }
     }

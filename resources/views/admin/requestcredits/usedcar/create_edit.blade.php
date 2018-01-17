@@ -42,7 +42,7 @@
                 <div class="form-group">
                     {!! Form::label('fee', 'Первоначальный взнос *', ['class' => 'control-label col-md-2']) !!}
                     <div class="col-md-4">
-                        {!! Form::text('fee', old('fee', isset($requestcredit) ? $requestcredit->fee : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Первоначальный взнос']) !!}
+                        {!! Form::text('fee', old('fee', isset($requestcredit) ? $requestcredit->fee : null), ['class' => 'form-control validate[required,custom[onlyNumberSp]]', 'placeholder'=>'Первоначальный взнос']) !!}
                     </div>
                 </div>
 
@@ -56,7 +56,7 @@
                 <div class="form-group">
                     {!! Form::label('age', 'Возраст*', ['class' => 'control-label col-md-2']) !!}
                     <div class="col-md-4">
-                        {!! Form::text('age', old('age', isset($requestcredit) ? $requestcredit->age : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Возраст']) !!}
+                        {!! Form::text('age', old('age', isset($requestcredit) ? $requestcredit->age : null), ['class' => 'form-control validate[required,custom[onlyNumberSp]]', 'placeholder'=>'Возраст']) !!}
                     </div>
                 </div>
 
@@ -70,12 +70,12 @@
                 <div class="form-group">
                     {!! Form::label('phone', 'Телефон*', ['class' => 'control-label col-md-2']) !!}
                     <div class="col-md-4">
-                        {!! Form::text('phone', old('phone', isset($requestcredit) ? $requestcredit->phone : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Телефон']) !!}
+                        {!! Form::text('phone', old('phone', isset($requestcredit) ? $requestcredit->phone : null), ['class' => 'form-control validate[required,custom[phone]]', 'placeholder'=>'Телефон']) !!}
                     </div>
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('published', 'Статус', ['class' => 'control-label col-md-2']) !!}
+                    {!! Form::label('status', 'Статус', ['class' => 'control-label col-md-2']) !!}
                     <div class="col-sm-10">
                         <label class="check">{!! Form::checkbox('status', 1, isset($requestcredit) ? ($requestcredit->status == 1 ? true: false): false, ['class'=>'minimal']) !!}
                             Выполнена

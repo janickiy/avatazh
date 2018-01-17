@@ -125,6 +125,11 @@ class CarmarksController extends Controller
     public function destroy(Request $request, CarMark $carMark)
     {
         if ($request->ajax()) {
+
+            if ($carMark->logo) {
+                if (file_exists(public_path() . $carMark->logo)) @unlink(public_path() . $carMark->logo);
+            }
+
             $carMark->delete();
             return response()->json(['success' => 'Марка удалена']);
         } else {

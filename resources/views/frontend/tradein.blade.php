@@ -79,7 +79,8 @@
                 </div>
 
             </div>
-            <div class="tradein newcar">
+            <div class="tradein">
+
                 <h2>Новый автомобиль</h2>
                 <div class="select">
                     <div class="select">
@@ -90,6 +91,9 @@
                     <div class="select">
                         {!! Form::select('trade_in_model', $models_options, isset($request->trade_in_model) ? $request->trade_in_model : 'Модель', ['class' => 'select2 validate[required]', 'id' => 'trade_in_model', !isset($request->trade_in_model) ? 'disabled' : '']) !!}
                     </div>
+                </div>
+                <div class="select">
+                    <img id="model_img" src="/images/car_bg.png" height="380">
                 </div>
             </div>
         </div>
@@ -186,7 +190,7 @@
 
                     request.done(function (data) {
 
-                        var html = '<option value="">Год выпуска</option>';
+                        var html = '<option>Год выпуска</option>';
 
                         for (var i = data.min; i < data.max; i++) {
                             html += '<option value="' + i + '">' + i + '</option>';
@@ -242,6 +246,29 @@
                     });
                 }
             })
+
+            $("#trade_in_model").on("change keyup input click", function() {
+
+                var idModel = this.value;
+
+                if(idModel != null) {
+
+                    var request = $.ajax({
+                        url: './ajax?action=get_model_info&id=' + idModel,
+                        method: "GET",
+                        dataType: "json"
+                    });
+
+                    request.done(function (data) {
+                        if (data.image != null && data.image != '') {
+                            $('#model_img').attr("src", data.image).fadeIn();
+                        } else {
+                            $('#model_img').attr("src", "/images/car_bg.png").fadeIn();
+                        }
+                    });
+                }
+            })
+
 
             $(".form_phone").mask("+7 (999) 999-9999");
 

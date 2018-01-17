@@ -30,7 +30,7 @@
 
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Автомобильные марки8</h3>
+            <h3 class="box-title">Автомобильные марки</h3>
             <div class="box-tools pull-right">
                 <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
                     <i class="fa fa-minus"></i>
@@ -66,7 +66,7 @@
 @endsection
 
 @section('js')
-        <!-- DataTables -->
+<!-- DataTables -->
 {!! Html::script('assets/dist/js/datatable/jquery.dataTables.min.js') !!}
 
 {!! Html::script('assets/dist/js/datatable/dataTables.bootstrap.min.js') !!}

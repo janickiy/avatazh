@@ -174,6 +174,8 @@ class DatatablesController extends Controller
         $carModels = CarModel::all();
 
         return Datatables::of($carModels)
+
+
             ->addColumn('status', function ($carModels) {
                 return $carModels->published ? 'опубликован' : 'не опубликован';
             })
@@ -194,6 +196,10 @@ class DatatablesController extends Controller
         $carModels = CarModel::where('id_car_mark', $id)->get();
 
         return Datatables::of($carModels)
+
+            ->addColumn('image', function ($carModels) {
+                return $carModels->image ? 'да' : 'нет';
+            })
 
             ->addColumn('modification', function ($carModels) {
                 return '<a title="модификация" href="' . url('admin/carmodifications/model/' . $carModels->id). '">' . $carModels->name . '</a>';

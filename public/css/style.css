@@ -202,7 +202,6 @@ input.form_control:focus::placeholder {opacity:0;}
 .select .form_control {background: #fff;display: block; border: 1px solid #b6b6b6;width: 100%; line-height: 50px;padding: 0 25px 0 10px;color: #747474;border-radius:5px;}
 .autoredit .btn, .tradein .btn {width:100%;border-radius:5px;line-height:60px;}
 .newcar {background:url('/images/car_bg.png') bottom no-repeat;height: 380px;}
-.condition {padding-top: 315px;background:url('/images/car_bg_big.png') top no-repeat;}
 .condition li{position:relative;padding-left:20px;line-height: 15px; color: #4b423e; margin-bottom: 25px;}
 .condition li:before{position:absolute;left:0px;font-size: 10px;color: #ee8116;}
 .condition li:before{content:'—';top: 1px;}

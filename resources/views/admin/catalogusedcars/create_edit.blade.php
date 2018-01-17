@@ -91,9 +91,9 @@
                         {!! Form::label('model', 'Модель *', ['class' => 'control-label col-md-2']) !!}
                         <div id="search_result_model" class="col-md-4">
 
-                                {!! Form::select('model', isset($model_list) ? $model_list : [null]
-                                , isset($catalogusedcar) ? $catalogusedcar->model : null, ['class' => 'form-control select2 validate[required]']
-                                ) !!}
+                            {!! Form::select('model', isset($model_list) ? $model_list : [null]
+                            , isset($catalogusedcar) ? $catalogusedcar->model : null, ['class' => 'form-control select2 validate[required]']
+                            ) !!}
 
                         </div>
                     </div>
@@ -101,7 +101,7 @@
                     <div class="form-group">
                         {!! Form::label('price', 'Цена *', ['class' => 'control-label col-md-2']) !!}
                         <div class="col-md-4">
-                            {!! Form::text('price', old('price', isset($catalogusedcar) ? $catalogusedcar->price : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Цена']) !!}
+                            {!! Form::text('price', old('price', isset($catalogusedcar) ? $catalogusedcar->price : null), ['class' => 'form-control validate[required,custom[onlyNumberSp]]', 'placeholder'=>'Цена']) !!}
                         </div>
                     </div>
 
@@ -115,7 +115,7 @@
                     <div class="form-group">
                         {!! Form::label('mileager', 'Пробег *', ['class' => 'control-label col-md-2']) !!}
                         <div class="col-md-4">
-                            {!! Form::text('mileage', old('mileage', isset($catalogusedcar) ? $catalogusedcar->mileage : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Пробег']) !!}
+                            {!! Form::text('mileage', old('mileage', isset($catalogusedcar) ? $catalogusedcar->mileage : null), ['class' => 'form-control validate[required,custom[onlyNumberSp]]', 'placeholder'=>'Пробег']) !!}
                         </div>
                     </div>
 
@@ -164,7 +164,7 @@
                     <div class="form-group">
                         {!! Form::label('power', 'Мощность двигателя *', ['class' => 'control-label col-md-2']) !!}
                         <div class="col-md-4">
-                            {!! Form::text('power', old('power', isset($catalogusedcar) ? $catalogusedcar->power : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Мощность двигателя']) !!}
+                            {!! Form::text('power', old('power', isset($catalogusedcar) ? $catalogusedcar->power : null), ['class' => 'form-control validate[required,custom[onlyNumberSp]]', 'placeholder'=>'Мощность двигателя']) !!}
                         </div>
                     </div>
 

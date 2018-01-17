@@ -36,7 +36,7 @@
         </div>
         <div class="box-body">
             <p>* - обязательные поля</p>
-            {!! Form::open(['url' => isset($carmodel) ? URL::to('admin/carmodels/' . $carmodel->id )  :  URL::to('admin/carmodels') , 'method' => isset($carmodel) ? 'put': 'post', 'class' => 'form-horizontal', 'id'=>'validate']) !!}
+            {!! Form::open(['url' => isset($carmodel) ? URL::to('admin/carmodels/' . $carmodel->id )  :  URL::to('admin/carmodels') , 'method' => isset($carmodel) ? 'put': 'post', 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal', 'id'=>'validate']) !!}
 
             @if(isset($id_car_mark)) {!! Form::hidden('id_car_mark', $id_car_mark) !!} @endif
 
@@ -59,6 +59,13 @@
                 </div>
 
                 <div class="form-group">
+                    {!! Form::label('image', 'Фото (jpeg, png, gif)', ['class' => 'control-label col-md-2']) !!}
+                    <div class="col-md-4">
+                        {!! Form::file('image') !!}
+                    </div>
+                </div>
+
+                <div class="form-group">
                     {!! Form::label('published', 'Опубликован', ['class' => 'control-label col-md-2']) !!}
                     <div class="col-md-4">
                         <label class="check">
@@ -69,6 +76,13 @@
                                 {!! Form::checkbox('published',1,  old('published' , true) ,['class'=>'minimal']) !!}
                             @endif
                             Да</label>
+                    </div>
+                </div>
+
+                <div class="form-group"><div class="col-md-8 col-md-offset-2">
+                        @if (isset($carmodel) && (file_exists(public_path() . $carmodel->image)) )
+                            <img src="{!! $carmodel->image !!}">
+                        @endif
                     </div>
                 </div>
 

@@ -91,6 +91,7 @@
 
         </div>
         <div class="autoredit condition">
+            <img id="model_img" src="/images/car_bg_big.png" height="315">
             <h2>Условия кредитования</h2>
             <ul>
                 <li>Минимальный пакет документов паспорт, водительское удостоверение.</li>
@@ -229,6 +230,29 @@
                 $("#search_registration").val($(this).text());
                 $(".search_result_registration").fadeOut();
             })
+
+            $("#trade_in_model").on("change keyup input click", function() {
+
+                var idModel = this.value;
+
+                if(idModel != null) {
+
+                    var request = $.ajax({
+                        url: './ajax?action=get_model_info&id=' + idModel,
+                        method: "GET",
+                        dataType: "json"
+                    });
+
+                    request.done(function (data) {
+                        if (data.image != null && data.image != '') {
+                            $('#model_img').attr("src", data.image).fadeIn();
+                        } else {
+                            $('#model_img').attr("src", "/images/car_bg.png").fadeIn();
+                        }
+                    });
+                }
+            })
+
 
             $(".form_phone").mask("+7 (999) 999-9999");
 

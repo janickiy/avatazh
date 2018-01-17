@@ -142,7 +142,6 @@ class DashboardController extends Controller
 
                     $modifications = CarModification::where('id_car_model', $request->id_car_model)
                                     ->get();
-
                     $rows = [];
 
                     foreach($modifications as $modification) {
