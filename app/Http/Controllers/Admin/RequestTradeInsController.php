@@ -72,6 +72,13 @@ class RequestTradeInsController extends Controller
     public function destroy(Request $request, RequestTradeIn $requestTradeIn)
     {
         if ($request->ajax()) {
+            if ($requestTradeIn->photo) {
+                $photo = unserialize($requestTradeIn->photo);
+
+                if (file_exists(public_path() . $photo['small'])) @unlink(public_path() . $photo['small']);
+                if (file_exists(public_path() . $photo['big'])) @unlink(public_path() . $photo['big']);
+            }
+
             $requestTradeIn->delete();
             return response()->json(['success' => 'Заявка на Trade-in удалена']);
         } else {

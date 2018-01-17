@@ -8,6 +8,7 @@
 
 @section('css')
     <style>
+
     .select2-container .select2-selection--single {height: 52px;width: 100%; border-radius:4px;}.select2-container--default .select2-selection--single .select2-selection__rendered {line-height: 50px; }.select2-container--default .select2-selection--single .select2-selection__arrow {height: 50px;}.select2-container--default .select2-selection--single .select2-selection__rendered {color: #747474;}.select2-container--default .select2-results__option--highlighted[aria-selected] {background-color: #ee8116;}
 
     </style>
@@ -24,7 +25,7 @@
             <div class="tradein">
                 <h2>Ваш автомобиль</h2>
 
-                {!! Form::open(['url' => '/request-tradein', 'method' => 'post', 'class' => 'form-horizontal', 'id' => 'validate']) !!}
+                {!! Form::open(['url' => '/request-tradein', 'method' => 'post', 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal', 'id' => 'validate']) !!}
 
                 <div class="select">
                     {!! Form::select('mark', $mark_options, isset($request->mark) ? $request->mark : 'Марка', ['class' => 'select2 validate[required]', 'id' => 'mark']) !!}
@@ -37,16 +38,16 @@
                 <div class="select">
                     <div class="select">
                         @if(isset($request->year))
-                            {!! Form::selectYear('year', isset($year['from']) ? $year['from'] : null, isset($year['to']) ? $year['to'] : null, isset($request->year) ? $request->year : null, ['class' => 'select2', 'id' => 'year', 'placeholder' => 'Год от']) !!}
+                            {!! Form::selectYear('year', isset($year['from']) ? $year['from'] : null, isset($year['to']) ? $year['to'] : null, isset($request->year) ? $request->year : null, ['class' => 'select2 validate[required]', 'id' => 'year', 'placeholder' => 'Год от']) !!}
                         @else
-                            {!! Form::select('year', [], 'Год выпуска', ['class' => 'select2', 'id' => 'year', 'disabled', 'placeholder' => 'Год выпуска']) !!}
+                            {!! Form::select('year', [], 'Год выпуска', ['class' => 'select2 validate[required]', 'id' => 'year', 'disabled', 'placeholder' => 'Год выпуска']) !!}
                         @endif
                     </div>
                 </div>
 
                 <div class="select">
                     <div class="select">
-                        {!! Form::text('mileage', old('mileage'), ['class' => 'form_control validate[required]', 'placeholder' => 'Пробег (тыс. км)']) !!}
+                        {!! Form::text('mileage', old('mileage'), ['class' => 'form_control validate[required,custom[onlyNumberSp]]', 'placeholder' => 'Пробег (тыс. км)']) !!}
                     </div>
                 </div>
 
@@ -58,7 +59,7 @@
                         'Автоматическая' => 'Автоматическая',
                         'Роботизированная' => 'Роботизированная',
                         'Вариатор' => 'Вариатор',
-                        'Автоматизированная механическая' => 'Автоматизированная механическая'], isset($request->gearbox) ? $request->gearbox : 'Коробка', ['class' => 'select2'])
+                        'Автоматизированная механическая' => 'Автоматизированная механическая'], isset($request->gearbox) ? $request->gearbox : 'Коробка', ['class' => 'select2 validate[required]]'])
                         !!}
                     </div>
                 </div>
@@ -66,7 +67,9 @@
                 <div class="select">
                     <div class="file-upload">
                         <label>
+
                             {{ Form::file('photo', ['class' => 'field', 'onchange' => 'getFileParam();', 'id' => 'uploaded-file1']) }}
+
                             <span>Выберите файл</span><br />
                         </label>
                     </div>
@@ -97,18 +100,18 @@
                 </div>
                 <div class="checkboxes">
                     <div class="row">
-                        {!! Form::checkbox('confirmation', null, null, ['class' => 'checkbox', 'id' => 'confirmation']) !!}
+                        {!! Form::checkbox('confirmation', null, null, ['class' => 'checkbox validate[required[alertTextCheckboxe]]', 'id' => 'confirmation']) !!}
                         {!! Form::label('confirmation', 'Я понимаю, что автосалон находится в Москве') !!}
                     </div>
                     <div class="row">
-                        {!! Form::checkbox('agree', null, null, ['class' => 'checkbox', 'id' => 'agree']) !!}
+                        {!! Form::checkbox('agree', null, null, ['class' => 'checkbox  validate[required[alertTextCheckboxe]]', 'id' => 'agree']) !!}
                         {!! Form::label('agree', 'Я даю согласие на обработку моих персональных данных') !!}
                     </div>
                 </div>
             </div>
             <div class="tradein">
                 <div class="select">
-                      {!! Form::text('phone', old('phone'), ['class' => 'form_control form_phone validate[required]', 'placeholder' => 'Телефон']) !!}
+                      {!! Form::text('phone', old('phone'), ['class' => 'form_control form_phone validate[required,custom[phone]]', 'placeholder' => 'Телефон']) !!}
                 </div>
 
                 {!! Form::submit('отправить заявку', ['class'=>'btn']) !!}
@@ -241,6 +244,7 @@
             })
 
             $(".form_phone").mask("+7 (999) 999-9999");
+
 
         })
 

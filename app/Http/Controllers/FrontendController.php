@@ -18,6 +18,7 @@ use App\RequestCredit;
 use App\RequestUsedcarCredit;
 use App\RequestTradeIn;
 use App\CatalogUsedCar;
+use Intervention\Image\Facades\Image as ImageInt;
 
 class FrontendController extends Controller
 {
@@ -93,7 +94,6 @@ class FrontendController extends Controller
         if (isset($request->search)) {
 
             if ($request->mark) $mark_search = CarMark::select(['name'])->where('id', $request->mark)->first()->toArray();
-
             if ($request->model) $model_search = CarModel::select(['name'])->where('id', $request->model)->first()->toArray();
 
             if ((isset($request->price_from) && $request->price_from) and (isset($request->price_to) && $request->price_to)) {
@@ -359,7 +359,11 @@ class FrontendController extends Controller
         return view('frontend.auto', compact('usedCars'))->with('title', 'Автомобили с пробегом');
     }
 
-    public function credit()
+    /**
+     * @param Request $request
+     * @return $this
+     */
+    public function credit(Request $request)
     {
         $marks = CarMark::selectRaw('car_marks.id,car_marks.name,car_marks.slug,count(catalog_used_cars.id) as countusedcars')
             ->where('car_marks.published', 1)
@@ -369,7 +373,44 @@ class FrontendController extends Controller
             ->take(23)
             ->get();
 
-        return view('frontend.credit', compact('marks'))->with('title', 'Автокредит');
+        $mark_search = CarMark::select(['id', 'name'])
+            ->where('published', 1)
+            ->orderBy('name')
+            ->get()
+            ->toArray();
+
+        $mark_options[null] = 'Марка';
+
+        foreach ($mark_search  as $mark) {
+            $mark_options[$mark['id']] = $mark['name'];
+        }
+
+        $models_options[null] = 'Модель';
+
+        if (isset($request->mark)) {
+            $models_search = CarModel::where('published', 1)
+                ->where('id_car_mark', $request->mark)
+                ->get()
+                ->toArray();
+
+            foreach ($models_search  as $model) {
+                $models_options[$model['id']] = $model['name'];
+            }
+        }
+
+        $models_modification[null] = 'Комлектация';
+
+        if (isset($request->model)) {
+            $modifications_search = CarModification::where('id_car_model', $request->model)
+                ->get()
+                ->toArray();
+
+            foreach ($modifications_search as $modification) {
+                $models_modification[$modification['name']] = $modification['name'];
+            }
+        }
+
+        return view('frontend.credit', compact('marks', 'mark_options', 'models_options', 'models_modification'))->with('title', 'Автокредит');
     }
 
     /**
@@ -378,12 +419,15 @@ class FrontendController extends Controller
      */
     public function requestCredit(RequestCreditsRequest $request)
     {
-        $request->request->remove('id_mark');
-        $request->request->remove('id_model');
         $request->request->remove('confirmation');
         $request->request->remove('agree');
 
+        $mark = CarMark::select(['name'])->where('id', $request->mark)->first()->toArray();
+        $model = CarModel::select(['name'])->where('id', $request->model)->first()->toArray();
+
         $requestCredit = RequestCredit::create($request->except('_token'));
+        $requestCredit->mark = $mark['name'];
+        $requestCredit->model = $model['name'];
         $requestCredit->ip = getIP();
         $requestCredit->save();
         return redirect('/credit')->with('success', 'Ваша заявка на автокредит отправлена. Мы свяжемся с Вами в ближайшее время!');
@@ -477,9 +521,36 @@ class FrontendController extends Controller
         $request->request->remove('confirmation');
         $request->request->remove('agree');
 
+        $mark = CarMark::select(['name'])->where('id', $request->mark)->first()->toArray();
+        $model = CarModel::select(['name'])->where('id', $request->model)->first()->toArray();
+
+        $image = [];
+
+        if ($request->hasFile('photo')) {
+            $small_path = public_path() . PATH_SMALL_TRADEIN;
+            $big_path = public_path() . PATH_BIG_TRADEIN;
+            $file = $request->file('photo');
+
+            $filename = str_random(20) . '.' . $file->getClientOriginalExtension() ? : 'png';
+            $img = ImageInt::make($file);
+
+            $img->resize(300, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($small_path . $filename);
+
+            $img->resize(1000, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($big_path . $filename);
+
+            $image = ['small' => PATH_SMALL_TRADEIN . $filename, 'big' => PATH_BIG_TRADEIN . $filename, 'name' => $file->getClientOriginalName()];
+        }
+
         $requestTradeIn = RequestTradeIn::create($request->except('_token'));
-        $requestTradeIn->save();
+        $requestTradeIn->mark = $mark['name'];
+        $requestTradeIn->model = $model['name'];
         $requestTradeIn->ip = getIP();
+        $requestTradeIn->photo = !empty($image) ? serialize($image) : '';
+        $requestTradeIn->save();
         return redirect('/tradein')->with('success', 'Ваша заявка на Trade-In отправлена. Мы свяжемся с Вами в ближайшее время!');
     }
 

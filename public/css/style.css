@@ -93,7 +93,7 @@ header a{color:#fff;font-family:RobotoBlack;}
 .quantity_cars_block>div {padding:10px 0;}
 .quantity_cars_block label {}
 .quantity_cars_block div.quantity_cars {text-align:right;color:#ee8116;font-family:RobotoBlack;font-size:36px;width:100px;padding-right:10px;}
-.autocode{background:url(images/autocode.jpg) center no-repeat;width:100%;height:100px;margin-top: 22px;}
+.autocode{background:url('/images/autocode.jpg') center no-repeat;width:100%;height:100px;margin-top: 22px;}
 .more_cars {float: right; margin-right: 18px;}
 
 .index_items_list {margin-left:-18px;margin-right:-18px;}
@@ -180,7 +180,7 @@ input.form_control:focus::placeholder {opacity:0;}
 .pager .pagination a:hover {background:#ee8116;}
 
 
-.map {padding-bottom:150px;background:url(images/map.jpg) bottom no-repeat;border:1px solid #d7d7d7;border-radius:5px;color:#767676;margin-bottom:30px;}
+.map {padding-bottom:150px;background:url('/images/map.jpg') bottom no-repeat;border:1px solid #d7d7d7;border-radius:5px;color:#767676;margin-bottom:30px;}
 .map>div {padding:15px;border-bottom:#d7d7d7;}
 .map .address, .map .times {margin-bottom:10px;}
 .map .address:before, .map .times:before{font-family:FontAwesome;margin-right: 7px;margin-bottom: 15px;display: inline-block; float: left; line-height: 22px;}
@@ -201,8 +201,8 @@ input.form_control:focus::placeholder {opacity:0;}
 .autoredit .select .dropcontainer ul{margin-right: 0px;}
 .select .form_control {background: #fff;display: block; border: 1px solid #b6b6b6;width: 100%; line-height: 50px;padding: 0 25px 0 10px;color: #747474;border-radius:5px;}
 .autoredit .btn, .tradein .btn {width:100%;border-radius:5px;line-height:60px;}
-.newcar {background:url(images/car_bg.png) bottom no-repeat;height: 380px;}
-.condition {padding-top: 315px;background:url(images/car_bg_big.png) top no-repeat;}
+.newcar {background:url('/images/car_bg.png') bottom no-repeat;height: 380px;}
+.condition {padding-top: 315px;background:url('/images/car_bg_big.png') top no-repeat;}
 .condition li{position:relative;padding-left:20px;line-height: 15px; color: #4b423e; margin-bottom: 25px;}
 .condition li:before{position:absolute;left:0px;font-size: 10px;color: #ee8116;}
 .condition li:before{content:'—';top: 1px;}

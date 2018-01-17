@@ -30,7 +30,7 @@ class RequestUsedcarCreditsRequest extends Request
             }
             case 'POST': {
                 return [
-                    'id_car' => 'required|numeric',
+                    'id_car' => 'numeric',
                     'fee' => 'required|numeric',
                     'name' => 'required',
                     'age' => 'required|numeric',
@@ -41,7 +41,7 @@ class RequestUsedcarCreditsRequest extends Request
             case 'PUT':
             case 'PATCH': {
                 return [
-                    'id_car' => 'required|numeric',
+                    'id_car' => 'numeric',
                     'fee' => 'required|numeric',
                     'name' => 'required',
                     'age' => 'required|numeric',

@@ -242,6 +242,14 @@ class CatalogUsedCarsController extends Controller
     public function destroy(Request $request, CatalogUsedCar $catalogUsedCar)
     {
         if ($request->ajax()) {
+
+            if ($catalogUsedCar->image) {
+                foreach (unserialize($catalogUsedCar->image) as $image) {
+                    if (file_exists(public_path() . $image['small'])) @unlink(public_path() . $image['small']);
+                    if (file_exists(public_path() . $image['big'])) @unlink(public_path() . $image['big']);
+                }
+            }
+
             $catalogUsedCar->delete();
             return response()->json(['success' => 'Меню успешно удалено']);
         } else {

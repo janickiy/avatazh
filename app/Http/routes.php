@@ -35,6 +35,7 @@ use App\CatalogUsedCar;
 use App\Image;
 use App\RequestCredit;
 use App\RequestTradeIn;
+use App\RequestUsedcarCredit;
 
 Route::model('users', User::class);
 Route::model('settings', Setting::class);
@@ -49,6 +50,7 @@ Route::model('catalogusedcars', CatalogUsedCar::class);
 Route::model('images', Image::class);
 Route::model('requestcredits', RequestCredit::class);
 Route::model('requesttradeins', RequestTradeIn::class);
+Route::model('requestusedcarcredits', RequestUsedcarCredit::class);
 
 Route::group(['prefix' => ''], function() {
     define('PATH_AVATARS','/uploads/avatars');
@@ -58,6 +60,8 @@ Route::group(['prefix' => ''], function() {
     define('PATH_SETTINGS','/uploads/settings');
     define('PATH_SMALL_USEDCARS','/uploads/usedcars/small/');
     define('PATH_BIG_USEDCARS','/uploads/usedcars/big/');
+    define('PATH_SMALL_TRADEIN','/uploads/tardein/small/');
+    define('PATH_BIG_TRADEIN','/uploads/tardein/big/');
 });
 
 Route::group(['middleware' => ['web']], function () {

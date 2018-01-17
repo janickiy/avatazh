@@ -88,24 +88,11 @@
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('trade_in_mark', 'Марка авто клиента *', ['class' => 'control-label col-md-2']) !!}
-                    <div class="col-md-4">
-                        {!! Form::text('trade_in_mark', old('trade_in_mark', isset($requesttradein) ? $requesttradein->trade_in_mark : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Марка клиента']) !!}
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    {!! Form::label('trade_in_model', 'Модель авто клиента *', ['class' => 'control-label col-md-2']) !!}
-                    <div class="col-md-4">
-                        {!! Form::text('trade_in_model', old('trade_in_model', isset($requesttradein) ? $requesttradein->trade_in_model : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Модель авто клиента']) !!}
-                    </div>
-                </div>
-
-                <div class="form-group">
                     <div class="col-md-8 col-md-offset-2">
                         {!! Form::submit( (isset($requesttradein) ? 'Обновить': 'Добавить') . '', ['class'=>'btn btn-primary']) !!}
                     </div>
                 </div>
+
             </div><!-- .col-md-12 -->
             {!! Form::close() !!}
         </div><!-- /.box-body -->

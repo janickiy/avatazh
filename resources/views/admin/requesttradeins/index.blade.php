@@ -49,8 +49,8 @@
                     <th>КПП</th>
                     <th>ФИО</th>
                     <th>Телефон</th>
-                    <th>Марка клиента</th>
-                    <th>Модель клиента</th>
+                    <th>IP</th>
+                    <th>Желаемый автомобиль</th>
                     <th>Время публикации</th>
                     <th>Действия</th>
                 </tr>
@@ -96,15 +96,14 @@
                 {data: 'gearbox', name: 'gearbox'},
                 {data: 'name', name: 'name'},
                 {data: 'phone', name: 'phone'},
-                {data: 'trade_in_mark', name: 'trade_in_mark'},
-                {data: 'trade_in_model', name: 'trade_in_model'},
+                {data: 'ip', name: 'ip'},
+                {data: 'request_car', name: 'trade_in_mark'},
                 {data: 'created_at', name: 'created_at'},
                 {data: 'actions', name: 'actions', orderable: false, searchable: false}
             ]
         });
         //table.column('0:visible').order('desc').draw();
     });
-
 
 
 </script>

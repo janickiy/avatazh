@@ -311,11 +311,18 @@ class DatatablesController extends Controller
         $requestTradeIn = RequestTradeIn::all();
 
         return Datatables::of($requestTradeIn)
-        ->addColumn('actions', function ($requestTradeIn) {
-            $editBtn = '<a style="margin-right: 0.2em;" href="' . url('admin/requesttradeins/' . $requestTradeIn->id . '/edit/') . '"  title="Редактировать"><i class="fa fa-2 fa-pencil"></i></a>';
-            $deleteBtn = '&nbsp;<a href="' . url('admin/requesttradeins/' . $requestTradeIn->id) . '" class="message_box text-danger" data-box="#message-box-delete" data-action="DELETE" title="Удалить навсегда"><i class="fa fa-2 fa-remove"></i></a>';
-            return $editBtn . $deleteBtn;
-        })->make(true);
+            ->addColumn('request_car', function ($requestTradeIn) {
+                $mark = CarMark::select(['name'])->where('id', $requestTradeIn->trade_in_mark)->first()->toArray();
+                $model = CarModel::select(['name'])->where('id', $requestTradeIn->trade_in_model)->first()->toArray();
+
+                return $mark['name'] . ' ' . $model['name'];
+            })
+
+            ->addColumn('actions', function ($requestTradeIn) {
+                $editBtn = '<a style="margin-right: 0.2em;" href="' . url('admin/requesttradeins/' . $requestTradeIn->id . '/edit/') . '"  title="Редактировать"><i class="fa fa-2 fa-pencil"></i></a>';
+                $deleteBtn = '&nbsp;<a href="' . url('admin/requesttradeins/' . $requestTradeIn->id) . '" class="message_box text-danger" data-box="#message-box-delete" data-action="DELETE" title="Удалить навсегда"><i class="fa fa-2 fa-remove"></i></a>';
+                return $editBtn . $deleteBtn;
+            })->make(true);
     }
 
     /**
