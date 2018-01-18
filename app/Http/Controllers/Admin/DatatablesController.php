@@ -18,6 +18,7 @@ use App\Image;
 use App\RequestTradeIn;
 use App\RequestCredit;
 use App\RequestUsedcarCredit;
+use App\Callback;
 
 class DatatablesController extends Controller
 {
@@ -372,5 +373,23 @@ class DatatablesController extends Controller
                 return $editBtn . $deleteBtn;
             })->make(true);
     }
+
+    /**
+     * @return mixed
+     */
+    public function getCallbacks()
+    {
+        $callBack = Callback::all();
+
+        return Datatables::of($callBack)
+
+            ->addColumn('time', function ($callBack) {
+                return $callBack->from_time . ' - ' . $callBack->to_time;
+            })
+
+            ->addColumn('actions', function ($callBack) {
+                $deleteBtn = '&nbsp;<a href="' . url('admin/callbacks/' . $callBack->id) . '" class="message_box text-danger" data-box="#message-box-delete" data-action="DELETE" title="Удалить навсегда"><i class="fa fa-2 fa-remove"></i></a>';
+                return $deleteBtn;
+            })->make(true);
+    }
 }
-				

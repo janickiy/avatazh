@@ -21,6 +21,8 @@
     {!! Html::script('js/select.js') !!}
     {!! Html::script('js/jquery.maskedinput.js') !!}
     {!! Html::script('js/lightslider.js') !!}
+    {!! Html::script('js/jquery.fancybox.js') !!}
+
     @yield('css')
 
 </head>

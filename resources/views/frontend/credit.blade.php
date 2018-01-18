@@ -105,7 +105,7 @@
 
         </div>
     </div>
-    <div class="logos"><img src="images/logos.jpg" /></div>
+    <div class="logos"><img src="/images/logos.jpg" /></div>
 
 
 @endsection

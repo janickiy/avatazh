@@ -36,6 +36,7 @@ use App\Image;
 use App\RequestCredit;
 use App\RequestTradeIn;
 use App\RequestUsedcarCredit;
+use App\Callback;
 
 Route::model('users', User::class);
 Route::model('settings', Setting::class);
@@ -51,6 +52,7 @@ Route::model('images', Image::class);
 Route::model('requestcredits', RequestCredit::class);
 Route::model('requesttradeins', RequestTradeIn::class);
 Route::model('requestusedcarcredits', RequestUsedcarCredit::class);
+Route::model('callbacks', Callback::class);
 
 Route::group(['prefix' => ''], function() {
     define('PATH_AVATARS','/uploads/avatars');
@@ -82,6 +84,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/reviews', 'FrontendController@reviewsSubmit');
     Route::get('/contacts', 'FrontendController@contact');
     Route::post('/contacts', 'FrontendController@contactUsSubmit');
+    Route::post('/callback', 'FrontendController@callback');
     Route::get('/page/{slug}', 'FrontendController@staticPages');
     Route::any('/ajax', 'FrontendController@ajax');
 
@@ -125,7 +128,7 @@ Route::group(['middleware' => 'web'], function () {
         Route::resource('requestcredits', 'Admin\RequestCreditsController');
         Route::resource('requestusedcarcredits', 'Admin\RequestUsedcarCreditsController');
         Route::resource('requesttradeins', 'Admin\RequestTradeInsController');
-
+        Route::resource('callbacks', 'Admin\CallbacksController');
     });
 
     /**

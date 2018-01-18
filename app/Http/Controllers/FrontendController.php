@@ -8,6 +8,7 @@ use App\Http\Requests\RequestCreditsRequest;
 use App\Http\Requests\RequestTradeInsRequest;
 use App\Http\Requests\UserReviewsRequest;
 use App\Http\Requests\RequestUsedcarCreditsRequest;
+use App\Http\Requests\CallbacksRequest;
 use App\Page;
 use App\CarMark;
 use App\CarModel;
@@ -18,6 +19,7 @@ use App\RequestCredit;
 use App\RequestUsedcarCredit;
 use App\RequestTradeIn;
 use App\CatalogUsedCar;
+use App\Callback;
 use Intervention\Image\Facades\Image as ImageInt;
 
 class FrontendController extends Controller
@@ -112,9 +114,6 @@ class FrontendController extends Controller
                     ->where('year', isset($request->year) && $request->year ? '>' : 'not like', isset($request->year) && $request->year ? $request->year : '')
                     ->paginate(5);
             }
-
-            //var_dump($usedcars);
-          //  exit;
         }
 
         return view('frontend.index', compact('marks', 'numberCars', 'soldLastWeek', 'specialOffer', 'newCars', 'mark_options', 'request', 'models_options', 'year', 'usedcars'))->with('title', 'Главная');
@@ -150,6 +149,42 @@ class FrontendController extends Controller
         );
 
         return redirect('/login')->with(['success' => 'Спасибо что связались с нами!']);
+    }
+
+    /**
+     * @param CallbacksRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function callback(Request $request)
+    {
+        $name = $request->input('name');
+        $phone = $request->input('phone');
+        $from_time = $request->input('from_time');
+        $to_time = $request->input('to_time');
+        $to_email = getSetting('CONTACT_EMAIL');
+
+
+
+        /*
+        \Mail::send('callback.callback',
+            [
+                'name'  => $name,
+                'phone' => $phone,
+                'from'  => $from_time,
+                'to'    => $to_time,
+                'time' => date("m.d.y H:m"),
+                'email' => 'wrwr@ada.ru'
+            ],
+            function ($message) use ($to_email) {
+                $message->to($to_email, getSetting('SITE_TITLE') . ' Заявка на обратный звонок')->subject('Заявка на обратный звонок (' . getSetting('SITE_TITLE') . ')');
+            }
+        );
+        */
+
+        $callBack = Callback::create($request->except('_token'));
+        $callBack->ip = getIP();
+        $callBack->save();
+        return redirect('/contacts')->with('success', 'Ваша заявка на обратный звонок отправлена. Мы свяжемся с Вами в ближайшее время!');
     }
 
     /**
@@ -327,8 +362,6 @@ class FrontendController extends Controller
                     return response()->json($model);
 
                 break;
-
-
             }
         }
     }
