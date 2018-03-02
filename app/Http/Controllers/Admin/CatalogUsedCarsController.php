@@ -6,6 +6,7 @@ use App\CarModel;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\CatalogUsedCarsRequest;
+use App\Http\Requests\CarImportRequest;
 use App\Http\Controllers\Controller;
 use App\CatalogUsedCar;
 use Intervention\Image\Facades\Image as ImageInt;
@@ -214,5 +215,66 @@ class CatalogUsedCarsController extends Controller
         } else {
             return 'Вы не можете продолжить операцию удаления';
         }
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function import()
+    {
+        return view('admin.catalogusedcars.import');
+    }
+
+    /**
+     * @param CarImportRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function importCar(CarImportRequest $request)
+    {
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $xml = simplexml_load_file($file);
+
+            foreach($xml->offers as $row_car) {
+               //var_dump($row_car->offer);
+
+                foreach ($row_car->offer as $row)
+                {
+                    $mark = $row->mark;
+                    $model = $row->model;
+                    $price = $row->price;
+                    $year = $row->year;
+                    $mileage = $row->run;
+                    $gearbox = $row->transmission;
+                    $drive = $row->gear_type;
+                    $engine_type = $row->engine_type;
+                    $power = $row->horse_power;
+                    $body = $row->body_type;
+                    $wheel = $row->steering_wheel == 'right' ? 'правый' : 'левый';
+                    $color = $row->color;
+
+
+                    foreach ($row->equipment as $equipment) {
+                        echo $equipment;
+                    }
+
+                    foreach ($row->image as $image) {
+                        echo $image;
+                    }
+
+
+
+
+
+                }
+
+
+
+            }
+        }
+
+        exit;
+
+        return redirect('admin/carmarks/import')->with('success', 'Импорт завершен');
     }
 }

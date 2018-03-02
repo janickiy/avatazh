@@ -110,6 +110,12 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('carmodifications/create/{id}', 'Admin\CarmodificationsController@create');
         Route::get('carmarks/import', 'Admin\CarmarksController@import');
         Route::post('carmarks/imporcarmarks', 'Admin\CarmarksController@importCarmarks');
+
+
+        Route::get('catalogusedcars/import', 'Admin\CatalogUsedCarsController@import');
+        Route::post('catalogusedcars/importcar', 'Admin\CatalogUsedCarsController@importCar');
+
+
         Route::any('/ajax', 'Admin\DashboardController@ajax');
         Route::resource('users', 'Admin\UsersController');
         Route::get('settings/create/{type}', ['as' => 'admin.settings.create.type', 'uses' => 'Admin\SettingsController@createForm']);
