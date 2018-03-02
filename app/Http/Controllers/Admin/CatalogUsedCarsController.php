@@ -8,8 +8,6 @@ use App\Http\Requests;
 use App\Http\Requests\CatalogUsedCarsRequest;
 use App\Http\Controllers\Controller;
 use App\CatalogUsedCar;
-use App\CatalogParameterCategory;
-use App\CatalogParameterValue;
 use Intervention\Image\Facades\Image as ImageInt;
 
 class CatalogUsedCarsController extends Controller
@@ -31,25 +29,7 @@ class CatalogUsedCarsController extends Controller
      */
     public function create()
     {
-        $catalogParameterCategories = CatalogParameterCategory::all();
-
-        $options = [];
-
-        foreach($catalogParameterCategories as $catalogParameterCategory) {
-            $catalogParameterValues = CatalogParameterValue::where('id_category', $catalogParameterCategory->id)
-                                        ->get()
-                                        ->toArray();
-
-            $params = [];
-
-            foreach ($catalogParameterValues  as $catalogParameterValue) {
-                $params[$catalogParameterValue['name']] = $catalogParameterValue['name'];
-            }
-
-            $options[$catalogParameterCategory->name] = $params;
-        }
-
-        return view('admin.catalogusedcars.create_edit')->with(compact('options'));
+        return view('admin.catalogusedcars.create_edit');
     }
 
     /**
@@ -58,7 +38,6 @@ class CatalogUsedCarsController extends Controller
      */
     public function store(CatalogUsedCarsRequest $request)
     {
-        $request->merge(['equipment' => serialize($request->equipment)]);
         $request->request->remove('id_mark');
         $request->request->remove('id_model');
 
@@ -120,26 +99,6 @@ class CatalogUsedCarsController extends Controller
         foreach($models as $model) {
             $model_list[$model->name] = $model->name;
         }
-
-        $catalogParameterCategories = CatalogParameterCategory::all();
-
-        $options = [];
-
-        foreach($catalogParameterCategories as $catalogParameterCategory) {
-            $catalogParameterValues = CatalogParameterValue::where('id_category', $catalogParameterCategory->id)
-                ->get()
-                ->toArray();
-
-            $params = [];
-
-            foreach ($catalogParameterValues  as $catalogParameterValue) {
-                $params[$catalogParameterValue['name']] = $catalogParameterValue['name'];
-            }
-
-            $options[$catalogParameterCategory->name] = $params;
-        }
-
-        if (isset($catalogusedcar->equipment)) $catalogusedcar->equipment = unserialize($catalogusedcar->equipment);
 
         return view('admin.catalogusedcars.create_edit')->with(compact('catalogusedcar', 'model_list', 'options'));
     }

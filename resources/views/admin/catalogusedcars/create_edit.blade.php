@@ -199,9 +199,9 @@
                     </div>
 
                     <div class="form-group">
-                        {!! Form::label('salon', 'Салон *', ['class' => 'control-label col-md-2']) !!}
+                        {!! Form::label('salon', 'Салон', ['class' => 'control-label col-md-2']) !!}
                         <div class="col-md-4">
-                            {!! Form::text('salon', old('salon', isset($catalogusedcar) ? $catalogusedcar->salon : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Салон']) !!}
+                            {!! Form::text('salon', old('salon', isset($catalogusedcar) ? $catalogusedcar->salon : null), ['class' => 'form-control', 'placeholder'=>'Салон']) !!}
                         </div>
                     </div>
 
@@ -243,14 +243,14 @@
                     <div class="form-group">
                         {!! Form::label('equipment', 'Комплектация', ['class' => 'control-label col-md-2']) !!}
                         <div class="col-md-4">
-                            {!! Form::select('equipment[]', $options, isset($catalogusedcar) ? $catalogusedcar->equipment : null, ['class' => 'form-control','multiple'=> true ]) !!}
+                            {!! Form::textarea('equipment', old('equipment', isset($catalogusedcar) ? $catalogusedcar->equipment : null), ['class' => 'form-control', 'placeholder' => 'Комплектация', 'rows' => 2]) !!}
                         </div>
                     </div>
 
                     <div class="form-group">
                         {!! Form::label('published', 'Публиковать', ['class' => 'control-label col-md-2']) !!}
                         <div class="col-sm-10">
-                            <label class="check">{!! Form::checkbox('published', 1, isset($catalogusedcar) ? ($catalogusedcar->published == 1 ? true: false) : true, ['class'=>'minimal']) !!}
+                            <label class="check">{!! Form::checkbox('published', 1, isset($catalogusedcar) ? ($catalogusedcar->published == 1 ? true: false) : true, ['class' => 'minimal']) !!}
                                 Да
                             </label>
                         </div>

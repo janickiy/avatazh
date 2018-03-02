@@ -42,7 +42,6 @@ class CatalogUsedCarsRequest extends Request
                     'body'  => 'required',
                     'wheel' => 'required',
                     'color' => 'required',
-                    'salon' => 'required',
                     'image[]' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 ];
             }
@@ -61,7 +60,6 @@ class CatalogUsedCarsRequest extends Request
                     'body'  => 'required',
                     'wheel' => 'required',
                     'color' => 'required',
-                    'salon' => 'required',
                     'image[]' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 ];
             }
