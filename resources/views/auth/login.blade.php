@@ -47,12 +47,8 @@
                 </div>
 
                 <div class="form-group">
-                    <div class="col-md-9 col-md-offset-3">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="remember"> Запомнить меня
-                            </label>
-                        </div>
+                    <div class="tradein_check">
+                        <input type="checkbox" name="remember" id="remember" class="checkbox"><label for="remember">Запомнить меня</label>
                     </div>
                 </div>
 

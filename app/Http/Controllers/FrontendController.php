@@ -692,4 +692,19 @@ class FrontendController extends Controller
 
         abort(404);
     }
+
+    /**
+     * @param string $slug
+     * @return $this
+     */
+    public function blog($slug = '')
+    {
+        $post = Page::whereSlug($slug)->published()->post()->get()->first();
+
+        if ($post) {
+            return view('frontend.post')->with(compact('post', 'marks'));
+        }
+
+        abort(404);
+    }
 }

@@ -79,21 +79,6 @@
                                 </a>
                             </div>
                         </div><!-- ./col -->
-                        <div class="col-lg-3 col-xs-6">
-                            <!-- small box -->
-                            <div class="small-box bg-blue">
-                                <div class="inner">
-                                    <h3>{{ $images }}</h3>
-                                    <p>Фотографии</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fa fa-photo"></i>
-                                </div>
-                                <a href="{{ url('admin/images') }}" class="small-box-footer">подробно
-                                    <i class="fa fa-arrow-circle-right"></i>
-                                </a>
-                            </div>
-                        </div><!-- ./col -->
 
                         <div class="col-lg-3 col-xs-6">
                             <!-- small box -->
@@ -154,6 +139,22 @@
                                     <i class="fa fa-folder-open-o"></i>
                                 </div>
                                 <a href="{{ url('admin/carmarks') }}" class="small-box-footer">подробно
+                                    <i class="fa fa-arrow-circle-right"></i>
+                                </a>
+                            </div>
+                        </div><!-- ./col -->
+
+                        <div class="col-lg-3 col-xs-6">
+                            <!-- small box -->
+                            <div class="small-box bg-blue">
+                                <div class="inner">
+                                    <h3>{{ $callbacks }}</h3>
+                                    <p>Заявки на обратный звонок</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fa fa-phone"></i>
+                                </div>
+                                <a href="{{ url('admin/callbacks') }}" class="small-box-footer">подробно
                                     <i class="fa fa-arrow-circle-right"></i>
                                 </a>
                             </div>
