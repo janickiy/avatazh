@@ -7,7 +7,7 @@
     {!! Html::style('css/lightslider.css') !!}
 
     {!! Html::style('assets/plugins/select2/select2.min.css') !!}
-
+	{!! Html::style('css/fancybox/jquery.fancybox.css') !!}
     <!-- iCheck for checkboxes and radio inputs -->
         {!! Html::style('assets/plugins/iCheck/all.css') !!}
 
@@ -19,33 +19,32 @@
 
     {!! Html::script('js/jquery-1.11.1.min.js') !!}
     {!! Html::script('js/select.js') !!}
+	{!! Html::script('js/script.js') !!}
     {!! Html::script('js/jquery.maskedinput.js') !!}
     {!! Html::script('js/lightslider.js') !!}
     {!! Html::script('js/jquery.fancybox.js') !!}
+	{!! Html::script('assets/plugins/select2/select2.full.min.js') !!}
 
     @yield('css')
 
 </head>
 <body>
-<div class="site_wrapper">
-    <div class="site row">
+<div class="site_wrapper row">
         @include('layouts.frontend.includes.header')
-        <div class="page main_width">
+        
 
         @yield('marks')
 
-        @include('layouts.frontend.includes.breadcrumbs')
+       
 
         @include('layouts.frontend.includes.notifications')
         @yield('content')
 
         <!-- CONTENT-WRAPPER SECTION END-->
-        </div>
 
-        @include('layouts.frontend.includes.footer')
-    </div>
+       
 </div>
-
+ @include('layouts.frontend.includes.footer')
 <!-- Bootstrap 3.3.5 -->
 {!! Html::script('assets/bootstrap/js/bootstrap.min.js') !!}
 

@@ -24,6 +24,10 @@ use Intervention\Image\Facades\Image as ImageInt;
 
 class FrontendController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return $this
+     */
     public function index(Request $request)
     {
         $marks = CarMark::selectRaw('car_marks.id,car_marks.name,car_marks.slug,count(catalog_used_cars.id) as countusedcars')

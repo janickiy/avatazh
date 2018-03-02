@@ -32,7 +32,6 @@ use App\CarMark;
 use App\CarModel;
 use App\CarModification;
 use App\CatalogUsedCar;
-use App\Image;
 use App\RequestCredit;
 use App\RequestTradeIn;
 use App\RequestUsedcarCredit;
@@ -48,7 +47,6 @@ Route::model('carmarks',CarMark::class);
 Route::model('carmodels',CarModel::class);
 Route::model('carmodifications',CarModification::class);
 Route::model('catalogusedcars', CatalogUsedCar::class);
-Route::model('images', Image::class);
 Route::model('requestcredits', RequestCredit::class);
 Route::model('requesttradeins', RequestTradeIn::class);
 Route::model('requestusedcarcredits', RequestUsedcarCredit::class);
@@ -85,6 +83,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/contacts', 'FrontendController@contact');
     Route::post('/contacts', 'FrontendController@contactUsSubmit');
     Route::post('/callback', 'FrontendController@callback');
+    Route::get('/blog/{slug}', 'FrontendController@blog');
     Route::get('/page/{slug}', 'FrontendController@staticPages');
     Route::any('/ajax', 'FrontendController@ajax');
 
@@ -124,7 +123,6 @@ Route::group(['middleware' => 'web'], function () {
         Route::resource('carmodels', 'Admin\CarmodelsController');
         Route::resource('carmodifications', 'Admin\CarmodificationsController');
         Route::resource('catalogusedcars', 'Admin\CatalogUsedCarsController');
-        Route::resource('images', 'Admin\ImagesController');
         Route::resource('requestcredits', 'Admin\RequestCreditsController');
         Route::resource('requestusedcarcredits', 'Admin\RequestUsedcarCreditsController');
         Route::resource('requesttradeins', 'Admin\RequestTradeInsController');

@@ -7,13 +7,7 @@
 @section('meta_keywords', $detail->meta_keywords)
 
 @section('css')
-    <style>
-        .select2-container .select2-selection--single { height: 38px;width: 100%; border-radius:5px; padding: 0 10px; width: 100%; color: #bfbfbf; }
-        .select2-container--default .select2-selection--single .select2-selection__rendered {line-height: 38px; }
-        .select2-container--default .select2-selection--single .select2-selection__arrow {height: 38px;}
-        .select2-container--default .select2-selection--single .select2-selection__rendered {color: #bfbfbf;}
-        .select2-container--default .select2-results__option--highlighted[aria-selected] {background-color: #ee8116;}
-    </style>
+
 @endsection
 
 @section('marks')
@@ -22,7 +16,9 @@
 
 @section('content')
     <section>
-        <h1>{{ $detail->mark }} {{ $detail->model }}</h1>
+        <div class="page main_width">
+			@include('layouts.frontend.includes.breadcrumbs')
+			<h1>{{ $detail->mark }} {{ $detail->model }}</h1>
         <div class="row">
             <div class="detail">
                 <div class="row">
@@ -36,8 +32,8 @@
 
                                             @foreach($images as $image)
 
-                                                <li data-thumb="{!! $image["small"] !!}">
-                                                    <img src="{!! $image["big"] !!}" />
+                                                <li data-thumb="{!! $image['small'] !!}">
+                                                    <img src="{!! $image['big'] !!}" />
                                                 </li>
 
                                             @endforeach
@@ -124,7 +120,7 @@
                             ], 'Первоначальный взнос', ['class' => 'select2', 'placeholder' => 'Первоначальный взнос']
                             ) !!}
                         </div>
-                {!! Form::submit('Купить в кредит', ['class'=>'btn']) !!}
+                {!! Form::submit('Купить в кредит', ['class'=>'btn green']) !!}
                 {!! Form::close() !!}
                 </div>
                 <div class="map">
@@ -151,13 +147,15 @@
                     @foreach($similarCars as $similarCar)
 
                     <li class="item">
-                        <div class="item_pic"><img src="{!! mainSmallPic($similarCar->image) !!}" /></div>
-                        <div class="idem_desc">
-                            <a class="item_name" href="{!! url('/auto/used/detail/' .  $similarCar->id) !!}">{!! $similarCar->mark !!} {!! $similarCar->model !!}</a>
-                            <p>{!! $similarCar->year !!} г., {!! number_format($similarCar->mileage,0,'',' ') !!} км, {!! $similarCar->engine_type !!}, КПП {!! $similarCar->gearbox !!}</p>
-                            <div class="item_price">{!! number_format($similarCar->price,0,'',' ') !!}<span class="rub">o</span></div>
-                            <a class="item_btn" href="{!! url('/auto/used/detail/' .  $similarCar->id) !!}">Подробнее</a>
-                        </div>
+						<div class="item_container">
+							<div class="item_pic" style="background-image:url({!! mainSmallPic($similarCar->image) !!})"></div>
+							<div class="idem_desc">
+								<a class="item_name" href="{!! url('/auto/used/detail/' .  $similarCar->id) !!}">{!! $similarCar->mark !!} {!! $similarCar->model !!}</a>
+								<p>{!! $similarCar->year !!} г., {!! number_format($similarCar->mileage,0,'',' ') !!} км, {!! $similarCar->engine_type !!}, КПП {!! $similarCar->gearbox !!}</p>
+								<div class="item_price">{!! number_format($similarCar->price,0,'',' ') !!}<span class="rub">o</span></div>
+								<a class="btn green" href="{!! url('/auto/used/detail/' .  $similarCar->id) !!}">Подробнее</a>
+							</div>
+						</div>	
                     </li>
 
                     @endforeach
@@ -167,6 +165,7 @@
         </section>
 
         @endif
+		</div>
     </section>
 @endsection
 

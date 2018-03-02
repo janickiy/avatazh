@@ -17,6 +17,8 @@
 
 @section('content')
     <section>
+	<div class="page main_width">
+		@include('layouts.frontend.includes.breadcrumbs')
         <h1>Автомобили с пробегом</h1>
 
         <div class="main_marks row">
@@ -26,7 +28,7 @@
                 <?php $i=0; ?>
                 @foreach($models as $model)
                     @if($i == 0) <tr> @endif
-                        <td><a href="{!! url('/auto/' . $model->slug . '/used') !!}">{!! $model->name !!}</a><span> 0 </span></td>
+                        <td><a href="{!! url('/auto/' . $model->slug . '/used') !!}">{!! $model->name !!}</a></td>
                         <?php $i++; ?>
                         @if($i == 6) </tr> <?php $i=0; ?> @endif
                 @endforeach
@@ -34,6 +36,7 @@
             </table>
 
         </div>
+		</div>
     </section>
 @endsection
 

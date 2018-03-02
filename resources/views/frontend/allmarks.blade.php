@@ -15,23 +15,25 @@
 
 @section('content')
     <section>
-        <h1>Все марки</h1>
+		<div class="page main_width">
+		@include('layouts.frontend.includes.breadcrumbs')
+			<h1>Все марки</h1>
 
-        <div class="main_marks row">
-            <table width="100%">
+			<div class="main_marks row">
+				<table width="100%">
 
-            <?php $i=0; ?>
-            @foreach($marks as $mark)
-                @if($i == 0) <tr> @endif
-                    <td><a href="{!! url('/auto/used/' .  $mark->slug) !!}">{!! $mark->name !!}</a><span> {!! $mark->countusedcars !!} </span></td>
-                    <?php $i++; ?>
-                    @if($i == 6) </tr> <?php $i=0; ?> @endif
-            @endforeach
+				<?php $i=0; ?>
+				@foreach($marks as $mark)
+					@if($i == 0) <tr> @endif
+						<td><a href="{!! url('/auto/used/' .  $mark->slug) !!}">{!! $mark->name !!}</a><span> {!! $mark->countusedcars !!} </span></td>
+						<?php $i++; ?>
+						@if($i == 6) </tr> <?php $i=0; ?> @endif
+				@endforeach
 
-            </table>
+				</table>
 
-        </div>
-
+			</div>
+		</div>
     </section>
 @endsection
 

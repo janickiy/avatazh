@@ -17,7 +17,9 @@
 
 @section('content')
     <section>
-        <h1>Автомобили с пробегом</h1>
+	<div class="page main_width">
+		@include('layouts.frontend.includes.breadcrumbs')
+			<h1>Автомобили с пробегом</h1>
 
         <div class="main_marks row">
             <table width="100%">
@@ -33,6 +35,7 @@
             </table>
 
         </div>
+		</div>
     </section>
 
 

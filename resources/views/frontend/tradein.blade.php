@@ -20,6 +20,8 @@
 
 @section('content')
     <section>
+	    <div class="page main_width">
+			@include('layouts.frontend.includes.breadcrumbs')
         <h1>Заявка на Trade-in</h1>
         <div class="row">
             <div class="tradein">
@@ -92,7 +94,7 @@
                         {!! Form::select('trade_in_model', $models_options, isset($request->trade_in_model) ? $request->trade_in_model : 'Модель', ['class' => 'select2 validate[required]', 'id' => 'trade_in_model', !isset($request->trade_in_model) ? 'disabled' : '']) !!}
                     </div>
                 </div>
-                <div class="select">
+                <div class="select" style="text-align:center;">
                     <img id="model_img" src="/images/car_bg.png" height="380">
                 </div>
             </div>
@@ -125,6 +127,7 @@
             {!! Form::close() !!}
 
         </div>
+		</div>
     </section>
 @endsection
 

@@ -14,6 +14,8 @@
 
 @section('content')
     <section>
+	 <div class="page main_width">
+		@include('layouts.frontend.includes.breadcrumbs')
         <h1>Отзывы</h1>
         <div class="row mentions">
             <div class="mentions_list">
@@ -69,6 +71,7 @@
             </div>
 
         </div>
+		 </div>
     </section>
 @endsection
 
