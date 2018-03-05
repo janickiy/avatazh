@@ -26,6 +26,26 @@
             </nav>
         </div>
     </div>
+	<!--mobile-->
+	<div class="nav_mobile">
+		<a class="nav_mobile_ico" id="show_nav"></a>
+		<div class="nav_mobile_content" id="nav_mobile" >
+		<div class="mobile_nav_header">
+			<a class="logo"><img src="images/logo.png" /></a>
+			<a class="nav_mobile_ico" id="hide_nav"></a>
+		</div>
+			<nav>
+				<ul>
+					<li><a href="">О компании</a></li>
+					<li><a href="">Услуги</a></li>                              
+					<li><a href="">Направления перевозок</a></li>
+					<li><a href="">Цены</a></li>
+					<li><a href="">Контакты</a></li>
+					<li><a href="tel:+7 (343) 379-98-80">+7 (343) 379-98-80</a></li>
+				</ul>
+			</nav>
+		</div>	
+	</div>
 </header>
 
 
