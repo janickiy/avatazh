@@ -234,6 +234,8 @@ class CatalogUsedCarsController extends Controller
         if ($request->hasFile('file')) {
             $file = $request->file('file');
             $xml = simplexml_load_file($file);
+            $small_path = public_path() . PATH_SMALL_USEDCARS;
+            $big_path = public_path() . PATH_BIG_USEDCARS;
 
             foreach($xml->offers as $row_car) {
                //var_dump($row_car->offer);
@@ -253,27 +255,60 @@ class CatalogUsedCarsController extends Controller
                     $wheel = $row->steering_wheel == 'right' ? 'правый' : 'левый';
                     $color = $row->color;
 
+                    $usedCar = new CatalogUsedCar;
+                    $usedCar->mark = $mark;
+                    $usedCar->model = $model;
+                    $usedCar->price = $price;
+                    $usedCar->year = $year;
+                    $usedCar->mileage = $mileage;
+                    $usedCar->gearbox = $gearbox;
+                    $usedCar->drive = $drive;
+                    $usedCar->engine_type = $engine_type;
+                    $usedCar->power = $power;
+                    $usedCar->body = $body;
+                    $usedCar->wheel = $wheel;
+                    $usedCar->color = $color;
+                    $equipment = [];
 
-                    foreach ($row->equipment as $equipment) {
-                        echo $equipment;
+                    foreach ($row->equipment as $e) {
+                        $equipment[] = (string)$e;
                     }
 
-                    foreach ($row->image as $image) {
-                        echo $image;
+                    $usedCar->equipment = serialize($equipment);
+                    $usedCar->published = 1;
+                    $usedCar->verified = 0;
+                    $usedCar->tradein = 0;
+                    $usedCar->special = 0;
+
+                    $images = [];
+
+                    foreach ($row->image as $f) {
+
+                        $filename = str_random(20) . '.jpg';
+                        $img = ImageInt::make($f);
+
+                        $img->resize(300, null, function ($constraint) {
+                            $constraint->aspectRatio();
+                        })->save($small_path . $filename);
+
+                        $img->resize(1000, null, function ($constraint) {
+                            $constraint->aspectRatio();
+                        })->save($big_path . $filename);
+
+                        $path = parse_url($f, PHP_URL_PATH);
+
+                        $images[] = ['small' => PATH_SMALL_USEDCARS . $filename, 'big' => PATH_BIG_USEDCARS . $filename, 'name' => basename($path)];
+
+                       // echo $image;
                     }
 
+                    if (!empty($images)) $usedCar->image = serialize($images);
 
-
-
+                    $usedCar->save();
 
                 }
-
-
-
             }
         }
-
-        exit;
 
         return redirect('admin/carmarks/import')->with('success', 'Импорт завершен');
     }
