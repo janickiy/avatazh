@@ -17,7 +17,7 @@
     <div class="header row">
         <div class="main_width">
             <nav>
-				<a href="/" class="logo"><img src="/images/logo.png" /></a>
+				<a href="/" class="logo"><img src="/images/logo.png" /></a> 
                  <ul>
                     @foreach(getMenuItems('HEADER') as $item)
                         <li><a href="{{ url($item->url) }}"><b>{{ $item->title }}</b></a></li>

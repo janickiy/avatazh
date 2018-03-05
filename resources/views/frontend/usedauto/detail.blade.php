@@ -128,7 +128,7 @@
                         <div class="address">{!! getSetting('FRONTEND_ADDRESS') !!}</div>
                         <div class="times">{!! getSetting('FRONTEND_TIMES') !!}</div>
 
-                        <div ><div style="width:260px;height:300px;" id="googleMap"></div> </div>
+                        <div ><div style="width:260px;height:300px;" id="map"></div> </div>
                     </div>
                 </div>
                 <div>
@@ -137,42 +137,66 @@
             </div>
         </div>
 
-        @if(count($similarCars) > 0)
 
-        <section class="similar">
-            <h3>Похожие автомобили с пробегом:</h3>
-            <div class="items_list row">
-                <ul>
+		</div>
+    </section>
+	        @if(count($similarCars) > 0)
 
-                    @foreach($similarCars as $similarCar)
+        <section class="similar grey">
+			<div class="main_width">
+				<h3>Похожие автомобили с пробегом:</h3>
+				<div class="items_list row">
+					<ul>
 
-                    <li class="item">
-						<div class="item_container">
-							<div class="item_pic" style="background-image:url({!! mainSmallPic($similarCar->image) !!})"></div>
-							<div class="idem_desc">
-								<a class="item_name" href="{!! url('/auto/used/detail/' .  $similarCar->id) !!}">{!! $similarCar->mark !!} {!! $similarCar->model !!}</a>
-								<p>{!! $similarCar->year !!} г., {!! number_format($similarCar->mileage,0,'',' ') !!} км, {!! $similarCar->engine_type !!}, КПП {!! $similarCar->gearbox !!}</p>
-								<div class="item_price">{!! number_format($similarCar->price,0,'',' ') !!}<span class="rub">o</span></div>
-								<a class="btn green" href="{!! url('/auto/used/detail/' .  $similarCar->id) !!}">Подробнее</a>
-							</div>
-						</div>	
-                    </li>
+						@foreach($similarCars as $similarCar)
 
-                    @endforeach
-                </ul>
+						<li class="item">
+							<div class="item_container">
+								<div class="item_pic" style="background-image:url({!! mainSmallPic($similarCar->image) !!})"></div>
+								<div class="idem_desc">
+									<a class="item_name" href="{!! url('/auto/used/detail/' .  $similarCar->id) !!}">{!! $similarCar->mark !!} {!! $similarCar->model !!}</a>
+									<p>{!! $similarCar->year !!} г., {!! number_format($similarCar->mileage,0,'',' ') !!} км, {!! $similarCar->engine_type !!}, КПП {!! $similarCar->gearbox !!}</p>
+									<div class="item_price">{!! number_format($similarCar->price,0,'',' ') !!}<span class="rub">o</span></div>
+									<a class="btn green" href="{!! url('/auto/used/detail/' .  $similarCar->id) !!}">Подробнее</a>
+								</div>
+							</div>	
+						</li>
 
-            </div>
+						@endforeach
+					</ul>
+
+				</div>
+			</div>
         </section>
 
         @endif
-		</div>
-    </section>
 @endsection
 
 @section('js')
 
-    {!! Html::script('http://maps.googleapis.com/maps/api/js') !!}
     {!! Html::script('assets/plugins/select2/select2.full.min.js') !!}
+
+    <script type="text/javascript">
+
+        ymaps.ready(init);
+        var myMap,
+            myPlacemark;
+
+        function init(){
+            myMap = new ymaps.Map("map", {
+                center: [{!! getSetting('MAP_LONGITUDE') !!}, {!! getSetting('MAP_LATITUDE') !!}],
+                zoom: 16
+            });
+
+            myPlacemark = new ymaps.Placemark([{!! getSetting('MAP_LONGITUDE') !!}, {!! getSetting('MAP_LATITUDE') !!}], {
+                hintContent: '{!! getSetting('FRONTEND_ADDRESS') !!}',
+                balloonContent: '{!! getSetting('SITE_TITLE') !!}'
+            });
+
+            myMap.geoObjects.add(myPlacemark);
+        }
+
+    </script>
 
     <script type="text/javascript">
 
@@ -181,17 +205,6 @@
                 width: '100%'
             });
         })
-
-        function initialize() {
-            var mapProp = {
-                center: new google.maps.LatLng( {{ getSetting('MAP_LATITUDE') }}, {{ getSetting('MAP_LONGITUDE') }}),
-                zoom: 5,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            };
-            var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
-        }
-        google.maps.event.addDomListener(window, 'load', initialize);
-
 
         $(document).ready(function() {
             $("#content-slider").lightSlider({

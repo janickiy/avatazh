@@ -39,7 +39,7 @@
                 <p>{!! getSetting('FRONTEND_TIMES') !!}</p>
                 <a  href="#inline" class="btn recall_link modalbox">Обратный звонок</a>
             </div>
-            <div id="map" style="width: 400px; height: 300px;margin-bottom: 20px;"></div>
+            <div id="map" style="width: 400px; height: 300px;margin-bottom: 20px;float: right;"></div>
         </div>
 		  </div>
     </section>
