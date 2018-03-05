@@ -51,6 +51,10 @@ section.grey:before {content: '';width: 100%;height: 15px;position: absolute;top
 .btn:hover {background:#93cf1e;color:#000;}
 .btn.green {background:#93cf1e;color:#000;}
 .btn.green:hover {background:#326bb2;color:#fff;}
+.form_control {background: #fff;display: block;border: 1px solid #b6b6b6;width:100%;line-height:35px;padding: 0 10px;position:relative;white-space: nowrap;overflow: hidden; text-overflow: ellipsis;font-size:12px;}
+.form_control::placeholder{color:#000000;}
+.form_control:focus::placeholder {opacity:0;}
+
 
 .top{background:#fff;line-height:19px;padding: 18px 0;font-size: 18px; height: 88px;}
 .top .address {width:260px;float:left;}
@@ -115,6 +119,12 @@ section.grey:before {content: '';width: 100%;height: 15px;position: absolute;top
 .search_bloсk .form_control:focus::placeholder {opacity:0;}
 .search_bloсk .btn {border-radius:0 19px 19px 0;line-height:50px;width: 220px;}
 
+.auth_form {width: 400px;margin: 0 auto;}
+.request_form.auth_form .btn {width: 48%;float: left;margin:1%;}
+.auth_form .checkbox:not(checked) + label {color: #fff;}
+
+
+
 .index_items_list {margin-left:-10px;margin-right:-10px;}
 .item {float:left;display:inline-block;margin:0 10px 20px 10px;width: 220px;}
 .item_container{height:320px;border-radius:19px;border:1px solid #e1e1e1;box-shadow:0 0 10px rgba(0, 0, 0, 0.35);padding:10px;background:#fff;}
@@ -151,6 +161,8 @@ section.grey:before {content: '';width: 100%;height: 15px;position: absolute;top
 .items_list {margin-left: -10px; margin-right: -10px;}
 .items_list .more_cars {margin-right: 5px;}
 .right_banner_block {float:right;height: 462px;}
+.left_content {    width: 720px;}
+
 
 .detail {display:inline-block;float:left;width:620px;color: #646464;}
 .sidebar {display:inline-block;float:right;width: 290px;}

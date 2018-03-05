@@ -24,33 +24,34 @@
 				<div class="right_banner_block">
 					<img src="/images/right_banner.jpg" />
 				</div>
+				<div class="left_content ">
+					@if(count($usedCars)>0)
+					<ul class="row">
 
-				@if(count($usedCars)>0)
-				<ul>
+						@foreach($usedCars as $car)
 
-					@foreach($usedCars as $car)
-
-					<li class="item">
-						<div class="item_container">
-						<div class="item_pic" style="background-image:url({!! mainSmallPic($car->image) !!})"></div>
-							<div class="idem_desc">
-								<a class="item_name" href="{{ url('/auto/used/detail/' .  $car->id) }}">{{ $car->mark }} {{ $car->model }}</a>
-								<p>{{ $car->year }} г., {{ number_format($car->mileage,0,'',' ') }} км, {{ $car->engine_type }}, КПП {{ $car->gearbox }}</p>
-								<div class="item_price">{{ number_format($car->price,0,'',' ') }}<span >руб.</span></div>
-								<a class="btn" href="{{ url('/auto/used/detail/' .  $car->id) }}">Подробнее</a>
+						<li class="item">
+							<div class="item_container">
+							<div class="item_pic" style="background-image:url({!! mainSmallPic($car->image) !!})"></div>
+								<div class="idem_desc">
+									<a class="item_name" href="{{ url('/auto/used/detail/' .  $car->id) }}">{{ $car->mark }} {{ $car->model }}</a>
+									<p>{{ $car->year }} г., {{ number_format($car->mileage,0,'',' ') }} км, {{ $car->engine_type }}, КПП {{ $car->gearbox }}</p>
+									<div class="item_price">{{ number_format($car->price,0,'',' ') }}<span >руб.</span></div>
+									<a class="btn" href="{{ url('/auto/used/detail/' .  $car->id) }}">Подробнее</a>
+								</div>
 							</div>
-						</div>
-					</li>
+						</li>
 
-					@endforeach
+						@endforeach
 
-				</ul>
+					</ul>
 
-				<div class="pager">
-					{{ $usedCars->render() }}
+					<div class="pager">
+						{{ $usedCars->render() }}
+					</div>
+
+					@endif
 				</div>
-
-				@endif
 			</div>
 		</div>
     </section>

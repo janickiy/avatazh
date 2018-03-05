@@ -8,17 +8,16 @@
 
 @section('content')
 
-    <div class="row">
-        <div class="col-md-12">
-            <h2 class="page-head-line">Blank Page</h2>
-        </div>
-    </div>
-    <div class="row">
+    <section>
+	<div class="page main_width">
+		@include('layouts.frontend.includes.breadcrumbs')
+        <h1>Blank Page</h1>
+        div class="row">
         <div class="col-md-12">
             Contents Here...
         </div>
     </div>
-
+</section>
 @endsection
 
 @section('js')

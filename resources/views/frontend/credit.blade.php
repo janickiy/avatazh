@@ -84,7 +84,6 @@
 
 				</div>
 				<div class="autoredit condition">
-					<img id="model_img" src="/images/car_bg_big.png" height="315">
 					<h2>Условия кредитования</h2>
 					<ul>
 						<li>Минимальный пакет документов паспорт, водительское удостоверение.</li>

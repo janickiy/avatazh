@@ -39,7 +39,7 @@
                 <p>{!! getSetting('FRONTEND_TIMES') !!}</p>
                 <a  href="#inline" class="btn recall_link modalbox">Обратный звонок</a>
             </div>
-            <div  style="float: right; margin-top: -45px;" ><div style="width:460px;height:280px;" id="googleMap"></div> </div>
+            <div id="map" style="width: 400px; height: 300px;margin-bottom: 20px;"></div>
         </div>
 		  </div>
     </section>
@@ -49,7 +49,29 @@
 @section('js')
 
     {!! Html::script('http://maps.googleapis.com/maps/api/js') !!}
-   
+
+
+    <script type="text/javascript">
+        ymaps.ready(init);
+        var myMap,
+            myPlacemark;
+
+        function init(){
+            myMap = new ymaps.Map("map", {
+                center: [{!! getSetting('MAP_LONGITUDE') !!}, {!! getSetting('MAP_LATITUDE') !!}],
+                zoom: 16
+            });
+
+            myPlacemark = new ymaps.Placemark([{!! getSetting('MAP_LONGITUDE') !!}, {!! getSetting('MAP_LATITUDE') !!}], {
+                hintContent: '{!! getSetting('FRONTEND_ADDRESS') !!}',
+                balloonContent: '{!! getSetting('SITE_TITLE') !!}'
+            });
+
+            myMap.geoObjects.add(myPlacemark);
+        }
+    </script>
+
+
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -61,15 +83,7 @@
             $(".form_phone").mask("+7 (999) 999-9999");
         })
 
-        function initialize() {
-            var mapProp = {
-                center: new google.maps.LatLng( {{ getSetting('MAP_LATITUDE') }}, {{ getSetting('MAP_LONGITUDE') }}),
-                zoom: 5,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            };
-            var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
-        }
-        google.maps.event.addDomListener(window, 'load', initialize);
+
 
         $(document).ready(function() {
             $(".modalbox").fancybox();

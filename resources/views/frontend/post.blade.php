@@ -11,16 +11,18 @@
 @endsection
 
 @section('content')
-    <div class="row">
-        <div class="col-md-12">
-            <h2 class="page-head-line">{{ $post->title }}</h2>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            {!! $post->content !!}
-        </div>
-    </div>
+
+
+<section>
+	<div class="page main_width">
+		@include('layouts.frontend.includes.breadcrumbs')
+        <h1>{{ $post->title }}</h1>
+        <div class="row">
+			  {!! $post->content !!}
+		</div>
+	</div>
+</section>	
+
 @endsection
 
 @section('js')

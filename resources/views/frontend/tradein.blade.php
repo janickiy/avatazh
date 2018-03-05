@@ -94,9 +94,7 @@
                         {!! Form::select('trade_in_model', $models_options, isset($request->trade_in_model) ? $request->trade_in_model : 'Модель', ['class' => 'select2 validate[required]', 'id' => 'trade_in_model', !isset($request->trade_in_model) ? 'disabled' : '']) !!}
                     </div>
                 </div>
-                <div class="select" style="text-align:center;">
-                    <img id="model_img" src="/images/car_bg.png" height="380">
-                </div>
+
             </div>
         </div>
         <div class="row">
@@ -263,11 +261,7 @@
                     });
 
                     request.done(function (data) {
-                        if (data.image != null && data.image != '') {
-                            $('#model_img').attr("src", data.image).fadeIn();
-                        } else {
-                            $('#model_img').attr("src", "/images/car_bg.png").fadeIn();
-                        }
+
                     });
                 }
             })

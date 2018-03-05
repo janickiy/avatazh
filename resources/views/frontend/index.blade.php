@@ -156,7 +156,7 @@
 
 				@if(count($newCars)>0)
 
-				<ul>
+				<ul class="row">
 
 					@foreach($newCars as $newCar)
 

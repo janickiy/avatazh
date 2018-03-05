@@ -66,7 +66,7 @@
         <!-- Default box -->
         <div class="box">
             <div class="box-header with-border">
-                <h3 class="box-title">Форма данных</h3>
+                <p>* - обязательные поля</p>
                 <div class="box-tools pull-right">
                     <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
                         <i class="fa fa-minus"></i>
@@ -74,7 +74,7 @@
                 </div>
             </div>
             <div class="box-body">
-                <p>* - обязательные поля</p>
+
                 {!! Form::open(['url' => isset($catalogusedcar) ? URL::to('admin/catalogusedcars/'.$catalogusedcar->id )  :  URL::to('admin/catalogusedcars') , 'method' => isset($catalogusedcar) ? 'put': 'post', 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal', 'id'=>'validate']) !!}
                 <div class="col-md-12">
                     <div class="form-group">

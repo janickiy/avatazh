@@ -27,7 +27,7 @@
     <!-- Default box -->
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Форма данных марки</h3>
+            <p>* - обязательные поля</p>
             <div class="box-tools pull-right">
                 <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
                     <i class="fa fa-minus"></i>
@@ -35,7 +35,7 @@
             </div>
         </div>
         <div class="box-body">
-            <p>* - обязательные поля</p>
+
             {!! Form::open(['url' => isset($carmark) ? URL::to('admin/carmarks/' . $carmark->id )  :  URL::to('admin/carmarks') , 'method' => isset($carmark) ? 'put': 'post', 'class' => 'form-horizontal', 'enctype' => 'multipart/form-data', 'id'=>'validate']) !!}
             {!! Form::hidden('mark_id', isset($carmark) ? $carmark->id: null) !!}
             <div class="col-md-12">

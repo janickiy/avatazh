@@ -76,7 +76,7 @@
                 </ul>
             </li>
 
-            <li class="treeview {{ Request::is('admin/catalogusedcar*')? 'active': '' }}">
+            <li class="treeview {{ Request::is('admin/catalogusedcar*')? 'active': '' || Request::is('admin/catalogusedcars/import')? 'active': '' }}">
                 <a href="#">
                     <i class="fa fa-automobile"></i> <span>Автомобили с пробегом</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
@@ -91,6 +91,13 @@
                             <i class="fa fa-plus"></i> <span>Добавить автомобиль</span>
                         </a>
                     </li>
+
+                    <li class="{{ Request::is('admin/catalogusedcars/import') ? 'active': '' }}">
+                        <a href="{{ url('admin/catalogusedcars/import') }}">
+                            <i class="fa fa-download"></i> <span>Импорт</span>
+                        </a>
+                    </li>
+
                 </ul>
             </li>
 

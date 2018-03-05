@@ -25,6 +25,8 @@
     {!! Html::script('js/jquery.fancybox.js') !!}
 	{!! Html::script('assets/plugins/select2/select2.full.min.js') !!}
 
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+
     @yield('css')
 
 </head>

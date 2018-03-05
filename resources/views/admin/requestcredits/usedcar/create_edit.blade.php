@@ -27,7 +27,7 @@
     <!-- Default box -->
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Заявка на автокредит (Автомобили с пробегом)</h3>
+            <p>* - обязательные поля</p
             <div class="box-tools pull-right">
                 <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
                     <i class="fa fa-minus"></i>
@@ -35,7 +35,7 @@
             </div>
         </div>
         <div class="box-body">
-            <p>* - обязательные поля</p>
+            >
             {!! Form::open(['url' => isset($requestcredit) ? URL::to('admin/requestusedcarcredits/' . $requestcredit->id )  :  URL::to('admin/requestusedcarcredits') , 'method' => isset($requestcredit) ? 'put': 'post', 'class' => 'form-horizontal', 'id'=>'validate']) !!}
             <div class="col-md-12">
 

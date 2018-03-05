@@ -27,7 +27,7 @@
     <!-- Default box -->
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Форма данных модификации</h3>
+            <p>* - обязательные поля</p>
             <div class="box-tools pull-right">
                 <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
                     <i class="fa fa-minus"></i>
@@ -35,7 +35,7 @@
             </div>
         </div>
         <div class="box-body">
-            <p>* - обязательные поля</p>
+
             {!! Form::open(['url' => isset($carmodification) ? URL::to('admin/carmodifications/' . $carmodification->id )  :  URL::to('admin/carmodifications/') , 'method' => isset($carmodification) ? 'put': 'post', 'class' => 'form-horizontal', 'id'=>'validate']) !!}
             <div class="col-md-12">
                 @if(isset($id_car_model)) {!! Form::hidden('id_car_model', $id_car_model) !!} @endif
