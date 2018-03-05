@@ -30,11 +30,12 @@ class FrontendController extends Controller
      */
     public function index(Request $request)
     {
-        $marks = CarMark::selectRaw('car_marks.id,car_marks.name,car_marks.slug,count(catalog_used_cars.id) as countusedcars')
+        $marks = CarMark::selectRaw('car_marks.id,car_marks.name, car_marks.slug,count(catalog_used_cars.id) as countusedcars')
             ->where('car_marks.published', 1)
             ->leftJoin('catalog_used_cars', 'car_marks.name', 'like', 'catalog_used_cars.mark')
             ->groupBy('car_marks.id')
             ->orderBy('car_marks.name')
+            ->having('countusedcars', '>=', 1)
             ->take(23)
             ->get();
 
@@ -166,7 +167,6 @@ class FrontendController extends Controller
         $from_time = $request->input('from_time');
         $to_time = $request->input('to_time');
         $to_email = getSetting('CONTACT_EMAIL');
-
 
 
         /*
@@ -380,6 +380,7 @@ class FrontendController extends Controller
             ->leftJoin('catalog_used_cars', 'car_marks.name', 'like', 'catalog_used_cars.mark')
             ->groupBy('car_marks.id')
             ->orderBy('car_marks.name')
+            ->having('countusedcars', '>=', 1)
             ->take(23)
             ->get();
 
@@ -420,6 +421,7 @@ class FrontendController extends Controller
             ->leftJoin('catalog_used_cars', 'car_marks.name', 'like', 'catalog_used_cars.mark')
             ->groupBy('car_marks.id')
             ->orderBy('car_marks.name')
+            ->having('countusedcars', '>=', 1)
             ->take(23)
             ->get();
 
@@ -515,6 +517,7 @@ class FrontendController extends Controller
             ->leftJoin('catalog_used_cars', 'car_marks.name', 'like', 'catalog_used_cars.mark')
             ->groupBy('car_marks.id')
             ->orderBy('car_marks.name')
+            ->having('countusedcars', '>=', 1)
             ->take(23)
             ->get();
 
@@ -611,6 +614,7 @@ class FrontendController extends Controller
             ->leftJoin('catalog_used_cars', 'car_marks.name', 'like', 'catalog_used_cars.mark')
             ->groupBy('car_marks.id')
             ->orderBy('car_marks.name')
+            ->having('countusedcars', '>=', 1)
             ->take(23)
             ->get();
 

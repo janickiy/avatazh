@@ -48,17 +48,17 @@
                     </div>
                     <div class="detail_main_info">
                         <div class="detail_price">
-                           {{ $detail->price }} <span class="rub">i</span>
+                           {{ number_format($detail->price,0,'',' ') }} <span>руб.</span>
                         </div>
                         <ul>
                             <li><span>Год выпуска</span><strong>{{ $detail->year }} г</strong></li>
                             <li><span>Пробег</span><strong>{{ number_format($detail->mileage,0,'',' ') }} км</strong></li>
-                            <li><span>Кузов</span><strong>{{ $detail->body }}</strong></li>
+                            <li><span>Кузов</span><strong>@if($detail->body) {{ $detail->body }} @else - @endif</strong></li>
                             <li><span>Двигатель</span><strong>{{ number_format($detail->power,0,'',' ')  }} л., {{ $detail->engine_type }}</strong></li>
                             <li><span>КПП</span><strong>{{ $detail->gearbox }}</strong></li>
-                            <li><span>Привод</span><strong>{{ $detail->drive }} привод</strong></li>
-                            <li><span>Цвет</span><strong>{{ $detail->color }}</strong></li>
-                            <li><span>Салон</span><strong>{{ $detail->salon }}</strong></li>
+                            <li><span>Привод</span><strong>@if($detail->drive) {{ $detail->drive }} @else - @endif</strong></li>
+                            <li><span>Цвет</span><strong>@if($detail->color) {{ $detail->color }} @else - @endif</strong></li>
+                            <li><span>Салон</span><strong>@if($detail->salon) {{ $detail->salon }} @else - @endif</strong></li>
                         </ul>
                     </div>
                 </div>
@@ -128,7 +128,7 @@
                         <div class="address">{!! getSetting('FRONTEND_ADDRESS') !!}</div>
                         <div class="times">{!! getSetting('FRONTEND_TIMES') !!}</div>
 
-                        <div ><div style="width:260px;height:300px;" id="map"></div> </div>
+                        <div ><div style="width:288px;height:300px;margin-left: -15px;margin-right: -15px;" id="map"></div> </div>
                     </div>
                 </div>
                 <div>
@@ -152,13 +152,15 @@
 
 						<li class="item">
 							<div class="item_container">
-								<div class="item_pic" style="background-image:url({!! mainSmallPic($similarCar->image) !!})"></div>
-								<div class="idem_desc">
-									<a class="item_name" href="{!! url('/auto/used/detail/' .  $similarCar->id) !!}">{!! $similarCar->mark !!} {!! $similarCar->model !!}</a>
-									<p>{!! $similarCar->year !!} г., {!! number_format($similarCar->mileage,0,'',' ') !!} км, {!! $similarCar->engine_type !!}, КПП {!! $similarCar->gearbox !!}</p>
-									<div class="item_price">{!! number_format($similarCar->price,0,'',' ') !!}<span class="rub">o</span></div>
-									<a class="btn green" href="{!! url('/auto/used/detail/' .  $similarCar->id) !!}">Подробнее</a>
-								</div>
+								<a href="{!! url('/auto/used/detail/' .  $similarCar->id) !!}">
+									<div class="item_pic" style="background-image:url({!! mainSmallPic($similarCar->image) !!})"></div>
+									<div class="idem_desc">
+										<div class="item_name" >{!! $similarCar->mark !!} {!! $similarCar->model !!}</div>
+										<p>{!! $similarCar->year !!} г., {!! number_format($similarCar->mileage,0,'',' ') !!} км, {!! $similarCar->engine_type !!}, КПП {!! $similarCar->gearbox !!}</p>
+										<div class="item_price">{!! number_format($similarCar->price,0,'',' ') !!}<span>руб.</span></div>
+										<a class="btn green" href="{!! url('/auto/used/detail/' .  $similarCar->id) !!}">Подробнее</a>
+									</div>
+								</a>
 							</div>	
 						</li>
 

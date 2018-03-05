@@ -130,13 +130,15 @@
 
 					<li class="item">
 						<div class="item_container">
-							<div class="item_pic" style="background-image:url({!! mainSmallPic($special->image) !!})"></div>
-							<div class="idem_desc">
-								<a class="item_name" href="{!! url('/auto/used/detail/' . $special->id) !!}">{!! $special->mark !!} {!! $special->model !!}</a>
-								<p>{!! $special->year !!} г., {!! number_format($special->mileage,0,'',' ') !!} км, {!! $special->engine_type !!}, КПП {!! $special->gearbox !!}</p>
-								<div class="item_price">{!! number_format($special->price,0,'',' ') !!}<span>руб.</span></div>
-								<a class="btn green" href="{!! url('/auto/used/detail/' . $special->id) !!}">Подробнее</a>
-							</div>
+							<a href="{!! url('/auto/used/detail/' . $special->id) !!}">
+								<div class="item_pic" style="background-image:url({!! mainSmallPic($special->image) !!})"></div>
+								<div class="idem_desc">
+									<div class="item_name" >{!! $special->mark !!} {!! $special->model !!}</div>
+									<p>{!! $special->year !!} г., {!! number_format($special->mileage,0,'',' ') !!} км, {!! $special->engine_type !!}, КПП {!! $special->gearbox !!}</p>
+									<div class="item_price">{!! number_format($special->price,0,'',' ') !!}<span>руб.</span></div>
+									<a class="btn green" href="{!! url('/auto/used/detail/' . $special->id) !!}">Подробнее</a>
+								</div>
+							</a>
 						</div>
 					</li> 
 
@@ -161,14 +163,16 @@
 					@foreach($newCars as $newCar)
 
 					<li class="item">
-						<div class="item_container">
-							<div class="item_pic" style="background-image:url({!! mainSmallPic($newCar->image) !!})"></div>
-							<div class="idem_desc">
-								<a class="item_name" href="{!! url('/auto/used/detail/' . $newCar->id) !!}">{!! $newCar->mark !!} {!! $newCar->model !!}</a>
-								<p>{!! $newCar->year !!} г., {!! number_format($newCar->mileage,0,'',' ') !!} км, {!! $newCar->engine_type !!}, КПП {!! $newCar->gearbox !!}</p>
-								<div class="item_price">{!! number_format($newCar->price,0,'',' ') !!}<span class="rub">o</span></div>
-								<a class="btn" href="{!! url('/auto/used/detail/' . $newCar->id) !!}">Подробнее</a>
-							</div>
+						<div class="item_container" href="{!! url('/auto/used/detail/' . $newCar->id) !!}">
+							<a href="{!! url('/auto/used/detail/' . $newCar->id) !!}">
+								<div class="item_pic" style="background-image:url({!! mainSmallPic($newCar->image) !!})"></div>
+								<div class="idem_desc">
+									<div class="item_name" >{!! $newCar->mark !!} {!! $newCar->model !!}</div>
+									<p>{!! $newCar->year !!} г., {!! number_format($newCar->mileage,0,'',' ') !!} км, {!! $newCar->engine_type !!}, КПП {!! $newCar->gearbox !!}</p>
+									<div class="item_price">{!! number_format($newCar->price,0,'',' ') !!}<span>руб.</span></div>
+									<a class="btn" href="{!! url('/auto/used/detail/' . $newCar->id) !!}">Подробнее</a>
+								</div>
+							</a>
 						</div>
 					</li>
 
