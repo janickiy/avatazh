@@ -115,10 +115,12 @@
 								<td align="right"><span class="quantity_cars">{{ $numberCars }}</span></td>
 								<td align="left">автомобилей на сайте</td>
 							</tr>
+							<!--
 							<tr>
 								<td align="right"><span class="quantity_cars">{{ $soldLastWeek }}</span></td>
 								<td align="left">продано на прошлой неделе</td>
 							</tr>
+							-->
 						</table>
 					</div>
 				</div>

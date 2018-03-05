@@ -628,6 +628,7 @@ class FrontendController extends Controller
             ->leftJoin('catalog_used_cars', 'car_marks.name', 'like', 'catalog_used_cars.mark')
             ->groupBy('car_marks.id')
             ->orderBy('car_marks.name')
+            ->having('countusedcars', '>=', 1)
             ->get();
 
         return view('frontend.allmarks', compact('marks'))->with('title', 'Все марки');
