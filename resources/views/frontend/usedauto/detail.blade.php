@@ -67,7 +67,7 @@
                     <div>@if($detail->tradein)<img src="/images/detail_banner_2.jpg" />@endif</div>
                 </div>
 
-                @if(count($equipments) > 0)
+                @if(is_array($equipments))
                 <section>
                     <h3>Комплектация:</h3>
                     <ul class="detail_options">
@@ -165,6 +165,7 @@
 						</li>
 
 						@endforeach
+
 					</ul>
 
 				</div>

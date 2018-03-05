@@ -69,17 +69,21 @@
 
 				@if (count($usedcars) > 0)
 
-					<ul>
+					<ul class="row">
 
 						@foreach($usedcars as $usedcar)
 							<li class="item">
-								<div class="item_pic"><img src="{!! mainSmallPic($usedcar->image) !!}" /></div>
-								<div class="idem_desc">
-									<a class="item_name" href="{!! url('/auto/used/detail/' . $usedcar->id) !!}">{!! $usedcar->mark !!} {!! $usedcar->model !!}</a>
-									<p>{!! $usedcar->year !!} г., {!! number_format($usedcar->mileage,0,'',' ') !!} км, {!! $usedcar->engine_type !!}, КПП {!! $usedcar->gearbox !!}</p>
-									<div class="item_price">{!! number_format($usedcar->price,0,'',' ') !!}<span class="rub">o</span></div>
-									<a class="item_btn" href="{!! url('/auto/used/detail/' . $usedcar->id) !!}">Подробнее</a>
-								</div>
+								<div class="item_container">
+									<a href="{!! url('/auto/used/detail/' . $usedcar->id) !!}">
+									<div class="item_pic" style="background-image:url({!! mainSmallPic($usedcar->image) !!})"></div>
+										<div class="idem_desc">
+											<div class="item_name" >{!! $usedcar->mark !!} {!! $usedcar->model !!}</div>
+											<p>{!! $usedcar->year !!} г., {!! number_format($usedcar->mileage,0,'',' ') !!} км, {!! $usedcar->engine_type !!}, КПП {!! $usedcar->gearbox !!}</p>
+											<div class="item_price">{!! number_format($usedcar->price,0,'',' ') !!}<span>руб.</span></div>
+											<a class="btn" href="{!! url('/auto/used/detail/' . $usedcar->id) !!}">Подробнее</a>
+										</div>
+									</a>
+								</div>	
 							</li>
 
 

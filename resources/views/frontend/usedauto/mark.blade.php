@@ -19,42 +19,36 @@
     <section>
 	<div class="page main_width">
 	@include('layouts.frontend.includes.breadcrumbs')
-        <h1>Автомобили с пробегом</h1>
-
-        <div class="main_marks row">
+        <h1>Автомобили с пробегом</h1> 
+ 
+        <div class="main_marks row marks_tab">
             <table width="100%">
 
-                <?php $i=0; ?>
-                @foreach($models as $model)
-                    @if($i == 0) <tr> @endif
-                        <td><a href="/auto/used/{!! $model->mark !!}/{!! $model->model !!}">{!! $model->name !!}</a></td>
-                        <?php $i++; ?>
-                        @if($i == 5) </tr> <?php $i=0; ?> @endif
-                @endforeach
+
 
             </table>
         </div>
+		<div class="items_list">
+			<ul class="row">
 
-        <ul>
+				@foreach($model_list as $car)
 
-            @foreach($model_list as $car)
+				<li class="item">
+					<div class="item_container">
+						<div class="item_pic" style="background-image:url({{ mainSmallPic($car->image) }})"></div>
+						<div class="idem_desc">
+							<a class="item_name" href="{{ url('/auto/used/detail/' . $car->id) }}">{{ $car->mark }} {{ $car->model }}</a>
+							<p>{{ $car->year }} г., {{ $car->mileage }} км, {{ $car->engine_type }}, {{ $car->gearbox }}</p>
+							<div class="item_price">{{ $car->price }}<span>руб.</span></div>
+							<a class="btn" href="{{ url('/auto/used/detail/' . $car->id) }}">Подробнее</a>
+						</div>
+					 </div>
+				</li>
 
-            <li class="item">
-				<div class="item_container">
-					<div class="item_pic" style="background-image:url({{ mainSmallPic($car->image) }})"></div>
-					<div class="idem_desc">
-						<a class="item_name" href="{{ url('/auto/used/detail/' . $car->id) }}">{{ $car->mark }} {{ $car->model }}</a>
-						<p>{{ $car->year }} г., {{ $car->mileage }} км, {{ $car->engine_type }}, {{ $car->gearbox }}</p>
-						<div class="item_price">{{ $car->price }}<span class="rub">o</span></div>
-						<a class="btn" href="{{ url('/auto/used/detail/' . $car->id) }}">Подробнее</a>
-					</div>
-				 </div>
-            </li>
+				@endforeach
 
-            @endforeach
-
-        </ul>
-
+			</ul>
+		</div>
         <div class="pager">
             {{ $model_list->render() }}
         </div>

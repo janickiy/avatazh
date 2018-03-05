@@ -640,17 +640,11 @@ class FrontendController extends Controller
      */
     public function usedAuto($mark)
     {
-        $models = CarModel::select(['car_models.name', 'car_models.slug as model', 'car_marks.slug as mark'])
-                    ->where('car_models.published', 1)
-                    ->join('car_marks', 'car_marks.id', '=', 'car_models.id_car_mark')
-                    ->where('car_marks.slug', $mark)
-                    ->get();
-
         $model_list = CatalogUsedCar::where('mark', 'like', $mark)
             ->where('published', 1)
             ->paginate(10);
 
-        return view('frontend.usedauto.mark', compact('models', 'model_list'))->with('title', 'Все модели: ' . $mark);
+        return view('frontend.usedauto.mark', compact('model_list'))->with('title', 'Все модели: ' . $mark);
     }
 
     /**
@@ -660,7 +654,7 @@ class FrontendController extends Controller
      */
     public function usedAutoModel($model)
     {
-        $modifications = CarModel::select(['car_modifications.id','car_modifications.name','car_modifications.body_type'])
+        $modifications = CarModel::selectRaw('car_modifications.id,car_modifications.name,car_modifications.body_type')
             ->join('car_modifications', 'car_models.id', '=', 'car_modifications.id_car_model')
             ->where('car_models.slug', $model)
             ->where('car_models.published', 1)
