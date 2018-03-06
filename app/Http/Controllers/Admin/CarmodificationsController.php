@@ -35,6 +35,7 @@ class CarmodificationsController extends Controller
     {
         return view('admin.carmodifications.create_edit')->with('id_car_model', $id);;
     }
+
     /**
      * @param CarModification $carmodification
      * @return $this
@@ -51,7 +52,7 @@ class CarmodificationsController extends Controller
      */
     public function update(CarModificationsRequest $request, CarModification $carModification)
     {
-       // $modification = CarModification::where('id', $carModification->id)->first();
+        // $modification = CarModification::where('id', $carModification->id)->first();
 
         $carModification->name = $request->input('name');
         $carModification->id_car_type = 1;

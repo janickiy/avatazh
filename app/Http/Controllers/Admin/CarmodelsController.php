@@ -72,7 +72,7 @@ class CarmodelsController extends Controller
             $image_path = public_path() . PATH_MODEL;
             $image = $request->file('image');
 
-            $filename = str_random(20) . '.' . $image->getClientOriginalExtension() ? : 'png';
+            $filename = str_random(20) . '.' . $image->getClientOriginalExtension() ?: 'png';
             $img = ImageInt::make($image);
 
             $img->resize(600, null, function ($constraint) {

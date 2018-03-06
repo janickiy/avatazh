@@ -67,7 +67,7 @@ class CarmarksController extends Controller
             $logo_path = public_path() . PATH_MARK;
             $logo = $request->file('logo');
 
-            $filename = str_random(20) . '.' . $logo->getClientOriginalExtension() ? : 'png';
+            $filename = str_random(20) . '.' . $logo->getClientOriginalExtension() ?: 'png';
             $img = ImageInt::make($logo);
 
             $img->resize(300, null, function ($constraint) {
@@ -94,7 +94,7 @@ class CarmarksController extends Controller
         $carmark = new CarMark($request->except('_token', 'mark_id', 'published'));
         $carmark->published = 0;
 
-        if($request->input('published')) {
+        if ($request->input('published')) {
             $carmark->published = 1;
         }
 
@@ -102,7 +102,7 @@ class CarmarksController extends Controller
             $logo_path = public_path() . PATH_MARK;
             $logo = $request->file('logo');
 
-            $filename = str_random(20) . '.' . $logo->getClientOriginalExtension() ? : 'png';
+            $filename = str_random(20) . '.' . $logo->getClientOriginalExtension() ?: 'png';
             $img = ImageInt::make($logo);
 
             $img->resize(300, null, function ($constraint) {
@@ -161,7 +161,7 @@ class CarmarksController extends Controller
                 CarModification::query()->truncate();
             }
 
-            foreach($xml->mark as $row_mark) {
+            foreach ($xml->mark as $row_mark) {
                 if ($row_mark->code) {
                     $carMarks = new CarMark;
                     $carMarks->name = formatMarkNames($row_mark->code);
@@ -174,7 +174,7 @@ class CarmarksController extends Controller
                     if ($carMarks->save()) {
                         $id_car_mark = $carMarks->id;
 
-                        foreach($row_mark->folder as $row_folder){
+                        foreach ($row_mark->folder as $row_folder) {
                             $carModel = new CarModel;
                             $carModel->id_car_mark = $id_car_mark;
                             $carModel->id_car_type = self::IDCARTYPE;
@@ -182,7 +182,7 @@ class CarmarksController extends Controller
                             $carModel->name_rus = Lat2ru($row_folder[0]['name']);
                             $carModel->slug = slug($row_folder[0]['name']);
                             $carModel->meta_title = $row_folder[0]['name'];
-                            $carModel->published  = 1;
+                            $carModel->published = 1;
 
                             if ($carModel->save()) {
                                 $id_car_model = $carModel->id;
@@ -198,7 +198,7 @@ class CarmarksController extends Controller
                                         preg_match('/(\d+)\s+-\s((по н\.в\.)|(\d+))$/', $years, $matches);
 
                                         $carModification->year_begin = isset($matches[1]) && is_numeric($matches[1]) ? $matches[1] : date("Y");
-                                        $carModification->year_end = isset($matches[2]) && is_numeric($matches[2])? $matches[2] : date("Y");
+                                        $carModification->year_end = isset($matches[2]) && is_numeric($matches[2]) ? $matches[2] : date("Y");
                                         $carModification->save();
                                     }
                                 }
