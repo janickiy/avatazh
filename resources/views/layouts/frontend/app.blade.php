@@ -6,10 +6,14 @@
 
     {!! Html::style('css/lightslider.css') !!}
 
+    {!! Html::style('css/eagle.gallery.min.css') !!}
+
     {!! Html::style('assets/plugins/select2/select2.min.css') !!}
+
 	{!! Html::style('css/fancybox/jquery.fancybox.css') !!}
+
     <!-- iCheck for checkboxes and radio inputs -->
-        {!! Html::style('assets/plugins/iCheck/all.css') !!}
+    {!! Html::style('assets/plugins/iCheck/all.css') !!}
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
@@ -21,9 +25,9 @@
     {!! Html::script('js/select.js') !!}
 	{!! Html::script('js/script.js') !!}
     {!! Html::script('js/jquery.maskedinput.js') !!}
-    {!! Html::script('js/lightslider.js') !!}
     {!! Html::script('js/jquery.fancybox.js') !!}
 	{!! Html::script('assets/plugins/select2/select2.full.min.js') !!}
+    {!! Html::script('js/eagle.gallery.min.js') !!}
 
     <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 

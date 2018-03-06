@@ -23,28 +23,21 @@
             <div class="detail">
                 <div class="row">
                     <div class="detail_image_block">
+                         <div class="item" style="width: 280px">
+                               @if(count($images) > 0)
 
-                        <div class="demo">
-                            <div class="item" style="width: 280px">
-
-                                    @if(count($images) > 0)
-                                        <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
-
+                                    <div id="image-gallery" class="eagle-gallery img300">
+                                        <div class="owl-carousel">
                                             @foreach($images as $image)
 
-                                                <li data-thumb="{!! $image['small'] !!}">
-                                                    <img src="{!! $image['big'] !!}" />
-                                                </li>
+                                               <img src="{!! $image['small'] !!}" data-medium-img="{!! $image['small'] !!}" data-big-img="{!! $image['big'] !!}" data-title="" alt="">
 
                                             @endforeach
+                                        </div>
+                                    </div>
 
-                                        </ul>
-                                    @endif
-
-                                </div>
-
-                        </div>
-
+                               @endif
+                         </div>
                     </div>
                     <div class="detail_main_info">
                         <div class="detail_price">
@@ -165,7 +158,6 @@
 						</li>
 
 						@endforeach
-
 					</ul>
 
 				</div>
@@ -180,6 +172,7 @@
     {!! Html::script('assets/plugins/select2/select2.full.min.js') !!}
 
     <script type="text/javascript">
+
 
         ymaps.ready(init);
         var myMap,
@@ -210,22 +203,15 @@
         })
 
         $(document).ready(function() {
-            $("#content-slider").lightSlider({
-                loop:true,
-                keyPress:true
+            $('#image-gallery').eagleGallery({
+                miniSliderArrowPos: 'inside',
+                changeMediumStyle: true,
+                autoPlayMediumImg: true,
+                openGalleryStyle: 'transform',
+                bottomControlLine: true
             });
-            $('#image-gallery').lightSlider({
-                gallery:true,
-                item:1,
-                thumbItem:3,
-                slideMargin: 0,
-                speed:500,
-                auto:false,
-                loop:true,
-                onSliderLoad: function() {
-                    $('#image-gallery').removeClass('cS-hidden');
-                }
-            });
+
+            new WOW().init();
         });
 
         $(function(){
