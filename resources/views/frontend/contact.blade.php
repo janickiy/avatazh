@@ -14,7 +14,7 @@
 @endsection
 
 @section('marks')
-    @include('layouts.frontend.includes.mark_list')
+
 @endsection
 
 @section('content')
@@ -28,11 +28,11 @@
                 <div class="contacts_info">
                     <div class="phones">
                         <div>
-                            <a href="tel:+78123132274">{!! getSetting('TELEPHONE_1') !!}</a></br><span>(звонок по России бесплатный)</span>
+                            <a href="tel:{!! getSetting('TELEPHONE_1') !!}">{!! getSetting('TELEPHONE_1') !!}</a></br><span>(звонок по России бесплатный)</span>
                         </div>
                         </br>
                         <div>
-                            <a href="tel:+78005001463">{!! getSetting('TELEPHONE_2') !!}</a>
+                            <a href="tel:{!! getSetting('TELEPHONE_2') !!}">{!! getSetting('TELEPHONE_2') !!}</a>
                         </div>
                     </div>
                     <p>{!! getSetting('FRONTEND_ADDRESS') !!}</p>
