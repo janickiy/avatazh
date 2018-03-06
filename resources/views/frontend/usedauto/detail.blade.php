@@ -23,7 +23,7 @@
             <div class="detail">
                 <div class="row">
                     <div class="detail_image_block">
-                         <div class="item" style="width: 280px">
+                         <div>
                                @if(count($images) > 0)
 
                                     <div id="image-gallery" class="eagle-gallery img300">
@@ -56,8 +56,8 @@
                     </div>
                 </div>
                 <div class="detail_banners row">
-                    <div>@if($detail->verified)<img src="/images/detail_banner_1.jpg" />@endif</div>
-                    <div>@if($detail->tradein)<img src="/images/detail_banner_2.jpg" />@endif</div>
+                    @if($detail->verified)<div><img src="/images/detail_banner_1.jpg" /></div>@endif
+					@if($detail->tradein)<div><img src="/images/detail_banner_2.jpg" /></div>@endif
                 </div>
 
                 @if(is_array($equipments))
