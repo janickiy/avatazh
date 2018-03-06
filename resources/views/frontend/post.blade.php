@@ -13,15 +13,15 @@
 @section('content')
 
 
-<section>
-	<div class="page main_width">
-		@include('layouts.frontend.includes.breadcrumbs')
-        <h1>{{ $post->title }}</h1>
-        <div class="row">
-			  {!! $post->content !!}
-		</div>
-	</div>
-</section>	
+    <section>
+        <div class="page main_width">
+            @include('layouts.frontend.includes.breadcrumbs')
+            <h1>{{ $post->title }}</h1>
+            <div class="row">
+                {!! $post->content !!}
+            </div>
+        </div>
+    </section>
 
 @endsection
 

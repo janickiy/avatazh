@@ -17,83 +17,93 @@
 @section('content')
     <section>
         <div class="page main_width">
-			@include('layouts.frontend.includes.breadcrumbs')
-			<h1>{{ $detail->mark }} {{ $detail->model }}</h1>
-        <div class="row">
-            <div class="detail">
-                <div class="row">
-                    <div class="detail_image_block">
-                         <div>
-                               @if(count($images) > 0)
+            @include('layouts.frontend.includes.breadcrumbs')
+            <h1>{{ $detail->mark }} {{ $detail->model }}</h1>
+            <div class="row">
+                <div class="detail">
+                    <div class="row">
+                        <div class="detail_image_block">
+                            <div>
+                                @if(count($images) > 0)
 
                                     <div id="image-gallery" class="eagle-gallery img300">
                                         <div class="owl-carousel">
                                             @foreach($images as $image)
 
-                                               <img src="{!! $image['small'] !!}" data-medium-img="{!! $image['small'] !!}" data-big-img="{!! $image['big'] !!}" data-title="" alt="">
+                                                <img src="{!! $image['small'] !!}"
+                                                     data-medium-img="{!! $image['small'] !!}"
+                                                     data-big-img="{!! $image['big'] !!}" data-title="" alt="">
 
                                             @endforeach
                                         </div>
                                     </div>
 
-                               @endif
-                         </div>
-                    </div>
-                    <div class="detail_main_info">
-                        <div class="detail_price">
-                           {{ number_format($detail->price,0,'',' ') }} <span>руб.</span>
+                                @endif
+                            </div>
                         </div>
-                        <ul>
-                            <li><span>Год выпуска</span><strong>{{ $detail->year }} г</strong></li>
-                            <li><span>Пробег</span><strong>{{ number_format($detail->mileage,0,'',' ') }} км</strong></li>
-                            <li><span>Кузов</span><strong>@if($detail->body) {{ $detail->body }} @else - @endif</strong></li>
-                            <li><span>Двигатель</span><strong>{{ number_format($detail->power,0,'',' ')  }} л., {{ $detail->engine_type }}</strong></li>
-                            <li><span>КПП</span><strong>{{ $detail->gearbox }}</strong></li>
-                            <li><span>Привод</span><strong>@if($detail->drive) {{ $detail->drive }} @else - @endif</strong></li>
-                            <li><span>Цвет</span><strong>@if($detail->color) {{ $detail->color }} @else - @endif</strong></li>
-                            <li><span>Салон</span><strong>@if($detail->salon) {{ $detail->salon }} @else - @endif</strong></li>
-                        </ul>
+                        <div class="detail_main_info">
+                            <div class="detail_price">
+                                {{ number_format($detail->price,0,'',' ') }} <span>руб.</span>
+                            </div>
+                            <ul>
+                                <li><span>Год выпуска</span><strong>{{ $detail->year }} г</strong></li>
+                                <li><span>Пробег</span><strong>{{ number_format($detail->mileage,0,'',' ') }}
+                                        км</strong></li>
+                                <li><span>Кузов</span><strong>@if($detail->body) {{ $detail->body }} @else
+                                            - @endif</strong></li>
+                                <li><span>Двигатель</span><strong>{{ number_format($detail->power,0,'',' ')  }}
+                                        л., {{ $detail->engine_type }}</strong></li>
+                                <li><span>КПП</span><strong>{{ $detail->gearbox }}</strong></li>
+                                <li><span>Привод</span><strong>@if($detail->drive) {{ $detail->drive }} @else
+                                            - @endif</strong></li>
+                                <li><span>Цвет</span><strong>@if($detail->color) {{ $detail->color }} @else
+                                            - @endif</strong></li>
+                                <li><span>Салон</span><strong>@if($detail->salon) {{ $detail->salon }} @else
+                                            - @endif</strong></li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <div class="detail_banners row">
-                    @if($detail->verified)<div><img src="/images/detail_banner_1.jpg" /></div>@endif
-					@if($detail->tradein)<div><img src="/images/detail_banner_2.jpg" /></div>@endif
-                </div>
+                    <div class="detail_banners row">
+                        @if($detail->verified)
+                            <div><img src="/images/detail_banner_1.jpg"/></div>@endif
+                        @if($detail->tradein)
+                            <div><img src="/images/detail_banner_2.jpg"/></div>@endif
+                    </div>
 
-                @if(is_array($equipments))
-                <section>
-                    <h3>Комплектация:</h3>
-                    <ul class="detail_options">
-                        @foreach($equipments as $equipment)
-                        <li>{!! $equipment !!}</li>
-                        @endforeach
-                    </ul>
-                </section>
-                @endif
-
-                <section>
-                    @if ($detail->description)
-                    <h3>Комментарии продавца:</h3>
-                      {!! $detail->description !!}
+                    @if(is_array($equipments))
+                        <section>
+                            <h3>Комплектация:</h3>
+                            <ul class="detail_options">
+                                @foreach($equipments as $equipment)
+                                    <li>{!! $equipment !!}</li>
+                                @endforeach
+                            </ul>
+                        </section>
                     @endif
 
-                </section>
-            </div>
-            <div class="sidebar">
-                <div class="request_form">
-                    <div class="form_title">Заявка на кредит</div>
-                    {!! Form::open(['url' => '/usedcar-request-credit', 'method' => 'post', 'class' => 'form-horizontal', 'id' => 'validate']) !!}
-                    {!! Form::hidden('id_car', $detail->id) !!}
+                    <section>
+                        @if ($detail->description)
+                            <h3>Комментарии продавца:</h3>
+                            {!! $detail->description !!}
+                        @endif
+
+                    </section>
+                </div>
+                <div class="sidebar">
+                    <div class="request_form">
+                        <div class="form_title">Заявка на кредит</div>
+                        {!! Form::open(['url' => '/usedcar-request-credit', 'method' => 'post', 'class' => 'form-horizontal', 'id' => 'validate']) !!}
+                        {!! Form::hidden('id_car', $detail->id) !!}
                         <div class="form_field">
                             {!! Form::text('name', old('name'), ['class' => 'form_control validate[required]', 'placeholder'=>'ФИО']) !!}
                         </div>
-                          <div class="form_field">
+                        <div class="form_field">
                             {!! Form::text('registration', old('registration'), ['class' => 'who form_control validate[required]', 'placeholder'=>'Регион по прописке', 'autocomplete' => 'off', 'id' => 'search_registration']) !!}
                             <ul class="search_result_registration search_result"></ul>
                         </div>
                         <div class="row">
                             <div class="form_field form_field_age">
-                                 {!! Form::selectRange('age', 18, 85, 'Возраст', ['class' => 'select2 validate[required]', 'placeholder' => 'Возраст']) !!}
+                                {!! Form::selectRange('age', 18, 85, 'Возраст', ['class' => 'select2 validate[required]', 'placeholder' => 'Возраст']) !!}
                             </div>
                             <div class="form_field form_field_phone">
                                 {!! Form::text('phone', old('phone'), ['class' => 'form_control form_phone validate[required]', 'placeholder' => 'Телефон']) !!}
@@ -113,58 +123,67 @@
                             ], 'Первоначальный взнос', ['class' => 'select2', 'placeholder' => 'Первоначальный взнос']
                             ) !!}
                         </div>
-                {!! Form::submit('Купить в кредит', ['class'=>'btn green']) !!}
-                {!! Form::close() !!}
-                </div>
-                <div class="map">
-                    <div>
-                        <div class="address">{!! getSetting('FRONTEND_ADDRESS') !!}</div>
-                        <div class="times">{!! getSetting('FRONTEND_TIMES') !!}</div>
+                        {!! Form::submit('Купить в кредит', ['class'=>'btn green']) !!}
+                        {!! Form::close() !!}
+                    </div>
+                    <div class="map">
+                        <div>
+                            <div class="address">{!! getSetting('FRONTEND_ADDRESS') !!}</div>
+                            <div class="times">{!! getSetting('FRONTEND_TIMES') !!}</div>
 
-                        <div ><div style="width:288px;height:300px;margin-left: -15px;margin-right: -15px;" id="map"></div> </div>
+                            <div>
+                                <div style="width:288px;height:300px;margin-left: -15px;margin-right: -15px;"
+                                     id="map"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <img src="/images/right_banner_detail.jpg"/>
                     </div>
                 </div>
-                <div>
-                    <img src="/images/right_banner_detail.jpg" />
-                </div>
             </div>
+
+
         </div>
-
-
-		</div>
     </section>
-	        @if(count($similarCars) > 0)
+    @if(count($similarCars) > 0)
 
         <section class="similar grey">
-			<div class="main_width">
-				<h3>Похожие автомобили с пробегом:</h3>
-				<div class="items_list row">
-					<ul>
+            <div class="main_width">
+                <h3>Похожие автомобили с пробегом:</h3>
+                <div class="items_list row">
+                    <ul>
 
-						@foreach($similarCars as $similarCar)
+                        @foreach($similarCars as $similarCar)
 
-						<li class="item">
-							<div class="item_container">
-								<a href="{!! url('/auto/used/detail/' .  $similarCar->id) !!}">
-									<div class="item_pic" style="background-image:url({!! mainSmallPic($similarCar->image) !!})"></div>
-									<div class="idem_desc">
-										<div class="item_name" >{!! $similarCar->mark !!} {!! $similarCar->model !!}</div>
-										<p>{!! $similarCar->year !!} г., {!! number_format($similarCar->mileage,0,'',' ') !!} км, {!! $similarCar->engine_type !!}, КПП {!! $similarCar->gearbox !!}</p>
-										<div class="item_price">{!! number_format($similarCar->price,0,'',' ') !!}<span>руб.</span></div>
-										<a class="btn green" href="{!! url('/auto/used/detail/' .  $similarCar->id) !!}">Подробнее</a>
-									</div>
-								</a>
-							</div>	
-						</li>
+                            <li class="item">
+                                <div class="item_container">
+                                    <a href="{!! url('/auto/used/detail/' .  $similarCar->id) !!}">
+                                        <div class="item_pic"
+                                             style="background-image:url({!! mainSmallPic($similarCar->image) !!})"></div>
+                                        <div class="idem_desc">
+                                            <div class="item_name">{!! $similarCar->mark !!} {!! $similarCar->model !!}</div>
+                                            <p>{!! $similarCar->year !!}
+                                                г., {!! number_format($similarCar->mileage,0,'',' ') !!}
+                                                км, {!! $similarCar->engine_type !!},
+                                                КПП {!! $similarCar->gearbox !!}</p>
+                                            <div class="item_price">{!! number_format($similarCar->price,0,'',' ') !!}
+                                                <span>руб.</span></div>
+                                            <a class="btn green"
+                                               href="{!! url('/auto/used/detail/' .  $similarCar->id) !!}">Подробнее</a>
+                                        </div>
+                                    </a>
+                                </div>
+                            </li>
 
-						@endforeach
-					</ul>
+                        @endforeach
+                    </ul>
 
-				</div>
-			</div>
+                </div>
+            </div>
         </section>
 
-        @endif
+    @endif
 @endsection
 
 @section('js')
@@ -178,7 +197,7 @@
         var myMap,
             myPlacemark;
 
-        function init(){
+        function init() {
             myMap = new ymaps.Map("map", {
                 center: [{!! getSetting('MAP_LONGITUDE') !!}, {!! getSetting('MAP_LATITUDE') !!}],
                 zoom: 16
@@ -202,7 +221,7 @@
             });
         })
 
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('#image-gallery').eagleGallery({
                 miniSliderArrowPos: 'inside',
                 changeMediumStyle: true,
@@ -214,19 +233,19 @@
             new WOW().init();
         });
 
-        $(function(){
-            $("#search_registration").on("change keyup input click", function() {
-                if (this.value.length >= 2){
+        $(function () {
+            $("#search_registration").on("change keyup input click", function () {
+                if (this.value.length >= 2) {
 
                     $.ajax({
                         type: 'GET',
                         url: '/ajax?action=search_registration&registration=' + this.value,
-                        dataType : "json",
-                        success: function(data){
+                        dataType: "json",
+                        success: function (data) {
                             if (data != null && data.item != null) {
                                 var html = '';
 
-                                for(var i=0; i < data.item.length; i++) {
+                                for (var i = 0; i < data.item.length; i++) {
                                     html += '<li data-item="' + data.item[i].id + '">' + data.item[i].name + '</li>';
                                 }
 
@@ -242,11 +261,11 @@
                 }
             })
 
-            $(".search_result_registration").hover(function(){
+            $(".search_result_registration").hover(function () {
                 $(".who").blur();
             })
 
-            $(".search_result_registration").on("click", "li", function(){
+            $(".search_result_registration").on("click", "li", function () {
                 $("#search_registration").val($(this).text());
                 $(".search_result_registration").fadeOut();
             })

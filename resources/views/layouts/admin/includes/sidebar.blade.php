@@ -38,10 +38,12 @@
                         </a>
                     </li>
                     <li class="{{ Request::is('admin/role*')? 'active': '' }}">
-                        <a href="#"><i class="fa fa-key"></i> Настройки ролей <i class="fa fa-angle-left pull-right"></i></a>
+                        <a href="#"><i class="fa fa-key"></i> Настройки ролей <i
+                                    class="fa fa-angle-left pull-right"></i></a>
                         <ul class="treeview-menu">
                             <li class="{{ Request::is('admin/roles')? 'active': '' }}"><a
-                                        href="{{ url('admin/roles') }}"><i class="fa fa-list"></i> Управление ролями</a></li>
+                                        href="{{ url('admin/roles') }}"><i class="fa fa-list"></i> Управление ролями</a>
+                            </li>
                             <li class="{{ Request::is('admin/roles/create')? 'active': '' }}"><a
                                         href="{{ url('admin/roles/create') }}"><i class="fa fa-plus"></i> Добавить роль</a>
                             </li>
@@ -52,7 +54,8 @@
 
             <li class="treeview {{ Request::is('admin/carmark*') ? 'active': '' || Request::is('admin/carmodel*') ? 'active': '' || Request::is('admin/carmodification*') ? 'active': '' }}">
                 <a href="#">
-                    <i class="fa fa-folder-open-o"></i> <span>Марки и модели</span> <i class="fa fa-angle-left pull-right"></i>
+                    <i class="fa fa-folder-open-o"></i> <span>Марки и модели</span> <i
+                            class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
                     <li class="{{ Request::is('admin/carmarks') ? 'active': '' }}">
@@ -78,7 +81,8 @@
 
             <li class="treeview {{ Request::is('admin/catalogusedcar*')? 'active': '' || Request::is('admin/catalogusedcars/import')? 'active': '' }}">
                 <a href="#">
-                    <i class="fa fa-automobile"></i> <span>Автомобили с пробегом</span> <i class="fa fa-angle-left pull-right"></i>
+                    <i class="fa fa-automobile"></i> <span>Автомобили с пробегом</span> <i
+                            class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
                     <li class="{{ Request::is('admin/catalogusedcars')? 'active': '' }}">
@@ -133,7 +137,6 @@
             </li>
 
 
-
             <li class="treeview {{ Request::is('admin/requesttradein*') || Request::is('admin/requestcredit*') ||  Request::is('admin/requestusedcarcredit*') ? 'active': '' ||  Request::is('admin/callback*') ? 'active': '' }}">
                 <a href="#">
                     <i class="fa fa-bell-o"></i> <span>Заявки</span> <i class="fa fa-angle-left pull-right"></i>
@@ -169,8 +172,10 @@
             <li class="treeview {{ Request::is('admin/menu*')? 'active': '' }}">
                 <a href="#"><i class="fa fa-list-alt"></i> Меню <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
-                    <li class="{{ Request::is('admin/menus')? 'active': '' }}"><a href="{{ url('admin/menus') }}"><i class="fa fa-list"></i> Управление меню</a></li>
-                    <li class="{{ Request::is('admin/menus/create')? 'active': '' }}"><a href="{{ url('admin/menus/create') }}"><i class="fa fa-plus"></i> Добавить меню</a></li>
+                    <li class="{{ Request::is('admin/menus')? 'active': '' }}"><a href="{{ url('admin/menus') }}"><i
+                                    class="fa fa-list"></i> Управление меню</a></li>
+                    <li class="{{ Request::is('admin/menus/create')? 'active': '' }}"><a
+                                href="{{ url('admin/menus/create') }}"><i class="fa fa-plus"></i> Добавить меню</a></li>
                 </ul>
             </li>
             <li class="treeview {{ Request::is('admin/setting*')? 'active': '' }}">

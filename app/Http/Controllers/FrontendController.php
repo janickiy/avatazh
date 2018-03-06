@@ -644,7 +644,13 @@ class FrontendController extends Controller
             ->where('published', 1)
             ->paginate(10);
 
-        return view('frontend.usedauto.mark', compact('model_list'))->with('title', 'Все модели: ' . $mark);
+        $carMark = CarMark::select(['name'])->where('slug', '=', $mark)->first()->toArray();
+
+        if ($carMark) {
+            return view('frontend.usedauto.mark', compact('model_list'))->with('title', 'Все модели: ' . $carMark['name']);
+        }
+
+        abort(404);
     }
 
     /**

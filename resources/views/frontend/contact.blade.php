@@ -21,27 +21,27 @@
 
 
     <section>
-	<div class="page main_width">
-		@include('layouts.frontend.includes.breadcrumbs')
-        <h1>Контакты</h1>
-        <div class="row">
-              <div class="contacts_info">
-                <div class="phones">
-					<div>
-						<a href="tel:+78123132274">{!! getSetting('TELEPHONE_1') !!}</a></br><span>(звонок по России бесплатный)</span>
-					</div>
-					</br>
-					<div>
-						<a href="tel:+78005001463">{!! getSetting('TELEPHONE_2') !!}</a>
-					</div>
+        <div class="page main_width">
+            @include('layouts.frontend.includes.breadcrumbs')
+            <h1>Контакты</h1>
+            <div class="row">
+                <div class="contacts_info">
+                    <div class="phones">
+                        <div>
+                            <a href="tel:+78123132274">{!! getSetting('TELEPHONE_1') !!}</a></br><span>(звонок по России бесплатный)</span>
+                        </div>
+                        </br>
+                        <div>
+                            <a href="tel:+78005001463">{!! getSetting('TELEPHONE_2') !!}</a>
+                        </div>
+                    </div>
+                    <p>{!! getSetting('FRONTEND_ADDRESS') !!}</p>
+                    <p>{!! getSetting('FRONTEND_TIMES') !!}</p>
+                    <a href="#inline" class="btn recall_link modalbox">Обратный звонок</a>
                 </div>
-                <p>{!! getSetting('FRONTEND_ADDRESS') !!}</p>
-                <p>{!! getSetting('FRONTEND_TIMES') !!}</p>
-                <a  href="#inline" class="btn recall_link modalbox">Обратный звонок</a>
+                <div id="map" style="width: 400px; height: 300px;margin-bottom: 20px;float: right;"></div>
             </div>
-            <div id="map" style="width: 400px; height: 300px;margin-bottom: 20px;float: right;"></div>
         </div>
-		  </div>
     </section>
 
 @endsection
@@ -56,7 +56,7 @@
         var myMap,
             myPlacemark;
 
-        function init(){
+        function init() {
             myMap = new ymaps.Map("map", {
                 center: [{!! getSetting('MAP_LONGITUDE') !!}, {!! getSetting('MAP_LATITUDE') !!}],
                 zoom: 16
@@ -79,13 +79,12 @@
         })
 
 
-        $(function(){
+        $(function () {
             $(".form_phone").mask("+7 (999) 999-9999");
         })
 
 
-
-        $(document).ready(function() {
+        $(document).ready(function () {
             $(".modalbox").fancybox();
 
         });

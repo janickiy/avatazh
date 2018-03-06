@@ -8,8 +8,8 @@
 
     <style>
 
-        .search{
-            position:relative;
+        .search {
+            position: relative;
         }
 
         .search_result {
@@ -17,28 +17,28 @@
             border: 1px #ccc solid;
             padding: 0;
             border-radius: 4px;
-            max-height:100px;
-            overflow-y:scroll;
-            display:none;
+            max-height: 100px;
+            overflow-y: scroll;
+            display: none;
         }
 
         .dropdownvisible {
-            max-height:100px;
-            overflow-y:scroll;
+            max-height: 100px;
+            overflow-y: scroll;
 
         }
 
-        .search_result li{
+        .search_result li {
             list-style: none;
             padding: 5px 10px;
             margin: 0;
             color: #0896D3;
             border-bottom: 1px #ccc solid;
             cursor: pointer;
-            transition:0.3s;
+            transition: 0.3s;
         }
 
-        .search_result li:hover{
+        .search_result li:hover {
             background: #F9FF00;
         }
 
@@ -55,7 +55,8 @@
         <ol class="breadcrumb">
             <li><a href="{{ url('admin/dashboard') }}"><i class="fa fa-dashboard"></i> Панель управления</a></li>
             <li><a href="{{ url('admin/menus') }}"><i class="fa fa-list-alt"></i> Автомобили с пробегом</a></li>
-            <li class="active"><i class="fa {{ isset($menu) ? 'fa-pencil' : 'fa-plus' }}"></i> {{ isset($menu) ? 'Редактировать' : 'Добавить' }}
+            <li class="active"><i
+                        class="fa {{ isset($menu) ? 'fa-pencil' : 'fa-plus' }}"></i> {{ isset($menu) ? 'Редактировать' : 'Добавить' }}
                 автомобиль
             </li>
         </ol>
@@ -330,19 +331,19 @@
 
     <script type="text/javascript">
 
-        $(function(){
-            $("#search_mark").on("change keyup input click", function() {
-                if(this.value.length >= 2){
+        $(function () {
+            $("#search_mark").on("change keyup input click", function () {
+                if (this.value.length >= 2) {
                     $.ajax({
                         type: 'GET',
                         url: '/admin/ajax?action=search_mark&mark=' + this.value,
-                        dataType : "json",
-                        success: function(data){
+                        dataType: "json",
+                        success: function (data) {
 
                             if (data != null && data.item != null) {
                                 var html = '';
 
-                                for(var i=0; i < data.item.length; i++) {
+                                for (var i = 0; i < data.item.length; i++) {
                                     html += '<li data-item="' + data.item[i].id + '">' + data.item[i].name + '</li>';
                                 }
 
@@ -358,11 +359,11 @@
                 }
             })
 
-            $(".search_result_mark").hover(function(){
+            $(".search_result_mark").hover(function () {
                 $(".search_mark").blur();
             })
 
-            $(".search_result_mark").on("click", "li", function(){
+            $(".search_result_mark").on("click", "li", function () {
                 $("#search_mark").val($(this).text());
 
                 var idMark = $(this).attr('data-item');
@@ -376,11 +377,11 @@
                         dataType: "json"
                     });
 
-                    request.done(function(data) {
+                    request.done(function (data) {
 
                         var html = '<select name="model" class="form-control select2 validate[required]">';
 
-                        for (var i=0; i < data.item.length; i++) {
+                        for (var i = 0; i < data.item.length; i++) {
                             html += '<option value="' + data.item[i].name + '">' + data.item[i].name + '</option>';
                         }
 
@@ -400,7 +401,7 @@
                 $(".search_result_mark").fadeOut();
             })
 
-            $("#select2-model-container").on("change keyup input click", function() {
+            $("#select2-model-container").on("change keyup input click", function () {
 
                 var Mark = $("#search_mark").val();
                 var Model = $("#select2-model-container").text();

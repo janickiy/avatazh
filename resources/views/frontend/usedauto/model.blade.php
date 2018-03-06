@@ -17,28 +17,29 @@
 
 @section('content')
     <section>
-	<div class="page main_width">
-		@include('layouts.frontend.includes.breadcrumbs')
-			<h1>Автомобили с пробегом</h1>
+        <div class="page main_width">
+            @include('layouts.frontend.includes.breadcrumbs')
+            <h1>Автомобили с пробегом</h1>
 
-        <div class="main_marks row">
-            <table width="100%">
-                <?php $i=0; ?>
+            <div class="main_marks row">
+                <table width="100%">
+                    <?php $i = 0; ?>
 
-                @foreach($modifications as $modification)
-                    @if($i == 0) <tr> @endif
-                    <td><a href="/auto/{!! $modification->slug !!}/used">{!! $modification->name !!}</a><span> 0 </span></td>
-                    <?php $i++; ?>
-                    @if($i == 6) </tr> <?php $i=0; ?> @endif
-                @endforeach
+                    @foreach($modifications as $modification)
+                        @if($i == 0)
+                            <tr> @endif
+                                <td>
+                                    <a href="/auto/{!! $modification->slug !!}/used">{!! $modification->name !!}</a><span> 0 </span>
+                                </td>
+                                <?php $i++; ?>
+                                @if($i == 6) </tr> <?php $i = 0; ?> @endif
+                    @endforeach
 
-            </table>
+                </table>
 
+            </div>
         </div>
-		</div>
     </section>
-
-
 
 
 @endsection
