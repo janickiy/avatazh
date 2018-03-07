@@ -27,15 +27,6 @@
             <div id="model_filter" class="search_bloсk select">
                 {!! Form::select('model', $models_options, isset($request->model) ? $request->model : 'Модель', ['class' => 'select2', 'id' => 'model', !isset($request->model) ? 'disabled' : '']) !!}
             </div>
-            <div id="year_filter" class="search_bloсk select">
-
-                @if(isset($request->year))
-                    {!! Form::selectYear('year', isset($year['from']) ? $year['from'] : null, isset($year['to']) ? $year['to'] : null, isset($request->year) ? $request->year : null, ['class' => 'select2', 'id' => 'year', 'placeholder' => 'Год от']) !!}
-                @else
-                    {!! Form::select('year', [], 'Год от', ['class' => 'select2', 'id' => 'year', 'disabled', 'placeholder' => 'Год от']) !!}
-                @endif
-
-            </div>
             <div class="search_bloсk select">
                 {!! Form::select('gearbox',
                 [null => 'Коробка',
@@ -44,9 +35,6 @@
                 'Роботизированная' => 'Роботизированная',
                 'Вариатор' => 'Вариатор',
                 'Автоматизированная механическая' => 'Автоматизированная механическая'], isset($request->gearbox) ? $request->gearbox : 'Коробка', ['class' => 'select2']) !!}
-            </div>
-            <div class="search_bloсk ">
-                {!! Form::text('price_from', old('price_from', isset($request->price_from) ? $request->price_from : null), ['class' => 'form_control', 'placeholder'=>'Цена от']) !!}
             </div>
             <div class="search_bloсk ">
                 {!! Form::text('price_to', old('price_to', isset($request->price_to) ? $request->price_to : null), ['class' => 'form_control', 'placeholder'=>'Цена до']) !!}

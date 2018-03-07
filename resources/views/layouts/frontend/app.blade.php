@@ -19,6 +19,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
     <meta name="description" content="@yield('meta_desc')"/>
     <meta name="keywords" content="@yield('meta_keywords')"/>
+	<link rel="shortcut icon" href="/images/favicon.ico" type="image/ico">
     <title> {{ getSetting('SITE_TITLE') }} | @yield('title') </title>
 
     {!! Html::script('js/jquery-1.11.1.min.js') !!}
@@ -30,7 +31,7 @@
     {!! Html::script('js/eagle.gallery.min.js') !!}
 
     <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
-
+	
     @yield('css')
 
 </head>
