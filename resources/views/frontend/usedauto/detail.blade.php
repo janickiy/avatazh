@@ -137,9 +137,7 @@
                             </div>
                         </div>
                     </div>
-                    <div>
-                        <img src="/images/right_banner_detail.jpg"/>
-                    </div>
+
                 </div>
             </div>
 

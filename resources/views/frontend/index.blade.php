@@ -16,7 +16,7 @@
 
 @section('content')
     <div class="main_width">
-        <div class="main_banner"></div>
+        <div class="main_banner"><img src="images/main_banner.jpg" /></div>
 
         <div class="search_bloсk_container row">
             {!! Form::open(['url' =>  '/', 'method' => 'get']) !!}
@@ -117,19 +117,12 @@
 
                     <div class="quantity_cars_block">
                         <div class="item_container">
-                            <div class="autocode"></div>
-                            <table width="100%">
-                                <tr>
-                                    <td align="right"><span class="quantity_cars">{{ $numberCars }}</span></td>
-                                    <td align="left">автомобилей на сайте</td>
-                                </tr>
-                            <!--
-							<tr>
-								<td align="right"><span class="quantity_cars">{{ $soldLastWeek }}</span></td>
-								<td align="left">продано на прошлой неделе</td>
-							</tr>
-							-->
-                            </table>
+                             <table width="100%" cellpadding="0" cellspacing="0">
+								<tr><td><img src="images/right_banner_1.png" /></td></tr>
+								<tr><td><img src="images/right_banner_2.png" /></td></tr>
+								<tr><td><img src="images/right_banner_3.png" /></td></tr>
+							 </table>
+							 
                         </div>
                     </div>
                     @if (count($specialOffer) > 0)

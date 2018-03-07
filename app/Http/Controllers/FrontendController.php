@@ -100,21 +100,21 @@ class FrontendController extends Controller
 
         if (isset($request->search)) {
 
-            if ($request->mark) $mark_search = CarMark::select(['name'])->where('id', $request->mark)->first()->toArray();
-            if ($request->model) $model_search = CarModel::select(['name'])->where('id', $request->model)->first()->toArray();
+            if (is_numeric($request->mark)) $mark_search = CarMark::select(['name'])->where('id', $request->mark)->first()->toArray();
+            if (is_numeric($request->model)) $model_search = CarModel::select(['name'])->where('id', $request->model)->first()->toArray();
 
             if ((isset($request->price_from) && $request->price_from) and (isset($request->price_to) && $request->price_to)) {
                 $usedcars = CatalogUsedCar::where('published', 1)
-                    ->where('mark', isset($request->mark) && $request->mark ? 'like' : 'not like', isset($request->mark) && $request->mark ? $mark_search['name'] : '')
-                    ->where('model', isset($request->model) && $request->model ? 'like' : 'not like',  isset($request->model) && $request->model ? $model_search['name'] : '')
+                    ->where('mark', isset($request->mark) && is_numeric($request->mark) ? 'like' : 'not like', isset($request->mark) && $request->mark ? $mark_search['name'] : '')
+                    ->where('model', isset($request->model) && is_numeric($request->model) ? 'like' : 'not like',  isset($request->model) && $request->model ? $model_search['name'] : '')
                     ->where('gearbox', isset($request->gearbox) && $request->gearbox ? 'like' : 'not like', isset($request->gearbox) && $request->gearbox ? $request->gearbox : '')
                     ->where('year', isset($request->year) && $request->year ? '>' : 'not like', isset($request->year) && $request->year ? $request->year : '')
                     ->whereBetween('price', [$request->price_from, $request->price_to])
                     ->paginate(5);
             } else {
                 $usedcars = CatalogUsedCar::where('published', 1)
-                    ->where('mark', isset($request->mark) && $request->mark ? 'like' : 'not like', isset($request->mark) && $request->mark ? $mark_search['name'] : '')
-                    ->where('model', isset($request->model) && $request->model ? 'like' : 'not like',  isset($request->model) && $request->model ? $model_search['name'] : '')
+                    ->where('mark', isset($request->mark) && is_numeric($request->mark) ? 'like' : 'not like', isset($request->mark) && is_numeric($request->mark) ? $mark_search['name'] : '')
+                    ->where('model', isset($request->model) && is_numeric($request->model) ? 'like' : 'not like',  isset($request->model) && is_numeric($request->model) ? $model_search['name'] : '')
                     ->where('gearbox', isset($request->gearbox) && $request->gearbox ? 'like' : 'not like', isset($request->gearbox) && $request->gearbox ? $request->gearbox : '')
                     ->where('year', isset($request->year) && $request->year ? '>' : 'not like', isset($request->year) && $request->year ? $request->year : '')
                     ->paginate(5);
