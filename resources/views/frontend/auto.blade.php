@@ -22,7 +22,7 @@
             <h1>Автомобили с пробегом</h1>
             <div class="items_list catalog_list row">
                 <div class="right_banner_block">
-                   
+                   <img src="/images/right_banner.jpg" />
                 </div>
                 <div class="left_content ">
                     @if(count($usedCars)>0)

@@ -63,13 +63,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="detail_banners row">
-                        @if($detail->verified)
-                            <div><img src="/images/detail_banner_1.jpg"/></div>@endif
-                        @if($detail->tradein)
-                            <div><img src="/images/detail_banner_2.jpg"/></div>@endif
-                    </div>
-
+                   
                     @if(is_array($equipments))
                         <section>
                             <h3>Комплектация:</h3>
@@ -88,6 +82,11 @@
                         @endif
 
                     </section>
+					<div class="detail_banners row">
+                            <div><img src="/images/detail_banner_1.jpg"/></div>
+                            <div><img src="/images/detail_banner_2.jpg"/></div>
+							<div><img src="/images/detail_banner_3.jpg"/></div>
+                    </div>
                 </div>
                 <div class="sidebar">
                     <div class="request_form">

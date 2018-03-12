@@ -27,7 +27,10 @@
 
                 </table>
             </div>
-            <div class="items_list">
+			                <div class="right_banner_block">
+                   <img src="/images/right_banner.jpg" />
+                </div>
+                <div class="left_content items_list">
                 <ul class="row">
 
                     @foreach($model_list as $car)

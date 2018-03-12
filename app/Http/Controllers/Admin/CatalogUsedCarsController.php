@@ -101,7 +101,9 @@ class CatalogUsedCarsController extends Controller
             $model_list[$model->name] = $model->name;
         }
 
-        return view('admin.catalogusedcars.create_edit')->with(compact('catalogusedcar', 'model_list', 'options'));
+        $equipments = implode(",", unserialize($catalogusedcar->equipment));
+
+        return view('admin.catalogusedcars.create_edit')->with(compact('catalogusedcar', 'model_list', 'options', 'equipments'));
     }
 
     /**
@@ -161,7 +163,7 @@ class CatalogUsedCarsController extends Controller
         $catalogUsedCar->meta_keywords = trim($request->input('meta_keywords'));
         $catalogUsedCar->meta_description = trim($request->input('meta_description'));
         $catalogUsedCar->description = trim($request->input('description'));
-        $catalogUsedCar->equipment = serialize($request->input('equipment'));
+        $catalogUsedCar->equipment = serialize(explode(',', $request->input('equipment')));
 
         if (!empty($images)) $catalogUsedCar->image = serialize($images);
         $catalogUsedCar->published = 0;
@@ -191,7 +193,7 @@ class CatalogUsedCarsController extends Controller
         $catalogUsedCar->updated_at = \Carbon::now();
         $catalogUsedCar->save();
 
-        return redirect('admin/catalogusedcars')->with('success', $catalogUsedCar->id . 'спешно обнавлен');
+        return redirect('admin/catalogusedcars')->with('success', 'Данные успешно обнавлены');
     }
 
     /**
@@ -211,7 +213,7 @@ class CatalogUsedCarsController extends Controller
             }
 
             $catalogUsedCar->delete();
-            return response()->json(['success' => 'Меню успешно удалено']);
+            return response()->json(['success' => $catalogUsedCar->model . 'успешно удален']);
         } else {
             return 'Вы не можете продолжить операцию удаления';
         }
@@ -237,8 +239,9 @@ class CatalogUsedCarsController extends Controller
             $small_path = public_path() . PATH_SMALL_USEDCARS;
             $big_path = public_path() . PATH_BIG_USEDCARS;
 
+            CatalogUsedCar::query()->truncate();
+
             foreach($xml->offers as $row_car) {
-               //var_dump($row_car->offer);
 
                 foreach ($row_car->offer as $row)
                 {
