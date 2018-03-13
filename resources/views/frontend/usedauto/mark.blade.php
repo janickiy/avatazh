@@ -15,6 +15,11 @@
 
 @endsection
 
+@section('models')
+    @include('layouts.frontend.includes.model_list')
+@endsection
+
+
 @section('content')
     <section>
         <div class="page main_width">

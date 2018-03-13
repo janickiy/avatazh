@@ -404,10 +404,19 @@ class FrontendController extends Controller
 
     public function allUsedAuto()
     {
+        $marks = CarMark::selectRaw('car_marks.id,car_marks.name,car_marks.slug,count(catalog_used_cars.id) as countusedcars')
+            ->where('car_marks.published', 1)
+            ->leftJoin('catalog_used_cars', 'car_marks.name', 'like', 'catalog_used_cars.mark')
+            ->groupBy('car_marks.id')
+            ->orderBy('car_marks.name')
+            ->having('countusedcars', '>=', 1)
+            ->take(23)
+            ->get();
+
         $usedCars = CatalogUsedCar::where('published', 1)
             ->paginate(12);
 
-        return view('frontend.auto', compact('usedCars'))->with('title', 'Автомобили с пробегом');
+        return view('frontend.auto', compact('usedCars', 'marks'))->with('title', 'Автомобили с пробегом');
     }
 
     /**
@@ -644,10 +653,21 @@ class FrontendController extends Controller
             ->where('published', 1)
             ->paginate(10);
 
-        $carMark = CarMark::select(['name'])->where('slug', '=', $mark)->first()->toArray();
+        $carMark = CarMark::select(['name','id'])->where('slug', '=', $mark)->first()->toArray();
+
+        $models = CarModel::selectRaw('car_models.id,car_models.name,car_models.slug,car_marks.slug as mark_slug,count(catalog_used_cars.id) as countusedcars')
+            ->where('car_models.published', 1)
+            ->where('car_marks.id', $carMark['id'])
+            ->leftJoin('catalog_used_cars', 'car_models.name', 'like', 'catalog_used_cars.model')
+            ->leftJoin('car_marks', 'car_marks.id', '=', 'car_models.id_car_mark')
+            ->groupBy('car_models.id')
+            ->orderBy('car_models.name')
+            ->having('countusedcars', '>=', 1)
+            ->get();
+
 
         if ($carMark) {
-            return view('frontend.usedauto.mark', compact('model_list'))->with('title', 'Все модели: ' . $carMark['name']);
+            return view('frontend.usedauto.mark', compact('model_list', 'models'))->with('title', 'Все модели: ' . $carMark['name']);
         }
 
         abort(404);
@@ -658,19 +678,20 @@ class FrontendController extends Controller
      * @param $model
      * @return $this
      */
-    public function usedAutoModel($model)
+    public function usedAutoModel($mark, $model)
     {
-        $modifications = CarModel::selectRaw('car_modifications.id,car_modifications.name,car_modifications.body_type')
-            ->join('car_modifications', 'car_models.id', '=', 'car_modifications.id_car_model')
-            ->where('car_models.slug', $model)
-            ->where('car_models.published', 1)
-            ->get();
+        $car_model = CarModel::where('slug', $model)->first()->toArray();
 
-        $model_list = CarModel::where('slug', $model)
-            ->where('published', 1)
-            ->paginate(10);
+        if ($car_model) {
+            $model_list = CatalogUsedCar::where('model', 'like', $car_model['name'])
+                ->where('published', 1)
+                ->paginate(10);
 
-        return view('frontend.usedauto.model', compact('modifications','model_list'))->with('title', 'Автомобили с пробегом');
+            return view('frontend.usedauto.model', compact('model_list'))->with('title', 'Автомобили с пробегом');
+        }
+
+        abort(404);
+
     }
 
     /**
@@ -711,5 +732,47 @@ class FrontendController extends Controller
         }
 
         abort(404);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function exportRequestCredits(Request $request)
+    {
+        if ($request->last_request_date) {
+            $row = RequestCredit::select(['name','age','phone','registration','mark','model','modification'])
+                    ->whereDate('created_at', '=', $request->last_request_date)
+                    ->get()
+                    ->toArray();
+        } else {
+            $row = RequestCredit::select(['name','age','phone','registration','mark','model','modification'])
+                    ->get()
+                    ->toArray();
+        }
+
+        return response()->json($row);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function exportRequestUsedcarCredits(Request $request)
+    {
+        if ($request->last_request_date) {
+            $row = RequestUsedcarCredit::select(['request_usedcar_credits.name','request_usedcar_credits.age','request_usedcar_credits.phone','request_usedcar_credits.registration','catalog_used_cars.model', 'catalog_used_cars.mark'])
+                    ->join('catalog_used_cars', 'catalog_used_cars.id', '=', 'request_usedcar_credits.id_car')
+                    ->whereDate('created_at', '=', $request->last_request_date)
+                    ->get()
+                    ->toArray();
+
+        } else {
+            $row = RequestCredit::select(['name','age','phone','registration','mark','model','modification'])
+                    ->get()
+                    ->toArray();
+        }
+
+        return response()->json($row);
     }
 }

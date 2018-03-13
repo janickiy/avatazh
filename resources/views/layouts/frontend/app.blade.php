@@ -42,7 +42,7 @@
 
 @yield('marks')
 
-
+@yield('models')
 
 @include('layouts.frontend.includes.notifications')
 @yield('content')

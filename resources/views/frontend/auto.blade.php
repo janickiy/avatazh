@@ -12,7 +12,7 @@
 
 
 @section('marks')
-
+    @include('layouts.frontend.includes.mark_list')
 @endsection
 
 @section('content')

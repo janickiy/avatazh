@@ -73,7 +73,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/auto/used/detail/{id}', 'FrontendController@usedAutoDetail');
     Route::get('/auto/used/{mark}', 'FrontendController@usedAuto');
     Route::get('/auto/used/{mark}/{model}', 'FrontendController@usedAutoModel');
-    Route::get('/credit', 'FrontendController@credit');
+    Route::any('/credit', 'FrontendController@credit');
     Route::post('/request-credit', 'FrontendController@requestCredit');
     Route::post('/usedcar-request-credit', 'FrontendController@requestUsedCarCredit');
     Route::get('/tradein', 'FrontendController@tradeIn');
@@ -86,6 +86,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/blog/{slug}', 'FrontendController@blog');
     Route::get('/page/{slug}', 'FrontendController@staticPages');
     Route::any('/ajax', 'FrontendController@ajax');
+    Route::any('/export/requests_credits', 'FrontendController@exportRequestCredits');
+    Route::any('/export/requests_usedcar_credits', 'FrontendController@exportRequestUsedcarCredits');
+
 
 });
 
