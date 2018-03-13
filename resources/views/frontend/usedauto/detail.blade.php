@@ -93,7 +93,7 @@
                         <div class="form_title">Заявка на кредит</div>
                         {!! Form::open(['url' => '/usedcar-request-credit', 'method' => 'post', 'class' => 'form-horizontal', 'id' => 'validate']) !!}
                         {!! Form::hidden('id_car', $detail->id) !!}
-                        <div class="form_field">
+                        <div class="form_field"> 
                             {!! Form::text('name', old('name'), ['class' => 'form_control validate[required]', 'placeholder'=>'ФИО']) !!}
                         </div>
                         <div class="form_field">

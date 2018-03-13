@@ -23,7 +23,7 @@
                 <div class="tradein">
                     <h2>Ваш автомобиль</h2>
 
-                    {!! Form::open(['url' => '/request-tradein', 'method' => 'post', 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal', 'id' => 'validate']) !!}
+                    {!! Form::open(['url' => '/request-tradein', 'method' => 'post', 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal', 'id' => 'validate', 'onsubmit' => "yaCounter48034634.reachGoal('trade-in'); return true;"]) !!}
 
                     <div class="select">
                         {!! Form::select('mark', $mark_options, isset($request->mark) ? $request->mark : 'Марка', ['class' => 'select2 validate[required]', 'id' => 'mark']) !!}

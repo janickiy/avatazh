@@ -23,7 +23,7 @@
             <div class="row">
                 <div class="autoredit">
 
-                    {!! Form::open(['url' =>  '/request-credit', 'method' => 'post', 'class' => 'form-horizontal', 'id' => 'validate']) !!}
+                    {!! Form::open(['url' =>  '/request-credit', 'method' => 'post', 'class' => 'form-horizontal', 'id' => 'validate', 'onsubmit' => "yaCounter48034634.reachGoal('credit'); return true;"]) !!}
 
                     <div class="select">
                         {!! Form::select('mark', $mark_options, isset($request->mark) ? $request->mark : 'Марка', ['class' => 'select2 validate[required]', 'id' => 'mark']) !!}
@@ -78,8 +78,7 @@
                             {!! Form::label('agree', 'Я даю согласие на обработку моих персональных данных') !!}
                         </div>
                     </div>
-
-                    {!! Form::submit('отправить заявку', ['class'=>'btn']) !!}
+					<button type="submit" value="Отправить заявку" class="btn" onclick="yaCounter48034634.reachGoal('credit'); return true;">Отправить заявку</button>
                     {!! Form::close() !!}
 
                 </div>

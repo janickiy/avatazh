@@ -28,13 +28,10 @@
                 <div class="contacts_info">
                     <div class="phones">
                         <div>
-                            <a href="tel:{!! getSetting('TELEPHONE_1') !!}">{!! getSetting('TELEPHONE_1') !!}</a></br><span>(звонок по России бесплатный)</span>
-                        </div>
-                        </br>
-                        <div>
-                            <a href="tel:{!! getSetting('TELEPHONE_2') !!}">{!! getSetting('TELEPHONE_2') !!}</a>
+                            <a href="tel:{!! getSetting('TELEPHONE_1') !!}">{!! getSetting('TELEPHONE_1') !!}</a>
                         </div>
                     </div>
+					 <p>{!! getSetting('FRONTEND_CITY') !!}</p> 
                     <p>{!! getSetting('FRONTEND_ADDRESS') !!}</p>
                     <p>{!! getSetting('FRONTEND_TIMES') !!}</p>
                     <a href="#inline" class="btn recall_link modalbox">Обратный звонок</a>
@@ -43,7 +40,7 @@
             </div>
         </div>
     </section>
-
+ 
 @endsection
 
 @section('js')
@@ -71,24 +68,5 @@
         }
     </script>
 
-
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $(".select2").select2();
-        })
-
-
-        $(function () {
-            $(".form_phone").mask("+7 (999) 999-9999");
-        })
-
-
-        $(document).ready(function () {
-            $(".modalbox").fancybox();
-
-        });
-
-    </script>
 
 @endsection
