@@ -26,12 +26,7 @@
             @include('layouts.frontend.includes.breadcrumbs')
             <h1>Автомобили с пробегом</h1>
 
-            <div class="main_marks row marks_tab">
-                <table width="100%">
 
-
-                </table>
-            </div>
 			                <div class="right_banner_block">
                    <img src="/images/right_banner.jpg" />
                 </div>
@@ -47,9 +42,9 @@
                                 <div class="idem_desc">
                                     <a class="item_name"
                                        href="{{ url('/auto/used/detail/' . $car->id) }}">{{ $car->mark }} {{ $car->model }}</a>
-                                    <p>{{ $car->year }} г., {{ $car->mileage }} км, {{ $car->engine_type }}
+                                    <p>{{ $car->year }} г., {{ number_format( $car->mileage,0,'',' ') }} км, {{ $car->engine_type }}
                                         , {{ $car->gearbox }}</p>
-                                    <div class="item_price">{{ $car->price }}<span>руб.</span></div>
+                                    <div class="item_price">{{ number_format($car->price,0,'',' ')  }}<span>руб.</span></div>
                                     <a class="btn" href="{{ url('/auto/used/detail/' . $car->id) }}">Подробнее</a>
                                 </div>
                             </div>

@@ -86,6 +86,20 @@
         $(".modalbox").fancybox();
 
     });
+	   $(document).ready(function () {
+        $("#show_nav").click(function () {
+            $("#nav_mobile").addClass("visible");
+            $("#shadow").addClass("shadow_layer");
+        });
+        $("#hide_nav").click(function () {
+            $("#nav_mobile").removeClass("visible");
+            $("#shadow").removeClass("shadow_layer");
+        });
+        $("#shadow").click(function () {
+            $("#nav_mobile").removeClass("visible");
+            $("#shadow").removeClass("shadow_layer");
+        });
+    });
 </script>
 
 <!-- Yandex.Metrika counter -->

@@ -2,10 +2,11 @@
 <header>
     <div class="top row">
         <div class="main_width">
-            <div class="address">{!! getSetting('FRONTEND_ADDRESS') !!}</div>
+            <div class="address">
+			{!! getSetting('FRONTEND_CITY') !!}<br/>
+			{!! getSetting('FRONTEND_ADDRESS') !!}</div>
             <div class="phone">
-                <a href="tel:{!! getSetting('TELEPHONE_2') !!}">{!! getSetting('TELEPHONE_2') !!}</a>
-                <span>Бесплатно по России</span>
+               &nbsp;
             </div>
             <div class="phone">
                 <a href="tel:{!! getSetting('TELEPHONE_1') !!}">{!! getSetting('TELEPHONE_1') !!}</a>
@@ -56,22 +57,7 @@
     <!--mobile-->
 
 </header>
-<script>
-    $(document).ready(function () {
-        $("#show_nav").click(function () {
-            $("#nav_mobile").addClass("visible");
-            $("#shadow").addClass("shadow_layer");
-        });
-        $("#hide_nav").click(function () {
-            $("#nav_mobile").removeClass("visible");
-            $("#shadow").removeClass("shadow_layer");
-        });
-        $("#shadow").click(function () {
-            $("#nav_mobile").removeClass("visible");
-            $("#shadow").removeClass("shadow_layer");
-        });
-    });
-</script>
+
 
 
 
