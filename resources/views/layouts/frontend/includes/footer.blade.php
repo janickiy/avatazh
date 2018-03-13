@@ -21,7 +21,7 @@
 <div id="inline" class="popup_form">
     <h3>Заказать обратный звонок</h3>
 
-    {!! Form::open(['url' => '/callback', 'method' => 'post', 'class' => 'form-horizontal', 'id' => 'validate']) !!}
+    {!! Form::open(['url' => '/callback', 'method' => 'post', 'class' => 'form-horizontal', 'id' => 'validate', 'onsubmit' => "yaCounter48034634.reachGoal('callback'); return true;"]) !!}
 
     <div class="form_field">
         {!! Form::text('name', old('name'), ['class' => 'form_control  validate[required]', 'placeholder'=>'Ваше имя']) !!}

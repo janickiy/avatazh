@@ -6,7 +6,7 @@
                 @foreach($models as $model)
                     @if($i == 0)
                         <ul> @endif
-                            <li><a href="{!! url('/auto/used/' . $model->mark_slug . '/' . $model->slug) !!}">{!! $model->name !!}</a><span
+                            <li><a href="{!! url('/auto/used/' . $model->mark_slug . '/' . $model->slug) !!}">{!! $model->name !!} ({!! $model->countusedcars !!})</a><span
                                         style="display:none;"> {!! $model->countusedcars !!} </span></li>
                             <?php $i++; ?>
                             @if($i == 3) </ul>  <?php $i = 0; ?> @endif

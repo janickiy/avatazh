@@ -73,7 +73,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/auto/used/detail/{id}', 'FrontendController@usedAutoDetail');
     Route::get('/auto/used/{mark}', 'FrontendController@usedAuto');
     Route::get('/auto/used/{mark}/{model}', 'FrontendController@usedAutoModel');
-    Route::any('/credit', 'FrontendController@credit');
+    Route::get('/credit', 'FrontendController@credit');
     Route::post('/request-credit', 'FrontendController@requestCredit');
     Route::post('/usedcar-request-credit', 'FrontendController@requestUsedCarCredit');
     Route::get('/tradein', 'FrontendController@tradeIn');
