@@ -127,7 +127,7 @@
                     </div>
                     <div class="map">
                         <div>
-                            <div class="address">{!! getSetting('FRONTEND_ADDRESS') !!}</div>
+                            <div class="address"><span>{!! getSetting('FRONTEND_CITY') !!}</span>, {!! getSetting('FRONTEND_ADDRESS') !!}</div>
                             <div class="times">{!! getSetting('FRONTEND_TIMES') !!}</div>
 
                             <div>
