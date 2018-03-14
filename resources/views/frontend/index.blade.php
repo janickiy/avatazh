@@ -19,10 +19,13 @@
         <div class="main_banner"><img src="images/main_banner.jpg" /></div>
 
         <div class="search_bloсk_container row">
+
             {!! Form::open(['url' =>  '/', 'method' => 'get']) !!}
+
             {!! Form::hidden('search', 'Y') !!}
+
             <div class="search_bloсk select">
-                {!! Form::select('mark', $mark_options, isset($request->mark) ? $request->mark : 'Марка', ['class' => 'select2', 'id' => 'mark']) !!}
+                {!! Form::select('mark', [null => 'Марка'], null, ['class' => 'select2 itemName', 'id' => 'mark']) !!}
             </div>
             <div id="model_filter" class="search_bloсk select">
                 {!! Form::select('model', $models_options, isset($request->model) ? $request->model : 'Модель', ['class' => 'select2', 'id' => 'model', !isset($request->model) ? 'disabled' : '']) !!}
@@ -37,11 +40,16 @@
                 'Автоматизированная механическая' => 'Автоматизированная механическая'], isset($request->gearbox) ? $request->gearbox : 'Коробка', ['class' => 'select2']) !!}
             </div>
             <div class="search_bloсk ">
+
                 {!! Form::text('price_to', old('price_to', isset($request->price_to) ? $request->price_to : null), ['class' => 'form_control', 'placeholder'=>'Цена до']) !!}
+
             </div>
             <div class="search_bloсk ">
+
                 {!! Form::submit('Подобрать', ['class'=>'btn']) !!}
+
             </div>
+
             {!! Form::close() !!}
 
         </div>
@@ -209,6 +217,23 @@
             $(".select2").select2({
                 width: '100%'
             });
+
+            $('.itemName').select2({
+                width: '100%',
+                placeholder: 'Выберите марку',
+                ajax: {
+                    url: "{!! url('./ajax?action=get_marks') !!}",
+                    dataType: 'json',
+                    delay: 250,
+                    processResults: function (data) {
+                        return {
+                            results: data
+                        };
+                    },
+                    cache: true
+                }
+            });
+
         })
 
         $(function () {
@@ -241,8 +266,20 @@
                             $('#model').prop('disabled', true);
                         }
 
-                        $(".select2").select2({
-                            width: '100%'
+                        $('.itemName').select2({
+                            width: '100%',
+                            placeholder: 'Выберите марку',
+                            ajax: {
+                                url: "{!! url('./ajax?action=get_marks') !!}",
+                                dataType: 'json',
+                                delay: 250,
+                                processResults: function (data) {
+                                    return {
+                                        results: data
+                                    };
+                                },
+                                cache: true
+                            }
                         });
                     });
                 }
