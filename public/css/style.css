@@ -73,12 +73,14 @@ section.grey:before {content: '';width: 100%;height: 15px;position: absolute;top
 .header nav ul li a:hover {color: #beeafc;}
 .nav_mobile {display:none;}
 .main_marks {padding:10px 0px;position:relative;}
-.main_marks ul {float:left;max-width:120px;min-width:117px;}
+.main_marks ul {float:left;min-width:117px;}
 .main_marks ul li {line-height:32px;}
 .main_marks a{color:#326bb2;font-size:16px;font-family:RobotoBold;} 
 .main_marks ul li span {font-size:10px;color:#747474;margin-left:2px;}
 .main_marks a.allmarks {position:absolute;right: 42px;bottom: 20px;}
-
+.main_models ul li {float:left;  padding-right: 10px;}
+.main_models ul li:after {content:',';}
+.main_models ul li:last-of-type:after {content:'';}
 .main_banner {width:100%;height:310px;background:#ccc;}
 
 .search_bloсk_container {margin-top:10px;}

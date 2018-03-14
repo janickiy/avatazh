@@ -26,7 +26,7 @@
                     {!! Form::open(['url' =>  '/request-credit', 'method' => 'post', 'class' => 'form-horizontal', 'id' => 'validate', 'onsubmit' => "yaCounter48034634.reachGoal('credit'); return true;"]) !!}
 
                     <div class="select">
-                        {!! Form::select('mark', $mark_options, isset($request->mark) ? $request->mark : 'Марка', ['class' => 'select2 validate[required]', 'id' => 'mark']) !!}
+                        {!! Form::select('mark', [null => 'Марка'], null, ['class' => 'select2 itemName validate[required]', 'id' => 'mark']) !!}
                     </div>
 
                     <div class="select">
@@ -113,6 +113,23 @@
             $(".select2").select2({
                 width: '100%'
             });
+
+            $('.itemName').select2({
+                width: '100%',
+                placeholder: 'Выберите марку',
+                ajax: {
+                    url: "{!! url('./ajax?action=get_marks') !!}",
+                    dataType: 'json',
+                    delay: 250,
+                    processResults: function (data) {
+                        return {
+                            results: data
+                        };
+                    },
+                    cache: true
+                }
+            });
+
         })
 
         $(function () {
@@ -146,8 +163,20 @@
                             $('#model').prop('disabled', true);
                         }
 
-                        $(".select2").select2({
-                            width: '100%'
+                        $('.itemName').select2({
+                            width: '100%',
+                            placeholder: 'Выберите марку',
+                            ajax: {
+                                url: "{!! url('./ajax?action=get_marks') !!}",
+                                dataType: 'json',
+                                delay: 250,
+                                processResults: function (data) {
+                                    return {
+                                        results: data
+                                    };
+                                },
+                                cache: true
+                            }
                         });
                     });
                 }

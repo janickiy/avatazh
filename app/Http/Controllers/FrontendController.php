@@ -228,6 +228,29 @@ class FrontendController extends Controller
     {
         if (isset($request->action)) {
             switch($request->action) {
+
+                case 'get_marks':
+
+                    $json = [];
+
+                    $arrs = CarMark::selectRaw('car_marks.id,car_marks.name,car_marks.slug,count(catalog_used_cars.id) as countusedcars')
+                        ->where('car_marks.name', 'like', '%' . $request->q . '%')
+                        ->where('car_marks.published', 1)
+                        ->leftJoin('catalog_used_cars', 'car_marks.name', 'like', 'catalog_used_cars.mark')
+                        ->groupBy('car_marks.id')
+                        ->orderBy('car_marks.name')
+                        ->having('countusedcars', '>=', 1)
+                        ->get()
+                        ->toArray();
+
+                    foreach ($arrs as $parameterValue) {
+                        $json[] = ['id' => $parameterValue['id'], 'text' => $parameterValue['name']];
+                    }
+
+                    return response()->json($json);
+
+                    break;
+
                 case 'search_mark':
 
                     $search_mark = trim(strip_tags(stripcslashes(htmlspecialchars($request->mark))));
@@ -298,8 +321,14 @@ class FrontendController extends Controller
 
                 case 'get_models':
 
-                    $models = CarModel::where('published', 1)
-                        ->where('id_car_mark', $request->id_car_mark)
+                    $models = CarModel::selectRaw('car_models.id,car_models.name,car_models.slug,car_marks.slug as mark_slug,count(catalog_used_cars.id) as countusedcars')
+                        ->where('car_models.published', 1)
+                        ->where('car_marks.id', $request->id_car_mark)
+                        ->leftJoin('catalog_used_cars', 'car_models.name', 'like', 'catalog_used_cars.model')
+                        ->leftJoin('car_marks', 'car_marks.id', '=', 'car_models.id_car_mark')
+                        ->groupBy('car_models.id')
+                        ->orderBy('car_models.name')
+                        ->having('countusedcars', '>=', 1)
                         ->get();
 
                     $rows = [];
