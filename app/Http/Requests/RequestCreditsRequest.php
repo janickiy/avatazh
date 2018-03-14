@@ -32,7 +32,6 @@ class RequestCreditsRequest extends Request
                 return [
                     'mark' => 'required',
                     'model' => 'required',
-                    'modification' => 'required',
                     'fee' => 'required|numeric',
                     'name' => 'required',
                     'age' => 'required|numeric',
@@ -48,7 +47,6 @@ class RequestCreditsRequest extends Request
                 return [
                     'mark' => 'required',
                     'model' => 'required',
-                    'modification' => 'required',
                     'fee' => 'required|numeric',
                     'name' => 'required',
                     'age' => 'required|numeric',

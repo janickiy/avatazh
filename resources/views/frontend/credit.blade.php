@@ -33,10 +33,6 @@
                         {!! Form::select('model', $models_options, isset($request->model) ? $request->model : 'Модель', ['class' => 'select2 validate[required]', 'id' => 'model', !isset($request->model) ? 'disabled' : '']) !!}
                     </div>
 
-                    <div class="select" id="search_result_modification">
-                        {!! Form::select('modification', $models_modification, isset($request->modification) ? $request->modification : 'Коплектация', ['class' => 'select2 validate[required]', 'id' => 'modification', !isset($request->modification) ? 'disabled' : '']) !!}
-                    </div>
-
                     <div class="select">
                         {!! Form::select('fee', [
                         '0' => 'Первоначальный взнос 0%',
