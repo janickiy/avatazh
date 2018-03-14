@@ -19,12 +19,14 @@
         <div class="page main_width">
             @include('layouts.frontend.includes.breadcrumbs')
             <h1>Заявка на Trade-in</h1>
+
             {!! Form::open(['url' => '/request-tradein', 'method' => 'post', 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal', 'id' => 'validate', 'onsubmit' => "yaCounter48034634.reachGoal('trade-in'); return true;"]) !!}
+
             <div class="row">
                 <div class="tradein">
                     <h2>Ваш автомобиль</h2>
                     <div class="select">
-                        {!! Form::select('mark', $mark_options, isset($request->mark) ? $request->mark : 'Марка', ['class' => 'select2 validate[required]', 'id' => 'mark']) !!}
+                        {!! Form::select('mark', [null => 'Марка'], null, ['class' => 'select2 itemName validate[required]', 'id' => 'mark']) !!}
                     </div>
 
                     <div class="select">
@@ -80,7 +82,7 @@
                     <h2>Новый автомобиль</h2>
                     <div class="select">
                         <div class="select">
-                            {!! Form::select('trade_in_mark', $mark_options, isset($request->trade_in_mark) ? $request->trade_in_mark : 'Марка', ['class' => 'select2 validate[required]', 'id' => 'trade_in_mark']) !!}
+                            {!! Form::select('trade_in_mark', [null => 'Марка'], null, ['class' => 'select2 itemName validate[required]', 'id' => 'trade_in_mark']) !!}
                         </div>
                     </div>
                     <div class="select">
@@ -132,6 +134,23 @@
             $(".select2").select2({
                 width: '100%'
             });
+
+            $('.itemName').select2({
+                width: '100%',
+                placeholder: 'Выберите марку',
+                ajax: {
+                    url: "{!! url('./ajax?action=get_marks') !!}",
+                    dataType: 'json',
+                    delay: 250,
+                    processResults: function (data) {
+                        return {
+                            results: data
+                        };
+                    },
+                    cache: true
+                }
+            });
+
         })
 
         $(function () {
@@ -165,8 +184,20 @@
                             $('#model').prop('disabled', true);
                         }
 
-                        $(".select2").select2({
-                            width: '100%'
+                        $('.itemName').select2({
+                            width: '100%',
+                            placeholder: 'Выберите марку',
+                            ajax: {
+                                url: "{!! url('./ajax?action=get_marks') !!}",
+                                dataType: 'json',
+                                delay: 250,
+                                processResults: function (data) {
+                                    return {
+                                        results: data
+                                    };
+                                },
+                                cache: true
+                            }
                         });
                     });
                 }
@@ -234,8 +265,20 @@
                             $('#trade_in_model').prop('disabled', true);
                         }
 
-                        $(".select2").select2({
-                            width: '100%'
+                        $('.itemName').select2({
+                            width: '100%',
+                            placeholder: 'Выберите марку',
+                            ajax: {
+                                url: "{!! url('./ajax?action=get_marks') !!}",
+                                dataType: 'json',
+                                delay: 250,
+                                processResults: function (data) {
+                                    return {
+                                        results: data
+                                    };
+                                },
+                                cache: true
+                            }
                         });
                     });
                 }
