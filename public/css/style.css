@@ -157,7 +157,7 @@ section.grey:before {content: '';width: 100%;height: 15px;position: absolute;top
 .detail {display:inline-block;float:left;width:620px;color: #646464;}
 .sidebar {display:inline-block;float:right;width: 290px;}
 .mentions .sidebar {width:220px;}
-.detail_image_block {width:293px;float:left;margin-right:30px;}
+.detail_image_block {width:290px;float:left;margin-right:30px;}
 ul.more_pics {margin-left:-5px;margin-right:-5px;}
 ul.more_pics li {float:left;margin:10px 5px;width:91px;}
 
@@ -188,7 +188,7 @@ ul.detail_options li:after {content:'\f0dd';top: -1px;}
 .form_field {margin-bottom:5px;position:relative;}
 .form_field_age {width:100px;float: left;}
 .form_field_phone {width:155px;float:right;}
-.form_field input.form_control {background:#fff;border:none;border-radius:5px;line-height:38px;padding:0 10px;width:100%;color:#bfbfbf;border: 1px solid #b6b6b6;}
+.form_field input.form_control {background:#fff;border:none;border-radius:5px;line-height:38px;padding:0 10px;width:100%;border: 1px solid #b6b6b6;}
 .form_field input.form_control::placeholder{color:#747474;}
 input.form_control:focus::placeholder {opacity:0;}
 
@@ -406,7 +406,7 @@ header .nav_mobile_content .mobile_info .phone span {font-size:12px;color:#80889
 .direction_detail_image {float: none; margin: 15px auto; display: block;}
 
 .tradein, .autoredit, .mentions_list {float: none; width: 100%;margin-right: 0;}
-
+.detail_banners {display:none;}
 .detail, .detail_image_block, .detail_main_info, .sidebar, .mentions .sidebar, .left_content{width:100%;float:none;margin-right:0;}
 .mentions .sidebar {padding:10px 0;}
 

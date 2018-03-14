@@ -19,12 +19,10 @@
         <div class="page main_width">
             @include('layouts.frontend.includes.breadcrumbs')
             <h1>Заявка на Trade-in</h1>
+            {!! Form::open(['url' => '/request-tradein', 'method' => 'post', 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal', 'id' => 'validate', 'onsubmit' => "yaCounter48034634.reachGoal('trade-in'); return true;"]) !!}
             <div class="row">
                 <div class="tradein">
                     <h2>Ваш автомобиль</h2>
-
-                    {!! Form::open(['url' => '/request-tradein', 'method' => 'post', 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal', 'id' => 'validate', 'onsubmit' => "yaCounter48034634.reachGoal('trade-in'); return true;"]) !!}
-
                     <div class="select">
                         {!! Form::select('mark', $mark_options, isset($request->mark) ? $request->mark : 'Марка', ['class' => 'select2 validate[required]', 'id' => 'mark']) !!}
                     </div>
@@ -38,7 +36,7 @@
                             @if(isset($request->year))
                                 {!! Form::selectYear('year', isset($year['from']) ? $year['from'] : null, isset($year['to']) ? $year['to'] : null, isset($request->year) ? $request->year : null, ['class' => 'select2 validate[required]', 'id' => 'year', 'placeholder' => 'Год от']) !!}
                             @else
-                                {!! Form::select('year', [], 'Год выпуска', ['class' => 'select2 validate[required]', 'id' => 'year', 'disabled', 'placeholder' => 'Год выпуска']) !!}
+                                {!! Form::select('year', [], 'Год выпуска', ['class' => 'select2 validate[required]', 'id' => 'year', 'placeholder' => 'Год выпуска']) !!}
                             @endif
                         </div>
                     </div>
@@ -101,7 +99,7 @@
                     <div class="checkboxes">
                         <div class="row">
                             {!! Form::checkbox('confirmation', null, null, ['class' => 'checkbox validate[required[alertTextCheckboxe]]', 'id' => 'confirmation']) !!}
-                            {!! Form::label('confirmation', 'Я понимаю, что автосалон находится в Москве') !!}
+                            {!! Form::label('confirmation', 'Я понимаю, что автосалон находится в Санкт-Петербурге') !!}
                         </div>
                         <div class="row">
                             {!! Form::checkbox('agree', null, null, ['class' => 'checkbox  validate[required[alertTextCheckboxe]]', 'id' => 'agree']) !!}
@@ -118,9 +116,8 @@
 
                 </div>
 
-                {!! Form::close() !!}
-
             </div>
+            {!! Form::close() !!}
         </div>
     </section>
 @endsection

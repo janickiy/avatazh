@@ -1,5 +1,5 @@
 <div id="notifications" class="row no-print">
-    <div class="col-md-12">
+    <div class="main_width">
         @if(isset($errors) && $errors->any())
             <div class="noti-alert pad no-print">
                 <div class="alert alert-danger alert-dismissable">

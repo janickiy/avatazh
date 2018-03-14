@@ -71,7 +71,7 @@
                     <div class="checkboxes">
                         <div class="row">
                             {!! Form::checkbox('confirmation', null, null, ['class' => 'checkbox validate[required[alertTextCheckboxe]]', 'id' => 'confirmation']) !!}
-                            {!! Form::label('confirmation', 'Я понимаю, что автосалон находится в Москве') !!}
+                            {!! Form::label('confirmation', 'Я понимаю, что автосалон находится в Санкт-Петербурге') !!}
                         </div>
                         <div class="row">
                             {!! Form::checkbox('agree', null, null, ['class' => 'checkbox validate[required[alertTextCheckboxe]]', 'id' => 'agree']) !!}
