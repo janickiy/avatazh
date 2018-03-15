@@ -33,7 +33,7 @@ class CarmodificationsController extends Controller
      */
     public function create($id)
     {
-        return view('admin.carmodifications.create_edit')->with('id_car_model', $id);;
+        return view('admin.carmodifications.create_edit')->with('id_car_model', $id);
     }
 
     /**
@@ -55,7 +55,7 @@ class CarmodificationsController extends Controller
         // $modification = CarModification::where('id', $carModification->id)->first();
 
         $carModification->name = $request->input('name');
-        $carModification->id_car_type = 1;
+        $carModification->carname = $request->input('carname');
         $carModification->body_type = $request->input('body_type');
         $carModification->year_begin = $request->input('year_begin');
         $carModification->year_end = $request->input('year_end');

@@ -40,8 +40,18 @@
             <div class="box-body">
 
                 {!! Form::open(['url' => isset($carmodification) ? URL::to('admin/carmodifications/' . $carmodification->id )  :  URL::to('admin/carmodifications/') , 'method' => isset($carmodification) ? 'put': 'post', 'class' => 'form-horizontal', 'id'=>'validate']) !!}
+
                 <div class="col-md-12">
+
                     @if(isset($id_car_model)) {!! Form::hidden('id_car_model', $id_car_model) !!} @endif
+
+                    <div class="form-group">
+                        {!! Form::label('carname', 'Название автомобиля *', ['class' => 'control-label col-md-2']) !!}
+                        <div class="col-md-4">
+                            {!! Form::text('carname', old('carname', isset($carmodification) ? $carmodification->carname : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Название модификации']) !!}
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         {!! Form::label('name', 'Название *', ['class' => 'control-label col-md-2']) !!}
                         <div class="col-md-4">

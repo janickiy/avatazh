@@ -14,7 +14,6 @@ use Intervention\Image\Facades\Image as ImageInt;
 
 class CarmarksController extends Controller
 {
-    const IDCARTYPE = 1;
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -166,7 +165,6 @@ class CarmarksController extends Controller
                     $carMarks = new CarMark;
                     $carMarks->name = formatMarkNames($row_mark->code);
                     $carMarks->name_rus = formatMarkNames(Lat2ru($row_mark->code));
-                    $carMarks->id_car_type = self::IDCARTYPE;
                     $carMarks->slug = trim(strtolower($row_mark->code));
                     $carMarks->meta_title = formatMarkNames($row_mark->code);
                     $carMarks->published = 1;
@@ -175,24 +173,31 @@ class CarmarksController extends Controller
                         $id_car_mark = $carMarks->id;
 
                         foreach ($row_mark->folder as $row_folder) {
-                            $carModel = new CarModel;
-                            $carModel->id_car_mark = $id_car_mark;
-                            $carModel->id_car_type = self::IDCARTYPE;
-                            $carModel->name = $row_folder[0]['name'];
-                            $carModel->name_rus = Lat2ru($row_folder[0]['name']);
-                            $carModel->slug = slug($row_folder[0]['name']);
-                            $carModel->meta_title = $row_folder[0]['name'];
-                            $carModel->published = 1;
 
-                            if ($carModel->save()) {
+                            if (CarModel::where('name', ucfirst(strtolower($row_folder->model)))->count() == 0) {
+                                $carModel = new CarModel;
+                                $carModel->id_car_mark = $id_car_mark;
+                                $carModel->name = ucfirst(strtolower($row_folder->model));
+                                $carModel->name_rus = Lat2ru(ucfirst(strtolower($row_folder->model)));
+                                $carModel->slug = slug(strtolower($row_folder->model));
+                                $carModel->meta_title = ucfirst(strtolower($row_folder->model));
+                                $carModel->published = 1;
+                                $carModel->save();
                                 $id_car_model = $carModel->id;
+                            } else {
+                                $row = CarModel::where('name', ucfirst(strtolower($row_folder->model)))->first()->toArray();
+                                $id_car_model = $row['id'];
+                            }
+
+                            if ($id_car_model) {
+
                                 foreach ($row_folder->modification as $modification) {
                                     if ($modification->modification_id && $modification->body_type) {
                                         $carModification = new CarModification;
                                         $carModification->id_car_model = $id_car_model;
                                         $carModification->name = $modification->modification_id;
+                                        $carModification->carname = $modification->folder_id;
                                         $carModification->body_type = $modification->body_type;
-                                        $carModification->id_car_type = self::IDCARTYPE;
                                         $years = $modification->years;
 
                                         preg_match('/(\d+)\s+-\s((по н\.в\.)|(\d+))$/', $years, $matches);

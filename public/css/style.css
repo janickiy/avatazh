@@ -193,7 +193,7 @@ ul.detail_options li:after {content:'\f0dd';top: -1px;}
 .form_field input.form_control {background:#fff;border:none;border-radius:5px;line-height:38px;padding:0 10px;width:100%;border: 1px solid #b6b6b6;}
 .form_field input.form_control::placeholder{color:#747474;}
 input.form_control:focus::placeholder {opacity:0;}
-
+.sidebar .request_form .form_field input.form_control {border:none;}
 .form_field .dropcontainer {position:absolute;background:transparent;border:none;width:100%;font-size: 14px;line-height:38px;z-index:1;}
 .form_field .trigger {display:block;width:100%;background:#fff;border:none;border-radius:5px;line-height:38px;color:#bfbfbf;padding:0 10px;width:100%;position:relative;white-space: nowrap;overflow: hidden; text-overflow: ellipsis;}
 .form_field .trigger:after {content:'\f107';font-family:FontAwesome;position: absolute; right: 10px;font-weight: bold;color:#bfbfbf;}

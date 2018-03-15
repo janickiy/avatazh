@@ -30,7 +30,8 @@ class CarModificationsRequest extends Request
             }
             case 'POST': {
                 return [
-                    'name'  => 'required',
+                    'name' => 'required',
+                    'carname' => 'required',
                     'body_type' => 'required',
                     'year_begin' => 'required|numeric',
                     'year_end' => 'required|numeric',
@@ -40,7 +41,8 @@ class CarModificationsRequest extends Request
             case 'PUT':
             case 'PATCH': {
                 return [
-                    'name'  => 'required',
+                    'name' => 'required',
+                    'carname' => 'required',
                     'body_type' => 'required',
                     'year_begin' => 'required|numeric',
                     'year_end' => 'required|numeric',
