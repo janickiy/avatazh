@@ -720,7 +720,6 @@ class FrontendController extends Controller
         }
 
         abort(404);
-
     }
 
     /**
@@ -729,7 +728,12 @@ class FrontendController extends Controller
      */
     public function usedAutoDetail($id)
     {
-        $detail = CatalogUsedCar::where('id', $id)->get()->first();
+        $detail = CatalogUsedCar::selectRaw('*,car_marks.slug as slug,catalog_used_cars.mark as mark,catalog_used_cars.model as model')
+            ->where('catalog_used_cars.id', $id)
+            ->where('catalog_used_cars.published', 1)
+            ->leftJoin('car_marks', 'car_marks.name', 'like', 'catalog_used_cars.mark')
+            ->get()
+            ->first();
 
         if ($detail) {
             $similarCars = CatalogUsedCar::where('published', 1)

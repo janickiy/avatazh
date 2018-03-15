@@ -154,6 +154,9 @@ class CarmarksController extends Controller
             $file = $request->file('file');
             $xml = simplexml_load_file($file);
 
+
+
+
             if ($xml) {
                 CarMark::query()->truncate();
                 CarModel::query()->truncate();
@@ -174,7 +177,12 @@ class CarmarksController extends Controller
 
                         foreach ($row_mark->folder as $row_folder) {
 
-                            if (CarModel::where('name', ucfirst(strtolower($row_folder->model)))->count() == 0) {
+                            $carmodels = CarModel::where('name', 'like', $row_folder->model)->get();
+
+                            if ( count($carmodels) > 0) {
+                                $row = CarModel::where('name', ucfirst(strtolower($row_folder->model)))->first()->toArray();
+                                $id_car_model = $row['id'];
+                            } else {
                                 $carModel = new CarModel;
                                 $carModel->id_car_mark = $id_car_mark;
                                 $carModel->name = ucfirst(strtolower($row_folder->model));
@@ -184,9 +192,7 @@ class CarmarksController extends Controller
                                 $carModel->published = 1;
                                 $carModel->save();
                                 $id_car_model = $carModel->id;
-                            } else {
-                                $row = CarModel::where('name', ucfirst(strtolower($row_folder->model)))->first()->toArray();
-                                $id_car_model = $row['id'];
+
                             }
 
                             if ($id_car_model) {
