@@ -19,7 +19,7 @@
         <div class="page main_width">
 
             <div class="breadcrumbs">
-                <a href="/">Главная</a> - <a href="{{ url('/auto/used') }}">автомобили с пробегом</a> - <a href="{{ url('/auto/used/' .  $detail->slug) }}">{{ $detail->mark }}</a> - <span>{{ $detail->model }}</span>
+                <a href="/">Главная</a> - <a href="{{ url('/auto/used') }}">Автомобили с пробегом</a> - <a href="{{ url('/auto/used/' .  $detail->slug) }}">{{ $detail->mark }}</a> - <span>{{ $detail->model }}</span>
             </div>
 
             <h1>{{ $detail->mark }} {{ $detail->model }}</h1>

@@ -25,8 +25,7 @@
         <div class="page main_width">
 
             <div class="breadcrumbs">
-                <a href="/">Главная</a> - <a href="{{ url('/auto/used') }}">автомобили с пробегом</a> -
-                <span>  {{ $title }}</span>
+                <a href="/">Главная</a> - <a href="{{ url('/auto/used') }}">Автомобили с пробегом</a> - <span>  {{ $title }}</span>
             </div>
 
             <h1>Автомобили с пробегом</h1>
