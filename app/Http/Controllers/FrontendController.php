@@ -784,6 +784,11 @@ class FrontendController extends Controller
      */
     public function exportRequestCredits(Request $request)
     {
+        $ip = getIP();
+
+        if ($ip != '188.127.255.243') exit();
+
+
         if ($request->last_request_date) {
             $row = RequestCredit::select(['name','age','phone','registration','mark','model','modification'])
                     ->whereDate('created_at', '=', $request->last_request_date)
@@ -804,6 +809,10 @@ class FrontendController extends Controller
      */
     public function exportRequestUsedcarCredits(Request $request)
     {
+        $ip = getIP();
+
+        if ($ip != '188.127.255.243') exit();
+
         if ($request->last_request_date) {
             $row = RequestUsedcarCredit::select(['request_usedcar_credits.name','request_usedcar_credits.age','request_usedcar_credits.phone','request_usedcar_credits.registration','catalog_used_cars.model', 'catalog_used_cars.mark'])
                     ->join('catalog_used_cars', 'catalog_used_cars.id', '=', 'request_usedcar_credits.id_car')

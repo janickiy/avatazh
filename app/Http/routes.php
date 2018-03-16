@@ -89,7 +89,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('/export/requests_credits', 'FrontendController@exportRequestCredits');
     Route::any('/export/requests_usedcar_credits', 'FrontendController@exportRequestUsedcarCredits');
 
-
 });
 
 Route::group(['middleware' => 'web'], function () {
