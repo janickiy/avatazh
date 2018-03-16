@@ -324,7 +324,7 @@ class FrontendController extends Controller
                     $models = CarModel::selectRaw('car_models.id,car_models.name,car_models.slug,car_marks.slug as mark_slug,count(catalog_used_cars.id) as countusedcars')
                         ->where('car_models.published', 1)
                         ->where('car_marks.id', $request->id_car_mark)
-                        ->leftJoin('catalog_used_cars', 'car_models.name', 'like', 'catalog_used_cars.model')
+                        ->leftJoin('catalog_used_cars', 'car_models.model', 'like', 'catalog_used_cars.model')
                         ->leftJoin('car_marks', 'car_marks.id', '=', 'car_models.id_car_mark')
                         ->groupBy('car_models.id')
                         ->orderBy('car_models.name')
