@@ -41,6 +41,7 @@
             <table id="data_table" class="table datatable dt-responsive" style="width:100%;">
                 <thead>
                 <tr>
+                    <th>Название</th>
                     <th>Марка</th>
                     <th>Модель</th>
                     <th>Цена</th>
@@ -93,8 +94,9 @@
             serverSide: true,
             ajax: '{!! url("admin/datatables/catalogusedcars") !!}',
             columns: [
-                {data: 'mark', name: 'mark'},
                 {data: 'model', name: 'model'},
+                {data: 'mark', name: 'mark'},
+                {data: 'name', name: 'name'},
                 {data: 'price', name: 'price'},
                 {data: 'year', name: 'year'},
                 {data: 'mileage', name: 'mileage'},

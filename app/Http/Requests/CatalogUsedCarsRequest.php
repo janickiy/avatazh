@@ -30,12 +30,12 @@ class CatalogUsedCarsRequest extends Request
             }
             case 'POST': {
                 return [
+                    'name'  => 'required',
                     'mark'  => 'required',
                     'model' => 'required',
                     'price' => 'required|numeric',
                     'year'  => 'required|numeric',
                     'mileage' => 'required|numeric',
-                    'gearbox' => 'required',
                     'drive'   => 'required',
                     'engine_type' => 'required',
                     'power' => 'required|numeric',
@@ -48,12 +48,12 @@ class CatalogUsedCarsRequest extends Request
             case 'PUT':
             case 'PATCH': {
                 return [
+                    'name'  => 'required',
                     'mark'  => 'required',
                     'model' => 'required',
                     'price' => 'required|numeric',
                     'year'  => 'required|numeric',
                     'mileage' => 'required|numeric',
-                    'gearbox' => 'required',
                     'drive'   => 'required',
                     'engine_type' => 'required',
                     'power' => 'required|numeric',

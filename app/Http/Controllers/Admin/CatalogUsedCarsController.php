@@ -101,9 +101,9 @@ class CatalogUsedCarsController extends Controller
             $model_list[$model->name] = $model->name;
         }
 
-        $equipments = implode(",", unserialize($catalogusedcar->equipment));
+        $catalogusedcar->equipment = implode(",", unserialize($catalogusedcar->equipment));
 
-        return view('admin.catalogusedcars.create_edit')->with(compact('catalogusedcar', 'model_list', 'options', 'equipments'));
+        return view('admin.catalogusedcars.create_edit')->with(compact('catalogusedcar', 'model_list', 'options'));
     }
 
     /**
@@ -146,6 +146,7 @@ class CatalogUsedCarsController extends Controller
             }
         }
 
+        $catalogUsedCar->name = trim($request->input('name'));
         $catalogUsedCar->mark = trim($request->input('mark'));
         $catalogUsedCar->model = trim($request->input('model'));
         $catalogUsedCar->price = trim($request->input('price'));
@@ -166,6 +167,7 @@ class CatalogUsedCarsController extends Controller
         $catalogUsedCar->equipment = serialize(explode(',', $request->input('equipment')));
 
         if (!empty($images)) $catalogUsedCar->image = serialize($images);
+
         $catalogUsedCar->published = 0;
 
         if ($request->input('published')) {
@@ -259,6 +261,7 @@ class CatalogUsedCarsController extends Controller
                     $color = $row->color;
 
                     $usedCar = new CatalogUsedCar;
+                    $usedCar->mark = $mark;
                     $usedCar->mark = $mark;
                     $usedCar->model = $model;
                     $usedCar->price = $price;

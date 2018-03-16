@@ -77,9 +77,19 @@
             <div class="box-body">
 
                 {!! Form::open(['url' => isset($catalogusedcar) ? URL::to('admin/catalogusedcars/'.$catalogusedcar->id )  :  URL::to('admin/catalogusedcars') , 'method' => isset($catalogusedcar) ? 'put': 'post', 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal', 'id'=>'validate']) !!}
+
+                {!! Form::hidden('id_mark', null, ['id' => 'id_mark']) !!}
+
                 <div class="col-md-12">
+
                     <div class="form-group">
-                        {!! Form::hidden('id_mark', null, ['id' => 'id_mark']) !!}
+                        {!! Form::label('name', 'Модель *', ['class' => 'control-label col-md-2']) !!}
+                        <div class="col-md-4">
+                            {!! Form::text('name', old('name', isset($catalogusedcar) ? $catalogusedcar->name : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Название']) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         {!! Form::label('mark', 'Марка *', ['class' => 'control-label col-md-2']) !!}
                         <div class="col-md-4">
                             {!! Form::text('mark', old('mark', isset($catalogusedcar) ? $catalogusedcar->mark : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Марка', 'id' => 'search_mark', 'autocomplete' => 'off']) !!}
@@ -88,14 +98,9 @@
                     </div>
 
                     <div class="form-group">
-                        {!! Form::hidden('id_model', null, ['id' => 'id_model']) !!}
-                        {!! Form::label('model', 'Модель *', ['class' => 'control-label col-md-2']) !!}
-                        <div id="search_result_model" class="col-md-4">
-
-                            {!! Form::select('model', isset($model_list) ? $model_list : [null]
-                            , isset($catalogusedcar) ? $catalogusedcar->model : null, ['class' => 'form-control select2 validate[required]']
-                            ) !!}
-
+                        {!! Form::label('model', 'Название *', ['class' => 'control-label col-md-2']) !!}
+                        <div class="col-md-4">
+                            {!! Form::text('model', old('model', isset($catalogusedcar) ? $catalogusedcar->model : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Модель']) !!}
                         </div>
                     </div>
 
@@ -130,7 +135,7 @@
                              'Роботизированная' => 'Роботизированная',
                              'Вариатор' => 'Вариатор',
                              'Автоматизированная механическая' => 'Автоматизированная механическая',
-                            ], isset($catalogusedcar) ? $catalogusedcar->gearbox : null, ['class' => 'form-control select2 validate[required]']
+                            ], isset($catalogusedcar) ? $catalogusedcar->gearbox : null, ['class' => 'form-control select2']
                             ) !!}
                         </div>
                     </div>
@@ -242,6 +247,8 @@
                     </div>
 
                     <div class="form-group">
+
+
                         {!! Form::label('equipment', 'Комплектация', ['class' => 'control-label col-md-2']) !!}
                         <div class="col-md-4">
                             {!! Form::textarea('equipment', old('equipment', isset($catalogusedcar) ? $catalogusedcar->equipment : null), ['class' => 'form-control', 'placeholder' => 'Комплектация', 'rows' => 2]) !!}
@@ -362,44 +369,11 @@
             $(".search_result_mark").hover(function () {
                 $(".search_mark").blur();
             })
-
             $(".search_result_mark").on("click", "li", function () {
-                $("#search_mark").val($(this).text());
-
-                var idMark = $(this).attr('data-item');
-
-                if (idMark != null) {
-                    $("#id_mark").val(idMark);
-
-                    var request = $.ajax({
-                        url: '/admin/ajax?action=get_models&id_car_mark=' + idMark,
-                        method: "GET",
-                        dataType: "json"
-                    });
-
-                    request.done(function (data) {
-
-                        var html = '<select name="model" class="form-control select2 validate[required]">';
-
-                        for (var i = 0; i < data.item.length; i++) {
-                            html += '<option value="' + data.item[i].name + '">' + data.item[i].name + '</option>';
-                        }
-
-                        html += '</select>';
-
-                        console.log(html);
-
-                        if (html != '')
-                            $("#search_result_model").html(html).fadeIn();
-                        else
-                            $("#search_result_model").fadeOut();
-
-                        $(".select2").select2();
-                    });
-                }
-
-                $(".search_result_mark").fadeOut();
+                $("#search_registration").val($(this).text());
+                $(".search_result").fadeOut();
             })
+
 
             $("#select2-model-container").on("change keyup input click", function () {
 

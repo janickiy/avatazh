@@ -14,6 +14,7 @@ class CreateCatalogUsedCarsTable extends Migration
     {
         Schema::create('catalog_used_cars', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
             $table->string('mark');
             $table->string('model');
             $table->integer('price');
