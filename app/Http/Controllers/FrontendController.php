@@ -664,7 +664,7 @@ class FrontendController extends Controller
         $marks = CarMark::selectRaw('car_marks.id,car_marks.name,car_marks.slug,count(catalog_used_cars.id) as countusedcars')
             ->where('car_marks.published', 1)
             ->leftJoin('catalog_used_cars', 'car_marks.name', 'like', 'catalog_used_cars.mark')
-            ->groupBy('car_marks.id')
+            ->groupBy('car_marks.name')
             ->orderBy('car_marks.name')
             ->having('countusedcars', '>=', 1)
             ->get();
@@ -684,15 +684,27 @@ class FrontendController extends Controller
 
         $carMark = CarMark::select(['name','id'])->where('slug', '=', $mark)->first()->toArray();
 
-        $models = CarModel::selectRaw('car_models.id,car_models.name,car_models.slug,car_marks.slug as mark_slug,count(catalog_used_cars.id) as countusedcars')
+        $models = CarModel::selectRaw('car_models.id,car_models.name,car_models.model,car_models.slug,car_marks.slug as mark_slug,count(catalog_used_cars.id) as countusedcars')
             ->where('car_models.published', 1)
             ->where('car_marks.id', $carMark['id'])
-            ->leftJoin('catalog_used_cars', 'car_models.name', 'like', 'catalog_used_cars.model')
+            ->leftJoin('catalog_used_cars', 'car_models.model', 'like', 'catalog_used_cars.model')
             ->leftJoin('car_marks', 'car_marks.id', '=', 'car_models.id_car_mark')
-            ->groupBy('car_models.id')
+            ->groupBy('car_models.model')
             ->orderBy('car_models.name')
             ->having('countusedcars', '>=', 1)
             ->get();
+
+
+
+        $marks = CarMark::selectRaw('car_marks.id,car_marks.name,car_marks.slug,count(catalog_used_cars.id) as countusedcars')
+            ->where('car_marks.published', 1)
+            ->leftJoin('catalog_used_cars', 'car_marks.name', 'like', 'catalog_used_cars.mark')
+            ->groupBy('car_marks.name')
+            ->orderBy('car_marks.name')
+            ->having('countusedcars', '>=', 1)
+            ->get();
+
+
 
         if ($carMark) {
             return view('frontend.usedauto.mark', compact('model_list', 'models'))->with('title', 'Все модели: ' . $carMark['name']);
@@ -708,10 +720,10 @@ class FrontendController extends Controller
      */
     public function usedAutoModel($mark, $model)
     {
-        $car_model = CarModel::where('slug', $model)->first()->toArray();
+        $car_model = CarModel::where('model', 'like', $model)->first()->toArray();
 
         if ($car_model) {
-            $model_list = CatalogUsedCar::where('model', 'like', $car_model['name'])
+            $model_list = CatalogUsedCar::where('model', 'like', $car_model['model'])
                 ->where('published', 1)
                 ->paginate(10);
 
@@ -727,7 +739,7 @@ class FrontendController extends Controller
      */
     public function usedAutoDetail($id)
     {
-        $detail = CatalogUsedCar::selectRaw('*,car_marks.slug as slug,catalog_used_cars.mark as mark,catalog_used_cars.model as model')
+        $detail = CatalogUsedCar::selectRaw('*,car_marks.slug as slug,catalog_used_cars.mark as mark,catalog_used_cars.model as model, catalog_used_cars.name as carname')
             ->where('catalog_used_cars.id', $id)
             ->where('catalog_used_cars.published', 1)
             ->leftJoin('car_marks', 'car_marks.name', 'like', 'catalog_used_cars.mark')

@@ -32,7 +32,7 @@
 									<div class="item_pic"
 										 style="background-image:url({{ mainSmallPic($car->image) }})"></div>
 									<div class="idem_desc">
-										<div class="item_name">{{ $car->mark }} {{ $car->model }}</div>
+										<div class="item_name">{{ $car->mark }} {{ $car->name }}</div>
 										<p>{{ $car->year }} г., {{ number_format($car->mileage,0,'',' ') }} км, {{ $car->engine_type }}
 											, {{ $car->gearbox }}</p>
 										<div class="item_price">{{ number_format($car->price,0,'',' ')  }}<span>руб.</span></div>

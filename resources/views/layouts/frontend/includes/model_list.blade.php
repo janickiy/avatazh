@@ -4,7 +4,7 @@
             <div class="row">
                 <ul>
 				@foreach($models as $model)
-                            <li><a href="{!! url('/auto/used/' . $model->mark_slug . '/' . $model->slug) !!}">{!! $model->name !!} ({!! $model->countusedcars !!})</a><span
+                            <li><a href="{!! url('/auto/used/' . $model->mark_slug . '/' . strtolower($model->model)) !!}">{!! $model->model !!}</a><span
                                         style="display:none;"> {!! $model->countusedcars !!} </span></li>
                             
                 @endforeach

@@ -22,7 +22,7 @@
                 <a href="/">Главная</a> - <a href="{{ url('/auto/used') }}">Автомобили с пробегом</a> - <a href="{{ url('/auto/used/' .  $detail->slug) }}">{{ $detail->mark }}</a> - <span>{{ $detail->model }}</span>
             </div>
 
-            <h1>{{ $detail->mark }} {{ $detail->model }}</h1>
+            <h1>{{ $detail->mark }} {{ $detail->carname }}</h1>
             <div class="row">
                 <div class="detail">
                     <div class="row">
@@ -163,7 +163,7 @@
                                         <div class="item_pic"
                                              style="background-image:url({!! mainSmallPic($similarCar->image) !!})"></div>
                                         <div class="idem_desc">
-                                            <div class="item_name">{!! $similarCar->mark !!} {!! $similarCar->model !!}</div>
+                                            <div class="item_name">{!! $similarCar->mark !!} {!! $similarCar->name !!}</div>
                                             <p>{!! $similarCar->year !!}
                                                 г., {!! number_format($similarCar->mileage,0,'',' ') !!}
                                                 км, {!! $similarCar->engine_type !!},

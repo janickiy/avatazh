@@ -150,12 +150,10 @@ class CarmarksController extends Controller
      */
     public function importCarmarks(CarMarksImportRequest $request)
     {
+
         if ($request->hasFile('file')) {
             $file = $request->file('file');
             $xml = simplexml_load_file($file);
-
-
-
 
             if ($xml) {
                 CarMark::query()->truncate();
@@ -163,7 +161,7 @@ class CarmarksController extends Controller
                 CarModification::query()->truncate();
             }
 
-            foreach ($xml->mark as $row_mark) {
+            foreach($xml->mark as $row_mark) {
                 if ($row_mark->code) {
                     $carMarks = new CarMark;
                     $carMarks->name = formatMarkNames($row_mark->code);
@@ -175,41 +173,38 @@ class CarmarksController extends Controller
                     if ($carMarks->save()) {
                         $id_car_mark = $carMarks->id;
 
-                        foreach ($row_mark->folder as $row_folder) {
+                        foreach($row_mark->folder as $row_folder){
+                            $carModel = new CarModel;
+                            $carModel->id_car_mark = $id_car_mark;
 
-                            $carmodels = CarModel::where('name', 'like', $row_folder->model)->get();
+                            preg_match("/([a-zа-я0-9\s_-]+)/i", $row_folder[0]['name'], $out);
 
-                            if ( count($carmodels) > 0) {
-                                $row = CarModel::where('name', ucfirst(strtolower($row_folder->model)))->first()->toArray();
-                                $id_car_model = $row['id'];
-                            } else {
-                                $carModel = new CarModel;
-                                $carModel->id_car_mark = $id_car_mark;
-                                $carModel->name = ucfirst(strtolower($row_folder->model));
-                                $carModel->name_rus = Lat2ru(ucfirst(strtolower($row_folder->model)));
-                                $carModel->slug = slug(strtolower($row_folder->model));
-                                $carModel->meta_title = ucfirst(strtolower($row_folder->model));
-                                $carModel->published = 1;
-                                $carModel->save();
+                            $carModel->model = $out[1];
+
+                            $carModel->name = $row_folder[0]['name'];
+                            $carModel->name_rus = Lat2ru($row_folder[0]['name']);
+                            $carModel->slug = slug($row_folder[0]['name']);
+                            $carModel->meta_title = $row_folder[0]['name'];
+                            $carModel->published  = 1;
+
+                            if ($carModel->save()) {
                                 $id_car_model = $carModel->id;
-
-                            }
-
-                            if ($id_car_model) {
-
                                 foreach ($row_folder->modification as $modification) {
                                     if ($modification->modification_id && $modification->body_type) {
                                         $carModification = new CarModification;
                                         $carModification->id_car_model = $id_car_model;
+
+
+
+
                                         $carModification->name = $modification->modification_id;
-                                        $carModification->carname = $modification->folder_id;
                                         $carModification->body_type = $modification->body_type;
                                         $years = $modification->years;
 
                                         preg_match('/(\d+)\s+-\s((по н\.в\.)|(\d+))$/', $years, $matches);
 
                                         $carModification->year_begin = isset($matches[1]) && is_numeric($matches[1]) ? $matches[1] : date("Y");
-                                        $carModification->year_end = isset($matches[2]) && is_numeric($matches[2]) ? $matches[2] : date("Y");
+                                        $carModification->year_end = isset($matches[2]) && is_numeric($matches[2])? $matches[2] : date("Y");
                                         $carModification->save();
                                     }
                                 }
@@ -219,6 +214,7 @@ class CarmarksController extends Controller
                 }
             }
         }
+
 
         return redirect('admin/carmarks/import')->with('success', 'Импорт завершен');
     }

@@ -3,7 +3,6 @@
     <div class="top row">
         <div class="main_width">
             <div class="address">
-			{!! getSetting('FRONTEND_CITY') !!}<br/>
 			{!! getSetting('FRONTEND_ADDRESS') !!}</div>
             <div class="phone">
                &nbsp;

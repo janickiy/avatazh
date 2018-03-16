@@ -5,7 +5,7 @@
         <div class="row">
             <a href="/" class="logo"><img src="/images/logo.png"/></a>
             <div class="address">
-                <span>{!! getSetting('FRONTEND_CITY') !!}</span>, {!! getSetting('FRONTEND_ADDRESS') !!}<br/>
+                {!! getSetting('FRONTEND_ADDRESS') !!}<br/>
                 {!! getSetting('FRONTEND_TIMES') !!}
             </div>
             <div class="phone">
