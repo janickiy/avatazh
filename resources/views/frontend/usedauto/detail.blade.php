@@ -35,7 +35,7 @@
                                             @foreach($images as $image)
 
                                                 <img src="{!! $image['small'] !!}"
-                                                     data-medium-img="{!! $image['small'] !!}"
+                                                     data-medium-img="{!! $image['big'] !!}"
                                                      data-big-img="{!! $image['big'] !!}" data-title="" alt="">
 
                                             @endforeach

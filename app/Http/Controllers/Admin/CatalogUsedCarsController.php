@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\CarModel;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\CatalogUsedCarsRequest;
 use App\Http\Requests\CarImportRequest;
 use App\Http\Controllers\Controller;
 use App\CatalogUsedCar;
+use App\CarModel;
 use Intervention\Image\Facades\Image as ImageInt;
 
 class CatalogUsedCarsController extends Controller
@@ -53,13 +53,11 @@ class CatalogUsedCarsController extends Controller
                 $filename = str_random(20) . '.' . $f->getClientOriginalExtension() ? : 'png';
                 $img = ImageInt::make($f);
 
-                $img->resize(300, null, function ($constraint) {
+                $img->save($big_path . $filename);
+
+                $img->resize(400, null, function ($constraint) {
                     $constraint->aspectRatio();
                 })->save($small_path . $filename);
-
-                $img->resize(1000, null, function ($constraint) {
-                    $constraint->aspectRatio();
-                })->save($big_path . $filename);
 
                 $images[] = ['small' => PATH_SMALL_USEDCARS . $filename, 'big' => PATH_BIG_USEDCARS . $filename, 'name' => $f->getClientOriginalName()];
             }
@@ -134,13 +132,11 @@ class CatalogUsedCarsController extends Controller
                 $filename = str_random(20) . '.' . $f->getClientOriginalExtension() ? : 'png';
                 $img = ImageInt::make($f);
 
-                $img->resize(300, null, function ($constraint) {
+                $img->save($big_path . $filename);
+
+                $img->resize(400, null, function ($constraint) {
                     $constraint->aspectRatio();
                 })->save($small_path . $filename);
-
-                $img->resize(1000, null, function ($constraint) {
-                    $constraint->aspectRatio();
-                })->save($big_path . $filename);
 
                 $images[] = ['small' => PATH_SMALL_USEDCARS . $filename, 'big' => PATH_BIG_USEDCARS . $filename, 'name' => $f->getClientOriginalName()];
             }
@@ -261,9 +257,12 @@ class CatalogUsedCarsController extends Controller
                     $color = $row->color;
 
                     $usedCar = new CatalogUsedCar;
+
+                    preg_match("/(\w+)/i", $model, $out);
+
+                    $usedCar->name = $model;
                     $usedCar->mark = $mark;
-                    $usedCar->mark = $mark;
-                    $usedCar->model = $model;
+                    $usedCar->model = $out[1];
                     $usedCar->price = $price;
                     $usedCar->year = $year;
                     $usedCar->mileage = $mileage;
@@ -293,16 +292,12 @@ class CatalogUsedCarsController extends Controller
                         $filename = str_random(20) . '.jpg';
                         $img = ImageInt::make($f);
 
-                        $img->resize(300, null, function ($constraint) {
+                        $img->save($big_path . $filename);
+                        $img->resize(400, null, function ($constraint) {
                             $constraint->aspectRatio();
                         })->save($small_path . $filename);
 
-                        $img->resize(1000, null, function ($constraint) {
-                            $constraint->aspectRatio();
-                        })->save($big_path . $filename);
-
                         $path = parse_url($f, PHP_URL_PATH);
-
                         $images[] = ['small' => PATH_SMALL_USEDCARS . $filename, 'big' => PATH_BIG_USEDCARS . $filename, 'name' => basename($path)];
 
                        // echo $image;

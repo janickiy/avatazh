@@ -94,9 +94,9 @@
             serverSide: true,
             ajax: '{!! url("admin/datatables/catalogusedcars") !!}',
             columns: [
-                {data: 'model', name: 'model'},
-                {data: 'mark', name: 'mark'},
                 {data: 'name', name: 'name'},
+                {data: 'mark', name: 'mark'},
+                {data: 'model', name: 'model'},
                 {data: 'price', name: 'price'},
                 {data: 'year', name: 'year'},
                 {data: 'mileage', name: 'mileage'},

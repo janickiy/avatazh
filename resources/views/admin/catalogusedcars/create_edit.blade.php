@@ -83,7 +83,7 @@
                 <div class="col-md-12">
 
                     <div class="form-group">
-                        {!! Form::label('name', 'Модель *', ['class' => 'control-label col-md-2']) !!}
+                        {!! Form::label('name', 'Название *', ['class' => 'control-label col-md-2']) !!}
                         <div class="col-md-4">
                             {!! Form::text('name', old('name', isset($catalogusedcar) ? $catalogusedcar->name : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Название']) !!}
                         </div>
@@ -98,7 +98,7 @@
                     </div>
 
                     <div class="form-group">
-                        {!! Form::label('model', 'Название *', ['class' => 'control-label col-md-2']) !!}
+                        {!! Form::label('model', 'Модель *', ['class' => 'control-label col-md-2']) !!}
                         <div class="col-md-4">
                             {!! Form::text('model', old('model', isset($catalogusedcar) ? $catalogusedcar->model : null), ['class' => 'form-control validate[required]', 'placeholder'=>'Модель']) !!}
                         </div>
