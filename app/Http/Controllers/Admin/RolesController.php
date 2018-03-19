@@ -113,7 +113,7 @@ class RolesController extends Controller {
 
             return response()->json(['success' => 'Role has been deleted successfully']);
         } else {
-            return 'You can\'t proceed in delete operation';
+            return 'Ошибка веб приложения! Действия не были выполнены.';
         }
     }
 

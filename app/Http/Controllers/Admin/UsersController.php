@@ -144,9 +144,9 @@ class UsersController extends Controller
     {
         if ($request->ajax()) {
             $user->delete();
-            return response()->json(['success' => 'User has been deleted successfully']);
+            return response()->json(['success' => 'Пользователь ' . $user->name . ' удален']);
         } else {
-            return 'You can\'t proceed in delete operation';
+            return 'Ошибка веб приложения! Действия не были выполнены.';
         }
     }
 }
