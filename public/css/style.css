@@ -308,7 +308,7 @@ input.error:focus, textarea.error:focus { border-color: #973d3d; color: #a35959;
 
 footer {background:#808890;color:#fff;padding:20px 0;height:80px;position:absolute;left:0;bottom:0;width:100%;}
 footer .address {float:left;padding-left:25px;}
-footer .phone {width:208px;float:left;line-height: 26px;text-align:right;}
+footer .phone {line-height: 26px;text-align:right;}
 footer .phone a {font-size:24px;color:#fff;}
 footer a.logo {float:left;padding: 5px 0;}
 

@@ -60,7 +60,7 @@
         </div><!-- /.box -->
     </section><!-- /.content -->
 
-    @include('layouts.admin.includes.message_boxes', ['item' => 'Menu', 'delete' => true])
+    @include('layouts.admin.includes.message_boxes', ['item' => 'Callback', 'delete' => true])
 
 @endsection
 

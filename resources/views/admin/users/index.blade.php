@@ -83,12 +83,15 @@
                 serverSide: true,
                 ajax: '{!! url("admin/datatables/users") !!}',
                 columns: [
-                    {data: 'avatar', name: 'avatar', orderable: false, searchable: false},
+                    {data: 'avatar', name: 'avatar'},
                     {data: 'name', name: 'name'},
                     {data: 'email', name: 'email'},
                     {data: 'role_id', name: 'role_id'},
                     {data: 'created_at', name: 'created_at'},
                     {data: 'actions', name: 'actions', orderable: false, searchable: false}
+
+
+
                 ]
             });
             table.column('4:visible').order('asc').draw();

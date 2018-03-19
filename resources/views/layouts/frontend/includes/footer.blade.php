@@ -9,9 +9,6 @@
                 {!! getSetting('FRONTEND_TIMES') !!}
             </div>
             <div class="phone">
-                <a href="tel:{!! getSetting('TELEPHONE_2') !!}">{!! getSetting('TELEPHONE_2') !!}</a>
-            </div>
-            <div class="phone">
                 <a href="tel:{!! getSetting('TELEPHONE_1') !!}">{!! getSetting('TELEPHONE_1') !!}</a>
             </div>
         </div>

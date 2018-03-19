@@ -82,7 +82,7 @@
                     <h2>Новый автомобиль</h2>
                     <div class="select">
                         <div class="select">
-                            {!! Form::select('trade_in_mark', [null => 'Марка'], null, ['class' => 'select2 itemName validate[required]', 'id' => 'trade_in_mark']) !!}
+                            {!! Form::select('trade_in_mark', [null => 'Марка'], null, ['class' => 'select2 itemName2 validate[required]', 'id' => 'trade_in_mark']) !!}
                         </div>
                     </div>
                     <div class="select">
@@ -139,7 +139,23 @@
                 width: '100%',
                 placeholder: 'Выберите марку',
                 ajax: {
-                    url: "{!! url('./ajax?action=get_marks') !!}",
+                    url: "{!! url('/ajax?action=get_marks') !!}",
+                    dataType: 'json',
+                    delay: 250,
+                    processResults: function (data) {
+                        return {
+                            results: data
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+            $('.itemName2').select2({
+                width: '100%',
+                placeholder: 'Выберите марку',
+                ajax: {
+                    url: "{!! url('/ajax?action=get_marks') !!}",
                     dataType: 'json',
                     delay: 250,
                     processResults: function (data) {
@@ -162,7 +178,7 @@
                 if (idMark != null) {
 
                     var request = $.ajax({
-                        url: './ajax?action=get_models&id_car_mark=' + idMark,
+                        url: '/ajax?action=get_models&id_car_mark=' + idMark,
                         method: "GET",
                         dataType: "json"
                     });
@@ -188,7 +204,7 @@
                             width: '100%',
                             placeholder: 'Выберите марку',
                             ajax: {
-                                url: "{!! url('./ajax?action=get_marks') !!}",
+                                url: "{!! url('/ajax?action=get_marks') !!}",
                                 dataType: 'json',
                                 delay: 250,
                                 processResults: function (data) {
@@ -208,7 +224,7 @@
 
                 if (idModel != null) {
                     var request = $.ajax({
-                        url: './ajax?action=get_year&id_car_model=' + idModel,
+                        url: '/ajax?action=get_year&id_car_model=' + idModel,
                         method: "GET",
                         dataType: "json"
                     });
@@ -229,9 +245,7 @@
                             $('#year').prop('disabled', true);
                         }
 
-                        $(".select2").select2({
-                            width: '100%'
-                        });
+                       
                     });
                 }
             })
@@ -243,7 +257,7 @@
                 if (idMark != null) {
 
                     var request = $.ajax({
-                        url: './ajax?action=get_models&id_car_mark=' + idMark,
+                        url: '/ajax?action=get_models&id_car_mark=' + idMark,
                         method: "GET",
                         dataType: "json"
                     });
@@ -265,11 +279,11 @@
                             $('#trade_in_model').prop('disabled', true);
                         }
 
-                        $('.itemName').select2({
+                        $('.itemName2').select2({
                             width: '100%',
                             placeholder: 'Выберите марку',
                             ajax: {
-                                url: "{!! url('./ajax?action=get_marks') !!}",
+                                url: "{!! url('/ajax?action=get_marks') !!}",
                                 dataType: 'json',
                                 delay: 250,
                                 processResults: function (data) {
@@ -291,7 +305,7 @@
                 if (idModel != null) {
 
                     var request = $.ajax({
-                        url: './ajax?action=get_model_info&id=' + idModel,
+                        url: '/ajax?action=get_model_info&id=' + idModel,
                         method: "GET",
                         dataType: "json"
                     });

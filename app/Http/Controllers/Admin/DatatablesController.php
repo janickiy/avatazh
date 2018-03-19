@@ -57,7 +57,7 @@ class DatatablesController extends Controller
                 if (\Auth::user()->role->name == 'Admin') {
                     $editBtn = '<a style="margin-right: 0.1em;" href="' . url('admin/users/' . $user->id . '/edit') . '"  title="Редактировать"><i class="fa fa-2 fa-pencil"></i></a>';
                     if (!is_null($user->role) && $user->role->name != 'Admin') {
-                        $deleteBtn = '&nbsp;<a href="' . url('admin/users/' . $user->id) . '" class="message_box text-danger" data-box="#message-box-delete" data-action="Удалить" title="Удалить"><i class="fa fa-2 fa-remove"></i></i></a>';
+                        $deleteBtn = '&nbsp;<a href="' . url('admin/users/' . $user->id) . '" class="message_box text-danger" data-box="#message-box-delete" data-action="DELETE" title="Удалить"><i class="fa fa-2 fa-remove"></i></i></a>';
                     } else {
                         $deleteBtn = '';
                     }

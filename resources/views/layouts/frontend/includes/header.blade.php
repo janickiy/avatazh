@@ -39,13 +39,9 @@
                         @endforeach
                     </ul>
                 </nav>
-                <div class="mobile_info">
+                <div class="mobile_info"> 
                     <div class="address">{!! getSetting('FRONTEND_ADDRESS') !!}</div>
-                    <div class="phone">
-                        <a href="tel:{!! getSetting('TELEPHONE_2') !!}">{!! getSetting('TELEPHONE_2') !!}</a>
-                        <span>Бесплатно по России</span>
-                    </div>
-                    <div class="phone">
+                                        <div class="phone">
                         <a href="tel:{!! getSetting('TELEPHONE_1') !!}">{!! getSetting('TELEPHONE_1') !!}</a>
                         <span>{!! getSetting('FRONTEND_TIMES') !!}</span>
                     </div>

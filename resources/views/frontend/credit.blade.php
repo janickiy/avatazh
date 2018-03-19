@@ -74,7 +74,9 @@
                             {!! Form::label('agree', 'Я даю согласие на обработку моих персональных данных') !!}
                         </div>
                     </div>
-					<button type="submit" value="Отправить заявку" class="btn" onclick="yaCounter48034634.reachGoal('credit'); return true;">Отправить заявку</button>
+
+                    {!! Form::submit('Отправить заявку', ['class'=>'btn', 'onclick' => "yaCounter48034634.reachGoal('credit'); return true;"]) !!}
+
                     {!! Form::close() !!}
 
                 </div>

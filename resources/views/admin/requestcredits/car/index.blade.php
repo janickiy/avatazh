@@ -70,7 +70,7 @@
         </div><!-- /.box -->
     </section><!-- /.content -->
 
-    @include('layouts.admin.includes.message_boxes', ['item' => 'Review', 'delete' => true])
+    @include('layouts.admin.includes.message_boxes', ['item' => 'Requestcredit', 'delete' => true])
 
 @endsection
 

@@ -69,7 +69,7 @@
         </div><!-- /.box -->
     </section><!-- /.content -->
 
-    @include('layouts.admin.includes.message_boxes', ['item' => 'Review', 'delete' => true])
+    @include('layouts.admin.includes.message_boxes', ['item' => 'Requesttradein', 'delete' => true])
 
 @endsection
 

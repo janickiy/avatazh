@@ -64,7 +64,7 @@
         </div><!-- /.box -->
     </section><!-- /.content -->
 
-    @include('layouts.admin.includes.message_boxes', ['item' => 'Menu', 'delete' => true])
+    @include('layouts.admin.includes.message_boxes', ['item' => 'Carmodification', 'delete' => true])
 
 @endsection
 
